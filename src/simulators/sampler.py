@@ -1,7 +1,8 @@
 # Library imports
-from smt.sampling_methods import LHS, Random
-import numpy as np
 from typing import List
+
+import numpy as np
+from smt.sampling_methods import LHS
 
 
 # Sampling functions

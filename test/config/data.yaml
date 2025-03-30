@@ -18,7 +18,7 @@ sim_time:
 
 
 system:
-  _target_: src.simulators.systems.Duffing
+  _target_: src.simulators.system.Duffing
   num_samples: 50
   system_param:
     _target_: src.simulators.types.SysParam

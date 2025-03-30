@@ -1,6 +1,6 @@
 import hydra, unittest
 from omegaconf import DictConfig, OmegaConf
-from src.data_loader.dataset import load_dataset
+from src.data_loader.dataset_creation import load_dataset
 
 
 class TestData(unittest.TestCase):

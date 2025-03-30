@@ -39,6 +39,7 @@ class System(ABC):
         self._ic = sampler(num_samples)
         self.system_param = system_param
 
+
     @abstractmethod
     def diff_eq(self, x: list[float], t: float, inp: Optional[Union[float, Callable]]) -> np.ndarray:
         """
@@ -67,6 +68,10 @@ class System(ABC):
     @property
     def ic(self) -> np.ndarray:
         return self._ic
+
+    @ic.setter
+    def ic(self, ic):
+        self._ic = ic
 
     def sampler(self, sampler: Callable) -> None:
         self._sampler = sampler

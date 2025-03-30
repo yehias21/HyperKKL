@@ -1,0 +1,33 @@
+models:
+  forward_mapper:
+    type: MLP
+    update_method: backprop #backprop, delta, full
+    input_size: 2
+    output_size: 5
+    hidden_dim: [ 50, 50, 50, 50, 50 ]
+    activation: [ relu, relu, relu, relu, relu ]
+    pretrained: False
+
+  inverse_mapper:
+    type: MLP
+    update_method: backprop #backprop, delta, full
+    input_size: 5
+    output_size: 2
+    hidden_dim: [ 50, 50, 50, 50, 50 ]
+    activation: [ relu, relu, relu, relu, relu ]
+    pretrained: False
+
+#  hypernetwork:
+#    shared: True
+#    encoder:
+#      type: MLP
+#      update_method: backprop
+#      input_size: 1
+#      output_size: 128
+#      hidden_dim: [ 100, 100, 100 ]
+#      activation: [ relu, relu, relu ]
+#    decoder:
+#      method: lora #Full, chunked, lora
+#      regress: weight  #all - weight
+#      input_size: 128
+#      rank_ratio: 0.5

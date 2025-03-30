@@ -1,0 +1,8 @@
+trainer:
+  method: supervised_pinn    #or unsupervised
+  epochs: 15
+  learning_rate: 0.001
+  lambda: 1
+  loss: mse
+  device: cuda # cuda or cpu
+  save_dir: ./checkpoints

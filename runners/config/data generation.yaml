@@ -1,0 +1,12 @@
+data generation:
+  num of datasets: 20
+  dataset_1:
+    - duffing
+    - eps: multi-resolution
+    - change the validation set
+      - time extension
+      - different sets
+      - no validation - only
+    - different physics informed options: backward forward, odd-even/ different sets
+    - 
+  dataset_2:

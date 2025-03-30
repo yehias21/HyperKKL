@@ -1,13 +1,12 @@
 from abc import abstractmethod, ABC
+from typing import Callable
 import numpy as np
-from typing import Optional, Callable, Union
 
 
 class StateObserver(ABC):
-    def __init__(self, sampler: Callable, num_samples: int):
+    def __init__(self, sampler: Callable, num_samples: int) -> None:
         self._ic = sampler(num_samples)
         self._sampler = sampler
-
     @abstractmethod
     def diff_eq(self, x: list[float], t: float, inp: list[float]) -> np.ndarray:
         pass
@@ -29,13 +28,13 @@ class StateObserver(ABC):
 
 
 class KKLObserver(StateObserver):
-    def __init__(self, a: list, b: list, z_dim: int, e: float, z_max: int, sampler, num_samples=2) -> None:
+    def __init__(self, observer_param: dict, sampler, num_samples=2) -> None:
         super().__init__(sampler, num_samples)
-        self.A = np.array(a).reshape(z_dim, z_dim)
-        self.B = np.array(b)
-        self.z_dim = z_dim
-        self.e = e
-        self.z_max = z_max
+        self.A = np.array(observer_param['a']).reshape(observer_param['z_dim'], observer_param['z_dim'])
+        self.B = np.array(observer_param['b'])
+        self.z_dim = observer_param['z_dim']
+        self.e = observer_param['e']
+        self.z_max = observer_param['z_max']
 
     def diff_eq(self, x: list[float], t: float, inp: list[float], **kwargs) -> np.ndarray:
         x_hat_dot = np.matmul(self.A, x) + self.B * inp

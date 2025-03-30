@@ -10,6 +10,50 @@ from src.simulators.systems import System
 from src.simulators.types import SimTime
 
 
+def _observer_ic_methods(gen_mode: str, system, solver, observer, sim_time):
+    t_neg = observer.calc_pret0()
+    system.p_noise_flag = False
+    match gen_mode:
+        case 'backward':
+            sim_neg = SimTime(sim_time.t0, sim_time.t0 + t_neg, -sim_time.eps)
+            # simulate the system in the negative time, with same initial condition of forward time
+            neg_states, _ = simulate_system_data(system, solver, sim_neg)
+            neg_out = system.get_output(neg_states, noise_flag=False)
+            # converge to the initial condition of the observer so that Z0 = T(X0)
+            neg_out = np.squeeze(neg_out, 0)
+            neg_out = np.flip(neg_out, axis=-2)
+        case 'forward':
+            sim_neg = SimTime(t_neg + sim_time.t0, sim_time.t0, sim_time.eps)
+            # simulate the system in the negative time, with same initial condition of forward time
+            neg_states, _ = simulate_system_data(system, solver, sim_neg)
+            neg_out = system.get_output(neg_states, noise_flag=False)
+            # converge to the initial condition of the observer so that Z0 = T(X0)
+            neg_out = np.squeeze(neg_out, 0)
+
+        case 'time_convergence':
+            sim_neg = SimTime(t_neg + sim_time.t0, sim_time.t0, sim_time.eps)
+            # simulate the system in the negative time, with same initial condition of forward time
+            temp_ic = system.ic
+            system.ic = system.system_param.system_coeff['ic']
+            neg_states, _ = simulate_system_data(system, solver, sim_neg)
+            system.ic = temp_ic
+            neg_out = system.get_output(neg_states, noise_flag=False)
+            # converge to the initial condition of the observer so that Z0 = T(X0)
+            neg_out = np.squeeze(neg_out, 0)
+        case _:
+            raise ValueError(f"{gen_mode} is not a valid generation mode")
+    z_init = []
+    sim_neg = SimTime(t_neg + sim_time.t0, sim_time.t0, sim_time.eps)
+    for z0, y in zip(observer.ic, neg_out):
+        z_temp, _ = solver(observer.diff_eq, sim_neg, z0, exogenous_input=y)
+        z_init.append(z_temp)
+    z_init = np.array(z_init)
+    z_init = z_init[:, -1, :]
+    assert z_init.shape[0] == system.ic.shape[
+        0], "The initial conditions for the observer should be the same as the output"
+    return z_init
+
+
 def simulate_system_data(system, solver, sim_time, input_data: Optional[np.ndarray] = None):
     """
      input_trajs: input signal to the system, dimension (n, t, sig_dim)
@@ -35,34 +79,7 @@ def simulate_system_data(system, solver, sim_time, input_data: Optional[np.ndarr
 
 def simulate_kklobserver_data(observer: KKLObserver, system: System, y_out: np.ndarray,
                               solver, sim_time: SimTime, gen_mode='forward'):
-    """
-    - Simulate observer data out
-    - TODO:
-        A more robust simulation that the initial condition of positive trajectory are already from negative forward
-        or just we can invert the output
-    """
-    # backward distinguishability
-    t_neg = observer.calc_pret0()
-    sim_neg = SimTime(sim_time.t0, sim_time.t0 + t_neg, -sim_time.eps) if gen_mode == 'backward' else SimTime(
-        t_neg + sim_time.t0, sim_time.t0,
-        sim_time.eps)
-    # simulate the system in the negative time, with same initial condition of forward time
-    system.p_noise_flag = False
-    neg_states, _ = simulate_system_data(system, solver, sim_neg)
-    neg_out = system.get_output(neg_states, noise_flag=False)
-    neg_out = np.flip(neg_out, axis=-2) if gen_mode == 'backward' else neg_out
-    # converge to the initial condition of the observer so that Z0 = T(X0)
-    neg_out = np.squeeze(neg_out, 0)
-    z_init = []
-    sim_neg = SimTime(t_neg + sim_time.t0, sim_time.t0, sim_time.eps)
-    for z0, y in zip(observer.ic, neg_out):
-        z_temp, _ = solver(observer.diff_eq, sim_neg, z0, exogenous_input=y)
-        z_init.append(z_temp)
-    z_init = np.array(z_init)
-    z_init = z_init[:, -1, :]
-    assert z_init.shape[0] == y_out.shape[
-        -3], "The initial conditions for the observer should be the same as the output"
-
+    z_init = _observer_ic_methods(gen_mode, system, solver, observer, sim_time)
     # simulate the observer
     z_states = []
     # First loop over the input signal
