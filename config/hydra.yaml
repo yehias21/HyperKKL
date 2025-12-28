@@ -1,0 +1,9 @@
+hydra:
+  run:
+    dir: results/runs/${now:%Y-%m-%d_%H-%M-%S}_${experiment.name}
+
+  sweep:
+    dir: results/multiruns/${now:%Y-%m-%d_%H-%M-%S}
+    subdir: ${hydra.job.num}
+
+  output_subdir: metadata

@@ -1,0 +1,14 @@
+defaults:
+  - hydra: hydra
+  - experiment: exp001
+  - _self_
+
+paths:
+  root: ${hydra:run.dir}
+  checkpoints: ${paths.root}/checkpoints
+  figures: ${paths.root}/figures
+  logs: ${paths.root}/logs
+  tensorboard: ${paths.logs}/tensorboard
+  wandb: ${paths.logs}/wandb
+  analysis: ${paths.root}/analysis
+  metadata: ${paths.root}/metadata

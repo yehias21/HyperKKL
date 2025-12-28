@@ -1,10 +1,8 @@
-credentials.yml
-# Ignore any folder named "output" in any subdirectory
-**/output/
+
 # .gitignore
 data/**
 !data/.gitkeep
-
+.env
 **/.ipynb_checkpoints/
 # Ignore any .pkl files
 *.pkl

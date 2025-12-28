@@ -53,7 +53,7 @@ pip install -e .
 To train a model using the default configuration:
 
 ```bash
-python runners/train.py
+python Scripts/train.py
 ```
 
 ### Testing
@@ -61,7 +61,7 @@ python runners/train.py
 To run tests:
 
 ```bash
-python runners/test.py
+python Scripts/test.py
 ```
 
 ### Data Generation
@@ -69,7 +69,7 @@ python runners/test.py
 To generate datasets:
 
 ```bash
-python runners/generate_dataset.py
+python Scripts/generate_dataset.py
 ```
 
 ## Configuration

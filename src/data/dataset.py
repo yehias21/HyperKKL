@@ -2,7 +2,7 @@ from typing import Optional
 
 import numpy as np
 from torch.utils.data import Dataset
-from src.simulators.systems import System
+from src.simulation.systems import System
 
 class KKLDataset(Dataset):
     def __init__(self, system: System, observer, x_states: dict, z_states: dict, time,
