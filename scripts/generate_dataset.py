@@ -3,9 +3,9 @@ from omegaconf import DictConfig, OmegaConf
 import os
 from glob import glob
 
-config_path = 'config'
-with initialize(config_path=config_path,version_base=None):
-    cfg = compose(config_name="baseline.yaml")
+CONFIG_PATH = 'config'
+with initialize(config_path=CONFIG_PATH,version_base=None):
+    cfg = compose(config_name="data_generation.yaml")
     signals = glob(os.path.join(cfg.data.signals_path, '*.yaml'))
     signals = {os.path.basename(conf).split('.')[0]: "/".join(conf.split('\\')[-4:]) for conf in signals}
     signal = compose(config_name=signals['square'])

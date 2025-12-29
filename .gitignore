@@ -1,7 +1,7 @@
 credentials.yml
 # Ignore any folder named "output" in any subdirectory
 **/output/
-**/data/
+data/
 **/.ipynb_checkpoints/
 # Ignore any .pkl files
 *.pkl
