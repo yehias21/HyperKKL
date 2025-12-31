@@ -1,0 +1,12 @@
+_target_: src.simulators.exogenous_signals.SinSignal
+seed: ${exo_input.seed}
+num_samples: ${exo_input.num_samples}
+params:
+  _target_: src.simulators.types.SigParam
+  signal_type: harmonics_range
+  signal_data:
+    {
+      sin_component: 3,
+      omega_range: [ 0, 0.6 ],
+      amp_range: [ -3, 3 ]
+    }

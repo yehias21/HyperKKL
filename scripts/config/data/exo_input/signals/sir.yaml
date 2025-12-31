@@ -1,0 +1,25 @@
+_target_: src.simulators.exogenous_signals.SystemAsSignal
+num_samples: ${exo_input.num_samples}
+seed: ${seed}
+params:
+  _target_: src.simulators.types.SigParam
+  signal_type: system
+  signal_data:
+    solver: ${data.solver}
+    system:
+      _target_: src.simulators.system.SIR
+      num_samples: ${ exo_input.num_samples }
+      system_param:
+        _target_: src.simulators.types.SysParam
+        C: [ 0,1, 0 ] # Observation matrix
+        ObservableIndex: [ 1 ]
+        system_coeff:
+          beta: 0.5
+          gamma: 0.1
+          N: 1000
+      sampler:
+        _target_: src.simulators.sampler.get_sampler
+        sampler_type: sir
+        sample_space: [ [ 0, 1 ], [ 0, 1 ], [ 0, 1 ] ]
+        N: 1000
+        seed: ${exo_input.seed}

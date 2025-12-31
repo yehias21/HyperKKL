@@ -1,0 +1,11 @@
+_target_: src.simulators.exogenous_signals.AlternatingSquareSignal
+seed: ${seed}
+num_samples: ${data.exo_input.num_samples}
+params:
+  _target_: src.simulators.types.SigParam
+  signal_type: square_wave
+  signal_data:
+    {
+      period: 10,
+      amp: [ -1, 1 ]
+    }

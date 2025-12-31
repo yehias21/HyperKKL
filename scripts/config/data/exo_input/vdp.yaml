@@ -1,0 +1,5 @@
+_target_: src.simulators.exogenous_signals.SignalGenerator
+num_samples: 5
+seed: ${seed}
+sys_states: 2
+signals:
