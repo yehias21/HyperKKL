@@ -1,0 +1,17 @@
+_target_: src.simulators.estimators.KKLObserver
+a: [ -6.5549,  4.6082, -5.2057, 3.3942, 6.0211,
+     -10.9772, -2.3362, -3.7164, -3.9566, -3.7166,
+     -1.9393, -0.2797, -2.7983, -0.8606, -4.8050,
+     -10.5100, -1.0820, -2.6448, -2.1144, -7.0080,
+     -10.1003, -0.5111, 1.0275, 3.1996, -0.3463 ]
+b: [ 1.0, 1.0, 1.0, 1.0, 1.0 ]
+z_dim: 5
+e: 0.000001 #10e-6
+z_max: 10
+num_samples: ${data.system.num_samples}
+
+sampler:
+  _target_: src.simulators.sampler.get_sampler
+  sampler_type: uniform
+  seed: ${seed}
+  sample_space: [ [ -1,1 ],[ -1,1 ],[ -1,1 ],[ -1,1 ],[ -1,1 ] ]

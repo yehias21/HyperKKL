@@ -1,0 +1,21 @@
+  _target_: src.simulators.system.Duffing
+  num_samples: 50
+  system_param:
+    _target_: src.simulators.types.SysParam
+    C: [ 1, 0 ] # Observation matrix
+    ObservableIndex: [ 0 ]
+  sampler:
+    _target_: src.simulators.sampler.get_sampler
+    sampler_type: lhs
+    seed: 0
+    sample_space: [ [ -1,1 ],[ -1,1 ] ]
+  p_noise:
+    _target_: src.simulators.noise.get_noise
+    noise_type: gaussian
+    mean: 0
+    std: 0.1
+  m_noise:
+    _target_: src.simulators.noise.get_noise
+    noise_type: gaussian
+    mean: 0
+    std: 0.1

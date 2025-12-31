@@ -1,0 +1,26 @@
+_target_: src.simulators.system.Rossler
+num_samples: 10
+system_param:
+  _target_: src.simulators.types.SysParam
+  C: [ 0, 1, 0 ] # Observation matrix
+  ObservableIndex: [ 1 ]
+  system_coeff:
+    a: 0.2
+    b: 0.2
+    c: 5.7
+sampler:
+  _target_: src.simulators.sampler.get_sampler
+  sampler_type: lhs
+  seed: ${ data.seed }
+  sample_space: [ [ -1,1 ],[ -1,1 ], [ -1,1 ] ]
+p_noise:
+  _target_: src.simulators.noise.get_noise
+  noise_type: gaussian
+  mean: 0
+  std: 0.1
+m_noise:
+  _target_: src.simulators.noise.get_noise
+  noise_type: gaussian
+  mean: 0
+  std: 0.1
+

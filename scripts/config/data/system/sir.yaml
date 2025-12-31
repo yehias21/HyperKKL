@@ -1,0 +1,27 @@
+_target_: src.simulators.system.SIR
+num_samples: 10
+system_param:
+  _target_: src.simulators.types.SysParam
+  C: [ 0,1, 0 ] # Observation matrix
+  ObservableIndex: [ 1 ]
+  system_coeff:
+    beta: 0.5
+    gamma: 0.1
+    N: 1000
+sampler:
+  _target_: src.simulators.sampler.get_sampler
+  sampler_type: sir
+  sample_space: [ [ 0, 1 ], [ 0, 1 ], [ 0, 1 ] ]
+  N: 1000
+  seed: ${data.seed}
+p_noise:
+  _target_: src.simulators.noise.get_noise
+  noise_type: gaussian
+  mean: 0
+  std: 0.1
+m_noise:
+  _target_: src.simulators.noise.get_noise
+  noise_type: gaussian
+  mean: 0
+  std: 0.1
+
