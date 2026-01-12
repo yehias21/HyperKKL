@@ -1,0 +1,7 @@
+# Harmonic Signal (Sum of Sinusoids)
+name: harmonics
+_target_: src.simulators.signals.Harmonics
+
+num_components: 3
+omega_range: [0.0, 0.6]
+amplitude_range: [-3.0, 3.0]

@@ -1,0 +1,6 @@
+# Alternating Square Wave Signal
+name: square
+_target_: src.simulators.signals.SquareWave
+
+period: 10.0
+amplitude: [-1.0, 1.0]

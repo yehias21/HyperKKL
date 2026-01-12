@@ -3,7 +3,7 @@ from omegaconf import DictConfig, OmegaConf
 import os
 from glob import glob
 
-CONFIG_PATH = 'config'
+CONFIG_PATH = '../config'
 with initialize(config_path=CONFIG_PATH,version_base=None):
     cfg = compose(config_name="data_generation.yaml")
     signals = glob(os.path.join(cfg.data.signals_path, '*.yaml'))

@@ -1,0 +1,17 @@
+# Lorenz System Output as Exogenous Signal
+name: lorenz_signal
+_target_: src.simulators.signals.SystemAsSignal
+
+# Reference the system config
+system:
+  _target_: src.simulators.systems.Lorenz
+  state_dim: 3
+  output_dim: 1
+  observation:
+    C: [0.0, 1.0, 0.0]
+    observable_index: [1]
+  coefficients:
+    sigma: 10.0
+    rho: 28.0
+    beta: 2.6667
+  ic_space: [[-1.0, 1.0], [-1.0, 1.0], [-1.0, 1.0]]
