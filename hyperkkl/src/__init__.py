@@ -1,1 +1,0 @@
-"""HyperKKL source package."""

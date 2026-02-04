@@ -1,7 +1,7 @@
 import hydra, os
 from omegaconf import DictConfig, OmegaConf
 import torch, logging
-from src.data_loader.dataset_creation import load_dataset
+from src.data_loader.generation import load_dataset
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from src.utils.normalizer import Normalizer
 from src.utils.loss import Criterion, PDELoss
