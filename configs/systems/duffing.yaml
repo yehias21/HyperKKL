@@ -1,0 +1,33 @@
+name: duffing
+class_name: RevDuff
+init_args:
+  zdim: 5
+  add_noise: true
+x_size: 2
+y_size: 1
+z_size: 5
+num_hidden: 3
+hidden_size: 150
+M:
+  - [-1, 0, 0, 0, 0]
+  - [0, -2, 0, 0, 0]
+  - [0, 0, -3, 0, 0]
+  - [0, 0, 0, -4, 0]
+  - [0, 0, 0, 0, -5]
+K:
+  - [1]
+  - [1]
+  - [1]
+  - [1]
+  - [1]
+limits:
+  - [-1, 1]
+  - [-1, 1]
+time_start: 0
+time_end: 50
+n_steps: 1000
+natural_inputs:
+  - zero
+  - sinusoid
+  - square
+  - constant

@@ -7,11 +7,13 @@ Neural KKL (Kazantzis-Kravaris-Luenberger) observers for non-autonomous dynamica
 HyperKKL learns a coordinate transformation pair (T, T*) that maps a nonlinear system into a linear observer space where state estimation is straightforward:
 
 - **Phase 1 (Autonomous):** Train forward map T: x -> z and inverse map T*: z -> x using physics-informed neural networks. The PDE constraint dT/dx * f(x) = Mz + Ky is enforced as a regularizer.
-- **Phase 2 (Non-Autonomous):** Extend the static maps to handle exogenous inputs u(t) via four methods:
-  - **Static HyperKKL** -- learn an injection term phi(z, u) added to the observer dynamics
-  - **Curriculum Learning** -- fine-tune T/T* with progressively complex inputs
-  - **Dynamic Weight Modulation** -- hypernetwork generates time-varying weight residuals for T/T*
-  - **Dynamic LoRA** -- per-layer low-rank adaptation of T/T* weights via recurrent hypernetwork
+- **Phase 2 (Non-Autonomous):** Extend the maps to handle exogenous inputs u(t) via four methods:
+  - **Augmented Observer** (`augmented`) -- learn a correction phi(z, u) injected into the observer ODE
+  - **Curriculum** -- fine-tune T/T* with progressively complex inputs
+  - **Dynamic Full** (`full`) -- hypernetwork generates time-varying weight residuals for T/T*
+  - **Dynamic LoRA** (`lora`) -- per-layer low-rank adaptation of T/T* weights via recurrent hypernetwork
+
+  Encoder type (LSTM or GRU) is a config parameter (`phase2.encoder_type`), not part of the method name.
 
 ## Supported Systems
 
@@ -27,107 +29,104 @@ HyperKKL learns a coordinate transformation pair (T, T*) that maps a nonlinear s
 ## Quick Start
 
 ```bash
-# Train Phase 1 independently
-python -m hyperkkl.scripts.train_phase1 --system duffing --epochs 20
+# Full pipeline (Phase 1 + Phase 2)
+python -m scripts.run_pipeline --system duffing --method all
 
-# Run Phase 2 using saved Phase 1 (skips retraining)
-python -m hyperkkl.scripts.run_pipeline --system duffing --method dynamic_lora \
-    --phase1_dir results/phase1/duffing
-
-# Full pipeline (Phase 1 + Phase 2 together)
-python -m hyperkkl.scripts.run_pipeline --system duffing --method all
-
-# Evaluate saved checkpoints
-python -m hyperkkl.scripts.evaluate --results_dir results/hyperkkl/duffing/v1
+# Single method
+python -m scripts.run_pipeline --system lorenz --method lora
 
 # All systems in parallel
-python -m hyperkkl.scripts.run_pipeline --all_systems --method all --parallel
+python -m scripts.run_pipeline --all_systems --parallel
+
+# Evaluate saved checkpoints
+python -m scripts.evaluate --results_dir results/duffing/v1
+
+# Hyperparameter search
+python -m scripts.sweep --system duffing --method lora --n_trials 10
 ```
 
 ## Project Structure
 
 ```
-hyperkkl/
-├── configs/                     # Hydra-compatible YAML configs
-│   ├── config.yaml              # Main configuration
-│   ├── system/                  # System definitions (duffing, lorenz, vdp)
-│   ├── observer/                # Observer configs (gains, dimensions)
-│   └── signal/                  # Input signal configs
-├── docs/
-│   ├── BENCHMARK.md             # Benchmark specification
-│   └── IMPLEMENTATION.md        # Architecture and implementation details
+HyperKKl/
+├── configs/
+│   ├── default.yaml                # Default hyperparameters
+│   └── systems/                    # Per-system configs (M, K, limits, etc.)
+│       ├── duffing.yaml
+│       ├── vdp.yaml
+│       ├── lorenz.yaml
+│       ├── rossler.yaml
+│       ├── fhn.yaml
+│       └── highway_traffic.yaml
+├── src/
+│   ├── config.py                   # Typed dataclass configs + YAML loading
+│   ├── logger.py                   # Unified TensorBoard + W&B logger
+│   ├── systems.py                  # 6 dynamical systems (batch torch + numpy)
+│   ├── signals.py                  # 9 input signal generators
+│   ├── dataset.py                  # Unified data generation (Phase 1 + 2)
+│   ├── models.py                   # NN, encoders, hypernetworks, weight ops
+│   ├── training.py                 # Unified training (Phase 1 + 2, all methods)
+│   ├── evaluation.py               # Unified observer simulation + metrics
+│   └── plotting.py                 # Loss, time-series, attractor, density plots
 ├── scripts/
-│   ├── run_pipeline.py          # Full training pipeline (Phase 1 + 2)
-│   ├── train_phase1.py          # Standalone Phase 1 training
-│   └── evaluate.py              # Post-training checkpoint evaluation
-└── src/
-    ├── data/                    # Data generation
-    │   ├── dataset.py           # Autonomous KKL dataset (Phase 1)
-    │   ├── data_gen.py          # Parallel non-autonomous data (Phase 2)
-    │   └── signals.py           # Input signal generators (9 types)
-    ├── models/                  # Neural network architectures
-    │   ├── nn.py                # Feedforward network with normalizer
-    │   ├── hypernetworks.py     # Encoders + 4 hypernetwork architectures
-    │   └── normalizer.py        # Dataset statistics for standardization
-    ├── simulators/              # Dynamical systems and solvers
-    │   ├── systems.py           # 6 systems with torch batch mode
-    │   ├── utils.py             # RK4 integration, sampling, convergence
-    │   └── pde_utils.py         # PDE constraint loss (Jacobian-based)
-    ├── training/                # Training logic
-    │   ├── phase1.py            # Autonomous training + checkpoint loading
-    │   ├── phase2.py            # 4 non-autonomous training methods
-    │   └── configs.py           # System configuration registry
-    └── evaluation/              # Evaluation and visualization
-        ├── evaluate.py          # Observer simulation + metrics (RMSE, SMAPE)
-        └── plot.py              # Loss curves, time-series, attractors, density
+│   ├── run_pipeline.py             # Main training pipeline
+│   ├── evaluate.py                 # Checkpoint evaluation with overlay plots
+│   └── sweep.py                    # Hyperparameter search (grid / random)
+└── kkl.yml                         # Conda environment
 ```
 
-## Modular Phase 1
+### Design Principles
 
-Phase 1 training is the most expensive step. It can be run once and reused:
-
-```bash
-# Train Phase 1 for Lorenz (saves T_encoder.pt + T_inv_decoder.pt)
-python -m hyperkkl.scripts.train_phase1 --system lorenz --epochs 50 \
-    --out_dir results/phase1/lorenz
-
-# Later: run any Phase 2 method without retraining Phase 1
-python -m hyperkkl.scripts.run_pipeline --system lorenz --method dynamic_lstm \
-    --phase1_dir results/phase1/lorenz
-
-python -m hyperkkl.scripts.run_pipeline --system lorenz --method curriculum \
-    --phase1_dir results/phase1/lorenz
-```
+- **Each `src/` module is independently runnable** (`python -m src.dataset --system duffing`)
+- **Unified data path**: training and evaluation use the same `generate_phase2_data` function, differing only in signal mode (`train` / `id` / `ood`)
+- **No redundancy**: one `simulate_observer` handles all method types; one `train_dynamic` handles all dynamic variants
+- **Configs saved with results**: every run saves `config.yaml` alongside checkpoints for reproducibility
+- **Structured logging**: TensorBoard and/or W&B via `ExperimentLogger`
 
 ## Key Arguments
 
 | Argument | Default | Description |
 |----------|---------|-------------|
-| `--system` | duffing | System to train on |
-| `--method` | all | Training method (autonomous, curriculum, static_lstm, dynamic_lstm, dynamic_lora, all) |
-| `--phase1_dir` | None | Path to pre-trained Phase 1 checkpoints (skips Phase 1) |
+| `--system` | duffing | System name (duffing, vdp, lorenz, rossler, fhn, highway_traffic) |
+| `--method` | all | Method (autonomous, curriculum, augmented, full, lora, all) |
 | `--epochs_phase1` | 20 | Phase 1 training epochs |
-| `--epochs_phase2` | 100 | Phase 2 training epochs |
+| `--epochs_phase2` | 30 | Phase 2 training epochs |
 | `--batch_size` | 2049 | Training batch size |
 | `--lr` | 1e-3 | Learning rate |
-| `--out_dir` | ./results/hyperkkl | Output directory |
-| `--parallel` | False | Run multiple systems in parallel |
+| `--out_dir` | ./results | Output directory |
+| `--parallel` | False | Run systems in parallel across GPUs |
+| `--use_wandb` | False | Enable Weights & Biases logging |
 
 ## Output Structure
 
-Each run produces a versioned directory:
+Each run creates a versioned, self-contained directory:
 
 ```
-results/hyperkkl/{system}/v{N}/
-├── T_encoder.pt           # Phase 1: forward map T
-├── T_inv_decoder.pt       # Phase 1: inverse map T*
-├── {method}.pt            # Phase 2: method checkpoint
-├── results.json           # Evaluation metrics
-├── loss_histories.json    # Training loss curves
+results/{system}/v{N}/
+├── config.yaml                # Full experiment config (reproducible)
+├── T_encoder.pt               # Phase 1: forward map T
+├── T_inv_decoder.pt           # Phase 1: inverse map T*
+├── {method}.pt                # Phase 2: method checkpoint
+├── results.json               # Evaluation metrics per signal type
+├── loss_histories.json        # Training loss curves
+├── logs/                      # TensorBoard logs
+│   └── tb/
 └── plots/
-    ├── {method}_loss.png          # Loss history
-    ├── boxplot_{metric}.png       # Cross-method comparison
+    ├── {method}_loss.png
     └── {signal}/
         ├── {method}_timeseries.png
         └── {method}_attractor.png
 ```
+
+## Hyperparameter Search
+
+```bash
+# Random search (default space)
+python -m scripts.sweep --system duffing --method lora --n_trials 10
+
+# Grid search with custom space
+python -m scripts.sweep --system lorenz --method full --search grid \
+    --sweep_config configs/my_sweep.yaml
+```
+
+Results include a leaderboard and per-trial configs for full reproducibility.

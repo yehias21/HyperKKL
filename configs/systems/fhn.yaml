@@ -1,0 +1,37 @@
+name: fhn
+class_name: FitzHughNagumo
+init_args:
+  a: 0.7
+  b: 0.8
+  epsilon: 0.08
+  I_ext: 0.5
+  zdim: 5
+  add_noise: true
+x_size: 2
+y_size: 1
+z_size: 5
+num_hidden: 3
+hidden_size: 150
+M:
+  - [-1, 0, 0, 0, 0]
+  - [0, -2, 0, 0, 0]
+  - [0, 0, -3, 0, 0]
+  - [0, 0, 0, -4, 0]
+  - [0, 0, 0, 0, -5]
+K:
+  - [1]
+  - [1]
+  - [1]
+  - [1]
+  - [1]
+limits:
+  - [-2.5, 2.5]
+  - [-1.5, 1.5]
+time_start: 0
+time_end: 100
+n_steps: 2000
+natural_inputs:
+  - zero
+  - sinusoid
+  - square
+  - constant

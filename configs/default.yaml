@@ -1,0 +1,44 @@
+seed: 42
+device: cuda
+output_dir: ./results
+
+methods:
+  - autonomous
+  - augmented
+  - full
+  - lora
+
+phase1:
+  epochs: 20
+  batch_size: 2049
+  lr: 0.001
+  num_ic: 200
+  use_pde: true
+  lambda_pde: 1.0
+
+phase2:
+  epochs: 30
+  batch_size: 4098
+  lr: 0.001
+  encoder_type: lstm       # "lstm" or "gru"
+  window_size: 100
+  latent_dim: 32
+  n_train_traj: 400
+  rnn_hidden: 64
+  hypernet_hidden: 128
+  lora_rank: 4
+
+curriculum:
+  lr: 0.001
+  batch_size: 4098
+  window_size: 100
+  latent_dim: 32
+  n_traj_per_stage: 50
+  stage1_epochs: 10
+  stage2_epochs: 20
+  stage3_epochs: 30
+  stage4_epochs: 40
+
+evaluation:
+  n_trials: 10
+  settle_time: 5.0
