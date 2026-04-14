@@ -6,16 +6,16 @@
   <img src="assets/Teaser_spaces.png" alt="HyperKKL teaser" width="85%">
 </p>
 
-HyperKKL extends Kazantzis–Kravaris/Luenberger (KKL) observers to controlled (non-autonomous) nonlinear systems. A hypernetwork conditions the observer on the exogenous input history `u(t)`, yielding transformation maps that track the time-varying geometry of the system's attractor — something static autonomous maps provably cannot do.
+HyperKKL extends Kazantzis–Kravaris/Luenberger (KKL) observers to controlled (non-autonomous) nonlinear systems. A hypernetwork conditions the observer on the exogenous input history `u(t)`, yielding transformation maps that track the time-varying geometry of the system's attractor, something static autonomous maps provably cannot do.
 
 ## Why HyperKKL
 
 Classical neural KKL observers are trained under `u ≡ 0` and treat inputs as unmodeled disturbances. Under forcing, this induces a persistent bounded estimation error. HyperKKL converts that disturbance into structured information via two complementary strategies:
 
-- **HyperKKL<sub>obs</sub>** (`augmented`) — keeps the pretrained encoder/decoder frozen and injects an input-dependent correction `Φ(ẑ, u)` into the latent observer dynamics. Lightweight; best in 13/16 benchmark settings.
-- **HyperKKL<sub>dyn</sub>** (`lora` / `full`) — a hypernetwork generates input-conditioned weight perturbations `θ̃(t), η̃(t)` for the encoder and decoder, producing genuinely time-varying transformation maps as prescribed by the non-autonomous KKL theory.
+- **HyperKKL<sub>obs</sub>** (`augmented`): keeps the pretrained encoder/decoder frozen and injects an input-dependent correction `Φ(ẑ, u)` into the latent observer dynamics. Lightweight; best in 13/16 benchmark settings.
+- **HyperKKL<sub>dyn</sub>** (`lora` / `full`): a hypernetwork generates input-conditioned weight perturbations `θ̃(t), η̃(t)` for the encoder and decoder, producing genuinely time-varying transformation maps as prescribed by the non-autonomous KKL theory.
 
-Both variants collapse exactly to the autonomous observer when `u ≡ 0` (by construction — bias-free projection / zero-initialized LoRA deltas).
+Both variants collapse exactly to the autonomous observer when `u ≡ 0` (by construction, via bias-free projection and zero-initialized LoRA deltas).
 
 ## Pipelines
 
@@ -24,16 +24,16 @@ Both variants collapse exactly to the autonomous observer when `u ≡ 0` (by con
   &nbsp;
   <img src="assets/inference_pipeline.png" alt="Inference pipeline" width="45%">
   <br>
-  <em>Left: Phase 1 pretrains autonomous T/T*; Phase 2 trains the hypernetwork with frozen base weights. Right: at inference, one GRU pass over <code>u[t-ω, t]</code> conditions the observer — no retraining per input.</em>
+  <em>Left: Phase 1 pretrains autonomous T/T*; Phase 2 trains the hypernetwork with frozen base weights. Right: at inference, one GRU pass over <code>u[t-ω, t]</code> conditions the observer, with no retraining per input.</em>
 </p>
 
 ## Method Overview
 
 | Phase | What is trained | Loss |
 |-------|----------------|------|
-| **Phase 1 — Autonomous** | Base encoder `T: x→z` and decoder `T*: z→x` (MLPs). | `‖ẑ − z‖² + ν·‖∂T/∂x·f(x) − Az − By‖²` |
-| **Phase 2 — `augmented`** | GRU + injection MLP `Φ_ϖ`. Base maps frozen. | `‖ż_obs − ż_true‖²` |
-| **Phase 2 — `lora` / `full`** | Hypernetwork `H_ψ` producing weight deltas. Base weights frozen. | `‖x − T̂*(T̂(x))‖² + ν·‖PDE residual‖²` |
+| **Phase 1: Autonomous** | Base encoder `T: x→z` and decoder `T*: z→x` (MLPs). | `‖ẑ − z‖² + ν·‖∂T/∂x·f(x) − Az − By‖²` |
+| **Phase 2: `augmented`** | GRU + injection MLP `Φ_ϖ`. Base maps frozen. | `‖ż_obs − ż_true‖²` |
+| **Phase 2: `lora` / `full`** | Hypernetwork `H_ψ` producing weight deltas. Base weights frozen. | `‖x − T̂*(T̂(x))‖² + ν·‖PDE residual‖²` |
 | `curriculum` (baseline) | Fine-tunes base maps on staged non-autonomous data. | Reconstruction only. |
 
 Observer matrices: `A = −diag(1, 2, …, n_z)`, `B = 𝟙`, with `n_z = n_y(2n_x + 1)`.
@@ -125,7 +125,7 @@ HyperKKL/
 ### Design Principles
 
 - Each `src/` module is independently runnable (e.g. `python -m src.dataset --system duffing`).
-- Unified data path — training and evaluation use the same `generate_phase2_data` with signal modes `train` / `id` / `ood`.
+- Unified data path: training and evaluation use the same `generate_phase2_data` with signal modes `train` / `id` / `ood`.
 - One `simulate_observer` covers every method; one `train_dynamic` covers all dynamic variants.
 - Every run saves `config.yaml` alongside checkpoints for reproducibility.
 - Structured logging via `ExperimentLogger` (TensorBoard and/or W&B).
@@ -170,7 +170,7 @@ The asymptotic state-estimation error satisfies
 
 > `limsup ‖ξ(t)‖ ≤ ε_dec + ℓ_dec · (ε_pde · κ/λ + ε_enc)`
 
-where `ε_enc, ε_dec` are encoder/decoder approximation errors, `ε_pde` is the PDE residual, `ℓ_dec` is the decoder's Lipschitz constant, and `κ, λ` come from the Hurwitz matrix `A`. HyperKKL<sub>obs</sub> keeps `ℓ_dec` at its pretrained value; HyperKKL<sub>dyn</sub> lowers `ε_pde` at the cost of potentially inflating `ℓ_dec` — which explains why `obs` often wins empirically.
+where `ε_enc, ε_dec` are encoder/decoder approximation errors, `ε_pde` is the PDE residual, `ℓ_dec` is the decoder's Lipschitz constant, and `κ, λ` come from the Hurwitz matrix `A`. HyperKKL<sub>obs</sub> keeps `ℓ_dec` at its pretrained value; HyperKKL<sub>dyn</sub> lowers `ε_pde` at the cost of potentially inflating `ℓ_dec`, which explains why `obs` often wins empirically.
 
 ## Citation
 
