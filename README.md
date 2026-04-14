@@ -20,13 +20,11 @@ Both variants collapse exactly to the autonomous observer when `u ≡ 0` (by con
 ## Pipelines
 
 <p align="center">
-  <img src="assets/training_pipeline.png" alt="Training pipeline" width="90%"><br>
-  <em>Phase 1 pretrains autonomous T/T*. Phase 2 trains the hypernetwork on non-autonomous data with frozen base weights.</em>
-</p>
-
-<p align="center">
-  <img src="assets/inference_pipeline.png" alt="Inference pipeline" width="90%"><br>
-  <em>At inference, a forward pass through the GRU over <code>u[t-ω, t]</code> yields the conditioned observer — no retraining per input.</em>
+  <img src="assets/training_pipeline.png" alt="Training pipeline" width="45%">
+  &nbsp;
+  <img src="assets/inference_pipeline.png" alt="Inference pipeline" width="45%">
+  <br>
+  <em>Left: Phase 1 pretrains autonomous T/T*; Phase 2 trains the hypernetwork with frozen base weights. Right: at inference, one GRU pass over <code>u[t-ω, t]</code> conditions the observer — no retraining per input.</em>
 </p>
 
 ## Method Overview
