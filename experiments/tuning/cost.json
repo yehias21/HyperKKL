@@ -1,0 +1,727 @@
+{
+ "flops": [
+  {
+   "system": "vdp",
+   "method": "latent[lr=0.002]",
+   "kind": "latent",
+   "width": 360,
+   "n_params": 139685,
+   "ctx_params": 6240,
+   "flops_step": 31325983680,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "latent[lr=0.002]",
+   "kind": "latent",
+   "width": 358,
+   "n_params": 139627,
+   "ctx_params": 6240,
+   "flops_step": 30856027968,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "latent[lr=0.002,latent_depth=3]",
+   "kind": "latent",
+   "width": 257,
+   "n_params": 139556,
+   "ctx_params": 6240,
+   "flops_step": 31290732672,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "latent[lr=0.002,latent_depth=3]",
+   "kind": "latent",
+   "width": 256,
+   "n_params": 139527,
+   "ctx_params": 6240,
+   "flops_step": 30826293696,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "concat[lr=0.002]",
+   "kind": "concat",
+   "width": 362,
+   "n_params": 140096,
+   "ctx_params": 6240,
+   "flops_step": 17022841408,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "concat[lr=0.002]",
+   "kind": "concat",
+   "width": 359,
+   "n_params": 139656,
+   "ctx_params": 6240,
+   "flops_step": 16496902720,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "concat[lr=0.002,concat_depth=3]",
+   "kind": "concat",
+   "width": 258,
+   "n_params": 139838,
+   "ctx_params": 6240,
+   "flops_step": 17028346432,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "concat[lr=0.002,concat_depth=3]",
+   "kind": "concat",
+   "width": 257,
+   "n_params": 140070,
+   "ctx_params": 6240,
+   "flops_step": 16570827328,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "film[lr=0.002]",
+   "kind": "film",
+   "width": 179,
+   "n_params": 140336,
+   "ctx_params": 6240,
+   "flops_step": 10885624384,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "film[lr=0.002]",
+   "kind": "film",
+   "width": 179,
+   "n_params": 140336,
+   "ctx_params": 6240,
+   "flops_step": 10419667520,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "film[lr=0.002,film_depth=2]",
+   "kind": "film",
+   "width": 150,
+   "n_params": 140100,
+   "ctx_params": 6240,
+   "flops_step": 10874024512,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "film[lr=0.002,film_depth=2]",
+   "kind": "film",
+   "width": 150,
+   "n_params": 140100,
+   "ctx_params": 6240,
+   "flops_step": 10408067648,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "lora[lr=0.002]",
+   "kind": "lora",
+   "width": 44,
+   "n_params": 140596,
+   "ctx_params": 6240,
+   "flops_step": 10973966912,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "lora[lr=0.002]",
+   "kind": "lora",
+   "width": 44,
+   "n_params": 141484,
+   "ctx_params": 6240,
+   "flops_step": 10552115776,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "lora[lr=0.002,rank=16]",
+   "kind": "lora",
+   "width": 11,
+   "n_params": 142921,
+   "ctx_params": 6240,
+   "flops_step": 11314934336,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "lora[lr=0.002,rank=16]",
+   "kind": "lora",
+   "width": 11,
+   "n_params": 143833,
+   "ctx_params": 6240,
+   "flops_step": 10895639104,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "hyper[lr=0.002]",
+   "kind": "hyper",
+   "width": 4,
+   "n_params": 137480,
+   "ctx_params": 6240,
+   "flops_step": 12389413440,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "hyper[lr=0.002]",
+   "kind": "hyper",
+   "width": 4,
+   "n_params": 140052,
+   "ctx_params": 6240,
+   "flops_step": 12077138496,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  },
+  {
+   "system": "vdp",
+   "method": "hyper[lr=0.002,gen_layers=2]",
+   "kind": "hyper",
+   "width": 8,
+   "n_params": 135696,
+   "ctx_params": 6240,
+   "flops_step": 10670142016,
+   "flops_ctx": 2895213120,
+   "samples_step": 8192,
+   "N1": 2429,
+   "nz": 5,
+   "nx": 2
+  },
+  {
+   "system": "battery",
+   "method": "hyper[lr=0.002,gen_layers=2]",
+   "kind": "hyper",
+   "width": 8,
+   "n_params": 138792,
+   "ctx_params": 6240,
+   "flops_step": 10375234112,
+   "flops_ctx": 2412479040,
+   "samples_step": 8192,
+   "N1": 2024,
+   "nz": 7,
+   "nx": 5
+  }
+ ],
+ "wall": {
+  "latent[lr=0.0005]": {
+   "median_s": 1859.3547961711884,
+   "per_system": {
+    "battery": 2140.573858499527,
+    "bioreactor": 1978.328296661377,
+    "duffing": 1600.6486179828644,
+    "lorenz": 1693.262246131897,
+    "quad_tank": 1740.3812956809998,
+    "vdp": 2938.54274058342
+   }
+  },
+  "latent[lr=0.001]": {
+   "median_s": 1640.3157260417938,
+   "per_system": {
+    "battery": 1177.9290599822998,
+    "bioreactor": 1695.4887483119965,
+    "duffing": 1638.408607006073,
+    "lorenz": 1642.2228450775146,
+    "quad_tank": 1726.731726884842,
+    "vdp": 1628.536987543106
+   }
+  },
+  "latent[lr=0.002]": {
+   "median_s": 1377.8581767082214,
+   "per_system": {
+    "battery": 948.0743591785431,
+    "bioreactor": 1390.7669639587402,
+    "duffing": 1517.3276705741882,
+    "lorenz": 1433.3907945156097,
+    "quad_tank": 1364.9493894577026,
+    "vdp": 1050.1484715938568
+   }
+  },
+  "latent[lr=0.004]": {
+   "median_s": 1157.0314093828201,
+   "per_system": {
+    "battery": 432.73934602737427,
+    "bioreactor": 1303.1557805538177,
+    "duffing": 1335.9700820446014,
+    "lorenz": 1271.3212537765503,
+    "quad_tank": 1042.74156498909,
+    "vdp": 856.4562785625458
+   }
+  },
+  "latent[lr=0.0005,latent_depth=3]": {
+   "median_s": 2709.5124213695526,
+   "per_system": {
+    "battery": 2652.8332538604736,
+    "bioreactor": 3122.1884183883667,
+    "duffing": 2766.1915888786316,
+    "lorenz": 2086.486666202545,
+    "quad_tank": 2782.1564660072327,
+    "vdp": 2060.4243359565735
+   }
+  },
+  "latent[lr=0.001,latent_depth=3]": {
+   "median_s": 2045.5259230136871,
+   "per_system": {
+    "battery": 2499.682436466217,
+    "bioreactor": 1591.3694095611572,
+    "duffing": 2538.9695043563843,
+    "lorenz": 1582.65260887146,
+    "quad_tank": 2554.67950630188,
+    "vdp": 1573.398232460022
+   }
+  },
+  "latent[lr=0.002,latent_depth=3]": {
+   "median_s": 1547.1539989709854,
+   "per_system": {
+    "battery": 1757.9241642951965,
+    "bioreactor": 1025.2866253852844,
+    "duffing": 1770.5682327747345,
+    "lorenz": 1348.888328552246,
+    "quad_tank": 1745.4196693897247,
+    "vdp": 1321.326863527298
+   }
+  },
+  "latent[lr=0.004,latent_depth=3]": {
+   "median_s": 1226.134393811226,
+   "per_system": {
+    "battery": 1550.5987610816956,
+    "bioreactor": 610.6279809474945,
+    "duffing": 1531.9334874153137,
+    "lorenz": 1044.997050523758,
+    "quad_tank": 1407.2717370986938,
+    "vdp": 1032.113118171692
+   }
+  },
+  "concat[lr=0.0005]": {
+   "median_s": 70.1047660112381,
+   "per_system": {
+    "battery": 88.32447791099548,
+    "bioreactor": 50.34465503692627,
+    "duffing": 70.64437937736511,
+    "lorenz": 60.37083578109741,
+    "quad_tank": 116.4230887889862,
+    "vdp": 69.56515264511108
+   }
+  },
+  "concat[lr=0.001]": {
+   "median_s": 63.247825145721436,
+   "per_system": {
+    "battery": 82.84188461303711,
+    "bioreactor": 47.347923040390015,
+    "duffing": 61.24332404136658,
+    "lorenz": 59.61042785644531,
+    "quad_tank": 115.9920973777771,
+    "vdp": 65.2523262500763
+   }
+  },
+  "concat[lr=0.002]": {
+   "median_s": 61.97749626636505,
+   "per_system": {
+    "battery": 70.51056480407715,
+    "bioreactor": 47.158228158950806,
+    "duffing": 59.30768156051636,
+    "lorenz": 60.71095609664917,
+    "quad_tank": 112.4220941066742,
+    "vdp": 63.24403643608093
+   }
+  },
+  "concat[lr=0.004]": {
+   "median_s": 63.97884476184845,
+   "per_system": {
+    "battery": 71.89250373840332,
+    "bioreactor": 46.969340801239014,
+    "duffing": 49.52627182006836,
+    "lorenz": 59.203813314437866,
+    "quad_tank": 113.08286046981812,
+    "vdp": 68.75387620925903
+   }
+  },
+  "concat[lr=0.0005,concat_depth=3]": {
+   "median_s": 73.03959715366364,
+   "per_system": {
+    "battery": 74.27085900306702,
+    "bioreactor": 94.83202457427979,
+    "duffing": 101.21238803863525,
+    "lorenz": 67.75418758392334,
+    "quad_tank": 71.80833530426025,
+    "vdp": 42.32009553909302
+   }
+  },
+  "concat[lr=0.001,concat_depth=3]": {
+   "median_s": 68.47764444351196,
+   "per_system": {
+    "battery": 69.59948587417603,
+    "bioreactor": 82.25609254837036,
+    "duffing": 104.28692817687988,
+    "lorenz": 63.8869411945343,
+    "quad_tank": 67.3558030128479,
+    "vdp": 40.66267681121826
+   }
+  },
+  "concat[lr=0.002,concat_depth=3]": {
+   "median_s": 65.78526556491852,
+   "per_system": {
+    "battery": 64.12239861488342,
+    "bioreactor": 90.60791087150574,
+    "duffing": 101.16985702514648,
+    "lorenz": 62.629871129989624,
+    "quad_tank": 67.44813251495361,
+    "vdp": 46.37600803375244
+   }
+  },
+  "concat[lr=0.004,concat_depth=3]": {
+   "median_s": 71.20943772792816,
+   "per_system": {
+    "battery": 74.78776478767395,
+    "bioreactor": 84.99116945266724,
+    "duffing": 96.87545847892761,
+    "lorenz": 64.63811182975769,
+    "quad_tank": 67.63111066818237,
+    "vdp": 47.98977255821228
+   }
+  },
+  "film[lr=0.0005]": {
+   "median_s": 83.32661461830139,
+   "per_system": {
+    "battery": 58.14980387687683,
+    "bioreactor": 78.8070924282074,
+    "duffing": 96.57368779182434,
+    "lorenz": 52.369848012924194,
+    "quad_tank": 110.93908357620239,
+    "vdp": 87.84613680839539
+   }
+  },
+  "film[lr=0.001]": {
+   "median_s": 80.57769131660461,
+   "per_system": {
+    "battery": 63.021575689315796,
+    "bioreactor": 75.97667670249939,
+    "duffing": 92.63729739189148,
+    "lorenz": 45.69239544868469,
+    "quad_tank": 109.1545147895813,
+    "vdp": 85.17870593070984
+   }
+  },
+  "film[lr=0.002]": {
+   "median_s": 75.7278425693512,
+   "per_system": {
+    "battery": 74.34883284568787,
+    "bioreactor": 77.10685229301453,
+    "duffing": 68.40810680389404,
+    "lorenz": 41.567711353302,
+    "quad_tank": 105.67549252510071,
+    "vdp": 80.76507520675659
+   }
+  },
+  "film[lr=0.004]": {
+   "median_s": 67.60537362098694,
+   "per_system": {
+    "battery": 64.2107207775116,
+    "bioreactor": 73.78015065193176,
+    "duffing": 71.00002646446228,
+    "lorenz": 50.16152048110962,
+    "quad_tank": 102.23765444755554,
+    "vdp": 61.224154233932495
+   }
+  },
+  "film[lr=0.0005,film_depth=2]": {
+   "median_s": 64.15078508853912,
+   "per_system": {
+    "battery": 82.08844661712646,
+    "bioreactor": 83.156254529953,
+    "duffing": 55.401312828063965,
+    "lorenz": 57.86366319656372,
+    "quad_tank": 62.272515535354614,
+    "vdp": 66.02905464172363
+   }
+  },
+  "film[lr=0.001,film_depth=2]": {
+   "median_s": 55.591930747032166,
+   "per_system": {
+    "battery": 65.72488284111023,
+    "bioreactor": 74.56153917312622,
+    "duffing": 41.28224468231201,
+    "lorenz": 53.11637234687805,
+    "quad_tank": 58.06748914718628,
+    "vdp": 48.11318922042847
+   }
+  },
+  "film[lr=0.002,film_depth=2]": {
+   "median_s": 53.33946990966797,
+   "per_system": {
+    "battery": 52.270182609558105,
+    "bioreactor": 58.562241315841675,
+    "duffing": 37.214338064193726,
+    "lorenz": 54.40875720977783,
+    "quad_tank": 57.154720067977905,
+    "vdp": 44.27627468109131
+   }
+  },
+  "film[lr=0.004,film_depth=2]": {
+   "median_s": 57.997971415519714,
+   "per_system": {
+    "battery": 58.067638874053955,
+    "bioreactor": 60.62555646896362,
+    "duffing": 43.72540831565857,
+    "lorenz": 54.28544092178345,
+    "quad_tank": 57.928303956985474,
+    "vdp": 58.998514890670776
+   }
+  },
+  "lora[lr=0.0005]": {
+   "median_s": 91.27846395969391,
+   "per_system": {
+    "battery": 54.969526529312134,
+    "bioreactor": 83.01258707046509,
+    "duffing": 125.54319405555725,
+    "lorenz": 62.39196252822876,
+    "quad_tank": 99.54434084892273,
+    "vdp": 106.72468852996826
+   }
+  },
+  "lora[lr=0.001]": {
+   "median_s": 89.5878244638443,
+   "per_system": {
+    "battery": 51.26791000366211,
+    "bioreactor": 77.13820171356201,
+    "duffing": 111.9199001789093,
+    "lorenz": 65.15437936782837,
+    "quad_tank": 102.03744721412659,
+    "vdp": 108.45868134498596
+   }
+  },
+  "lora[lr=0.002]": {
+   "median_s": 97.88586282730103,
+   "per_system": {
+    "battery": 50.44121313095093,
+    "bioreactor": 84.20297741889954,
+    "duffing": 119.0587706565857,
+    "lorenz": 56.655829668045044,
+    "quad_tank": 112.86337423324585,
+    "vdp": 111.56874823570251
+   }
+  },
+  "lora[lr=0.004]": {
+   "median_s": 100.96499931812286,
+   "per_system": {
+    "battery": 59.19479036331177,
+    "bioreactor": 85.55932021141052,
+    "duffing": 142.9129683971405,
+    "lorenz": 72.85401725769043,
+    "quad_tank": 131.58808994293213,
+    "vdp": 116.3706784248352
+   }
+  },
+  "lora[lr=0.0005,rank=16]": {
+   "median_s": 112.00955522060394,
+   "per_system": {
+    "battery": 126.60797238349915,
+    "bioreactor": 97.41113805770874,
+    "duffing": 133.1143355369568,
+    "lorenz": 82.24119520187378,
+    "quad_tank": 132.6734585762024,
+    "vdp": 79.34123063087463
+   }
+  },
+  "lora[lr=0.001,rank=16]": {
+   "median_s": 111.86293482780457,
+   "per_system": {
+    "battery": 114.511465549469,
+    "bioreactor": 109.21440410614014,
+    "duffing": 124.64680314064026,
+    "lorenz": 64.43048763275146,
+    "quad_tank": 117.59860467910767,
+    "vdp": 74.8469626903534
+   }
+  },
+  "lora[lr=0.002,rank=16]": {
+   "median_s": 115.59945893287659,
+   "per_system": {
+    "battery": 123.04060506820679,
+    "bioreactor": 108.15831279754639,
+    "duffing": 135.27443504333496,
+    "lorenz": 85.3941810131073,
+    "quad_tank": 133.95299553871155,
+    "vdp": 76.36133241653442
+   }
+  },
+  "lora[lr=0.004,rank=16]": {
+   "median_s": 134.79367411136627,
+   "per_system": {
+    "battery": 144.62368941307068,
+    "bioreactor": 124.96365880966187,
+    "duffing": 162.91402506828308,
+    "lorenz": 71.04090023040771,
+    "quad_tank": 158.3327693939209,
+    "vdp": 77.06152677536011
+   }
+  },
+  "hyper[lr=0.0005]": {
+   "median_s": 278.240554690361,
+   "per_system": {
+    "battery": 294.4968605041504,
+    "bioreactor": 306.6702013015747,
+    "duffing": 161.11026406288147,
+    "lorenz": 184.4925560951233,
+    "quad_tank": 324.6376008987427,
+    "vdp": 261.98424887657166
+   }
+  },
+  "hyper[lr=0.001]": {
+   "median_s": 200.1081027984619,
+   "per_system": {
+    "battery": 225.01475048065186,
+    "bioreactor": 304.78396701812744,
+    "duffing": 152.53719925880432,
+    "lorenz": 181.30986642837524,
+    "quad_tank": 205.8172299861908,
+    "vdp": 194.39897561073303
+   }
+  },
+  "hyper[lr=0.002]": {
+   "median_s": 200.48703038692474,
+   "per_system": {
+    "battery": 202.5339367389679,
+    "bioreactor": 269.9077003002167,
+    "duffing": 183.3470537662506,
+    "lorenz": 180.08848810195923,
+    "quad_tank": 198.4401240348816,
+    "vdp": 204.41775274276733
+   }
+  },
+  "hyper[lr=0.004]": {
+   "median_s": 178.38672697544098,
+   "per_system": {
+    "battery": 215.99713611602783,
+    "bioreactor": 215.73786973953247,
+    "duffing": 165.15227365493774,
+    "lorenz": 178.5545392036438,
+    "quad_tank": 178.171630859375,
+    "vdp": 178.21891474723816
+   }
+  },
+  "hyper[lr=0.0005,gen_layers=2]": {
+   "median_s": 140.1592253446579,
+   "per_system": {
+    "battery": 188.73917722702026,
+    "bioreactor": 174.83458280563354,
+    "duffing": 91.43511152267456,
+    "lorenz": 112.19896149635315,
+    "quad_tank": 114.19431400299072,
+    "vdp": 166.12413668632507
+   }
+  },
+  "hyper[lr=0.001,gen_layers=2]": {
+   "median_s": 132.05137872695923,
+   "per_system": {
+    "battery": 155.00202894210815,
+    "bioreactor": 154.3609356880188,
+    "duffing": 106.04929447174072,
+    "lorenz": 108.23107957839966,
+    "quad_tank": 109.74182176589966,
+    "vdp": 182.4922490119934
+   }
+  },
+  "hyper[lr=0.002,gen_layers=2]": {
+   "median_s": 108.72446262836456,
+   "per_system": {
+    "battery": 114.42156195640564,
+    "bioreactor": 106.18790340423584,
+    "duffing": 107.32412695884705,
+    "lorenz": 107.69924259185791,
+    "quad_tank": 109.74968266487122,
+    "vdp": 191.8304524421692
+   }
+  },
+  "hyper[lr=0.004,gen_layers=2]": {
+   "median_s": 106.38545966148376,
+   "per_system": {
+    "battery": 105.0037260055542,
+    "bioreactor": 105.79794573783875,
+    "duffing": 106.97297358512878,
+    "lorenz": 86.80632162094116,
+    "quad_tank": 108.36985492706299,
+    "vdp": 183.7846601009369
+   }
+  }
+ },
+ "note": "matmul-class FLOPs (torch.utils.flop_counter), forward+backward of one phase-2 training loss at the real shapes; context = SFM encoder alone"
+}

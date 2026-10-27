@@ -1,0 +1,28 @@
+id: C1-tune-select
+parent: C1-where
+title: 'Per-variant tuning: selection on validation (umbrella)'
+contribution: C1
+question: 'With an equal tuning budget per variant (8 configurations: 4 learning rates x 1 architecture
+  knob, 140k parameters, 3000 steps), which configuration of each conditioning variant has the lowest
+  validation NRMSE on the dev systems?'
+hypothesis: Tuning changes the per-variant error but not the C1 ordering (tested in C1-tuned).
+decision_rule: 'REPORTED: per variant the argmin of the mean (over the 6 dev systems, seed 0) validation
+  NRMSE (train.<method>.val_nrmse) of its 8 configurations, ties (< 0.5%) to the default; computed by
+  analysis/select_tuned.py -> experiments/tuning/selection.json. No evaluation tier is run.'
+set:
+  eval.tiers: []
+  eval.val_nrmse: true
+  eval.memory_probe: false
+  eval.save_traj: false
+methods: []
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 30
+status: planned
+created: '2026-10-26'
+notes: umbrella of the 10 C1-tune-<variant>-<knob> nodes; queue those, not this one (experiments/tuning/PROTOCOL.md)

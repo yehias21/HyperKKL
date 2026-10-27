@@ -1,0 +1,364 @@
+== composed vs default  [FA_wt:dyn_gru vs FD_def:dyn_gru]  median_sys=-21.7%  n_sys=8 pairs=24 better=5 sig+=4 sig-=0 wave_med=-41.6%  diff=p1.ep,p1.lr,p1.nep,p1.opt,p2.ep,p2.frz,p2.lr,p2.nep,p2.opt
+     bioreactor    n=3    -3.1% +-102.3  arm=0.01413 ctl=0.01574 wave=-46% ev=True
+     cartpole      n=3   +82.1% +-302.7  arm=0.1322 ctl=0.06837 wave=-68% ev=True
+     duffing_mult  n=3   -46.2% +-17.7  arm=0.0004716 ctl=0.0008852 wave=-43% ev=True
+     fhn           n=3   -70.9% +-0.8  arm=0.01193 ctl=0.04104 wave=-62% ev=True
+     lorenz        n=3  +453.0% +-974.4  arm=0.02704 ctl=0.005053 wave=-44% ev=True
+     quad_tank     n=3    +2.1% +-91.3  arm=0.1343 ctl=0.1437 wave=-15% ev=True
+     rossler       n=3   -48.5% +-27.2  arm=0.01286 ctl=0.026 wave=-20% ev=True
+     vdp           n=3   -40.4% +-20.0  arm=0.004444 ctl=0.007612 wave=-28% ev=True
+== SOAP->Adam@1e-2 (lr-matched)  [FB_adam:dyn_gru vs FA_wt:dyn_gru]  median_sys=+11.6%  n_sys=2 pairs=6 better=1 sig+=0 sig-=0 wave_med=-5.3%  diff=p1.opt,p2.opt
+     bioreactor    n=3   -35.1% +-99.1  arm=0.007849 ctl=0.01413 wave=-37% ev=True
+     vdp           n=3   +58.3% +-72.0  arm=0.006939 ctl=0.004444 wave=+11% ev=True
+== Adam lr 1e-2 -> 1e-3  [FB_lrlo:dyn_gru vs FB_adam:dyn_gru]  median_sys=+49.0%  n_sys=1 pairs=3 better=0 sig+=0 sig-=0 wave_med=+11.8%  diff=p1.lr,p2.lr
+     bioreactor    n=3   +49.0% +-219.5  arm=0.009668 ctl=0.007849 wave=+3% ev=True
+== SOAP -> SOAP+LBFGS  [FB_lbfgs:dyn_gru vs FA_wt:dyn_gru]  median_sys=None  n_sys=0 pairs=0 better=0 sig+=0 sig-=0 wave_med=None  diff=
+== freeze enc deltas (LOO)  [FD_loo_frz:dyn_gru vs FA_wt:dyn_gru]  median_sys=-22.5%  n_sys=3 pairs=9 better=3 sig+=2 sig-=0 wave_med=-0.7%  diff=p2.frz
+     bioreactor    n=3   -29.9% +-18.4  arm=0.01017 ctl=0.01413 wave=+23% ev=True
+     duffing_mult  n=3    -3.6% +-25.7  arm=0.0004537 ctl=0.0004716 wave=-1% ev=True
+     vdp           n=3   -22.5% +-9.7  arm=0.003429 ctl=0.004444 wave=-1% ev=True
+== phase1 volume 667->200  [FC_p1vol:dyn_gru vs FA_wt:dyn_gru]  median_sys=+6.0%  n_sys=3 pairs=9 better=1 sig+=0 sig-=0 wave_med=+1.8%  diff=p1.nep
+     bioreactor    n=3   -33.5% +-35.8  arm=0.00905 ctl=0.01413 wave=+6% ev=True
+     duffing_mult  n=3   +12.3% +-51.1  arm=0.0005315 ctl=0.0004716 wave=+10% ev=True
+     vdp           n=3    +6.0% +-52.0  arm=0.004747 ctl=0.004444 wave=+1% ev=True
+== phase2 volume 667->200  [FC_vol200:dyn_gru vs FA_wt:dyn_gru]  median_sys=-17.4%  n_sys=2 pairs=5 better=1 sig+=1 sig-=0 wave_med=+0.8%  diff=p2.nep
+     bioreactor    n=3   -50.7% +-46.5  arm=0.006256 ctl=0.01413 wave=+7% ev=True
+     vdp           n=2   +16.0% +-184.5  arm=0.00501 ctl=0.00427 wave=+4% ev=True
+== mixband @200 vs pool@200  [FC_mixband:dyn_gru vs FC_vol200:dyn_gru]  median_sys=+167.9%  n_sys=2 pairs=5 better=0 sig+=0 sig-=0 wave_med=+6.8%  diff=p2.fam
+     bioreactor    n=3  +273.3% +-359.7  arm=0.02359 ctl=0.006256 wave=+50% ev=True
+     vdp           n=2   +62.6% +-382.5  arm=0.007818 ctl=0.00501 wave=+0% ev=True
+== mixhigh @200 vs pool@200  [FC_mixhigh:dyn_gru vs FC_vol200:dyn_gru]  median_sys=+6.9%  n_sys=2 pairs=5 better=0 sig+=0 sig-=0 wave_med=+4.7%  diff=p2.fam
+     bioreactor    n=3   +11.9% +-129.1  arm=0.007229 ctl=0.006256 wave=+17% ev=True
+     vdp           n=2    +1.8% +-548.7  arm=0.004633 ctl=0.00501 wave=+2% ev=True
+== mixband @200 vs pool@667  [FC_mixband:dyn_gru vs FA_wt:dyn_gru]  median_sys=+50.4%  n_sys=3 pairs=9 better=0 sig+=0 sig-=0 wave_med=+6.7%  diff=p2.fam,p2.nep
+     bioreactor    n=3   +76.6% +-228.8  arm=0.02359 ctl=0.01413 wave=+47% ev=True
+     duffing_mult  n=3    +2.8% +-57.2  arm=0.0004832 ctl=0.0004716 wave=+9% ev=True
+     vdp           n=3   +50.4% +-147.8  arm=0.006538 ctl=0.004444 wave=+1% ev=True
+== mixhigh @200 vs pool@667  [FC_mixhigh:dyn_gru vs FA_wt:dyn_gru]  median_sys=-5.1%  n_sys=3 pairs=9 better=2 sig+=0 sig-=0 wave_med=-0.7%  diff=p2.fam,p2.nep
+     bioreactor    n=3   -41.1% +-107.5  arm=0.007229 ctl=0.01413 wave=-3% ev=True
+     duffing_mult  n=3    -5.1% +-26.0  arm=0.0004467 ctl=0.0004716 wave=-1% ev=True
+     vdp           n=3   +15.5% +-89.1  arm=0.005051 ctl=0.004444 wave=+4% ev=True
+== ReLoBRaLo (p1)  [FB_relo:dyn_gru vs FA_wt:dyn_gru]  median_sys=-4.5%  n_sys=3 pairs=9 better=2 sig+=1 sig-=0 wave_med=+1.3%  diff=p1.gm
+     bioreactor    n=3   +11.5% +-48.8  arm=0.01546 ctl=0.01413 wave=-1% ev=True
+     duffing_mult  n=3    -4.5% +-18.1  arm=0.00045 ctl=0.0004716 wave=+7% ev=True
+     vdp           n=3   -16.6% +-5.6  arm=0.0037 ctl=0.004444 wave=+2% ev=True
+== inverse Dirichlet (p1)  [FB_invd:dyn_gru vs FA_wt:dyn_gru]  median_sys=+1.3%  n_sys=3 pairs=9 better=1 sig+=0 sig-=0 wave_med=+1.1%  diff=p1.gm
+     bioreactor    n=3    +1.3% +-59.7  arm=0.01492 ctl=0.01413 wave=+4% ev=True
+     duffing_mult  n=3   +29.2% +-141.2  arm=0.0006062 ctl=0.0004716 wave=+6% ev=True
+     vdp           n=3    -3.3% +-16.0  arm=0.00431 ctl=0.004444 wave=+2% ev=True
+== ALM (p1)  [FB_alm:dyn_gru vs FA_wt:dyn_gru]  median_sys=+10.6%  n_sys=1 pairs=3 better=0 sig+=0 sig-=0 wave_med=-0.7%  diff=p1.gm
+     bioreactor    n=3   +10.6% +-66.8  arm=0.01651 ctl=0.01413 wave=+2% ev=True
+== residual char->jacobian  [FB_resjc:dyn_gru vs FA_wt:dyn_gru]  median_sys=+32.3%  n_sys=3 pairs=9 better=1 sig+=0 sig-=1 wave_med=+20.4%  diff=p2.res
+     bioreactor    n=3   -28.8% +-107.8  arm=0.009026 ctl=0.01413 wave=+19% ev=True
+     duffing_mult  n=3   +58.1% +-36.5  arm=0.0007444 ctl=0.0004716 wave=+36% ev=True
+     vdp           n=3   +32.3% +-87.9  arm=0.005972 ctl=0.004444 wave=+12% ev=True
+== ladder: input-concat (SOAP200ep)  [FA_riv:phi_current vs FA_wt:dyn_gru]  median_sys=+682.9%  n_sys=8 pairs=24 better=1 sig+=0 sig-=2 wave_med=+1740.2%  diff=p2.ep
+     bioreactor    n=3 +1318.2% +-1579.4  arm=0.2247 ctl=0.01413 wave=+10875% ev=True
+     cartpole      n=3  +719.4% +-1388.0  arm=0.7537 ctl=0.1322 wave=+4194% ev=True
+     duffing_mult  n=3   +64.5% +-103.2  arm=0.0007793 ctl=0.0004716 wave=+55% ev=True
+     fhn           n=3  +664.3% +-1013.5  arm=0.08053 ctl=0.01193 wave=+2981% ev=True
+     lorenz        n=3  +701.5% +-1299.1  arm=0.1551 ctl=0.02704 wave=+4248% ev=True
+     quad_tank     n=3  +170.0% +-57.1  arm=0.3608 ctl=0.1343 wave=+408% ev=True
+     rossler       n=3  +943.3% +-327.6  arm=0.1332 ctl=0.01286 wave=+1736% ev=True
+     vdp           n=3   -11.4% +-28.7  arm=0.003898 ctl=0.004444 wave=+41% ev=True
+== ladder: latent GRU (SOAP200ep)  [FA_riv:phi_gru vs FA_wt:dyn_gru]  median_sys=+878.3%  n_sys=6 pairs=16 better=0 sig+=0 sig-=2 wave_med=+1796.9%  diff=p2.ep
+     bioreactor    n=3  +810.1% +-969.6  arm=0.1385 ctl=0.01413 wave=+6240% ev=True
+     cartpole      n=3  +596.2% +-1514.0  arm=0.5195 ctl=0.1322 wave=+3061% ev=True
+     duffing_mult  n=1 +20500.8%        arm=0.09579 ctl=0.000465 wave=+17263% ev=True
+     fhn           n=3 +1276.6% +-1305.0  arm=0.1503 ctl=0.01193 wave=+6364% ev=True
+     quad_tank     n=3  +172.6% +-48.4  arm=0.3645 ctl=0.1343 wave=+408% ev=True
+     rossler       n=3  +946.5% +-331.6  arm=0.1336 ctl=0.01286 wave=+1737% ev=True
+== ladder: input-concat (SOAP60ep)  [FA_riv60:phi_current vs FA_wt:dyn_gru]  median_sys=+573.7%  n_sys=8 pairs=24 better=1 sig+=0 sig-=3 wave_med=+1768.8%  diff=
+     bioreactor    n=3 +1395.3% +-3586.4  arm=0.1614 ctl=0.01413 wave=+11664% ev=True
+     cartpole      n=3  +431.3% +-763.8  arm=0.4918 ctl=0.1322 wave=+4112% ev=True
+     duffing_mult  n=3   +53.1% +-47.8  arm=0.0007235 ctl=0.0004716 wave=+57% ev=True
+     fhn           n=3  +914.5% +-1011.4  arm=0.111 ctl=0.01193 wave=+4853% ev=True
+     lorenz        n=3  +716.0% +-1313.0  arm=0.1583 ctl=0.02704 wave=+4282% ev=True
+     quad_tank     n=3  +169.8% +-59.1  arm=0.3606 ctl=0.1343 wave=+409% ev=True
+     rossler       n=3  +941.1% +-331.0  arm=0.1329 ctl=0.01286 wave=+1737% ev=True
+     vdp           n=3    -4.9% +-19.3  arm=0.004207 ctl=0.004444 wave=+39% ev=True
+== ladder: latent GRU (SOAP60ep)  [FA_riv60:phi_gru vs FA_wt:dyn_gru]  median_sys=+665.3%  n_sys=7 pairs=21 better=0 sig+=0 sig-=3 wave_med=+1682.6%  diff=
+     bioreactor    n=3  +512.5% +-976.2  arm=0.07256 ctl=0.01413 wave=+2504% ev=True
+     cartpole      n=3  +665.3% +-1786.9  arm=0.5236 ctl=0.1322 wave=+2674% ev=True
+     fhn           n=3 +1031.0% +-575.9  arm=0.1287 ctl=0.01193 wave=+5270% ev=True
+     lorenz        n=3  +751.1% +-1434.7  arm=0.1617 ctl=0.02704 wave=+4483% ev=True
+     quad_tank     n=3  +170.9% +-54.2  arm=0.3622 ctl=0.1343 wave=+408% ev=True
+     rossler       n=3  +938.7% +-326.9  arm=0.1326 ctl=0.01286 wave=+1737% ev=True
+     vdp           n=3   +51.4% +-102.8  arm=0.00674 ctl=0.004444 wave=+38% ev=True
+== ladder: input-concat (Adam1e-3)  [FA_rivA:phi_current vs FA_wt:dyn_gru]  median_sys=+556.4%  n_sys=8 pairs=24 better=1 sig+=0 sig-=3 wave_med=+995.9%  diff=p2.ep,p2.lr,p2.opt
+     bioreactor    n=3  +440.4% +-1275.6  arm=0.06108 ctl=0.01413 wave=+3168% ev=True
+     cartpole      n=3  +835.8% +-2360.3  arm=0.6673 ctl=0.1322 wave=+4978% ev=True
+     duffing_mult  n=3   +34.9% +-42.9  arm=0.0006349 ctl=0.0004716 wave=+55% ev=True
+     fhn           n=3  +672.5% +-215.4  arm=0.09316 ctl=0.01193 wave=+1114% ev=True
+     lorenz        n=3  +745.1% +-1441.1  arm=0.1608 ctl=0.02704 wave=+4363% ev=True
+     quad_tank     n=3  +167.8% +-62.6  arm=0.3577 ctl=0.1343 wave=+408% ev=True
+     rossler       n=3  +935.2% +-335.9  arm=0.1321 ctl=0.01286 wave=+1735% ev=True
+     vdp           n=3    -2.3% +-12.8  arm=0.004333 ctl=0.004444 wave=+42% ev=True
+== ladder: latent GRU (Adam1e-3)  [FA_rivA:phi_gru vs FA_wt:dyn_gru]  median_sys=+544.7%  n_sys=8 pairs=24 better=0 sig+=0 sig-=4 wave_med=+1676.7%  diff=p2.ep,p2.lr,p2.opt
+     bioreactor    n=3  +474.4% +-263.0  arm=0.08518 ctl=0.01413 wave=+5885% ev=True
+     cartpole      n=3  +667.4% +-1905.3  arm=0.5276 ctl=0.1322 wave=+2605% ev=True
+     duffing_mult  n=3   +70.1% +-72.6  arm=0.0008017 ctl=0.0004716 wave=+56% ev=True
+     fhn           n=3  +615.0% +-604.1  arm=0.08195 ctl=0.01193 wave=+3521% ev=True
+     lorenz        n=3  +732.0% +-1340.8  arm=0.1612 ctl=0.02704 wave=+4220% ev=True
+     quad_tank     n=3  +168.9% +-58.9  arm=0.3594 ctl=0.1343 wave=+408% ev=True
+     rossler       n=3  +929.0% +-303.0  arm=0.1314 ctl=0.01286 wave=+1736% ev=True
+     vdp           n=3   +39.5% +-95.3  arm=0.006143 ctl=0.004444 wave=+41% ev=True
+== ladder: unconditioned  [FA_wt:autonomous vs FA_wt:dyn_gru]  median_sys=+262.6%  n_sys=8 pairs=24 better=1 sig+=0 sig-=5 wave_med=+844.1%  diff=
+     bioreactor    n=3 +1571.0% +-1655.1  arm=0.212 ctl=0.01413 wave=+11439% ev=True
+     cartpole      n=3   -14.0% +-150.0  arm=0.07168 ctl=0.1322 wave=+122% ev=True
+     duffing_mult  n=3  +148.9% +-26.6  arm=0.001173 ctl=0.0004716 wave=+84% ev=True
+     fhn           n=3  +902.6% +-743.1  arm=0.1116 ctl=0.01193 wave=+1420% ev=True
+     lorenz        n=3  +288.1% +-580.5  arm=0.07647 ctl=0.02704 wave=+2859% ev=True
+     quad_tank     n=3  +188.7% +-42.7  arm=0.3865 ctl=0.1343 wave=+417% ev=True
+     rossler       n=3  +987.2% +-266.7  arm=0.139 ctl=0.01286 wave=+1767% ev=True
+     vdp           n=3  +237.0% +-84.2  arm=0.01486 ctl=0.004444 wave=+162% ev=True
+== latent GRU vs input concat (SOAP200)  [FA_riv:phi_gru vs FA_riv:phi_current]  median_sys=+0.7%  n_sys=6 pairs=16 better=2 sig+=0 sig-=0 wave_med=-0.0%  diff=
+     bioreactor    n=3   -30.3% +-94.0  arm=0.1385 ctl=0.2247 wave=-25% ev=True
+     cartpole      n=3   -24.9% +-84.7  arm=0.5195 ctl=0.7537 wave=-30% ev=True
+     duffing_mult  n=1 +15623.7%        arm=0.09579 ctl=0.0006092 wave=+11980% ev=True
+     fhn           n=3   +94.7% +-103.0  arm=0.1503 ctl=0.08053 wave=+206% ev=True
+     quad_tank     n=3    +1.1% +-4.5  arm=0.3645 ctl=0.3608 wave=-0% ev=True
+     rossler       n=3    +0.3% +-1.9  arm=0.1336 ctl=0.1332 wave=+0% ev=True
+== weight vs EKF  [FA_wt:dyn_gru vs FA_wt:ekf]  median_sys=+95.7%  n_sys=8 pairs=24 better=2 sig+=2 sig-=2 wave_med=-2.4%  diff=
+     bioreactor    n=3   +76.8% +-277.7  arm=0.01413 ctl=0.008847 wave=+1% ev=True
+     cartpole      n=3   -76.8% +-48.7  arm=0.1322 ctl=0.5708 wave=-90% ev=True
+     duffing_mult  n=3   -42.8% +-6.1  arm=0.0004716 ctl=0.0008252 wave=-52% ev=True
+     fhn           n=3  +270.8% +-338.0  arm=0.01193 ctl=0.003242 wave=-6% ev=True
+     lorenz        n=3 +1298.6% +-2384.3  arm=0.02704 ctl=0.00194 wave=+35% ev=True
+     quad_tank     n=3 +1310.7% +-546.4  arm=0.1343 ctl=0.009601 wave=+735% ev=True
+     rossler       n=3    +6.3% +-58.8  arm=0.01286 ctl=0.01236 wave=-14% ev=True
+     vdp           n=3  +114.5% +-56.6  arm=0.004444 ctl=0.00207 wave=+30% ev=True
+== default vs EKF  [FD_def:dyn_gru vs FD_def:ekf]  median_sys=+138.8%  n_sys=8 pairs=24 better=1 sig+=1 sig-=3 wave_med=+80.6%  diff=
+     bioreactor    n=3   +81.0% +-157.8  arm=0.01574 ctl=0.008847 wave=+124% ev=True
+     cartpole      n=3   -88.0% +-6.1  arm=0.06837 ctl=0.5708 wave=-64% ev=True
+     duffing_mult  n=3    +7.1% +-25.9  arm=0.0008852 ctl=0.0008252 wave=-16% ev=True
+     fhn           n=3 +1176.2% +-1200.8  arm=0.04104 ctl=0.003242 wave=+151% ev=True
+     lorenz        n=3  +160.6% +-46.9  arm=0.005053 ctl=0.00194 wave=+142% ev=True
+     quad_tank     n=3 +1394.4% +-1206.1  arm=0.1437 ctl=0.009601 wave=+888% ev=True
+     rossler       n=3  +117.1% +-198.1  arm=0.026 ctl=0.01236 wave=+7% ev=True
+     vdp           n=3  +267.3% +-205.5  arm=0.007612 ctl=0.00207 wave=+81% ev=True
+== SOAP lr1e-2 vs Adam lr1e-2  [S_full:dyn_gru vs A_lr1e2:dyn_gru]  median_sys=-35.3%  n_sys=4 pairs=16 better=3 sig+=3 sig-=0 wave_med=-26.1%  diff=p1.opt,p2.opt
+     bioreactor    n=4   +13.3% +-102.4  arm=0.005192 ctl=0.005094 wave=-17% ev=True
+     duffing       n=4   -51.1% +-10.6  arm=0.001108 ctl=0.002278 wave=-32% ev=True
+     lorenz        n=4   -35.6% +-14.5  arm=0.002826 ctl=0.004457 wave=-34% ev=True
+     vdp           n=4   -35.1% +-21.9  arm=0.004917 ctl=0.007665 wave=-17% ev=True
+== Adam lr1e-2 vs lr1e-3 (QL_zero)  [A_lr1e2:dyn_gru vs QL_zero:dyn_gru]  median_sys=-10.8%  n_sys=3 pairs=9 better=2 sig+=1 sig-=0 wave_med=-6.2%  diff=nz_ov,p1.lr,p2.lr
+     bioreactor    n=3   -67.9% +-9.1  arm=0.004875 ctl=0.01547 wave=-60% ev=True
+     duffing       n=3   -10.8% +-48.3  arm=0.002357 ctl=0.002649 wave=-4% ev=True
+     vdp           n=3   +11.1% +-78.3  arm=0.007912 ctl=0.007396 wave=-8% ev=True
+== Adam lr1e-2 vs lr1e-3 (QL_enc)  [A_lr1e2:dyn_gru vs QL_enc:dyn_gru]  median_sys=-10.8%  n_sys=3 pairs=9 better=2 sig+=1 sig-=0 wave_med=-6.2%  diff=latinit,nz_ov,p1.lr,p2.lr
+     bioreactor    n=3   -67.9% +-9.1  arm=0.004875 ctl=0.01547 wave=-60% ev=True
+     duffing       n=3   -10.8% +-48.3  arm=0.002357 ctl=0.002649 wave=-4% ev=True
+     vdp           n=3   +11.1% +-78.3  arm=0.007912 ctl=0.007396 wave=-8% ev=True
+== SOAP lr1e-2 vs Adam 1e-3 (LAT_enc)  [S_full:dyn_gru vs LAT_enc:dyn_gru]  median_sys=-40.7%  n_sys=8 pairs=8 better=7 sig+=0 sig-=0 wave_med=-35.5%  diff=latinit,nz_ov,p1.lr,p1.opt,p2.lr,p2.opt
+     bioreactor    n=1   -70.7%        arm=0.004452 ctl=0.01518 wave=-79% ev=True
+     duffing       n=1   -51.9%        arm=0.001374 ctl=0.002855 wave=-30% ev=True
+     duffing_mult  n=1   -40.7%        arm=0.0005991 ctl=0.00101 wave=-41% ev=True
+     fhn           n=1   -40.8%        arm=0.03384 ctl=0.05715 wave=-63% ev=True
+     lorenz        n=1   -47.0%        arm=0.002902 ctl=0.005472 wave=-47% ev=True
+     quad_tank     n=1    +2.3%        arm=0.1167 ctl=0.1141 wave=-11% ev=True
+     rossler       n=1   -24.8%        arm=0.02507 ctl=0.03336 wave=+8% ev=True
+     vdp           n=1   -33.9%        arm=0.004973 ctl=0.007524 wave=-25% ev=True
+== SOAP lr1e-3 vs Adam 1e-3  [O_soap:dyn_gru vs QL_zero:dyn_gru]  median_sys=-44.0%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-26.0%  diff=p1.opt,p2.opt
+     bioreactor    n=1   -49.7%        arm=0.00844 ctl=0.01679 wave=-75% ev=True
+     duffing       n=1   -44.0%        arm=0.00149 ctl=0.002659 wave=-26% ev=True
+     vdp           n=1   -29.0%        arm=0.005819 ctl=0.008202 wave=-16% ev=True
+== SOAP lr1e-2 (O_soaphi) vs Adam 1e-3  [O_soaphi:dyn_gru vs QL_zero:dyn_gru]  median_sys=-60.0%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-30.1%  diff=p1.lr,p1.opt,p2.lr,p2.opt
+     bioreactor    n=1   -67.6%        arm=0.005438 ctl=0.01679 wave=-88% ev=True
+     duffing       n=1   -60.0%        arm=0.001062 ctl=0.002659 wave=-30% ev=True
+     vdp           n=1   -25.9%        arm=0.006077 ctl=0.008202 wave=-23% ev=True
+== Adam+LBFGS vs Adam  [O_lbfgs:dyn_gru vs QL_zero:dyn_gru]  median_sys=+3.5%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=+0.0%  diff=p1.opt,p2.opt
+     bioreactor    n=1   +39.2%        arm=0.02336 ctl=0.01679 wave=-2% ev=True
+     duffing       n=1    +3.5%        arm=0.002751 ctl=0.002659 wave=+18% ev=True
+     vdp           n=1    +0.0%        arm=0.008202 ctl=0.008202 wave=+0% ev=True
+== Adam+LBFGS (L_bfgs) vs Adam  [L_bfgs:dyn_gru vs LAT_enc:dyn_gru]  median_sys=-44.3%  n_sys=2 pairs=2 better=2 sig+=0 sig-=0 wave_med=-47.8%  diff=latinit,p1.opt,p2.opt
+     bioreactor    n=1   -57.3%        arm=0.006486 ctl=0.01518 wave=-73% ev=True
+     vdp           n=1   -31.3%        arm=0.005169 ctl=0.007524 wave=-23% ev=True
+== SOAP+LBFGS vs SOAP (legacy)  [SL_both:dyn_gru vs S_full:dyn_gru]  median_sys=+23.8%  n_sys=4 pairs=4 better=2 sig+=0 sig-=0 wave_med=-0.5%  diff=latinit,nz_ov,p1.opt,p2.opt
+     bioreactor    n=1   +48.6%        arm=0.006616 ctl=0.004452 wave=+17% ev=True
+     duffing       n=1   -15.6%        arm=0.00116 ctl=0.001374 wave=-5% ev=True
+     lorenz        n=1    -0.9%        arm=0.002875 ctl=0.002902 wave=-1% ev=True
+     vdp           n=1   +72.7%        arm=0.008588 ctl=0.004973 wave=-0% ev=True
+== Adam lr 3e-2 vs 1e-3  [A_lr3e2:dyn_gru vs LAT_enc:dyn_gru]  median_sys=+551.9%  n_sys=2 pairs=2 better=0 sig+=0 sig-=0 wave_med=+2511.6%  diff=latinit,nz_ov,p1.lr,p1.opt,p2.lr,p2.opt
+     bioreactor    n=1 +1033.7%        arm=0.1721 ctl=0.01518 wave=+5001% ev=True
+     vdp           n=1   +70.1%        arm=0.0128 ctl=0.007524 wave=+22% ev=True
+== ALM vs legacy  [ALM:dyn_gru vs LAT_enc:dyn_gru]  median_sys=+17.4%  n_sys=4 pairs=4 better=1 sig+=0 sig-=0 wave_med=+5.7%  diff=nz_ov,p1.gm,p1.opt,p2.opt
+     bioreactor    n=1   +33.4%        arm=0.02026 ctl=0.01518 wave=+92% ev=True
+     duffing       n=1    +1.3%        arm=0.002893 ctl=0.002855 wave=+0% ev=True
+     lorenz        n=1   -24.2%        arm=0.004148 ctl=0.005472 wave=-25% ev=True
+     vdp           n=1   +64.8%        arm=0.0124 ctl=0.007524 wave=+11% ev=True
+== ReLoBRaLo vs legacy  [RELOBRALO:dyn_gru vs LAT_enc:dyn_gru]  median_sys=+10.2%  n_sys=2 pairs=2 better=1 sig+=0 sig-=0 wave_med=+3.5%  diff=nz_ov,p1.gm,p1.opt,p2.opt
+     bioreactor    n=1    -7.7%        arm=0.01401 ctl=0.01518 wave=-7% ev=True
+     vdp           n=1   +28.1%        arm=0.009639 ctl=0.007524 wave=+14% ev=True
+== inv-Dirichlet vs legacy  [INVDIR:dyn_gru vs LAT_enc:dyn_gru]  median_sys=+72.3%  n_sys=2 pairs=2 better=0 sig+=0 sig-=0 wave_med=+49.1%  diff=nz_ov,p1.gm,p1.opt,p2.opt
+     bioreactor    n=1  +105.6%        arm=0.03122 ctl=0.01518 wave=+87% ev=True
+     vdp           n=1   +39.0%        arm=0.01046 ctl=0.007524 wave=+11% ev=True
+== NTK_diag vs legacy  [NTK_diag:dyn_gru vs LAT_enc:dyn_gru]  median_sys=+7.7%  n_sys=4 pairs=4 better=1 sig+=0 sig-=0 wave_med=+4.1%  diff=nz_ov,p1.opt,p2.opt
+     bioreactor    n=1   +10.6%        arm=0.01679 ctl=0.01518 wave=+83% ev=True
+     duffing       n=1    -0.1%        arm=0.002854 ctl=0.002855 wave=-0% ev=True
+     lorenz        n=1    +4.8%        arm=0.005736 ctl=0.005472 wave=+5% ev=True
+     vdp           n=1   +13.6%        arm=0.00855 ctl=0.007524 wave=+4% ev=True
+== anneal vs legacy(zero)  [G_anneal:dyn_gru vs QL_zero:dyn_gru]  median_sys=+221.6%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=+564.6%  diff=p1.gm,p1.opt,p2.gm,p2.opt
+     bioreactor    n=1 +1128.1%        arm=0.2062 ctl=0.01679 wave=+3257% ev=True
+     duffing       n=1  +221.6%        arm=0.00855 ctl=0.002659 wave=+565% ev=True
+     vdp           n=1  +134.5%        arm=0.01923 ctl=0.008202 wave=+300% ev=True
+== pcgrad vs legacy(zero)  [G_pcgrad:dyn_gru vs QL_zero:dyn_gru]  median_sys=+120.1%  n_sys=3 pairs=3 better=1 sig+=0 sig-=0 wave_med=+128.8%  diff=p1.gm,p1.opt,p2.gm,p2.opt
+     bioreactor    n=1  +226.8%        arm=0.05486 ctl=0.01679 wave=+129% ev=True
+     duffing       n=1  +120.1%        arm=0.005851 ctl=0.002659 wave=+367% ev=True
+     vdp           n=1    -1.6%        arm=0.008068 ctl=0.008202 wave=+23% ev=True
+== confg vs legacy(zero)  [G_confg:dyn_gru vs QL_zero:dyn_gru]  median_sys=+262.2%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=+661.7%  diff=p1.gm,p1.opt,p2.gm,p2.opt
+     bioreactor    n=1  +814.3%        arm=0.1535 ctl=0.01679 wave=+2583% ev=True
+     duffing       n=1  +262.2%        arm=0.009629 ctl=0.002659 wave=+662% ev=True
+     vdp           n=1  +103.3%        arm=0.01667 ctl=0.008202 wave=+173% ev=True
+== collocation 4x  [COLL_4x:dyn_gru vs LAT_enc:dyn_gru]  median_sys=-7.4%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-12.5%  diff=nz_ov,p1.ncoll,p1.opt,p2.opt
+     bioreactor    n=1    -9.7%        arm=0.01371 ctl=0.01518 wave=-31% ev=True
+     duffing       n=1    -7.4%        arm=0.002645 ctl=0.002855 wave=-8% ev=True
+     duffing_mult  n=1    -6.1%        arm=0.0009484 ctl=0.00101 wave=-12% ev=True
+== collocation 16x  [COLL_16x:dyn_gru vs LAT_enc:dyn_gru]  median_sys=-2.9%  n_sys=3 pairs=3 better=2 sig+=0 sig-=0 wave_med=-1.5%  diff=nz_ov,p1.ncoll,p1.opt,p2.opt
+     bioreactor    n=1   +55.6%        arm=0.02363 ctl=0.01518 wave=+47% ev=True
+     duffing       n=1    -2.9%        arm=0.002772 ctl=0.002855 wave=-1% ev=True
+     duffing_mult  n=1    -8.2%        arm=0.0009272 ctl=0.00101 wave=-11% ev=True
+== phase1 epochs 60->200  [DEC_ep:dyn_gru vs LAT_enc:dyn_gru]  median_sys=-24.7%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-10.3%  diff=nz_ov,p1.ep,p1.opt,p2.opt
+     bioreactor    n=1    -8.9%        arm=0.01384 ctl=0.01518 wave=-16% ev=True
+     duffing       n=1   -33.6%        arm=0.001895 ctl=0.002855 wave=+12% ev=True
+     duffing_mult  n=1   -24.7%        arm=0.0007603 ctl=0.00101 wave=-10% ev=True
+== cond penalty  [COND:dyn_gru vs LAT_enc:dyn_gru]  median_sys=-14.3%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-2.1%  diff=nz_ov,p1.opt,p2.opt
+     bioreactor    n=1   -28.1%        arm=0.01092 ctl=0.01518 wave=-44% ev=True
+     duffing_mult  n=1   -14.3%        arm=0.0008661 ctl=0.00101 wave=-2% ev=True
+     quad_tank     n=1    -2.8%        arm=0.1109 ctl=0.1141 wave=+15% ev=True
+== Sylvester warm start  [SYL_on:dyn_gru vs SYL_off:dyn_gru]  median_sys=+8.0%  n_sys=3 pairs=3 better=1 sig+=0 sig-=0 wave_med=+5.6%  diff=p1.syl
+     duffing       n=1   +41.8%        arm=0.003769 ctl=0.002659 wave=+6% ev=True
+     fhn           n=1    +8.0%        arm=0.06175 ctl=0.05715 wave=+6% ev=True
+     vdp           n=1   -23.6%        arm=0.006262 ctl=0.008202 wave=-1% ev=True
+== latent init zero vs encoder  [QL_zero:dyn_gru vs QL_enc:dyn_gru]  median_sys=+0.0%  n_sys=4 pairs=12 better=0 sig+=0 sig-=0 wave_med=+0.0%  diff=latinit
+     bioreactor    n=3    +0.0% +-0.0  arm=0.01547 ctl=0.01547 wave=+0% ev=True
+     duffing       n=3    +0.0% +-0.0  arm=0.002649 ctl=0.002649 wave=+0% ev=True
+     fhn           n=3    +0.0% +-0.0  arm=0.04201 ctl=0.04201 wave=+0% ev=True
+     vdp           n=3    +0.0% +-0.0  arm=0.007396 ctl=0.007396 wave=+0% ev=True
+== MIXlow vs MIXdef  [MIXlow:dyn_gru vs MIXdef:dyn_gru]  median_sys=+40.8%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=+59.2%  diff=p2.fam
+     bioreactor    n=1  +140.7%        arm=0.0404 ctl=0.01679 wave=+409% ev=True
+     duffing       n=1   +40.8%        arm=0.003745 ctl=0.002659 wave=+59% ev=True
+     vdp           n=1   +14.3%        arm=0.009373 ctl=0.008202 wave=+11% ev=True
+== MIXband vs MIXdef  [MIXband:dyn_gru vs MIXdef:dyn_gru]  median_sys=-5.8%  n_sys=3 pairs=3 better=2 sig+=0 sig-=0 wave_med=-7.3%  diff=p2.fam
+     bioreactor    n=1   +54.5%        arm=0.02595 ctl=0.01679 wave=+40% ev=True
+     duffing       n=1   -21.3%        arm=0.002093 ctl=0.002659 wave=-22% ev=True
+     vdp           n=1    -5.8%        arm=0.007722 ctl=0.008202 wave=-7% ev=True
+== MIXhigh vs MIXdef  [MIXhigh:dyn_gru vs MIXdef:dyn_gru]  median_sys=-10.6%  n_sys=1 pairs=1 better=1 sig+=0 sig-=0 wave_med=-69.4%  diff=p2.fam
+     bioreactor    n=1   -10.6%        arm=0.01501 ctl=0.01679 wave=-69% ev=True
+== MIXeval vs MIXdef  [MIXeval:dyn_gru vs MIXdef:dyn_gru]  median_sys=+3.9%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=-2.3%  diff=p2.fam
+     bioreactor    n=1   +43.4%        arm=0.02407 ctl=0.01679 wave=-50% ev=True
+     duffing       n=1    +3.8%        arm=0.00276 ctl=0.002659 wave=-2% ev=True
+     vdp           n=1    +3.9%        arm=0.008524 ctl=0.008202 wave=-0% ev=True
+== p2 volume 200->667  [MIXall667:dyn_gru vs MIXdef:dyn_gru]  median_sys=-52.0%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-28.2%  diff=p2.nep
+     bioreactor    n=1   -42.2%        arm=0.009699 ctl=0.01679 wave=-85% ev=True
+     duffing       n=1   -53.3%        arm=0.00124 ctl=0.002659 wave=-28% ev=True
+     vdp           n=1   -52.0%        arm=0.003937 ctl=0.008202 wave=-21% ev=True
+== curriculum spectral  [CURR:dyn_gru vs MIXall667:dyn_gru]  median_sys=-4.5%  n_sys=3 pairs=3 better=2 sig+=0 sig-=0 wave_med=+7.7%  diff=p2.cur
+     bioreactor    n=1    -4.5%        arm=0.009263 ctl=0.009699 wave=+7% ev=True
+     duffing       n=1    -9.7%        arm=0.00112 ctl=0.00124 wave=+12% ev=True
+     vdp           n=1   +17.4%        arm=0.00462 ctl=0.003937 wave=+8% ev=True
+== curriculum reverse  [CURRrev:dyn_gru vs MIXall667:dyn_gru]  median_sys=+8.8%  n_sys=3 pairs=3 better=1 sig+=0 sig-=0 wave_med=-2.1%  diff=p2.cur
+     bioreactor    n=1   +40.5%        arm=0.01363 ctl=0.009699 wave=-2% ev=True
+     duffing       n=1    +8.8%        arm=0.001349 ctl=0.00124 wave=-2% ev=True
+     vdp           n=1    -1.3%        arm=0.003887 ctl=0.003937 wave=+2% ev=True
+== curriculum soft  [CSOFT:dyn_gru vs MIXall667:dyn_gru]  median_sys=+10.4%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=+1.6%  diff=p2.cur
+     bioreactor    n=1   +10.4%        arm=0.01071 ctl=0.009699 wave=+6% ev=True
+     duffing       n=1   +14.2%        arm=0.001416 ctl=0.00124 wave=+2% ev=True
+     vdp           n=1    +2.9%        arm=0.004052 ctl=0.003937 wave=-0% ev=True
+== curriculum selfpaced  [CSELF:dyn_gru vs MIXall667:dyn_gru]  median_sys=+4.3%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=+0.3%  diff=p2.cur,p2.res
+     bioreactor    n=1   +11.1%        arm=0.01078 ctl=0.009699 wave=+7% ev=True
+     duffing       n=1    +4.3%        arm=0.001293 ctl=0.00124 wave=-1% ev=True
+     vdp           n=1    +2.3%        arm=0.004027 ctl=0.003937 wave=+0% ev=True
+== curriculum soft reverse  [CSREV:dyn_gru vs MIXall667:dyn_gru]  median_sys=+6.9%  n_sys=3 pairs=3 better=1 sig+=0 sig-=0 wave_med=-2.6%  diff=p2.cur,p2.res
+     bioreactor    n=1    -0.2%        arm=0.009681 ctl=0.009699 wave=-1% ev=True
+     duffing       n=1    +6.9%        arm=0.001325 ctl=0.00124 wave=-3% ev=True
+     vdp           n=1    +8.2%        arm=0.004258 ctl=0.003937 wave=-3% ev=True
+== p2 epochs 40->120  [EP2x:dyn_gru vs MIXall667:dyn_gru]  median_sys=-15.5%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-6.8%  diff=p2.cur,p2.ep,p2.res
+     bioreactor    n=1   -42.5%        arm=0.005576 ctl=0.009699 wave=-9% ev=True
+     duffing       n=1   -15.5%        arm=0.001048 ctl=0.00124 wave=-1% ev=True
+     vdp           n=1   -10.4%        arm=0.003529 ctl=0.003937 wave=-7% ev=True
+== p1 180 + p2 120  [EPboth:dyn_gru vs MIXall667:dyn_gru]  median_sys=-5.6%  n_sys=3 pairs=3 better=2 sig+=0 sig-=0 wave_med=+3.4%  diff=p1.ep,p2.cur,p2.ep,p2.res
+     bioreactor    n=1   -44.4%        arm=0.005396 ctl=0.009699 wave=-15% ev=True
+     duffing       n=1    +9.3%        arm=0.001355 ctl=0.00124 wave=+3% ev=True
+     vdp           n=1    -5.6%        arm=0.003715 ctl=0.003937 wave=+5% ev=True
+== residual char vs jac (SOAP+LBFGS)  [RES2char:dyn_gru vs RES2jac:dyn_gru]  median_sys=-17.3%  n_sys=3 pairs=3 better=3 sig+=0 sig-=0 wave_med=-8.2%  diff=p2.res
+     bioreactor    n=1   -25.4%        arm=0.008074 ctl=0.01082 wave=+3% ev=True
+     duffing       n=1    -3.6%        arm=0.001422 ctl=0.001475 wave=-8% ev=True
+     vdp           n=1   -17.3%        arm=0.007604 ctl=0.009196 wave=-13% ev=True
+== residual char vs jac (SOAP)  [SOAPres_int:dyn_gru vs SOAPres_diff:dyn_gru]  median_sys=-25.3%  n_sys=1 pairs=1 better=1 sig+=0 sig-=0 wave_med=-22.1%  diff=p2.res
+     duffing       n=1   -25.3%        arm=0.001445 ctl=0.001935 wave=-22% ev=True
+== residual char vs jac (SOAP90)  [SOAPres90_int:dyn_gru vs SOAPres90_diff:dyn_gru]  median_sys=-37.1%  n_sys=1 pairs=1 better=1 sig+=0 sig-=0 wave_med=-24.2%  diff=p2.res
+     duffing       n=1   -37.1%        arm=0.001111 ctl=0.001765 wave=-24% ev=True
+== unfrozen enc + char (SOAP+LBFGS) vs SL_both  [RESchar:dyn_gru vs SL_both:dyn_gru]  median_sys=+0.0%  n_sys=3 pairs=3 better=0 sig+=0 sig-=0 wave_med=+0.0%  diff=p2.cur,p2.fam,p2.frz,p2.res
+     bioreactor    n=1    +0.0%        arm=0.006616 ctl=0.006616 wave=+0% ev=True
+     duffing       n=1    +0.0%        arm=0.00116 ctl=0.00116 wave=+0% ev=True
+     vdp           n=1    +0.0%        arm=0.008588 ctl=0.008588 wave=+0% ev=True
+== LoRA rank 2 vs 4  [rank2:dyn_gru vs rank4:dyn_gru]  median_sys=-0.6%  n_sys=1 pairs=3 better=1 sig+=0 sig-=0 wave_med=+0.6%  diff=p2.rank
+     bioreactor    n=3    -0.6% +-5.9  arm=0.04631 ctl=0.04654 wave=+0% ev=True
+== LoRA rank 8 vs 4  [rank8:dyn_gru vs rank4:dyn_gru]  median_sys=-1.1%  n_sys=1 pairs=3 better=1 sig+=0 sig-=0 wave_med=-1.2%  diff=p2.rank
+     bioreactor    n=3    -1.1% +-12.4  arm=0.04594 ctl=0.04654 wave=-1% ev=True
+== LoRA rank 16 vs 4  [rank16:dyn_gru vs rank4:dyn_gru]  median_sys=-5.4%  n_sys=1 pairs=3 better=1 sig+=0 sig-=0 wave_med=-7.6%  diff=p2.rank
+     bioreactor    n=3    -5.4% +-7.3  arm=0.04397 ctl=0.04654 wave=-6% ev=True
+== SFM vs GRU (3 seeds, outliers)  [arch_dyn_sfm:dyn_sfm vs arch_dyn_gru:dyn_gru]  median_sys=+251.4%  n_sys=3 pairs=9 better=0 sig+=0 sig-=1 wave_med=+7.6%  diff=
+     bioreactor    n=3  +263.6% +-129.6  arm=0.1687 ctl=0.04654 wave=+869% ev=True
+     duffing       n=3  +251.4% +-566.4  arm=0.1802 ctl=0.05132 wave=+8% ev=True
+     duffing_mult  n=3   +18.0% +-39.4  arm=0.04398 ctl=0.03735 wave=+0% ev=True
+== phi_current vs dyn (NZ11)  [NZ11:phi_current vs NZ11:dyn_gru]  median_sys=+301.6%  n_sys=6 pairs=6 better=0 sig+=0 sig-=0 wave_med=+694.4%  diff=
+     bioreactor    n=1 +1972.4%        arm=0.3479 ctl=0.01679 wave=+4562% ev=True
+     duffing       n=1  +261.0%        arm=0.009597 ctl=0.002659 wave=+714% ev=True
+     duffing_mult  n=1  +342.2%        arm=0.004468 ctl=0.00101 wave=+358% ev=True
+     fhn           n=1   +80.4%        arm=0.1031 ctl=0.05715 wave=+675% ev=True
+     lorenz        n=1 +2026.2%        arm=0.1163 ctl=0.005472 wave=+2108% ev=True
+     vdp           n=1   +72.1%        arm=0.01412 ctl=0.008202 wave=+231% ev=True
+== omega_current vs dyn (NZ11)  [NZ11:omega_current vs NZ11:dyn_gru]  median_sys=+336.2%  n_sys=6 pairs=6 better=0 sig+=0 sig-=0 wave_med=+677.7%  diff=
+     bioreactor    n=1  +944.9%        arm=0.1754 ctl=0.01679 wave=+2520% ev=True
+     duffing       n=1  +264.1%        arm=0.009681 ctl=0.002659 wave=+715% ev=True
+     duffing_mult  n=1  +408.2%        arm=0.005134 ctl=0.00101 wave=+358% ev=True
+     fhn           n=1   +62.2%        arm=0.09273 ctl=0.05715 wave=+641% ev=True
+     lorenz        n=1 +2027.7%        arm=0.1164 ctl=0.005472 wave=+2112% ev=True
+     vdp           n=1   +88.3%        arm=0.01544 ctl=0.008202 wave=+228% ev=True
+== phi_gru vs dyn (NZ11)  [NZ11:phi_gru vs NZ11:dyn_gru]  median_sys=+308.1%  n_sys=6 pairs=6 better=0 sig+=0 sig-=0 wave_med=+701.2%  diff=
+     bioreactor    n=1 +6456.9%        arm=1.101 ctl=0.01679 wave=+19693% ev=True
+     duffing       n=1  +267.0%        arm=0.009758 ctl=0.002659 wave=+711% ev=True
+     duffing_mult  n=1  +349.1%        arm=0.004537 ctl=0.00101 wave=+357% ev=True
+     fhn           n=1   +82.1%        arm=0.1041 ctl=0.05715 wave=+691% ev=True
+     lorenz        n=1 +2047.7%        arm=0.1175 ctl=0.005472 wave=+2126% ev=True
+     vdp           n=1   +94.2%        arm=0.01593 ctl=0.008202 wave=+232% ev=True
+== autonomous vs dyn (NZ11)  [NZ11:autonomous vs NZ11:dyn_gru]  median_sys=+298.6%  n_sys=6 pairs=6 better=0 sig+=0 sig-=0 wave_med=+809.0%  diff=
+     bioreactor    n=1 +1344.6%        arm=0.2425 ctl=0.01679 wave=+3864% ev=True
+     duffing       n=1  +286.9%        arm=0.01029 ctl=0.002659 wave=+721% ev=True
+     duffing_mult  n=1  +310.3%        arm=0.004146 ctl=0.00101 wave=+344% ev=True
+     fhn           n=1  +149.7%        arm=0.1427 ctl=0.05715 wave=+897% ev=True
+     lorenz        n=1 +1973.2%        arm=0.1134 ctl=0.005472 wave=+2104% ev=True
+     vdp           n=1  +116.9%        arm=0.01779 ctl=0.008202 wave=+253% ev=True
+== phi_gru vs dyn (T3way, 25/15 ep)  [T3way:phi_gru vs T3way:dyn_gru]  median_sys=+296.1%  n_sys=9 pairs=9 better=0 sig+=0 sig-=0 wave_med=+741.3%  diff=
+     bioreactor    n=1  +554.7%        arm=0.2591 ctl=0.03957 wave=+1352% ev=True
+     duffing       n=1  +296.1%        arm=0.0104 ctl=0.002625 wave=+741% ev=True
+     duffing_mult  n=1  +246.3%        arm=0.003677 ctl=0.001062 wave=+216% ev=True
+     fhn           n=1  +435.5%        arm=0.4321 ctl=0.08069 wave=+1587% ev=True
+     highway_traffic n=1   +13.1%        arm=0.07184 ctl=0.06353 wave=+15% ev=True
+     lorenz        n=1 +1245.3%        arm=0.1012 ctl=0.00752 wave=+1337% ev=True
+     quad_tank     n=1   +59.1%        arm=0.1384 ctl=0.08698 wave=+52% ev=True
+     rossler       n=1  +678.0%        arm=0.2551 ctl=0.03279 wave=+1534% ev=True
+     vdp           n=1  +130.3%        arm=0.03718 ctl=0.01614 wave=+580% ev=True
+== dyn_sfm vs dyn_gru (main)  [main:dyn_sfm vs main:dyn_gru]  median_sys=None  n_sys=0 pairs=0 better=0 sig+=0 sig-=0 wave_med=None  diff=
+== context W=1  [CW1:dyn_gru vs W8:dyn_gru]  median_sys=+7612.6%  n_sys=2 pairs=4 better=0 sig+=0 sig-=0 wave_med=+12386.9%  diff=p2.W
+     bioreactor    n=2 +13480.3% +-38450.7  arm=2.878 ctl=0.02025 wave=+29069% ev=True
+     vdp           n=2 +1745.0% +-4622.3  arm=0.2721 ctl=0.0152 wave=+3132% ev=True
+== eval rep 1 vs 0  [EVR1:dyn_gru vs LAT_enc:dyn_gru]  median_sys=+12.8%  n_sys=2 pairs=2 better=1 sig+=0 sig-=0 wave_med=+62.3%  diff=nz_ov,p1.opt,p2.opt
+     bioreactor    n=1   +26.3%        arm=0.01917 ctl=0.01518 wave=+118% ev=False
+     vdp           n=1    -0.7%        arm=0.007473 ctl=0.007524 wave=+7% ev=False
+== eval rep 2 vs 0  [EVR2:dyn_gru vs LAT_enc:dyn_gru]  median_sys=+26.3%  n_sys=2 pairs=2 better=0 sig+=0 sig-=0 wave_med=+49.6%  diff=nz_ov,p1.opt,p2.opt
+     bioreactor    n=1   +43.8%        arm=0.02183 ctl=0.01518 wave=+94% ev=False
+     vdp           n=1    +8.8%        arm=0.008185 ctl=0.007524 wave=+6% ev=False
+== full training vs short  [FULL:dyn_gru vs all:dyn_gru]  median_sys=-19.4%  n_sys=6 pairs=6 better=5 sig+=0 sig-=0 wave_med=-40.1%  diff=alpha_ov,epbias,nk,outl,p1.ep,p1.nep,p2.ep,pbias,spec_ov
+     bioreactor    n=1   -21.1%        arm=0.01679 ctl=0.02127 wave=-40% ev=False
+     duffing       n=1   -33.5%        arm=0.002659 ctl=0.003997 wave=-69% ev=False
+     duffing_mult  n=1   -66.4%        arm=0.00101 ctl=0.003006 wave=-68% ev=False
+     fhn           n=1   +30.6%        arm=0.05715 ctl=0.04375 wave=-27% ev=False
+     lorenz        n=1   -17.7%        arm=0.005472 ctl=0.006645 wave=-16% ev=False
+     vdp           n=1   -17.6%        arm=0.008202 ctl=0.009958 wave=-40% ev=False
+== curv 1e-4 vs none (traffic)  [cv1e-4:dyn_gru vs cal_gru:dyn_gru]  median_sys=-14.2%  n_sys=1 pairs=1 better=1 sig+=0 sig-=0 wave_med=+1.0%  diff=p2.curv
+     highway_traffic n=1   -14.2%        arm=0.04415 ctl=0.05147 wave=+1% ev=True
+== curv 1e-1 vs none (traffic)  [cv1e-1:dyn_gru vs cal_gru:dyn_gru]  median_sys=-28.0%  n_sys=1 pairs=1 better=1 sig+=0 sig-=0 wave_med=+0.2%  diff=p2.curv
+     highway_traffic n=1   -28.0%        arm=0.03705 ctl=0.05147 wave=+0% ev=True

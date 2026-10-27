@@ -1,0 +1,178 @@
+{
+ "nrmse": {
+  "metric": "nrmse",
+  "references": [],
+  "summary": {},
+  "paired": {},
+  "extra": {
+   "battery": {
+    "params": {
+     "latent[lr=0.004,ctx_rms=1]": 139627,
+     "latent[lr=0.008,ctx_rms=1]": 139627,
+     "latent[lr=0.016,ctx_rms=1]": 139627
+    },
+    "cost_us_b1": {
+     "latent[lr=0.004,ctx_rms=1]": 580.4905481636524,
+     "latent[lr=0.008,ctx_rms=1]": 573.5704675316811,
+     "latent[lr=0.016,ctx_rms=1]": 661.3948568701744
+    },
+    "wall_s": 10594.996660709381,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "44ce702fdbc32da1"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0050834477879107,
+     "eps_dec": 1.7621270418167114,
+     "eps_pde_rms": 0.28138700127601624,
+     "eps_pde_ss_rms": 0.041742999106645584,
+     "l_dec_q95": 847.4838256835938,
+     "l_dec_mean": 387.22552490234375
+    },
+    "state_coverage": {}
+   },
+   "bioreactor": {
+    "params": {
+     "latent[lr=0.004,ctx_rms=1]": 139685,
+     "latent[lr=0.008,ctx_rms=1]": 139685,
+     "latent[lr=0.016,ctx_rms=1]": 139685
+    },
+    "cost_us_b1": {
+     "latent[lr=0.004,ctx_rms=1]": 605.6677829474211,
+     "latent[lr=0.008,ctx_rms=1]": 696.0630789399147,
+     "latent[lr=0.016,ctx_rms=1]": 595.5354776233435
+    },
+    "wall_s": 10535.709228277206,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "4f0f2593cac08da7"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.008859860710799694,
+     "eps_dec": 0.020537156611680984,
+     "eps_pde_rms": 0.007415188010782003,
+     "eps_pde_ss_rms": 0.004582838620990515,
+     "l_dec_q95": 43.275733947753906,
+     "l_dec_mean": 18.011621475219727
+    },
+    "state_coverage": {}
+   },
+   "duffing": {
+    "params": {
+     "latent[lr=0.004,ctx_rms=1]": 139685,
+     "latent[lr=0.008,ctx_rms=1]": 139685,
+     "latent[lr=0.016,ctx_rms=1]": 139685
+    },
+    "cost_us_b1": {
+     "latent[lr=0.004,ctx_rms=1]": 596.909886226058,
+     "latent[lr=0.008,ctx_rms=1]": 750.0636018812656,
+     "latent[lr=0.016,ctx_rms=1]": 584.9793367087841
+    },
+    "wall_s": 11797.738607645035,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "2580aaffd6323b5c"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0044870818965137005,
+     "eps_dec": 0.006029326468706131,
+     "eps_pde_rms": 0.0026648622006177902,
+     "eps_pde_ss_rms": 0.0002744958910625428,
+     "l_dec_q95": 298.7292785644531,
+     "l_dec_mean": 138.25332641601562
+    },
+    "state_coverage": {}
+   },
+   "lorenz": {
+    "params": {
+     "latent[lr=0.004,ctx_rms=1]": 139627,
+     "latent[lr=0.008,ctx_rms=1]": 139627,
+     "latent[lr=0.016,ctx_rms=1]": 139627
+    },
+    "cost_us_b1": {
+     "latent[lr=0.004,ctx_rms=1]": 837.8582075238228,
+     "latent[lr=0.008,ctx_rms=1]": 832.8489866107702,
+     "latent[lr=0.016,ctx_rms=1]": 607.3872093111277
+    },
+    "wall_s": 11933.395406007767,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "ae328c5699d24668"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.1781575083732605,
+     "eps_dec": 0.30019041895866394,
+     "eps_pde_rms": 81.72639465332031,
+     "eps_pde_ss_rms": 9.092916488647461,
+     "l_dec_q95": 12.192252159118652,
+     "l_dec_mean": 4.488252639770508
+    },
+    "state_coverage": {}
+   },
+   "quad_tank": {
+    "params": {
+     "latent[lr=0.004,ctx_rms=1]": 139657,
+     "latent[lr=0.008,ctx_rms=1]": 139657,
+     "latent[lr=0.016,ctx_rms=1]": 139657
+    },
+    "cost_us_b1": {
+     "latent[lr=0.004,ctx_rms=1]": 731.3347328454256,
+     "latent[lr=0.008,ctx_rms=1]": 566.9829715043306,
+     "latent[lr=0.016,ctx_rms=1]": 567.7132774144411
+    },
+    "wall_s": 10849.899808645248,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "5528ecea5e4ec967"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.013222943991422653,
+     "eps_dec": 0.14977796375751495,
+     "eps_pde_rms": 0.020671481266617775,
+     "eps_pde_ss_rms": 0.05350172892212868,
+     "l_dec_q95": 13.740856170654297,
+     "l_dec_mean": 6.703221321105957
+    },
+    "state_coverage": {}
+   },
+   "vdp": {
+    "params": {
+     "latent[lr=0.004,ctx_rms=1]": 139685,
+     "latent[lr=0.008,ctx_rms=1]": 139685,
+     "latent[lr=0.016,ctx_rms=1]": 139685
+    },
+    "cost_us_b1": {
+     "latent[lr=0.004,ctx_rms=1]": 820.3403744846582,
+     "latent[lr=0.008,ctx_rms=1]": 585.0199609994888,
+     "latent[lr=0.016,ctx_rms=1]": 836.293613538146
+    },
+    "wall_s": 10526.798886299133,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "4b9006f47ce82f65"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.003434413578361273,
+     "eps_dec": 0.013123605400323868,
+     "eps_pde_rms": 0.2465016394853592,
+     "eps_pde_ss_rms": 0.050782132893800735,
+     "l_dec_q95": 23.641637802124023,
+     "l_dec_mean": 10.035945892333984
+    },
+    "state_coverage": {}
+   }
+  }
+ }
+}

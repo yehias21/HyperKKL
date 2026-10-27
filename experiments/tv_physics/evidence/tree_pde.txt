@@ -1,0 +1,73 @@
+
+## C1-modelfree (PDE off) vs C1-where (PDE on)
+ tier sequence_ood
+   battery     autonomous 1.4973->3.5495 +137% [-10,+284]  | latent 0.1291->0.2873 +120% [-3,+243]  | concat 0.3127->0.3694 +18% [+3,+33]* | film 0.0886->0.0685 -23% [-37,-8]* | lora 0.0719->0.0649 -9% [-30,+13]  | hyper 0.0761->0.0680 -10% [-26,+5] 
+   bioreactor  autonomous 4.6996->21.5197 +358% [+290,+425]* | latent 0.0438->0.8844 +1942% [-409,+4293]  | concat 0.1439->1.1129 +667% [-92,+1426]  | film 0.0581->0.3145 +435% [-361,+1230]  | lora 0.0617->0.5813 +825% [-25,+1675]  | hyper 0.0510->0.5340 +961% [+2,+1921]*
+   duffing     autonomous 0.3020->0.3105 +3% [-9,+15]  | latent 0.0782->0.0718 -8% [-15,-1]* | concat 0.0691->0.0647 -6% [-23,+10]  | film 0.0781->0.0664 -15% [-27,-3]* | lora 0.0570->0.0541 -5% [-11,+2]  | hyper 0.0620->0.0609 -2% [-9,+6] 
+   lorenz      autonomous 0.5207->0.3477 -34% [-88,+21]  | latent 0.0271->0.0226 -17% [-35,+2]  | concat 0.0567->0.0577 +3% [-21,+26]  | film 0.0347->0.0637 +82% [+44,+120]* | lora 0.0266->0.0201 -25% [-48,-2]* | hyper 0.0182->0.0191 +10% [-78,+98] 
+   quad_tank   autonomous 1.6225->1.7650 +9% [-19,+36]  | latent 0.1634->0.2000 +22% [-41,+86]  | concat 0.1511->0.1682 +11% [-36,+58]  | film 0.0839->0.0808 -3% [-38,+31]  | lora 0.0700->0.0654 -6% [-25,+12]  | hyper 0.0644->0.0632 -2% [-17,+13] 
+   vdp         autonomous 0.1108->0.1134 +2% [-5,+10]  | latent 0.0266->0.0268 +1% [-17,+19]  | concat 0.0271->0.0262 -3% [-18,+12]  | film 0.0273->0.0278 +2% [-15,+19]  | lora 0.0191->0.0193 +1% [-21,+23]  | hyper 0.0249->0.0238 -4% [-20,+12] 
+   pooled autonomous: n=18 (system,seed) geo-mean off/on +40.4% [-0.3, +97.9] (pooled t over pairs, systems not independent-weighted)
+   pooled latent: n=18 (system,seed) geo-mean off/on +83.5% [+4.1, +223.3] (pooled t over pairs, systems not independent-weighted)
+   pooled concat: n=18 (system,seed) geo-mean off/on +43.1% [-2.3, +109.6] (pooled t over pairs, systems not independent-weighted)
+   pooled film: n=18 (system,seed) geo-mean off/on +32.9% [-5.5, +86.8] (pooled t over pairs, systems not independent-weighted)
+   pooled lora: n=18 (system,seed) geo-mean off/on +32.5% [-14.9, +106.3] (pooled t over pairs, systems not independent-weighted)
+   pooled hyper: n=18 (system,seed) geo-mean off/on +44.0% [-8.7, +127.1] (pooled t over pairs, systems not independent-weighted)
+ tier shape_ood
+   battery     autonomous 0.7441->2.0214 +172% [-73,+417]  | latent 0.1119->0.2646 +131% [-26,+288]  | concat 0.2457->0.2394 -3% [-11,+5]  | film 0.0615->0.0555 -10% [-28,+8]  | lora 0.0551->0.0512 -7% [-24,+11]  | hyper 0.0520->0.0516 +1% [-55,+57] 
+   bioreactor  autonomous 2.9778->20.5047 +588% [+520,+657]* | latent 0.0359->0.5109 +1341% [-351,+3034]  | concat 0.0665->0.4581 +587% [-56,+1229]  | film 0.0242->0.1747 +607% [-562,+1777]  | lora 0.0239->0.3344 +1267% [-206,+2740]  | hyper 0.0263->0.2217 +756% [-293,+1804] 
+   duffing     autonomous 0.1958->0.2162 +10% [-4,+25]  | latent 0.0767->0.0643 -16% [-21,-12]* | concat 0.0611->0.0518 -15% [-32,+2]  | film 0.0651->0.0571 -12% [-18,-6]* | lora 0.0518->0.0455 -12% [-21,-3]* | hyper 0.0537->0.0507 -5% [-25,+15] 
+   lorenz      autonomous 0.5133->0.3449 -33% [-87,+20]  | latent 0.0268->0.0225 -16% [-31,-1]* | concat 0.0562->0.0574 +3% [-25,+31]  | film 0.0338->0.0622 +83% [+45,+121]* | lora 0.0257->0.0195 -25% [-50,+1]  | hyper 0.0175->0.0180 +8% [-67,+82] 
+   quad_tank   autonomous 1.0674->1.0879 +2% [-12,+16]  | latent 0.1577->0.1782 +13% [-46,+71]  | concat 0.1426->0.1605 +12% [-34,+59]  | film 0.0648->0.0645 -0% [-24,+24]  | lora 0.0502->0.0521 +4% [-10,+18]  | hyper 0.0500->0.0508 +1% [-3,+6] 
+   vdp         autonomous 0.0706->0.0773 +9% [+4,+15]* | latent 0.0254->0.0253 -0% [-20,+19]  | concat 0.0254->0.0241 -5% [-19,+9]  | film 0.0256->0.0257 +0% [-15,+15]  | lora 0.0158->0.0158 +0% [-16,+16]  | hyper 0.0225->0.0213 -4% [-31,+22] 
+   pooled autonomous: n=18 (system,seed) geo-mean off/on +55.4% [+3.1, +134.3] (pooled t over pairs, systems not independent-weighted)
+   pooled latent: n=18 (system,seed) geo-mean off/on +69.2% [+1.3, +182.9] (pooled t over pairs, systems not independent-weighted)
+   pooled concat: n=18 (system,seed) geo-mean off/on +34.0% [-7.7, +94.5] (pooled t over pairs, systems not independent-weighted)
+   pooled film: n=18 (system,seed) geo-mean off/on +43.0% [-1.6, +107.8] (pooled t over pairs, systems not independent-weighted)
+   pooled lora: n=18 (system,seed) geo-mean off/on +41.9% [-15.1, +137.0] (pooled t over pairs, systems not independent-weighted)
+   pooled hyper: n=18 (system,seed) geo-mean off/on +40.0% [-7.1, +111.1] (pooled t over pairs, systems not independent-weighted)
+ tier id
+   battery     autonomous 0.7503->2.4305 +224% [-44,+492]  | latent 0.1230->0.2704 +114% [-20,+248]  | concat 0.2265->0.2188 -3% [-7,+1]  | film 0.0621->0.0519 -16% [-39,+7]  | lora 0.0479->0.0456 -4% [-19,+10]  | hyper 0.0487->0.0465 -2% [-59,+54] 
+   bioreactor  autonomous 3.2559->19.4210 +496% [+432,+561]* | latent 0.0344->0.4778 +1298% [+112,+2484]* | concat 0.0517->0.3267 +531% [+45,+1017]* | film 0.0199->0.1750 +779% [-134,+1693]  | lora 0.0192->0.2326 +1104% [-303,+2511]  | hyper 0.0222->0.1844 +737% [-211,+1684] 
+   duffing     autonomous 0.2527->0.3150 +25% [-0,+50]  | latent 0.0771->0.0631 -18% [-21,-15]* | concat 0.0575->0.0505 -12% [-25,+1]  | film 0.0630->0.0551 -12% [-21,-4]* | lora 0.0492->0.0441 -10% [-18,-2]* | hyper 0.0509->0.0483 -5% [-22,+13] 
+   lorenz      autonomous 0.5135->0.3451 -33% [-88,+21]  | latent 0.0300->0.0248 -17% [-39,+4]  | concat 0.0589->0.0599 +2% [-18,+23]  | film 0.0380->0.0637 +67% [+37,+97]* | lora 0.0276->0.0206 -25% [-57,+7]  | hyper 0.0207->0.0205 +1% [-46,+47] 
+   quad_tank   autonomous 1.1490->1.1348 -1% [-13,+10]  | latent 0.1606->0.1911 +19% [-40,+78]  | concat 0.1440->0.1630 +13% [-38,+64]  | film 0.0681->0.0676 -1% [-23,+22]  | lora 0.0520->0.0533 +3% [-12,+17]  | hyper 0.0540->0.0525 -3% [-11,+6] 
+   vdp         autonomous 0.0831->0.0899 +8% [+1,+15]* | latent 0.0253->0.0249 -2% [-18,+14]  | concat 0.0254->0.0242 -5% [-17,+7]  | film 0.0257->0.0257 -0% [-12,+12]  | lora 0.0165->0.0163 -1% [-14,+12]  | hyper 0.0224->0.0211 -5% [-27,+16] 
+   pooled autonomous: n=18 (system,seed) geo-mean off/on +58.4% [+6.3, +136.0] (pooled t over pairs, systems not independent-weighted)
+   pooled latent: n=18 (system,seed) geo-mean off/on +67.2% [+0.3, +178.7] (pooled t over pairs, systems not independent-weighted)
+   pooled concat: n=18 (system,seed) geo-mean off/on +33.3% [-6.6, +90.3] (pooled t over pairs, systems not independent-weighted)
+   pooled film: n=18 (system,seed) geo-mean off/on +46.7% [-3.6, +123.2] (pooled t over pairs, systems not independent-weighted)
+   pooled lora: n=18 (system,seed) geo-mean off/on +38.8% [-14.8, +126.3] (pooled t over pairs, systems not independent-weighted)
+   pooled hyper: n=18 (system,seed) geo-mean off/on +36.7% [-9.3, +106.0] (pooled t over pairs, systems not independent-weighted)
+
+## C3-partial-modelfree (PDE off) vs C3-partial (PDE on)
+ tier sequence_ood
+   battery     latent 0.1399->0.2873 +109% [-92,+310]  | lora 0.0744->0.0649 -13% [-25,-0]* | hyper 0.0717->0.0680 -4% [-38,+30] 
+   bioreactor  latent 0.0867->0.8844 +927% [-191,+2045]  | lora 0.0753->0.5813 +726% [-560,+2012]  | hyper 0.0703->0.5340 +716% [-239,+1671] 
+   duffing     latent 0.0766->0.0718 -6% [-14,+2]  | lora 0.0536->0.0541 +1% [-22,+24]  | hyper 0.0642->0.0609 -5% [-13,+3] 
+   lorenz      latent 0.0354->0.0226 -35% [-55,-15]* | lora 0.0308->0.0201 -33% [-78,+13]  | hyper 0.0192->0.0191 +1% [-59,+61] 
+   quad_tank   latent 0.1677->0.2000 +19% [-50,+89]  | lora 0.0717->0.0654 -9% [-10,-7]* | hyper 0.0625->0.0632 +1% [-6,+8] 
+   vdp         latent 0.0343->0.0268 -22% [-36,-7]* | lora 0.0179->0.0193 +8% [-10,+26]  | hyper 0.0199->0.0238 +20% [-3,+42] 
+   pooled latent: n=18 (system,seed) geo-mean off/on +48.2% [-8.2, +139.0] (pooled t over pairs, systems not independent-weighted)
+   pooled lora: n=18 (system,seed) geo-mean off/on +27.0% [-16.9, +94.0] (pooled t over pairs, systems not independent-weighted)
+   pooled hyper: n=18 (system,seed) geo-mean off/on +41.7% [-4.7, +110.7] (pooled t over pairs, systems not independent-weighted)
+ tier shape_ood
+   battery     latent 0.1383->0.2646 +97% [-135,+329]  | lora 0.0563->0.0512 -8% [-27,+11]  | hyper 0.0474->0.0516 +10% [-38,+57] 
+   bioreactor  latent 0.0525->0.5109 +903% [-411,+2218]  | lora 0.0261->0.3344 +1278% [-1179,+3735]  | hyper 0.0338->0.2217 +575% [-326,+1476] 
+   duffing     latent 0.0738->0.0643 -13% [-16,-10]* | lora 0.0511->0.0455 -10% [-38,+18]  | hyper 0.0531->0.0507 -4% [-13,+5] 
+   lorenz      latent 0.0351->0.0225 -35% [-56,-13]* | lora 0.0287->0.0195 -31% [-65,+3]  | hyper 0.0184->0.0180 +1% [-58,+60] 
+   quad_tank   latent 0.1594->0.1782 +12% [-54,+78]  | lora 0.0508->0.0521 +3% [-5,+11]  | hyper 0.0496->0.0508 +2% [-1,+5] 
+   vdp         latent 0.0324->0.0253 -22% [-35,-9]* | lora 0.0146->0.0158 +8% [-6,+23]  | hyper 0.0167->0.0213 +28% [+0,+55]*
+   pooled latent: n=18 (system,seed) geo-mean off/on +41.8% [-11.9, +128.5] (pooled t over pairs, systems not independent-weighted)
+   pooled lora: n=18 (system,seed) geo-mean off/on +39.3% [-16.3, +131.7] (pooled t over pairs, systems not independent-weighted)
+   pooled hyper: n=18 (system,seed) geo-mean off/on +42.1% [-0.2, +102.6] (pooled t over pairs, systems not independent-weighted)
+ tier id
+   battery     latent 0.1635->0.2704 +73% [-143,+288]  | lora 0.0476->0.0456 -3% [-36,+30]  | hyper 0.0436->0.0465 +8% [-41,+57] 
+   bioreactor  latent 0.0454->0.4778 +976% [-101,+2053]  | lora 0.0239->0.2326 +921% [-658,+2501]  | hyper 0.0291->0.1844 +558% [-333,+1449] 
+   duffing     latent 0.0736->0.0631 -14% [-21,-8]* | lora 0.0490->0.0441 -9% [-39,+21]  | hyper 0.0503->0.0483 -4% [-12,+4] 
+   lorenz      latent 0.0390->0.0248 -35% [-62,-8]* | lora 0.0298->0.0206 -29% [-76,+18]  | hyper 0.0221->0.0205 -6% [-45,+32] 
+   quad_tank   latent 0.1638->0.1911 +17% [-50,+84]  | lora 0.0517->0.0533 +3% [-4,+10]  | hyper 0.0533->0.0525 -2% [-4,+1] 
+   vdp         latent 0.0315->0.0249 -21% [-33,-9]* | lora 0.0157->0.0163 +4% [-8,+16]  | hyper 0.0180->0.0211 +17% [-5,+39] 
+   pooled latent: n=18 (system,seed) geo-mean off/on +41.7% [-13.3, +131.5] (pooled t over pairs, systems not independent-weighted)
+   pooled lora: n=18 (system,seed) geo-mean off/on +34.2% [-15.0, +111.8] (pooled t over pairs, systems not independent-weighted)
+   pooled hyper: n=18 (system,seed) geo-mean off/on +36.9% [-3.9, +95.0] (pooled t over pairs, systems not independent-weighted)

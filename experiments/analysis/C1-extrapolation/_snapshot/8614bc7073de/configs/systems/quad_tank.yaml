@@ -1,0 +1,24 @@
+# quad_tank: role = dev system (design decisions are made here).
+# Sensors, IC box and nz from the archive. alpha, T and dt re-selected by verification: the plant's
+# slowest mode is ~84 s (eig -0.0119/s) but the latent memory at alpha = 0.5 was 17 s, so the KKL map
+# was ill-conditioned (1/sigma_min 544, cond 1295; decoder eps_dec 2.25 sigma). alpha = 0.1 gives
+# 1/sigma_min 17.9, cond 227. dt is explicit: the design dt at alpha = 0.1 (0.26 s) would alias OOD
+# inputs up to 12 rad/s. T = 300 s covers the longer washout (~84 s).
+name: quad_tank
+plant: quad_tank
+role: dev
+params: {}
+sensors: [0, 1]
+ic_box:
+- [6, 18]
+- [6, 18]
+- [0.5, 4]
+- [0.5, 4]
+T: 300
+nz: 6
+alpha: 0.1
+dt: 0.05
+u_scale: 1.0
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

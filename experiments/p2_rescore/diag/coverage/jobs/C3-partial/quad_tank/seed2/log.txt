@@ -1,0 +1,2 @@
+[15:07:30]   arm A2: val nrmse 0.0310  noise gain 0.1299  eps_dec 0.002675 l_dec_q95 21
+[15:21:06]   arm A2: val nrmse 0.0310  noise gain 0.1299  eps_dec 0.002675 l_dec_q95 21

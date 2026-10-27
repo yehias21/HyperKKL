@@ -1,0 +1,23 @@
+id: C1-tune-hyper-gen2
+parent: C1-tune-select
+title: 'Tuning grid: hyper (dense hypernetwork: appendix ablation), gen_layers = 2, lr in [0.0005,
+  0.001, 0.002, 0.004]'
+contribution: C1
+question: Validation NRMSE of hyper with gen_layers = 2 at 4 learning rates (seed 0, dev).
+hypothesis: Part of C1-tune-select.
+decision_rule: See C1-tune-select (selection by analysis/select_tuned.py).
+methods:
+- hyper[lr=0.0005,gen_layers=2]
+- hyper[lr=0.001,gen_layers=2]
+- hyper[lr=0.002,gen_layers=2]
+- hyper[lr=0.004,gen_layers=2]
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 30
+status: done
+created: '2026-10-26'

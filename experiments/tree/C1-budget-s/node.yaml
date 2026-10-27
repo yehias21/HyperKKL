@@ -1,0 +1,28 @@
+id: C1-budget-s
+parent: C1-where
+title: Budget 35k (x0.25)
+contribution: C1
+question: Is the C1 ranking an artefact of one parameter budget?
+hypothesis: Ranking stable across 35k-560k.
+decision_rule: Stable if the C1-where winner is best-or-within-CI at both budgets on >= 4/6 systems.
+set:
+  phase2.budget: 35000
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines: []
+seeds:
+- 0
+- 1
+compare:
+  reference:
+  - latent
+  tier: shape_ood
+  condition: clean
+priority: 4
+status: done
+created: '2026-10-25'

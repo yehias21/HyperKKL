@@ -1,0 +1,140 @@
+[
+ {
+  "cell": "C3-partial/bioreactor",
+  "seed": 0,
+  "cfg_src": "/mnt/raid0_gpu4/demo/data/papers/TMLR/hyperkkl/experiments/tree/C3-partial/runs/bioreactor/seed0/results.json",
+  "mismatch": 0.0,
+  "knowledge": "partial",
+  "model_params_equal_nominal": true,
+  "model_params_equal_real": true,
+  "rel_model_error_median": 642.8940989606799,
+  "episodes": {
+   "train": 600,
+   "p1": 400,
+   "val": 64,
+   "N+1": 1620
+  },
+  "transitions_train_p1": 1619000,
+  "greybox_n_fit_cap": 1000000,
+  "overlap": {
+   "id": {
+    "n": 64,
+    "identical_to_train": 0,
+    "families": [
+     "am",
+     "constant",
+     "drive",
+     "multisine",
+     "prbs",
+     "ramp",
+     "sinusoid",
+     "square",
+     "staircase",
+     "step"
+    ]
+   },
+   "shape_ood": {
+    "n": 64,
+    "identical_to_train": 0,
+    "families": [
+     "chirp",
+     "filtered_noise",
+     "sawtooth",
+     "triangle"
+    ]
+   },
+   "sequence_ood": {
+    "n": 64,
+    "identical_to_train": 0,
+    "families": [
+     "drive"
+    ]
+   },
+   "val_identical_to_train": 0
+  },
+  "train_families": [
+   "am",
+   "constant",
+   "drive",
+   "multisine",
+   "prbs",
+   "ramp",
+   "sinusoid",
+   "square",
+   "staircase",
+   "step",
+   "zero"
+  ],
+  "greybox_fit": {
+   "n_params": 4546,
+   "n_fit": 1000000,
+   "steps": 3000,
+   "val_loss": 0.00046661964734084904,
+   "val_r2": [
+    0.9997149705886841,
+    0.9997073411941528
+   ]
+  },
+  "ude_lr": {
+   "ude5k_ekf": 0.01
+  },
+  "val_rollout_nmse": {
+   "f_known only": {
+    "1": 0.1259492693558235,
+    "8": 2.066422192218702,
+    "32": 2.789006935923203,
+    "128": 2.799614783477428
+   },
+   "grey-box (one-step r)": {
+    "1": 0.001507009698668553,
+    "8": 0.04343955925207639,
+    "32": 0.10456669814427003,
+    "128": 0.11049074366943068
+   },
+   "ude5k": {
+    "1": 2.8370052691977064e-06,
+    "8": 1.4598364625923603e-05,
+    "32": 3.4334027445844005e-05,
+    "128": 4.282658283674334e-05
+   },
+   "TRUE plant (reference only)": {
+    "1": 1.5692444464065805e-06,
+    "8": 9.704920432842612e-06,
+    "32": 3.06202303871493e-05,
+    "128": 4.1952315411029015e-05
+   }
+  },
+  "seq_ood_eval_seed": {
+   "greybox_ekf": {
+    "mean": 0.2904753563925624,
+    "median": 0.2905058264732361,
+    "p90": 0.3108032464981079,
+    "diverged": 0.0
+   },
+   "greybox_ukf": {
+    "mean": 0.2787671016994864,
+    "median": 0.2788240760564804,
+    "p90": 0.29811200201511384,
+    "diverged": 0.0
+   },
+   "greybox_ekf_oracle": {
+    "mean": 0.2904753563925624,
+    "median": 0.2905058264732361,
+    "p90": 0.3108032464981079,
+    "diverged": 0.0
+   },
+   "ude5k_ekf": {
+    "mean": 0.006292304533417337,
+    "median": 0.006167834857478738,
+    "p90": 0.007369208382442594,
+    "diverged": 0.0
+   },
+   "ude5k_ukf": {
+    "mean": 0.0063008683355292305,
+    "median": 0.0061811842024326324,
+    "p90": 0.007425384316593409,
+    "diverged": 0.0
+   }
+  }
+ }
+]

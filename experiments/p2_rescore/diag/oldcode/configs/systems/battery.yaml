@@ -1,0 +1,39 @@
+# battery: role = dev system. New plant (hyperkkl/systems_extra.py; parameter sources in its
+# docstring): Li-ion cell, 2-RC equivalent circuit + lumped thermal + BMS voltage channel.
+# x = (SOC, V1 [V], V2 [V], dT [K], Vm [V - 3.7]); u = current demand [A], + = discharge.
+# Time unit = 1 min: plant modes 0.55 min (R1 C1), 3.7 min (R2 C2), 5.7 min (thermal),
+# 2 s (voltage filter), SOC an integrator. The input families' frequencies and dwells
+# (0.5-3 rad, 0.5-8 units) then read as minute-scale load profiles; in seconds they would be
+# far faster than every mode and T would need 1e5 steps.
+# sensors: thermistor (dT) and voltage channel (Vm). From Vm alone dT is nearly unobservable
+# (Gramian ratio 1e-10..1e-6 at rest); with both the weakest direction is the V1/V2 split (1.3e-3).
+# u_scale = 1 C (0.85 A): inputs are bounded by |u| <= 1 C. T = 30 min moves SOC by up to
+# 0.5 at 1 C; the BMS derating (systems_extra) holds SOC inside (0, 1) for any input
+# (2.5 C for an hour stays inside, tests/test_systems_extra.py), so no u_bounds are needed.
+# nz = nx + 2 (the ny >= 2 convention: quad_tank, two_link_arm, cartpole). alpha = 1.5/min:
+# latent memory 6.4 min against the slowest stable mode 5.7 min (thermal), the quad_tank rule;
+# dt = 0.0148 min from the design (filter mode lambda dt = 0.45), N = 2023.
+# actuator affine: the plant is already non-affine in u (Joule heat I^2 R0, SOC derating,
+# R(T)); the SaturatingActuator's f0 + G(x) u_eff would replace I^2 by a linear term.
+# t_ref (input protocol v2, signals.py): seconds per signal time unit. Rule t_ref = max(1, tau_slow / 3),
+# rounded, with tau_slow = median 1/|Re eig| of the linearisation along the zero-input trajectory
+# = 1.0 min -> t_ref = 1 (the plant time unit is 1 min, so t_ref is in minutes). T / t_ref = 30 / 1 = 30 signal time units (rule: >= ~20, so an episode holds enough input events).
+name: battery
+plant: battery
+role: dev
+params: {}
+sensors: [3, 4]
+ic_box:
+- [0.3, 0.8]
+- [-0.04, 0.04]
+- [-0.04, 0.04]
+- [0.0, 4.0]
+- [0.0, 0.3]
+T: 30
+nz: 7
+alpha: 1.5
+u_scale: 0.85
+t_ref: 1
+u_bounds: []
+actuator: {kind: affine}
+mismatch: 0.0

@@ -1,0 +1,226 @@
+[
+ {
+  "path": "Panasonic_18650PF_Data/25degC/C20_OCV_and_1C_discharge_tests_start_of_tests/03-09-17_17.59_3349_Dis1C_1.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/4f6ef0a3-9449-4b94-a9fc-c3b14068a9b9/file_downloaded",
+  "sha256": "5a8f33036ec16bc5c9668933bab91a1713e320f852af4b139658f9984d7614d3",
+  "sha256_mendeley": "5a8f33036ec16bc5c9668933bab91a1713e320f852af4b139658f9984d7614d3",
+  "ok": true,
+  "size": 15312
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/C20_OCV_and_1C_discharge_tests_start_of_tests/03-09-17_21.03_3349_Dis1C_Rp.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/7f2c8eea-5991-4c4f-adce-f399f88ff991/file_downloaded",
+  "sha256": "bd2fec388f5a1c50ec221efd0fbba2c393dc5773163d60137eb4d0dc9bddc02c",
+  "sha256_mendeley": "bd2fec388f5a1c50ec221efd0fbba2c393dc5773163d60137eb4d0dc9bddc02c",
+  "ok": true,
+  "size": 109182
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/C20_OCV_and_1C_discharge_tests_start_of_tests/03-10-17_23.36_3349_Dis1C_2.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/af896d83-f1de-4c63-aeaa-f91c1e253a86/file_downloaded",
+  "sha256": "1307ca28e4ad5a5009a0ac65a3b17adf618df2c04aab037e48c090a783f7b734",
+  "sha256_mendeley": "1307ca28e4ad5a5009a0ac65a3b17adf618df2c04aab037e48c090a783f7b734",
+  "ok": true,
+  "size": 14944
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/5_pulse_disch/03-11-17_08.47_25degC_5Pulse_HPPC_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/30d47bb8-9a71-484d-a810-2b126de0fd15/file_downloaded",
+  "sha256": "21f5d94812f5059bc484ce44cccf1485c3b0dc02e36f36d80f9d24173ac1a8e6",
+  "sha256_mendeley": "21f5d94812f5059bc484ce44cccf1485c3b0dc02e36f36d80f9d24173ac1a8e6",
+  "ok": true,
+  "size": 1028421
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/5_pulse_disch/03-11-17_10.10_3390_dis5_10p.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/cbeab630-43d3-4c5d-9a9f-0276ef748a21/file_downloaded",
+  "sha256": "357628c2d008afcfaf705699d8436567531a2877e0f253b1f54cb5206554bd94",
+  "sha256_mendeley": "357628c2d008afcfaf705699d8436567531a2877e0f253b1f54cb5206554bd94",
+  "ok": true,
+  "size": 16297
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-18-17_02.17_25degC_Cycle_1_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/57a2002f-d618-4dd8-96e3-37ffb6bc26c5/file_downloaded",
+  "sha256": "2926d32c3790062a5b29eeb5fdde7a580ae4d09b7a50b4ee9951ae5a42f24e28",
+  "sha256_mendeley": "2926d32c3790062a5b29eeb5fdde7a580ae4d09b7a50b4ee9951ae5a42f24e28",
+  "ok": true,
+  "size": 2857090
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-19-17_03.25_25degC_Cycle_2_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/565a773c-9b34-4d91-acee-b501f66cf9c6/file_downloaded",
+  "sha256": "9e716ba5040ead435bec2c3d382c87db1b8f7580ea262e2d8613bc109e3e67ea",
+  "sha256_mendeley": "9e716ba5040ead435bec2c3d382c87db1b8f7580ea262e2d8613bc109e3e67ea",
+  "ok": true,
+  "size": 2921369
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-19-17_09.07_25degC_Cycle_3_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/5d1c9796-f570-45f2-8d45-5bb89a3a8a73/file_downloaded",
+  "sha256": "e7623286ed0f3269021141e2efdba95eb648a68e725d2c63520ce693623511fb",
+  "sha256_mendeley": "e7623286ed0f3269021141e2efdba95eb648a68e725d2c63520ce693623511fb",
+  "ok": true,
+  "size": 2630402
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-19-17_14.31_25degC_Cycle_4_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/58a8c7b5-9bb0-492e-bda7-7b527b1bb3fc/file_downloaded",
+  "sha256": "5623114bb567a4afd9ffc5167a8d3961682d5d332030d070e735659c18082895",
+  "sha256_mendeley": "5623114bb567a4afd9ffc5167a8d3961682d5d332030d070e735659c18082895",
+  "ok": true,
+  "size": 3175271
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-20-17_01.43_25degC_US06_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/3adfe076-1b29-4002-a145-b736adf830ca/file_downloaded",
+  "sha256": "c12a57f8fa2bfcb7fcd30f243781390e1567acb369da647e6bdc08885deb0ac4",
+  "sha256_mendeley": "c12a57f8fa2bfcb7fcd30f243781390e1567acb369da647e6bdc08885deb0ac4",
+  "ok": true,
+  "size": 1414084
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-20-17_05.56_25degC_HWFTa_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/cd43ca76-7e05-401f-b6de-84a783a3b1f3/file_downloaded",
+  "sha256": "333d23b6eb7615d673190ee77d74e54f76ddbdc2b607eae6d1dd57ef6ed0e77b",
+  "sha256_mendeley": "333d23b6eb7615d673190ee77d74e54f76ddbdc2b607eae6d1dd57ef6ed0e77b",
+  "ok": true,
+  "size": 2007189
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-20-17_19.27_25degC_HWFTb_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/ca790272-685f-4afa-83e6-8d5ed5a46a80/file_downloaded",
+  "sha256": "ecb2fe03608f26ea03b3d8520f86ad1eb51f7d358a97b290467afebc885af325",
+  "sha256_mendeley": "ecb2fe03608f26ea03b3d8520f86ad1eb51f7d358a97b290467afebc885af325",
+  "ok": true,
+  "size": 1970700
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-21-17_00.29_25degC_UDDS_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/49c96285-4765-454e-853a-3c86bffa2e42/file_downloaded",
+  "sha256": "cb9d830727474c17a8eb624bfd16bbf1f4c306c8d32f831ed58ccdb820f0376a",
+  "sha256_mendeley": "cb9d830727474c17a8eb624bfd16bbf1f4c306c8d32f831ed58ccdb820f0376a",
+  "ok": true,
+  "size": 5526237
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-21-17_09.38_25degC_LA92_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/0e344811-7e34-4fd6-bbef-bc4bfe901800/file_downloaded",
+  "sha256": "808e837526a8c319b9ea5c63466205de900eab6d708445318e9db0a082fe6f31",
+  "sha256_mendeley": "808e837526a8c319b9ea5c63466205de900eab6d708445318e9db0a082fe6f31",
+  "ok": true,
+  "size": 3635022
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/Drive_cycles/03-21-17_16.27_25degC_NN_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/048adbe6-fc81-4295-91c9-5b483509d7c6/file_downloaded",
+  "sha256": "972a98f2fc86307dbcf9c3c9300ff7650bb6bb25943c245d789bce09e889630c",
+  "sha256_mendeley": "972a98f2fc86307dbcf9c3c9300ff7650bb6bb25943c245d789bce09e889630c",
+  "ok": true,
+  "size": 3111972
+ },
+ {
+  "path": "Panasonic_18650PF_Data/25degC/C20_OCV_and_1C_discharge_tests_start_of_tests/05-08-17_13.26_C20_OCV_Test_C20_25dC.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/040c052b-f92f-42a0-a5de-86fa065585c0/file_downloaded",
+  "sha256": "c52c1941bc6ef8897578efea5316521297a05d5f6c042d07e66003bd5427f7fa",
+  "sha256_mendeley": "c52c1941bc6ef8897578efea5316521297a05d5f6c042d07e66003bd5427f7fa",
+  "ok": true,
+  "size": 88295
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/05-30-17_12.56_0degC_Cycle_1_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/0c82f301-af30-4e89-85e2-5d4397e31894/file_downloaded",
+  "sha256": "b40c5d6cb7ee52b22e140f7b9fa22fd1ca03fe6c998edaa4ad54cad1786efaa1",
+  "sha256_mendeley": "b40c5d6cb7ee52b22e140f7b9fa22fd1ca03fe6c998edaa4ad54cad1786efaa1",
+  "ok": true,
+  "size": 2182675
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/05-30-17_20.16_0degC_Cycle_2_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/3ecac88b-686e-45eb-baf5-8ed937246967/file_downloaded",
+  "sha256": "c3329eae2d18622cfc2a0aeb3b4c64bd6e426ad782166b4e6e452d7fd0d4c3e5",
+  "sha256_mendeley": "c3329eae2d18622cfc2a0aeb3b4c64bd6e426ad782166b4e6e452d7fd0d4c3e5",
+  "ok": true,
+  "size": 2103994
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_10.36_0degC_LA92_NN_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/319ab116-8b04-48bb-8df3-699c6aa0e31f/file_downloaded",
+  "sha256": "58f6fee06bcb3b65d8d9a8611ee6a47807ccb779cef7661503e5aae4c857f12b",
+  "sha256_mendeley": "58f6fee06bcb3b65d8d9a8611ee6a47807ccb779cef7661503e5aae4c857f12b",
+  "ok": true,
+  "size": 3515825
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_10.36_0degC_LA92_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/3a9ec079-2ca6-4a3c-8393-b0be35bbf5b0/file_downloaded",
+  "sha256": "3225340cb1a3b8ef2527c703b71953ff7e47b853bf2442b9eb0185e37c5d7e4a",
+  "sha256_mendeley": "3225340cb1a3b8ef2527c703b71953ff7e47b853bf2442b9eb0185e37c5d7e4a",
+  "ok": true,
+  "size": 1997264
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_10.36_0degC_NN_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/8357a381-ebda-48fb-be21-31b8001d5f99/file_downloaded",
+  "sha256": "697d8d0a1a79fceb1eb6e52609de815bcbceaf8bc336242f245ac4fda601522c",
+  "sha256_mendeley": "697d8d0a1a79fceb1eb6e52609de815bcbceaf8bc336242f245ac4fda601522c",
+  "ok": true,
+  "size": 1481656
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_15.36_0degC_Cycle_3_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/25e5c9f1-fde6-4635-a1dc-1ffa0d2c249c/file_downloaded",
+  "sha256": "6a37121c2ab6d7794dcb502b01e97aa1de1ca3f3ee6d0a628b56f2f96cb5de9c",
+  "sha256_mendeley": "6a37121c2ab6d7794dcb502b01e97aa1de1ca3f3ee6d0a628b56f2f96cb5de9c",
+  "ok": true,
+  "size": 1527906
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_22.03_0degC_Cycle_4_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/8a4f0108-e726-463f-af23-84bb83ebd6ab/file_downloaded",
+  "sha256": "56f0ee7bd700df37cb272e8bafbb8618add3a324ad351199d59f596ea5c2be49",
+  "sha256_mendeley": "56f0ee7bd700df37cb272e8bafbb8618add3a324ad351199d59f596ea5c2be49",
+  "ok": true,
+  "size": 1815106
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-02-17_04.58_0degC_US06_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/f0108285-6968-4608-be3e-7d46440cda6c/file_downloaded",
+  "sha256": "03707d28515c2d83ebcf9f29d52246c76706384b6846fd6a1adade88b624038e",
+  "sha256_mendeley": "03707d28515c2d83ebcf9f29d52246c76706384b6846fd6a1adade88b624038e",
+  "ok": true,
+  "size": 986553
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-02-17_10.43_0degC_HWFET_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/e6dece84-c2aa-46a2-84c4-c6dea2226bea/file_downloaded",
+  "sha256": "63e95c5d0c1c071f77137ad4518c1550845f20f9acded0440b8a34a8ce77927c",
+  "sha256_mendeley": "63e95c5d0c1c071f77137ad4518c1550845f20f9acded0440b8a34a8ce77927c",
+  "ok": true,
+  "size": 1593804
+ },
+ {
+  "path": "Panasonic_18650PF_Data/0degC/Drive_cycles/06-02-17_17.14_0degC_UDDS_Pan18650PF.mat",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/c1482ff0-af75-4e11-a888-5d0c2b34d5b1/file_downloaded",
+  "sha256": "f43128fcacbd3f2c65955e02a0431be32addd1c0c847677cbe30e9d9054c6aa5",
+  "sha256_mendeley": "f43128fcacbd3f2c65955e02a0431be32addd1c0c847677cbe30e9d9054c6aa5",
+  "ok": true,
+  "size": 2939920
+ },
+ {
+  "path": "Panasonic_18650PF_Data/Plot_results.m",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/801b25f6-8466-4ad6-a67d-d92f99e76fb4/file_downloaded",
+  "sha256": "1a4b1b6372f272100cca6d452c803c6515dcaf8febc47ced379bf21756668a72",
+  "sha256_mendeley": "1a4b1b6372f272100cca6d452c803c6515dcaf8febc47ced379bf21756668a72",
+  "ok": true,
+  "size": 497
+ },
+ {
+  "path": "Panasonic_18650PF_Data/Readme_file_-_desc_of_tests_performed.txt",
+  "url": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/c8e0f8f6-0cb2-471d-b1f3-ccf4ed9097a4/file_downloaded",
+  "sha256": "ed236fbbc93b3ac6fba2d0a98c55d5572fbe31b1053dc1ce46c8e268a1c23aab",
+  "sha256_mendeley": "ed236fbbc93b3ac6fba2d0a98c55d5572fbe31b1053dc1ce46c8e268a1c23aab",
+  "ok": true,
+  "size": 6426
+ }
+]

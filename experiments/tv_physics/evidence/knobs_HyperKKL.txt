@@ -1,0 +1,68 @@
+== runs_HyperKKL.json 808
+no config: 0 []
+phase1.use_pde {'True': 806, 'False': 2}
+phase1.lambda_pde {'1.0': 808}
+phase1.pde_u_scale {'0.0': 808}
+phase1.weight_residual {'True': 808}
+phase1.grad_method {'None': 406, "'sum'": 361, "'anneal'": 4, "'pcgrad'": 4, "'confg'": 4, "'alm'": 7, "'invdir'": 11, "'relobralo'": 11}
+phase2.freeze_encoder_deltas {'True': 624, "'False'": 4, 'False': 180}
+phase2.residual_mode {'None': 587, "'characteristic'": 206, "'jacobian'": 15}
+phase2.w_label {'1.0': 808}
+phase2.grad_method {'None': 406, "'sum'": 390, "'anneal'": 4, "'pcgrad'": 4, "'confg'": 4}
+phase2.w_recon {'1.0': 808}
+
+# phase1.use_pde != True
+   pdefalse_bioreactor False 1 ['bioreactor:0']
+   pdefalse_fhn False 1 ['fhn:0']
+
+# phase1.lambda_pde != 1.0
+
+# phase1.pde_u_scale != 0.0
+
+# phase1.weight_residual != True
+
+# phase1.grad_method != sum
+   ALM 'alm' 4 ['bioreactor:0', 'duffing:0', 'lorenz:0', 'vdp:0']
+   FB_alm 'alm' 3 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2']
+   FB_invd 'invdir' 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FB_relo 'relobralo' 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   G_anneal 'anneal' 4 ['bioreactor:0', 'duffing:0', 'lorenz:0', 'vdp:0']
+   G_confg 'confg' 4 ['bioreactor:0', 'duffing:0', 'lorenz:0', 'vdp:0']
+   G_pcgrad 'pcgrad' 4 ['bioreactor:0', 'duffing:0', 'lorenz:0', 'vdp:0']
+   INVDIR 'invdir' 2 ['bioreactor:0', 'vdp:0']
+   RELOBRALO 'relobralo' 2 ['bioreactor:0', 'vdp:0']
+
+# phase2.freeze_encoder_deltas != True
+   FA_riv False 24 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'cartpole:0', 'cartpole:1', 'cartpole:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'fhn:0', 'fhn:1', 'fhn:2']
+   FA_riv60 False 24 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'cartpole:0', 'cartpole:1', 'cartpole:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'fhn:0', 'fhn:1', 'fhn:2']
+   FA_rivA False 24 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'cartpole:0', 'cartpole:1', 'cartpole:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'fhn:0', 'fhn:1', 'fhn:2']
+   FA_wt False 24 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'cartpole:0', 'cartpole:1', 'cartpole:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'fhn:0', 'fhn:1', 'fhn:2']
+   FB_adam False 6 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FB_alm False 3 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2']
+   FB_invd False 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FB_lbfgs False 1 ['bioreactor:1']
+   FB_lrlo False 3 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2']
+   FB_relo False 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FB_resjc False 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FC_mixband False 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FC_mixhigh False 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FC_p1vol False 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   FC_vol200 False 5 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'vdp:0', 'vdp:1']
+   RES2char False 3 ['bioreactor:0', 'duffing:0', 'vdp:0']
+   RES2jac False 3 ['bioreactor:0', 'duffing:0', 'vdp:0']
+   RESchar 'False' 3 ['bioreactor:0', 'duffing:0', 'vdp:0']
+   RESjac 'False' 1 ['bioreactor:0']
+   SMOKE False 2 ['cartpole:0', 'duffing_mult:0']
+   SOAPres90_diff False 1 ['duffing:1']
+   SOAPres90_int False 1 ['duffing:1']
+   SOAPres_diff False 1 ['duffing:0']
+   SOAPres_int False 1 ['duffing:0']
+
+# phase2.residual_mode != characteristic
+   FB_resjc 'jacobian' 9 ['bioreactor:0', 'bioreactor:1', 'bioreactor:2', 'duffing_mult:0', 'duffing_mult:1', 'duffing_mult:2', 'vdp:0', 'vdp:1', 'vdp:2']
+   RES2jac 'jacobian' 3 ['bioreactor:0', 'duffing:0', 'vdp:0']
+   RESjac 'jacobian' 1 ['bioreactor:0']
+   SOAPres90_diff 'jacobian' 1 ['duffing:1']
+   SOAPres_diff 'jacobian' 1 ['duffing:0']
+
+# phase2.w_label != 1.0

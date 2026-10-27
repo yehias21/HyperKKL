@@ -1,0 +1,44 @@
+id: TEST-C3-B
+parent: TEST-C3
+title: 'FROZEN recipe, bounded held-out test plants (cartpole_b, two_link_arm_b): realistic deployment'
+contribution: C3
+question: 'Post-hoc testbed change (disclosed): TEST-C3 (partial model + 30% mismatch + colored-t
+  noise) on the bounded variants, grey-box baselines included from the start.'
+hypothesis: Learned wins on >= 4/6 test systems; it loses where the unmodelled term is small.
+decision_rule: 'Best learned vs best WORKING filter (NRMSE below climatology), paired CI, id and
+  sequence_ood, >= 4/6; report against the relative model error of each plant. Run once. Pre-registration:
+  experiments/cartpole_bounded/PREREG.md.'
+methods:
+- latent
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- pf
+- kkl_mb
+- nlox
+- ekf_huber
+- ukf_huber
+- ekf_oracle
+- ukf_oracle
+- koopman_kf
+- greybox_ekf
+- greybox_ukf
+- greybox_ekf_oracle
+systems:
+- cartpole_b
+- two_link_arm_b
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - ekf
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 0
+status: planned
+created: '2026-10-26'

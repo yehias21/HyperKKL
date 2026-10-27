@@ -1,0 +1,21 @@
+id: C1-tune-hyper-gen2-ext1b
+parent: C1-tune-hyper-gen2
+title: 'Tuning extension ext1b: hyper, gen_layers = 2, lr in [0.032]'
+contribution: C1
+question: Validation NRMSE of hyper in the ext1b extension (seed 0, dev).
+hypothesis: Part of the equal extension.
+decision_rule: See PROTOCOL.md sections 9-10 (analysis/select_tuned.py --stages ...).
+methods:
+- hyper[lr=0.032,gen_layers=2]
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 21
+status: done
+created: '2026-10-26'
+notes: experiments/tuning/PROTOCOL.md sections 9-10 (equal extension after the pre-registered
+  selection hit the lr-grid edge)

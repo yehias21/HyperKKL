@@ -1,0 +1,347 @@
+% =====================================================================
+% Block M2 (contribution C2): why a short input window suffices.
+% Uses the shared assumption block (A1)-(A4) and the maps T^0, T_L of Section~\ref{sec:m1};
+% sampled-data constants: Lemma~\ref{lem:D}. Checks: Table~\ref{tab:m2-checks} (theory/checks/m2_checks.py,
+% check_theory.py). Owns: lem:m2-tail, thm:m2-window, cor:m2-rule, prop:m2-current, lem:m2-sfm, tab:m2-window-rule.
+% No \appendix here: the only appendix (Lemma D) is issued once, in m3_error_bounds.tex.
+% =====================================================================
+\section{Why a short input window suffices}\label{sec:m2}
+
+\paragraph{Setting.} Assumptions (A1)--(A4) of Section~\ref{sec:m1}: forward invariance of a compact
+$\mathcal X$, $\|h\|\le\bar y$ on $\mathcal X$, $\|e^{At}\|\le\kappa e^{-\alpha t}$, and Lipschitz injectivity
+(modulus $\ell$, uniform in $L\ge L_0$) of the windowed map. Here we also use that $-\alpha$ is \emph{exactly} the
+spectral abscissa of $A$ and that the eigenvalues on $\operatorname{Re}\lambda=-\alpha$ are semisimple (otherwise no
+finite $\kappa$ exists for that $\alpha$). The Butterworth real-Jordan $A$ is normal: each block is $sI+\omega J$,
+so $\|e^{At}\|=e^{-\alpha t}$ and $\kappa=1$; its real parts are
+$\alpha_j=\alpha\,\sin\frac{(2j-1)\pi}{2n_z}/\sin\frac{\pi}{2n_z}$, $j=1,\dots,\lceil n_z/2\rceil$, so
+$\alpha=\alpha_1\le\alpha_j\le\alpha_{\max}=\alpha/\sin\frac{\pi}{2n_z}$. The \emph{label} latent starts at
+$z(0)=0$ (the convention of Section~\ref{sec:m1}), hence $z(t)=T^0(x(t),t;u)$ exactly; the deployed observer's
+initial transient is a separate term (Proposition~\ref{prop:m3-iss}) and plays no role in this section.
+$T_L(x,w)$ is the windowed map \eqref{eq:m1-TL} (zero history before the window), and
+\[
+ \varepsilon(L):=\frac{2\kappa\|B\|\bar y}{\alpha}\,e^{-\alpha L}.
+\]
+
+% ---------------------------------------------------------------------
+\begin{lemma}[fading-memory tail]\label{lem:m2-tail}
+(a) [proven] Along every admissible trajectory and $t\ge L$,
+$\ \|T^0(x(t),t;u)-T_L(x(t),u_t)\|\le\tfrac12\varepsilon(L)$.
+(b) [proven under its hypothesis] If $u=v$ on $[t-L,t]$ and \emph{both} backward solutions from $x$ stay in
+$\mathcal X$ on $[0,t]$, then
+\[
+ T^0(x,t;u)-T^0(x,t;v)=e^{AL}\big[T^0(\xi,t-L;u)-T^0(\xi,t-L;v)\big],\qquad
+ \|T^0(x,t;u)-T^0(x,t;v)\|\le\varepsilon(L),
+\]
+with $\xi$ the common backward state at $t-L$. In particular the map forgets at exactly rate $\alpha$:
+for a unit left eigenvector $p$ of an eigenvalue with real part $-\alpha$,
+$|p^*[T^0(x,t;u)-T^0(x,t;v)]|=e^{-\alpha L}\,|p^*[T^0(\xi,t-L;u)-T^0(\xi,t-L;v)]|$.
+\end{lemma}
+\emph{Intuition.} Inside the window the two backward solutions are one curve; everything older reaches
+the latent through $e^{AL}$.
+\begin{proof}
+(a) $T^0-T_L$ is the integral over $[0,t-L]$ of $e^{A(t-s)}Bh(x(s))$ along the true past, which lies in
+$\mathcal X$ by (A1); bound the integrand by $\kappa\|B\|\bar y e^{-\alpha(t-s)}$. (b) On $[t-L,t]$ both
+backward solutions solve the same ODE from $x$, so they coincide; split \eqref{eq:m1-TL}-type integrals at
+$t-L$ and use the flow property: the window parts cancel and the rest is $e^{AL}T^0(\xi,t-L;\cdot)$. Bound
+each map's remainder as in (a). Finally $p^*e^{AL}=e^{\lambda L}p^*$, $|e^{\lambda L}|=e^{-\alpha L}$.
+\end{proof}
+No Lipschitz property of $f$ in $u$ is used; the plant enters only through $\bar y$. \emph{Where (b) does not
+apply.} Part (a) uses only the true past and (A1), so it holds for every benchmark. Part (b) needs the
+\emph{counterfactual} backward solution (from $x$ under $v$) to stay in $\mathcal X$; for a dissipative chaotic flow
+this fails generically, because backward time expands at the rate $\lambda_b$ of the most contracting forward
+direction (Lorenz: $\lambda_b\approx14.6$, so a counterfactual past leaves any compact set within a fraction of a
+second). For Lorenz and R\"ossler, (b) and everything that rests on it (Proposition~\ref{prop:m1-suff}(b)'s
+$\ell\varepsilon(L)$-sufficiency of a context that determines the window; the lower bounds below) are not
+available; the sufficient direction (a) is. The zero-order hold changes nothing: if the held samples agree for
+$j=k-M,\dots,k-1$, apply the lemma at $t_k$ with $L=M\,dt$ (the sample $u_k$ has not acted yet); the deployed
+discrete filter has the same bounds with $e^{-\alpha L}\mapsto e^{-\alpha M dt}$ and constants no larger than the
+continuous ones, plus $e_{\rm disc}$ (Lemma~\ref{lem:D}).
+
+% ---------------------------------------------------------------------
+\begin{theorem}[window rule for the observer]\label{thm:m2-window}
+Let $L^*(\eta)$ be the shortest window for which some decoder $D(z,u_t)$ has worst-case error at most $\eta$.
+\begin{enumerate}
+\item[(a)] (\emph{sufficient; every plant under (A1)--(A4)}) [proven] $D=T_L^*$ achieves
+$\tfrac{\ell}{2}\varepsilon(L)$, so
+\[
+L^*(\eta)\ \le\ \frac1\alpha\ln\frac{\kappa\ell\|B\|\bar y}{\alpha\eta}\ =\ \frac{\ln(1/\eta)+\ln\ell+\ln(\kappa\|B\|\bar y/\alpha)}{\alpha}.
+\]
+\item[(b)] (\emph{necessary; proven for linear plants}) For every decoder and every plant,
+$\sup\|D-x\|\ge\frac12\delta(L)$, where the fibre diameter $\delta(L)$ is the largest $\|x-x'\|$ over
+\emph{admissible} pairs with $T^0(x,t;u)=T^0(x',t;v)$ and $u=v$ on $[t-L,t]$ (each state reached at $t$ under its own
+past). For a linear plant $\dot x=Fx+Gu$, $y=Cx$, normal $A$, $(A,PG)$ controllable, symmetric inputs $|u|\le\bar u$, under
+\begin{itemize}
+\item[(H1)] \emph{washout}: $e^{At}Pe^{-Ft}\to0$, so that after a transient $z=Px+q$ with $PF=AP+BC$, $P$
+injective, $q(t)=-\int_{-\infty}^te^{A(t-r)}PGu(r)dr$ (this holds iff $\alpha$ exceeds the fastest
+\emph{contraction} rate of $F$; automatically for neutrally stable $F$);
+\item[(H2)] \emph{overlapping reachable sets}: for any two admissible input histories and every $d$ with
+$\|d\|\le2\kappa R_qe^{-\alpha L}/\sigma_{\min}(P)$ there is a state $x$ reachable at $t$ under the first history with
+$x+d$ reachable under the second. (Every $x\in\mathcal X$ being reachable under every history is \emph{not} required and
+is false under (A1) whenever the forced response is nonzero: the reachable set under one history is the translate
+$e^{Ft}\mathcal X_0+(\text{forced response})$, a strict subset of $\mathcal X$. (H2) holds for $F$ skew-symmetric or
+$F=0$ when $\mathcal X_0$ contains a ball whose radius exceeds the forced-response bound plus $\|d\|/2$, as in the
+oscillator and integrator examples; it fails for contracting $F$, where the reachable set under a fixed history shrinks
+to a point and the fibre, hence the necessary window, is \emph{smaller});
+\end{itemize}
+the fibre diameter satisfies
+\[
+ \frac{r_q}{\|P\|}\,e^{-\alpha_k L}\ \le\ \delta(L)\ \le\ \frac{2\kappa R_q}{\sigma_{\min}(P)}\,e^{-\alpha L},
+\]
+where $R_q=\kappa\|PG\|\bar u/\alpha$, $r_q>0$ is the radius of a ball contained in the set $Q$ of reachable $q$,
+and $\alpha_k$ is the real part of the first mode group such that the slowest groups up to it span a dimension
+$\ge n_z-n_x+1$. Hence $\alpha\le\alpha_k\le\alpha_{\max}$ and
+\[
+ \frac1{\alpha_k}\ln\frac{r_q}{2\|P\|\eta}\ \le\ L^*(\eta)\ \le\ \frac1\alpha\ln\frac{\kappa\ell\|B\|\bar y}{\alpha\eta},
+ \qquad L^*(\eta)=\Theta\!\Big(\frac1\alpha\ln\frac1\eta\Big)\ \ \text{(linear plants)},
+\]
+with constants that depend on $n_z$ only through $\alpha_k/\alpha\le1/\sin\frac{\pi}{2n_z}$ ($\alpha_k/\alpha=2.618$ at
+$n_z=5$, $n_x=2$; $4.049$ at $n_z=7$, $n_x=3$).
+\end{enumerate}
+\end{theorem}
+\emph{Intuition.} The decoder cannot recover what the window does not contain, and what it does not contain
+reaches the latent through $e^{AL}$; a decoder may lean on the faster modes, but never faster than $\alpha_{\max}$.
+\begin{proof}
+(a) Lemma~\ref{lem:m1-window} with Lemma~\ref{lem:m2-tail}(a). (b) Two points of the fibre receive the same
+input $(z,u_t)$, so $D$ errs by $\ge\frac12\|x-x'\|$ on one of them. Linear case: by (H1) the window parts of $q$
+coincide, so $Px+q=Px'+q'$ iff $P(x-x')=e^{AL}(m'-m)$ with $m,m'\in Q$ the history terms at $t-L$; every such $d=x'-x$
+obeys the upper bound below, so by (H2) the pair can be realised by admissible states, and $\delta(L)=\sup\{\|d\|:e^{-AL}Pd\in Q-Q\}$. Upper:
+$\|d\|\le\|Pd\|/\sigma_{\min}(P)\le\|e^{AL}\|\,2R_q/\sigma_{\min}(P)$. Lower: $\dim\operatorname{range}P=n_x$ and
+the slow span $S_k$ has dimension $\ge n_z-n_x+1$, so some unit $d$ has $Pd\in S_k$; for normal $A$,
+$\|e^{-AL}Pd\|\le e^{\alpha_kL}\|P\|$, and $Q-Q\supseteq Q\supseteq B(r_q)$ ($0\in Q$, controllability), so
+$d\,r_qe^{-\alpha_kL}/\|P\|$ is feasible.
+\end{proof}
+\emph{What is proven and what is not.} The two-sided $\Theta(\ln(1/\eta)/\alpha)$ is a statement about linear plants
+(with the hidden factor $\alpha_k/\alpha$ in the lower constant at $n_z=5$). For nonlinear plants only (a) is proven;
+``(b) with rate between $\alpha$ and $\alpha_{\max}$'' is a \textbf{conjecture}, and for the chaotic benchmarks even
+the counterfactual-past step is unavailable (Lemma~\ref{lem:m2-tail}). \emph{The fibre is a needle.} Writing
+$Q=\{\int_0^\infty e^{As}PGu\,ds:|u|\le\bar u\}$, a symmetric convex body with support function
+$h_Q(w)=\bar u\int_0^\infty|w^\top e^{As}PG|\,ds$, the fibre diameter is computed exactly as
+$\delta(L)=\max_{|d|=1}2/g_Q(e^{-AL}Pd)$ with $g_Q$ the gauge of $Q$ (a linear programme on a Riemann discretisation
+of $Q$). For the oscillator with $n_x=2$ the maximiser is the single direction $d$ with $Pd\in S_k$: $\delta(L)$
+decays at rate $1.000\alpha$ ($n_z=3$) and $2.617\alpha$ ($n_z=5$; $\alpha_k=2.618\alpha$), every other direction
+decays at $\approx\alpha_{\max}$, and the angular half-width of the needle shrinks from $3^\circ$ to $1^\circ$ over
+$L=2$--$6$ (Table~\ref{tab:m2-checks}). An RMS error curve averages over directions, so a sweep's knee on a log scale
+is expected between the slopes $-\alpha_k$ and $-\alpha_{\max}$, with the slow needle visible only at the largest $L$.
+\emph{Tested by} C2-window-a1 (six dev systems, one bandwidth; pre-registered rule ``$e(L\ge\ln(1/\eta)/\alpha)$ within
+$5\%$ of $e(512)$ on $\ge5/6$'': \textbf{FAIL}, \texttt{id} $2/5$, \texttt{sequence\_ood} $3/5$) and C2-window-a2 (battery,
+duffing, vdp at $2\alpha$, the only test of the $1/\alpha$ scaling; rule ``knee in samples changes by $\le2\times$ on
+$\ge2/3$'': \textbf{FAIL}, $1/2$). The $\ell$-free rule that was pre-registered is the sufficient bound with $\ell$ dropped;
+the corollary below restores $\ell$ and is \emph{post hoc} consistent with the largest failure (battery), not with lorenz
+(Table~\ref{tab:m2-window-rule}). Source:
+\texttt{paper/generated/RESULTS.md}.
+
+% ---------------------------------------------------------------------
+\begin{corollary}[practical window rule, and why one plant needs more]\label{cor:m2-rule}
+[proven: (a) of the theorem, rewritten; its use as an explanation of the sweep is \emph{post hoc}, not pre-registered]
+For a target relative error $\eta$ the window that is \emph{sufficient} is
+\[
+ L^*(\eta)\ \approx\ \frac{\ln(1/\eta)+\ln\ell}{\alpha}\qquad\text{(plus the design constant }\ln(\kappa\|B\|\bar y/\alpha)/\alpha\text{)},
+\]
+where $\ell$ is the Lipschitz constant of the inverse of the windowed map (A4). The $\ln(1/\eta)/\alpha$ part is
+plant-independent; the plant enters through $\ln\ell$ and, in the design constant, through $\bar y$. The lower bound of
+the theorem (linear plants) can only \emph{shorten} the necessary window (rate $\alpha_k\ge\alpha$), so a plant whose
+sufficient window exceeds $\ln(1/\eta)/\alpha$ does so through $\ell$ (or $\bar y$), not through the fading-memory rate.
+\end{corollary}
+\emph{Integrator-type states (coulomb counting; a heuristic reading, not a proven statement).} If a state enters the output only weakly, as the battery's state of
+charge enters the terminal voltage through the open-circuit-voltage slope $\partial V_{\rm oc}/\partial{\rm SOC}$, then
+the latent carries that state at gain $\propto$ slope and inverting it costs $\ell\propto1/{\rm slope}$: large
+$\ell$, long $L^*$. The state itself is the integral of the input (coulomb counting), so a decoder must integrate the
+window, which is possible only over the window's length; the memory needed is $\ln\ell/\alpha$ longer than for a
+well-observed state. This is the sufficient side of the theorem; the digest's earlier attribution of the battery to
+``the Lemma~1$'$ worst case'' is withdrawn: Lemma~\ref{lem:m2-tail}(b) is plant-independent (rate exactly $\alpha$ for
+every plant) and the lower bound at $n_z-n_x+1=n_z$ (scalar integrator) gives $\alpha_k=\alpha_{\max}$, the
+\emph{shortest} necessary window. \emph{Proxy for $\ell$.} No node measures $\ell$ itself; the phase-1 diagnostic
+\texttt{l\_dec\_q95} (random-direction quotient of the \emph{stationary} base decoder, $\approx\|J\|_F/\sqrt{n_z}$,
+Remark~\ref{rem:m3-cert}) is used as its proxy in Table~\ref{tab:m2-window-rule}. It is an estimate on data of a
+related constant, not the constant of the bound.
+
+\begin{table}[ht]\centering\small
+\caption{Post-hoc reading of the C2-window-a1 sweep (lora, \texttt{sequence\_ood}, NRMSE at $L\in\{1,\dots,512\}$
+samples, $\eta=0.05$). $L_0=\ln(1/\eta)/(\alpha dt)$ is the pre-registered $\ell$-free rule and
+$L^*=(\ln(1/\eta)+\ln\ell)/(\alpha dt)$ the rule of Corollary~\ref{cor:m2-rule} with $\ell=\texttt{l\_dec\_q95}$ of the
+node's own phase~1 (both in samples; the design constant is omitted; not pre-registered). ``ratio'' is
+$\max_{L\ge L_\cdot}e(L)/e(512)$ on the dyadic grid; the node's criterion is $\le1.05$; n.t.\ = not testable (no grid
+window in $[L_\cdot,512)$, so the ratio is $e(512)/e(512)$ and says nothing; the results layer leaves these out).
+$\ell$ and $L^*$ are the results-layer values. Monotone: no window worse than a shorter one by $>10\%$.}\label{tab:m2-window-rule}
+\footnotesize
+\begin{tabular}{@{}lrrrrrrccl@{}}\hline
+system & $n_z$ & $\alpha$ & $\alpha dt$ & $\ell$ & $L_0$ & $L^*$ & ratio, $L\ge L_0$ & ratio, $L\ge L^*$ & monotone\\\hline
+battery    & 7 & 1.5 & 0.0223 & 806 & 135 & 435  & 1.73 (fails) & n.t. & yes\\
+bioreactor & 5 & 0.5 & 0.0309 & 44  & 97  & 219  & 1.00 & 1.00 & no (min at 128; $2.4\times$ worse at 512)\\
+duffing    & 5 & 3.0 & 0.0309 & 295 & 97  & 281  & 1.00 & n.t. & yes\\
+lorenz     & 7 & 2.0 & 0.0223 & 10  & 135 & 239  & 1.07 (fails) & 1.07 (fails) & yes\\
+quad\_tank & 6 & 0.1 & 0.0050 & 14  & 599 & 1121 & n.t. & n.t. & yes (falling at 512)\\
+vdp        & 5 & 1.5 & 0.0309 & 23  & 97  & 199  & 1.00 & 1.00 & yes\\\hline
+\end{tabular}
+\end{table}
+\noindent\emph{Reading the table (post hoc).} The pre-registered $\ell$-free rule fails where $\ell$ is largest
+(battery, $1.73\times$ the $L=512$ error at $L=256$) and marginally on lorenz ($1.07$). With $\ln\ell$ restored the
+rule can be evaluated only on bioreactor, lorenz and vdp: on battery, duffing and quad\_tank the refined $L^*$ leaves no
+grid window below $512$, so the refined rule is \emph{untested} there (it does not ``hold''); it holds on bioreactor and
+vdp and still fails by $7\%$ on lorenz ($2/3$ on \texttt{id} and $2/3$ on \texttt{sequence\_ood} in the results layer).
+For battery the refined rule only says that its failure at $L\ge L_0$ is not in contradiction with the theory. This is what a
+sufficient-side statement can do: the measured knee sits at or below it (duffing's knee is at $32$ samples against
+$L^*=281$; the bound is far from tight there), and it does not predict the knee. Bioreactor is non-monotone (longer
+windows are \emph{worse}: an optimisation or over-fitting effect that no truncation bound describes) and quad\_tank's
+fixed $dt=0.05$ puts both rules beyond the grid, as predicted below. The refined rule is offered as the theory's
+explanation of why the pre-registered test failed, not as a passed test; a pre-registered test of it needs a new node.
+The $L=1$ row of the same sweep (current input only, Proposition~\ref{prop:m2-current}(a)) is $+143\%$ to $+1522\%$ worse
+than $L=512$ on every dev system (\texttt{sequence\_ood}, lora; paired changes from the C2-window-a1 node report, not a
+number of the generated results layer).
+
+% ---------------------------------------------------------------------
+\begin{proposition}[the current input is not enough]\label{prop:m2-current}
+(a) [proven] Under the zero-order hold, $T^0(\cdot,t_k;u)$ does not depend on $u_k$.
+(b) [proven, linear SISO plants] For the linear plant of Theorem~\ref{thm:m2-window} with $n_y=n_u=1$ under (H1)--(H2), but without assuming $(A,PG)$
+controllable,
+$(z,u_t)$ determines $x$ iff $\operatorname{range}P\cap\langle A\,|\,PG\rangle=\{0\}$, for every $L\ge0$. If $(A,B)$
+is controllable, the eigenvalues of $A$ are distinct and none is a transmission zero of $H(s)=C(sI-F)^{-1}G$, then
+$\langle A|PG\rangle=\mathbb R^{n_z}$ and the condition fails \emph{for every} $n_z$: no latent dimension makes the
+latent store the history. (For $n_y>1$ the condition $p_i^*BH(\lambda_i)\ne0$ is stronger than ``not a transmission
+zero''.)
+(c) [proven, local] Parametrise the input before $t-L$ by $\theta\in\mathbb R^p$ (e.g.\ held levels in the
+interior of $U$), keep the window fixed, and let $\Psi(x,\theta)$ be the resulting latent at $t$. If $\Psi$ is
+$C^1$ near $(\bar x,\bar\theta)$ with trajectories in the interior of $\mathcal X$ and
+$\operatorname{rank}\partial_\theta\Psi(\bar x,\bar\theta)=n_z$, then every $x$ in a neighbourhood of $\bar x$ has a past
+$\theta(x)$ with the same latent and the same window; any decoder $D(z,u_t)$ errs by at least half that
+neighbourhood's radius.
+\end{proposition}
+\emph{Intuition.} With a time-varying map the past input is part of what must be inverted, and the latent
+alone cannot hold it.
+\begin{proof}
+(a) The backward solution on $(-\infty,t_k]$ uses $u$ on $[t_j,t_{j+1})$, $j\le k-1$, only.
+(b) By Theorem~\ref{thm:m2-window}(b), ambiguity exists iff $P d=e^{AL}\Delta m$ for some $d\ne0$ and admissible
+$\Delta m$; the reachable differences form a neighbourhood of $0$ in $\langle A|PG\rangle$, which $e^{AL}$ maps onto
+itself. For distinct eigenvalues, controllability of $(A,PG)$ is $p_i^*PG\ne0$ for every left eigenvector,
+and $p_i^*PG=-p_i^*B\,H(\lambda_i)$ (from $p_i^*P(F-\lambda_iI)=p_i^*BC$).
+(c) Implicit function theorem: choose $n_z$ components of $\theta$ with invertible $\partial\Psi$-block and solve
+$\Psi(x,\theta)=\Psi(\bar x,\bar\theta)$ for them as a $C^1$ function of $x$.
+\end{proof}
+The rank condition in (c) is checkable on a simulator: for Van der Pol with the saturating actuator,
+twelve held levels before the window give $\operatorname{rank}\partial_\theta\Psi=5=n_z$ (smallest singular value
+$1.6\cdot10^{-4}$: the check shows existence of the ambiguity, not its size, which is $\sigma_{\min}\times$ the
+admissible range of $\theta$). Example: the oscillator $\dot x_1=\omega_0x_2$, $\dot x_2=-\omega_0x_1+u$, $y=x_1$,
+$n_z=n_x=2$, with $v\equiv0$, $u=a\mathbf 1_{(-\infty,t-L)}$: $x$ and $x'=x-P^{-1}e^{AL}A^{-1}PGa$ share latent, window
+and current input. On the stationary route the current input does suffice (the injection $\Phi(z,u)$ depends on $u(t)$
+only; Section~\ref{sec:m1}); the price there is a small-gain margin (Proposition~\ref{prop:m1-where}).
+\emph{Tested by} the $L=1$ row of C2-window-a1 (above). No current node compares the context encoders (current, window,
+GRU, SFM) at a matched budget; C1-ctx only moves the SFM's parameters into the budget and does not test this
+proposition.
+
+% ---------------------------------------------------------------------
+\subsection{Predictions for the window sweeps}
+With $dt=0.1\sin(\pi/2n_z)/\alpha$, $\alpha\,dt$ does not depend on the bandwidth scale $s$, and a window of $L$
+samples covers $(L-1)\,dt$ seconds of relevant history (Proposition~\ref{prop:m2-current}a).
+\begin{enumerate}
+\item The knee in seconds scales as $1/(s\alpha)$; in \emph{samples} it is the same for all $s$ (vdp, duffing,
+battery in C2-window-a2). One e-fold of the rate-$\alpha$ bound is $1/(\alpha dt)=32.4$ samples ($n_z=5$) or
+$44.9$ ($n_z=7$); at rate $\alpha_k$ it is $\alpha_k/\alpha$ times fewer ($2.6$ at $n_z=5$, $n_x=2$; $4.0$ for lorenz,
+$n_z=7$, $n_x=3$; the \texttt{a2/a} column of \texttt{c2\_predictions} is the second-slowest mode group, which equals
+$\alpha_k$ only when $n_z-n_x+1\le4$). The worst-case window of
+Theorem~\ref{thm:m2-window}(a) at $\eta=10^{-3}z_{\rm scale}$ ($\ell$ omitted) is $\approx311,313,320,467$ samples;
+measured tails are $10^2$--$5\cdot10^2$ times below the bound, i.e.\ the bound overstates the window by
+$\ln(485)/(\alpha\,dt)\approx200$ samples. At one bandwidth (C2-window-a1) the knees within $5\%$ of $e(512)$ are $32$ (vdp,
+\texttt{id} and \texttt{sequence\_ood}; duffing and bioreactor on \texttt{sequence\_ood}), $64$ (bioreactor \texttt{id}),
+$128$ (quad\_tank \texttt{id}) and not reached on the grid for battery and lorenz (both tiers), duffing (\texttt{id}) and
+quad\_tank (\texttt{sequence\_ood}); see Table~\ref{tab:m2-window-rule}. At $2\alpha$ (C2-window-a2) the knee in samples
+moved by $\le2\times$ on only $1/2$ evaluable systems: the $1/\alpha$ scaling is \emph{not} supported by the current data.
+\item quad\_tank has a fixed $dt=0.05$: $\alpha dt=0.0025,0.005,0.01$ for $s=\tfrac12,1,2$; the knee in samples scales as
+$1/s$ and the grid ($L\le512$) spans only $1.3,2.6,5.1$ e-folds, so the curve should still fall at $L=512$ for
+$s\le1$ (it does at $s=1$): this plant cannot test the scaling.
+\item On a dyadic grid ``knee$\times\alpha$ varies by less than $2\times$'' holds only if the knee sits at the same grid
+point for every $s$ (neighbours differ by exactly $2$); use ``$\le2\times$'' or a knee interpolated in $\log L$.
+\end{enumerate}
+
+% ---------------------------------------------------------------------
+\subsection{Context encoders: forgetting by construction}\label{sec:m2-ctx}
+
+\begin{lemma}[SFM context]\label{lem:m2-sfm}
+[proven] Let $\xi_{k+1}=A^\xi_d\xi_k+B_du_k/u_{\rm ref}$, $c_k=\psi([\xi_k,u_k/u_{\rm ref}])$, with $A^\xi$ block-normal,
+$s_b=-\mathrm{softplus}(\cdot)<0$, $\alpha_\xi=\min_b|s_b|$, and $\psi$ $\ell_\psi$-Lipschitz. Then for $l\ge1$
+\[
+ \text{(a)}\ \Big\|\frac{\partial c_k}{\partial u_{k-l}}\Big\|\le\frac{\ell_\psi}{u_{\rm ref}}\|B_d\|e^{-\alpha_\xi(l-1)dt},\qquad
+ \text{(b)}\ \ell_E\le\frac{\ell_\psi}{u_{\rm ref}}\Big(1+\frac{\|B_d\|}{1-e^{-\alpha_\xi dt}}\Big),
+\]
+and the per-lag bound is attained ($\psi$ isometric on the slowest block, $B_d$ in that block). (c) (\emph{the
+memory probe}) If two input records agree on the last $L$ samples and differ arbitrarily before, with $|u|\le\bar u$,
+\[
+ \|c_k-c'_k\|\le\frac{\ell_\psi\|B_d\|\,2\bar u}{u_{\rm ref}}\,\frac{e^{-\alpha_\xi L\,dt}}{1-e^{-\alpha_\xi dt}} .
+\]
+\end{lemma}
+\begin{proof}
+$\xi_k=\sum_{l\ge1}(A^\xi_d)^{l-1}B_du_{k-l}/u_{\rm ref}$, $\|(A^\xi_d)^{l-1}\|=e^{-\alpha_\xi(l-1)dt}$; chain rule. For $\ell_E$
+add the direct path $u_k$ and sum the geometric series. (c) Only lags $l\ge L+1$ differ; sum (a) over them.
+\end{proof}
+The rate exists for every parameter value but is not bounded below uniformly (softplus$\to0$); a floor
+$s_b\le-\alpha_{\min}$ makes it uniform (the C2-floor nodes set $\alpha_\xi\ge c\,\alpha$, $c\in\{0.25,0.5,1\}$).
+
+\emph{What the probe measures.} The C1-where and C2-floor memory probes keep the last $L$ inputs, swap everything
+older, and fit a rate to the decoded change $|\Delta\hat x|\le\ell_c\|c-c'\|$. This is the quantity of (c): a test of
+the \emph{encoder's} memory, not of Lemma~\ref{lem:m2-tail} (the latent $z$ is unchanged by the probe). Since (c) is an
+upper envelope, a fitted rate below $\alpha_\xi$ over a finite $L$ range does not contradict it unless the curve is in
+its exponential regime over several decades; the probe tests the rate only there.
+
+\emph{At initialisation} the SFM's fill-in poles are $\alpha/1.5^{b}$, $b=1,\dots,5$, so its slowest mode is
+$\alpha/1.5^5=0.132\alpha$ and the next $0.198\alpha$: at initialisation the SFM forgets $\approx7.6\times$ more slowly
+than the latent. \emph{Measured (un-floored, C1-where, lora, median over seeds; \texttt{paper/generated/RESULTS.md}):}
+the learned SFM's slowest pole is $0.14$--$0.18\,\alpha$ (battery $0.18$, bioreactor $0.14$, duffing $0.14$, lorenz $0.18$,
+quad\_tank $0.17$, vdp $0.15$), i.e.\ between the two slowest \emph{initial} poles: training moves the slowest pole
+only slightly (by at most $\approx40\%$, never past the second initial pole), so the ``$5$--$7\times$ extra memory'' of the
+un-floored SFM is largely inherited from initialisation rather than learned.
+\emph{The floor intervention (C2-floor-025/05/1) fails its pre-registered rule.} At $0.5\alpha$: no significant loss on
+$4/6$ dev systems (rule: $\ge5/6$; battery $+23$--$36\%$ and bioreactor lose), TOST non-inferiority at $\pm10\%$ on $0/6$,
+and the strict probe check ``fitted rate $\ge$ floor'' on $0/6$ (ratios $0.73$--$0.96$: battery $0.78$, bioreactor $0.77$,
+duffing $0.73$, quad\_tank $0.96$, vdp $0.82$; lorenz $-0.02$, flat). At $0.25\alpha$: no significant loss on $6/6$ but
+TOST $3/6$ and probe $1/6$; at $1\alpha$: $4/6$, $0/6$, $0/6$ (battery $\approx2\times$ worse). So the data are
+\emph{consistent with} the memory being unused on four systems but do not establish it (three seeds; see the TOST counts),
+and battery, the large-$\ell$ plant of Corollary~\ref{cor:m2-rule}, is the one system where a floor at $0.5\alpha$ clearly
+costs accuracy, as the corollary says it should (its sufficient window $\ln(1/\eta)/\alpha+\ln\ell/\alpha$ is attenuated by
+$e^{-0.5\alpha L^*}$ under the floor); the bioreactor loss has no such explanation. The probe ratios below one do not
+contradict Lemma~\ref{lem:m2-sfm}(c), which is an upper envelope, but they mean the pre-registered check of its
+\emph{rate} fails on every system, and the flat lorenz curve ($d(L)$ within $\times2$--$3$ over $L\le5.7$~s) is unexplained:
+a probe outside its exponential regime, to be reported as such. For the window prediction the SFM has no truncation loss
+on the latent's time scale (it
+should match the window encoder's plateau beyond the knee, not its knee), but an input glitch persists $7.6\times$ longer
+in $c$ and $\ell_E$ is correspondingly larger ($\|B_d\|/(1-e^{-\alpha_\xi dt})\approx7.6/(\alpha dt)\approx246\|B_d\|$
+for $n_z=5$).
+
+\begin{remark}[SFM is an exact context for linear plants]
+If $\operatorname{spec}(A^\xi)\supseteq\operatorname{spec}(A)$ with nonzero input weights (true at initialisation), then
+$q(t_k)=-\sum_{i<k}A_d^{k-1-i}A^{-1}(A_d-I)PGu_i$ is a fixed linear function of $\xi_k$ (each $2\times2$ block commutes
+with $J$): no truncation, whereas a window of $L$ samples truncates at $e^{-\alpha(L-1)dt}$. Once the poles are
+trained this holds only approximately.
+\end{remark}
+
+\begin{remark}[a GRU has no such guarantee]
+(1) An update-gate bias $b$ gives $h_k=\sigma(b)h_{k-1}+\dots$, forgetting at rate $-\ln\sigma(b)\to0$ as $b\to\infty$.
+(2) No fading memory in the sense of \citet{boyd1985fading}: with reset gate $\equiv1$ and update gate $\equiv0$,
+$h_{k+1}=\tanh(3h_k+2u_k)$ is bistable; one pulse flips the state and the context difference stays $1.99$ for all
+later $k$, although the two inputs agree after the pulse. Contractivity of recurrent networks needs weight
+constraints \citep{miller2019stable}; the SFM has it by construction. \emph{Tested by} no current node (an encoder
+ablation SFM vs GRU at a matched budget is requested; C1-ctx does not contain a GRU variant).
+\end{remark}
+
+\begin{table}[ht]\centering\footnotesize
+\caption{Numerical checks of this section (CPU).}\label{tab:m2-checks}
+\begin{tabular}{@{}lp{4.6cm}p{7.4cm}@{}}\hline
+result & check & outcome\\\hline
+Lemma~\ref{lem:m2-tail} & integrator; oscillator $n_z=5$; Van der Pol & rate $1.5000=\alpha$; $1.0000=\alpha$ (both); bound loose $135$--$485\times$\\
+Thm.~\ref{thm:m2-window}(b) & $\delta(L)$ by gauge/LP, oscillator $n_x=2$ & rate $1.000,2.617$ at $n_z=3,5$ ($\alpha_k=1,2.618$); needle at predicted angle\\
+ & bounds $r_qe^{-\alpha_kL}/\|P\|\le\delta\le2R_qe^{-\alpha L}/\sigma_{\min}$ & hold at every $L$ (slack $21\times$, $1.5$--$106\times$)\\
+ & $\sigma_{\min}(e^{-AL}P)$ (arithmetic) & same rates $1.000,2.618$\\
+Cor.~\ref{cor:m2-rule} & Table~\ref{tab:m2-window-rule} from the C2-window-a1 report & $\ell$-free rule fails $1.73\times$ (battery); with $\ln\ell$: holds on $2/3$ testable systems (lorenz $1.07$), untestable on battery, duffing, quad\_tank\\
+Prop.~\ref{prop:m2-current}(c) & Van der Pol, 12 past levels & $\operatorname{rank}\partial_\theta\Psi=5$\\
+sampled form & ZOH step identity; discrete constant & exact to $10^{-15}$; $c_d=0.985\le1/\alpha$\\
+Lemma~\ref{lem:m2-sfm}(a,b) & tight SFM; random SFM & ratio $1.0000000000$; $\le0.13$\\
+Lemma~\ref{lem:m2-sfm}(c) & history swap, floor $0$ and $0.5$; initial poles & observed/bound $\le0.01$; $\alpha_\xi=\alpha/1.5^5$ at init, $\ge0.5\alpha$ with floor\\
+GRU remark & latch in the code's GRU encoder & difference $1.990$ at $k=100,1000,4999$\\\hline
+\end{tabular}
+\end{table}
+% scripts: theory/checks/check_theory.py (integrator, GRU gate bias), theory/checks/m2_checks.py (all other rows)
+
+% Bibliography entries used:
+% bernard2019luenberger: P. Bernard, V. Andrieu. Luenberger observers for nonautonomous nonlinear systems.
+%   IEEE Trans. Automatic Control 64(1):270--281, 2019.
+% boyd1985fading: S. Boyd, L. O. Chua. Fading memory and the problem of approximating nonlinear operators
+%   with Volterra series. IEEE Trans. Circuits and Systems 32(11):1150--1161, 1985.
+% miller2019stable: J. Miller, M. Hardt. Stable recurrent models. ICLR 2019.

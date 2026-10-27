@@ -1,0 +1,190 @@
+{
+ "nrmse": {
+  "metric": "nrmse",
+  "references": [],
+  "summary": {},
+  "paired": {},
+  "extra": {
+   "battery": {
+    "params": {
+     "latent[lr=0.0005,latent_depth=3]": 139527,
+     "latent[lr=0.001,latent_depth=3]": 139527,
+     "latent[lr=0.002,latent_depth=3]": 139527,
+     "latent[lr=0.004,latent_depth=3]": 139527
+    },
+    "cost_us_b1": {
+     "latent[lr=0.0005,latent_depth=3]": 1093.813981860876,
+     "latent[lr=0.001,latent_depth=3]": 1122.2195532172918,
+     "latent[lr=0.002,latent_depth=3]": 1838.7767858803272,
+     "latent[lr=0.004,latent_depth=3]": 1403.42072583735
+    },
+    "wall_s": 8483.36166357994,
+    "code": [
+     "b1a814aa4292"
+    ],
+    "config": [
+     "3a152bc0e9c99fea"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0050834477879107,
+     "eps_dec": 1.7621270418167114,
+     "eps_pde_rms": 0.28138700127601624,
+     "eps_pde_ss_rms": 0.041742999106645584,
+     "l_dec_q95": 847.4838256835938,
+     "l_dec_mean": 387.22552490234375
+    },
+    "state_coverage": {}
+   },
+   "bioreactor": {
+    "params": {
+     "latent[lr=0.0005,latent_depth=3]": 139556,
+     "latent[lr=0.001,latent_depth=3]": 139556,
+     "latent[lr=0.002,latent_depth=3]": 139556,
+     "latent[lr=0.004,latent_depth=3]": 139556
+    },
+    "cost_us_b1": {
+     "latent[lr=0.0005,latent_depth=3]": 1350.2003997564316,
+     "latent[lr=0.001,latent_depth=3]": 1146.5061269700527,
+     "latent[lr=0.002,latent_depth=3]": 1330.2472047507763,
+     "latent[lr=0.004,latent_depth=3]": 1345.1188243925571
+    },
+    "wall_s": 6372.466616153717,
+    "code": [
+     "b1a814aa4292"
+    ],
+    "config": [
+     "567d62866e8a5776"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.008859860710799694,
+     "eps_dec": 0.020537156611680984,
+     "eps_pde_rms": 0.007415188010782003,
+     "eps_pde_ss_rms": 0.004582838620990515,
+     "l_dec_q95": 43.275733947753906,
+     "l_dec_mean": 18.011621475219727
+    },
+    "state_coverage": {}
+   },
+   "duffing": {
+    "params": {
+     "latent[lr=0.0005,latent_depth=3]": 139556,
+     "latent[lr=0.001,latent_depth=3]": 139556,
+     "latent[lr=0.002,latent_depth=3]": 139556,
+     "latent[lr=0.004,latent_depth=3]": 139556
+    },
+    "cost_us_b1": {
+     "latent[lr=0.0005,latent_depth=3]": 1298.2887495309114,
+     "latent[lr=0.001,latent_depth=3]": 1287.7515703439713,
+     "latent[lr=0.002,latent_depth=3]": 1286.0032077878714,
+     "latent[lr=0.004,latent_depth=3]": 1170.4836133867502
+    },
+    "wall_s": 8663.848598718643,
+    "code": [
+     "b1a814aa4292"
+    ],
+    "config": [
+     "5240e50a73bcbf91"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0044870818965137005,
+     "eps_dec": 0.006029326468706131,
+     "eps_pde_rms": 0.0026648622006177902,
+     "eps_pde_ss_rms": 0.0002744958910625428,
+     "l_dec_q95": 298.7292785644531,
+     "l_dec_mean": 138.25332641601562
+    },
+    "state_coverage": {}
+   },
+   "lorenz": {
+    "params": {
+     "latent[lr=0.0005,latent_depth=3]": 139527,
+     "latent[lr=0.001,latent_depth=3]": 139527,
+     "latent[lr=0.002,latent_depth=3]": 139527,
+     "latent[lr=0.004,latent_depth=3]": 139527
+    },
+    "cost_us_b1": {
+     "latent[lr=0.0005,latent_depth=3]": 1724.9627877026796,
+     "latent[lr=0.001,latent_depth=3]": 1221.9090014696121,
+     "latent[lr=0.002,latent_depth=3]": 1173.4589096158743,
+     "latent[lr=0.004,latent_depth=3]": 1326.827285811305
+    },
+    "wall_s": 6126.771088600159,
+    "code": [
+     "b1a814aa4292"
+    ],
+    "config": [
+     "da6bc076a7e7d4ba"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.1781575083732605,
+     "eps_dec": 0.30019041895866394,
+     "eps_pde_rms": 81.72639465332031,
+     "eps_pde_ss_rms": 9.092916488647461,
+     "l_dec_q95": 12.192252159118652,
+     "l_dec_mean": 4.488252639770508
+    },
+    "state_coverage": {}
+   },
+   "quad_tank": {
+    "params": {
+     "latent[lr=0.0005,latent_depth=3]": 140071,
+     "latent[lr=0.001,latent_depth=3]": 140071,
+     "latent[lr=0.002,latent_depth=3]": 140071,
+     "latent[lr=0.004,latent_depth=3]": 140071
+    },
+    "cost_us_b1": {
+     "latent[lr=0.0005,latent_depth=3]": 1283.2692079246044,
+     "latent[lr=0.001,latent_depth=3]": 1216.0378135740757,
+     "latent[lr=0.002,latent_depth=3]": 1246.2087906897068,
+     "latent[lr=0.004,latent_depth=3]": 1301.2923300266266
+    },
+    "wall_s": 8556.470020771027,
+    "code": [
+     "b1a814aa4292"
+    ],
+    "config": [
+     "60bfa6b23e2743a2"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.013222943991422653,
+     "eps_dec": 0.14977796375751495,
+     "eps_pde_rms": 0.020671481266617775,
+     "eps_pde_ss_rms": 0.05350172892212868,
+     "l_dec_q95": 13.740856170654297,
+     "l_dec_mean": 6.703221321105957
+    },
+    "state_coverage": {}
+   },
+   "vdp": {
+    "params": {
+     "latent[lr=0.0005,latent_depth=3]": 139556,
+     "latent[lr=0.001,latent_depth=3]": 139556,
+     "latent[lr=0.002,latent_depth=3]": 139556,
+     "latent[lr=0.004,latent_depth=3]": 139556
+    },
+    "cost_us_b1": {
+     "latent[lr=0.0005,latent_depth=3]": 1316.0552270710468,
+     "latent[lr=0.001,latent_depth=3]": 1346.1817894130945,
+     "latent[lr=0.002,latent_depth=3]": 1320.0840447098017,
+     "latent[lr=0.004,latent_depth=3]": 1288.2299907505512
+    },
+    "wall_s": 6019.327209949493,
+    "code": [
+     "b1a814aa4292"
+    ],
+    "config": [
+     "7353356e8559da4b"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.003434413578361273,
+     "eps_dec": 0.013123605400323868,
+     "eps_pde_rms": 0.2465016394853592,
+     "eps_pde_ss_rms": 0.050782132893800735,
+     "l_dec_q95": 23.641637802124023,
+     "l_dec_mean": 10.035945892333984
+    },
+    "state_coverage": {}
+   }
+  }
+ }
+}

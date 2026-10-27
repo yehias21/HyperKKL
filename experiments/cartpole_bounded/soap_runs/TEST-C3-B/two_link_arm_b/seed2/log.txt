@@ -1,0 +1,97 @@
+[21:14:20]     [T0]  step     0  label 1.217e+00  pde 2.927e-04  |g| 2.44e-01/2.44e-01  clip 0.00  lr 2.0e-04  dθ/θ 1.3e-03
+[21:14:31]     [T0]  step   500  label 5.325e-05  pde 6.942e-06  |g| 1.88e-01/1.14e+00  clip 0.03  lr 9.8e-03  dθ/θ 2.2e+00
+[21:14:41]     [T0]  step  1000  label 2.159e-05  pde 3.191e-06  |g| 2.95e-02/1.30e-01  clip 0.00  lr 9.3e-03  dθ/θ 5.9e-01
+[21:14:50]     [T0]  step  1500  label 1.245e-05  pde 2.021e-06  |g| 1.98e-02/1.20e-01  clip 0.00  lr 8.5e-03  dθ/θ 4.8e-01
+[21:14:59]     [T0]  step  2000  label 8.310e-06  pde 1.515e-06  |g| 1.55e-02/5.84e-02  clip 0.00  lr 7.5e-03  dθ/θ 3.7e-01
+[21:15:09]     [T0]  step  2500  label 8.034e-06  pde 2.027e-06  |g| 1.11e-02/3.88e-02  clip 0.00  lr 6.3e-03  dθ/θ 2.6e-01
+[21:15:20]     [T0]  step  3000  label 5.211e-06  pde 1.168e-06  |g| 8.68e-03/2.69e-02  clip 0.00  lr 5.0e-03  dθ/θ 1.9e-01
+[21:15:31]     [T0]  step  3500  label 2.757e-06  pde 8.923e-07  |g| 6.42e-03/4.71e-02  clip 0.00  lr 3.7e-03  dθ/θ 1.3e-01
+[21:15:40]     [T0]  step  4000  label 2.389e-06  pde 7.960e-07  |g| 4.22e-03/1.10e-02  clip 0.00  lr 2.5e-03  dθ/θ 8.1e-02
+[21:15:50]     [T0]  step  4500  label 1.601e-06  pde 7.752e-07  |g| 2.72e-03/6.98e-03  clip 0.00  lr 1.5e-03  dθ/θ 5.2e-02
+[21:16:01]     [T0]  step  5000  label 1.287e-06  pde 6.269e-07  |g| 2.83e-03/2.22e-02  clip 0.00  lr 6.7e-04  dθ/θ 3.1e-02
+[21:16:11]     [T0]  step  5500  label 1.200e-06  pde 6.384e-07  |g| 7.03e-04/1.99e-03  clip 0.00  lr 1.7e-04  dθ/θ 1.5e-02
+[21:16:20]     [T0]  step  5999  label 1.130e-06  pde 5.768e-07  |g| 2.95e-04/1.74e-03  clip 0.00  lr 0.0e+00  dθ/θ 3.3e-03
+[21:16:20]     [T0+] step     0  recon 4.598e+02  |g| 2.31e+02/2.31e+02  clip 1.00  lr 2.0e-04  dθ/θ 1.4e-03
+[21:16:24]     [T0+] step   500  recon 4.976e-01  |g| 7.31e+01/3.08e+02  clip 1.00  lr 9.8e-03  dθ/θ 4.7e+00
+[21:16:28]     [T0+] step  1000  recon 2.392e-01  |g| 2.42e+01/8.44e+01  clip 1.00  lr 9.3e-03  dθ/θ 6.3e-01
+[21:16:32]     [T0+] step  1500  recon 3.809e-01  |g| 2.01e+01/1.54e+02  clip 1.00  lr 8.5e-03  dθ/θ 5.3e-01
+[21:16:37]     [T0+] step  2000  recon 2.017e-01  |g| 1.55e+01/3.66e+01  clip 1.00  lr 7.5e-03  dθ/θ 4.5e-01
+[21:16:42]     [T0+] step  2500  recon 9.409e-02  |g| 1.26e+01/4.14e+01  clip 1.00  lr 6.3e-03  dθ/θ 3.6e-01
+[21:16:46]     [T0+] step  3000  recon 1.023e-01  |g| 1.14e+01/2.82e+01  clip 1.00  lr 5.0e-03  dθ/θ 2.9e-01
+[21:16:49]     [T0+] step  3500  recon 7.055e-02  |g| 8.89e+00/2.02e+01  clip 1.00  lr 3.7e-03  dθ/θ 2.3e-01
+[21:16:53]     [T0+] step  4000  recon 4.335e-02  |g| 7.81e+00/4.32e+01  clip 1.00  lr 2.5e-03  dθ/θ 1.7e-01
+[21:16:56]     [T0+] step  4500  recon 3.161e-02  |g| 5.63e+00/1.35e+01  clip 1.00  lr 1.5e-03  dθ/θ 1.3e-01
+[21:17:00]     [T0+] step  5000  recon 1.347e-02  |g| 4.48e+00/1.10e+01  clip 1.00  lr 6.7e-04  dθ/θ 8.0e-02
+[21:17:04]     [T0+] step  5500  recon 1.146e-02  |g| 3.30e+00/9.63e+00  clip 0.99  lr 1.7e-04  dθ/θ 3.8e-02
+[21:17:08]     [T0+] step  5999  recon 1.355e-02  |g| 2.49e+00/9.76e+00  clip 0.97  lr 0.0e+00  dθ/θ 8.0e-03
+[21:17:09]     [bg-lora] width 44 cond 141128 ctx 6240 hist 0 base-trainable 34436 opt soap lr 0.01 steps 3000 dc 16
+[21:17:18]     [bg-lora] step   250  train 3.831e-02  val 3.110e-02  |g| 7.44e+00/5.84e+01  clip 0.81  lr 9.8e-03  dθ/θ 3.9e-01
+[21:17:28]     [bg-lora] step   500  train 2.473e-02  val 2.298e-02  |g| 1.23e+00/5.63e+00  clip 0.50  lr 9.3e-03  dθ/θ 4.0e-01
+[21:17:38]     [bg-lora] step   750  train 2.234e-02  val 1.958e-02  |g| 9.28e-01/2.24e+00  clip 0.38  lr 8.5e-03  dθ/θ 3.8e-01
+[21:17:47]     [bg-lora] step  1000  train 1.798e-02  val 1.767e-02  |g| 7.73e-01/2.24e+00  clip 0.24  lr 7.5e-03  dθ/θ 3.2e-01
+[21:17:55]     [bg-lora] step  1250  train 1.578e-02  val 1.710e-02  |g| 6.81e-01/1.56e+00  clip 0.13  lr 6.3e-03  dθ/θ 2.6e-01
+[21:18:03]     [bg-lora] step  1500  train 1.877e-02  val 1.560e-02  |g| 5.99e-01/1.59e+00  clip 0.06  lr 5.0e-03  dθ/θ 2.1e-01
+[21:18:12]     [bg-lora] step  1750  train 1.388e-02  val 1.520e-02  |g| 5.06e-01/1.57e+00  clip 0.05  lr 3.7e-03  dθ/θ 1.6e-01
+[21:18:21]     [bg-lora] step  2000  train 1.857e-02  val 1.509e-02  |g| 4.67e-01/1.03e+00  clip 0.00  lr 2.5e-03  dθ/θ 1.2e-01
+[21:18:31]     [bg-lora] step  2250  train 1.802e-02  val 1.472e-02  |g| 3.94e-01/9.38e-01  clip 0.00  lr 1.5e-03  dθ/θ 7.7e-02
+[21:18:39]     [bg-lora] step  2500  train 1.461e-02  val 1.464e-02  |g| 3.52e-01/7.70e-01  clip 0.00  lr 6.7e-04  dθ/θ 4.4e-02
+[21:18:48]     [bg-lora] step  2750  train 1.750e-02  val 1.452e-02  |g| 3.11e-01/6.45e-01  clip 0.00  lr 1.7e-04  dθ/θ 1.8e-02
+[21:18:58]     [bg-lora] step  3000  train 1.993e-02  val 1.448e-02  |g| 2.74e-01/6.93e-01  clip 0.00  lr 0.0e+00  dθ/θ 3.5e-03
+[21:19:17]   arm A2: val nrmse 0.0519  noise gain 0.5430  eps_dec 0.319 l_dec_q95 2.82e+03
+[21:19:17]     [T0]  step     0  label 1.217e+00  pde 2.927e-04  |g| 2.44e-01/2.44e-01  clip 0.00  lr 2.0e-04  dθ/θ 1.3e-03
+[21:19:26]     [T0]  step   500  label 5.325e-05  pde 6.942e-06  |g| 1.88e-01/1.14e+00  clip 0.03  lr 9.8e-03  dθ/θ 2.2e+00
+[21:19:37]     [T0]  step  1000  label 2.159e-05  pde 3.191e-06  |g| 2.95e-02/1.30e-01  clip 0.00  lr 9.3e-03  dθ/θ 5.9e-01
+[21:19:46]     [T0]  step  1500  label 1.245e-05  pde 2.021e-06  |g| 1.98e-02/1.20e-01  clip 0.00  lr 8.5e-03  dθ/θ 4.8e-01
+[21:19:55]     [T0]  step  2000  label 8.310e-06  pde 1.515e-06  |g| 1.55e-02/5.84e-02  clip 0.00  lr 7.5e-03  dθ/θ 3.7e-01
+[21:20:05]     [T0]  step  2500  label 8.034e-06  pde 2.027e-06  |g| 1.11e-02/3.88e-02  clip 0.00  lr 6.3e-03  dθ/θ 2.6e-01
+[21:20:15]     [T0]  step  3000  label 5.211e-06  pde 1.168e-06  |g| 8.68e-03/2.69e-02  clip 0.00  lr 5.0e-03  dθ/θ 1.9e-01
+[21:20:25]     [T0]  step  3500  label 2.757e-06  pde 8.923e-07  |g| 6.42e-03/4.71e-02  clip 0.00  lr 3.7e-03  dθ/θ 1.3e-01
+[21:20:35]     [T0]  step  4000  label 2.389e-06  pde 7.960e-07  |g| 4.22e-03/1.10e-02  clip 0.00  lr 2.5e-03  dθ/θ 8.1e-02
+[21:20:45]     [T0]  step  4500  label 1.601e-06  pde 7.752e-07  |g| 2.72e-03/6.98e-03  clip 0.00  lr 1.5e-03  dθ/θ 5.2e-02
+[21:20:55]     [T0]  step  5000  label 1.287e-06  pde 6.269e-07  |g| 2.83e-03/2.22e-02  clip 0.00  lr 6.7e-04  dθ/θ 3.1e-02
+[21:21:06]     [T0]  step  5500  label 1.200e-06  pde 6.384e-07  |g| 7.03e-04/1.99e-03  clip 0.00  lr 1.7e-04  dθ/θ 1.5e-02
+[21:21:16]     [T0]  step  5999  label 1.130e-06  pde 5.768e-07  |g| 2.95e-04/1.74e-03  clip 0.00  lr 0.0e+00  dθ/θ 3.3e-03
+[21:21:16]     [T0+] step     0  recon 4.496e+02  |g| 3.15e+02/3.15e+02  clip 1.00  lr 2.0e-04  dθ/θ 2.0e-03
+[21:21:20]     [T0+] step   500  recon 5.773e-01  |g| 7.97e+01/4.29e+02  clip 1.00  lr 9.8e-03  dθ/θ 4.7e+00
+[21:21:24]     [T0+] step  1000  recon 1.914e-01  |g| 2.05e+01/4.22e+01  clip 1.00  lr 9.3e-03  dθ/θ 7.7e-01
+[21:21:28]     [T0+] step  1500  recon 2.023e-01  |g| 1.61e+01/5.08e+01  clip 1.00  lr 8.5e-03  dθ/θ 6.4e-01
+[21:21:31]     [T0+] step  2000  recon 2.071e-01  |g| 1.85e+01/4.27e+02  clip 1.00  lr 7.5e-03  dθ/θ 6.6e-01
+[21:21:36]     [T0+] step  2500  recon 1.012e-01  |g| 1.11e+01/4.21e+01  clip 1.00  lr 6.3e-03  dθ/θ 5.2e-01
+[21:21:40]     [T0+] step  3000  recon 6.522e-02  |g| 9.02e+00/2.28e+01  clip 1.00  lr 5.0e-03  dθ/θ 4.0e-01
+[21:21:44]     [T0+] step  3500  recon 4.788e-02  |g| 6.49e+00/1.36e+01  clip 1.00  lr 3.7e-03  dθ/θ 3.0e-01
+[21:21:48]     [T0+] step  4000  recon 2.510e-02  |g| 4.96e+00/1.07e+01  clip 1.00  lr 2.5e-03  dθ/θ 2.1e-01
+[21:21:53]     [T0+] step  4500  recon 1.067e-02  |g| 3.50e+00/8.30e+00  clip 1.00  lr 1.5e-03  dθ/θ 1.4e-01
+[21:21:57]     [T0+] step  5000  recon 4.229e-03  |g| 2.29e+00/7.14e+00  clip 0.99  lr 6.7e-04  dθ/θ 8.5e-02
+[21:22:01]     [T0+] step  5500  recon 2.581e-03  |g| 1.47e+00/8.63e+00  clip 0.71  lr 1.7e-04  dθ/θ 4.3e-02
+[21:22:05]     [T0+] step  5999  recon 2.837e-03  |g| 7.69e-01/2.69e+00  clip 0.21  lr 0.0e+00  dθ/θ 1.0e-02
+[21:22:05]     [bg-lora] width 44 cond 278536 ctx 6240 hist 8704 base-trainable 134404 opt soap lr 0.01 steps 6000 dc 32
+[21:22:16]     [bg-lora] step   250  train 2.889e-02  val 2.755e-02  |g| 9.02e+00/4.85e+01  clip 0.99  lr 1.0e-02  dθ/θ 3.1e-01
+[21:22:28]     [bg-lora] step   500  train 9.442e-03  val 8.398e-03  |g| 5.57e+00/1.96e+01  clip 0.99  lr 9.8e-03  dθ/θ 3.8e-01
+[21:22:39]     [bg-lora] step   750  train 1.308e-02  val 1.119e-02  |g| 6.26e+00/2.94e+01  clip 0.98  lr 9.6e-03  dθ/θ 3.1e-01
+[21:22:50]     [bg-lora] step  1000  train 6.146e-03  val 6.521e-03  |g| 4.43e+00/2.30e+01  clip 0.92  lr 9.3e-03  dθ/θ 2.8e-01
+[21:23:01]     [bg-lora] step  1250  train 8.094e-03  val 9.817e-03  |g| 3.98e+00/1.38e+01  clip 0.96  lr 9.0e-03  dθ/θ 2.6e-01
+[21:23:13]     [bg-lora] step  1500  train 4.495e-03  val 4.132e-03  |g| 4.28e+00/1.46e+01  clip 0.95  lr 8.5e-03  dθ/θ 2.3e-01
+[21:23:25]     [bg-lora] step  1750  train 2.451e-03  val 2.541e-03  |g| 4.53e+00/1.97e+01  clip 0.93  lr 8.0e-03  dθ/θ 2.1e-01
+[21:23:38]     [bg-lora] step  2000  train 2.691e-03  val 2.370e-03  |g| 3.11e+00/1.11e+01  clip 0.90  lr 7.5e-03  dθ/θ 2.0e-01
+[21:23:49]     [bg-lora] step  2250  train 2.801e-03  val 2.436e-03  |g| 2.53e+00/9.93e+00  clip 0.80  lr 6.9e-03  dθ/θ 1.8e-01
+[21:23:59]     [bg-lora] step  2500  train 1.970e-03  val 1.642e-03  |g| 2.32e+00/7.32e+00  clip 0.79  lr 6.3e-03  dθ/θ 1.6e-01
+[21:24:10]     [bg-lora] step  2750  train 1.775e-03  val 1.605e-03  |g| 1.93e+00/9.40e+00  clip 0.62  lr 5.7e-03  dθ/θ 1.4e-01
+[21:24:20]     [bg-lora] step  3000  train 1.346e-03  val 1.499e-03  |g| 1.30e+00/6.11e+00  clip 0.54  lr 5.0e-03  dθ/θ 1.3e-01
+[21:24:31]     [bg-lora] step  3250  train 1.690e-03  val 1.459e-03  |g| 1.80e+00/1.01e+01  clip 0.55  lr 4.3e-03  dθ/θ 1.1e-01
+[21:24:43]     [bg-lora] step  3500  train 1.552e-03  val 9.652e-04  |g| 1.08e+00/4.95e+00  clip 0.48  lr 3.7e-03  dθ/θ 9.2e-02
+[21:24:54]     [bg-lora] step  3750  train 1.344e-03  val 1.005e-03  |g| 1.04e+00/6.52e+00  clip 0.38  lr 3.1e-03  dθ/θ 7.7e-02
+[21:25:06]     [bg-lora] step  4000  train 8.087e-04  val 8.056e-04  |g| 7.46e-01/3.50e+00  clip 0.26  lr 2.5e-03  dθ/θ 6.5e-02
+[21:25:17]     [bg-lora] step  4250  train 7.108e-04  val 7.386e-04  |g| 4.91e-01/1.44e+00  clip 0.06  lr 2.0e-03  dθ/θ 5.3e-02
+[21:25:28]     [bg-lora] step  4500  train 7.137e-04  val 6.581e-04  |g| 4.52e-01/1.22e+00  clip 0.03  lr 1.5e-03  dθ/θ 4.0e-02
+[21:25:39]     [bg-lora] step  4750  train 6.959e-04  val 6.181e-04  |g| 3.44e-01/1.19e+00  clip 0.01  lr 1.0e-03  dθ/θ 3.1e-02
+[21:25:50]     [bg-lora] step  5000  train 5.360e-04  val 5.622e-04  |g| 3.20e-01/8.00e-01  clip 0.00  lr 6.7e-04  dθ/θ 2.2e-02
+[21:26:01]     [bg-lora] step  5250  train 6.157e-04  val 5.470e-04  |g| 2.44e-01/6.51e-01  clip 0.00  lr 3.8e-04  dθ/θ 1.4e-02
+[21:26:11]     [bg-lora] step  5500  train 5.212e-04  val 5.322e-04  |g| 1.97e-01/5.75e-01  clip 0.00  lr 1.7e-04  dθ/θ 7.7e-03
+[21:26:23]     [bg-lora] step  5750  train 5.486e-04  val 5.231e-04  |g| 1.37e-01/5.93e-01  clip 0.00  lr 4.3e-05  dθ/θ 3.1e-03
+[21:26:34]     [bg-lora] step  6000  train 4.388e-04  val 5.227e-04  |g| 6.41e-02/2.19e-01  clip 0.00  lr 0.0e+00  dθ/θ 5.4e-04
+[21:26:53]   arm A4: val nrmse 0.0186  noise gain 0.5605  eps_dec 0.1226 l_dec_q95 2.59e+03
+[21:27:11]     eval A2               id/clean=0.0599  sha/clean=0.0723  seq/clean=0.1742  (18s, 192 episodes)
+[21:27:32]     eval A4               id/clean=0.0194  sha/clean=0.0321  seq/clean=0.1362  (21s, 192 episodes)
+[21:27:32]   saved A2: seq 0.1742 shape 0.0723 id 0.0599
+[21:27:32]   saved A4: seq 0.1362 shape 0.0321 id 0.0194
+[21:27:32] peak CUDA memory allocated 0.92 GiB

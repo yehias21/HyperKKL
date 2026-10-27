@@ -1,0 +1,1 @@
+Source: /tmp/claude-1010/-mnt-raid0-gpu4-demo-data-papers-TMLR/7db42dae-1ccc-4e01-b21a-1b973b014914/scratchpad/beat_greybox/pkg (the beat_greybox A3 scratch package), copied 2026-10-27 ~12:40 Dubai; configs/ copied from the live repo. Unmodified.

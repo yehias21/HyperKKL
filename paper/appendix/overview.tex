@@ -1,0 +1,30 @@
+\section*{Appendix overview}
+\addcontentsline{toc}{section}{Appendix overview}
+
+Appendices~\ref{sec:m1}--\ref{sec:m3} are the theory, included unchanged from the maintained source (\texttt{theory/m1\_existence\_location.tex}, \texttt{m2\_fading\_memory.tex}, \texttt{m3\_error\_bounds.tex}; numerical checks in \texttt{theory/checks/*.py}, all of which pass). They are self-contained: Appendix~\ref{sec:m1} states the one assumption block (A1)--(A4) used everywhere, the decoder target, the Koopman reading and the stability--extrapolation trade-off (C1); Appendix~\ref{sec:m2} the fading-memory lemma, the window theorem, the practical rule and the context encoders (C2); Appendix~\ref{sec:m3} the ISS decomposition of the deployed sampled-data observer, the sensor-fault corollary, the Kalman-filter remark, the model-incompleteness proposition that anchors C3, and the single sampled-data lemma (Lemma~D). Every statement carries a status tag ([proven], [proven, linear plants], [conjecture], [empirical]) and names the experiment node that tests it or says that none does. Empirical numbers quoted inside the theory are the same generated macros as in the main text.
+
+Appendix~\ref{app:protocol} gives the protocol details (signal families, training recipe, filter tuning, scorecard definitions, the reading rules of the results layer). Appendix~\ref{app:tables} holds the generated tables and figures not shown in the main text (in-distribution C1 table, per-plant C3 tables for both tiers, the \tier{id} and held-out versions of the C3 figure, the memory probe and window sweeps, the realistic-deployment scorecard, every decision rule with its verdict, and the capacity table of the conditioners). Appendix~\ref{app:history} records what was tried, superseded or abandoned, and the data problems recorded by the results layer.
+
+\paragraph{Reading guide for the theory (status table).}
+\begin{center}\footnotesize
+\begin{tabular}{@{}p{0.42\textwidth}p{0.2\textwidth}p{0.33\textwidth}@{}}
+\toprule
+statement & status & tested by \\
+\midrule
+Lemma~\ref{lem:m1-window}, Prop.~\ref{prop:m1-suff} (decoder target, sufficient contexts, history necessary) & proven & -- \\
+Prop.~\ref{prop:m1-where} (latent injection: contraction margin; decoder side: stable, pays extrapolation) & proven & no node measures the margin or the realised gains (eval-only) \\
+Cor.~\ref{cor:m1-amplitude}, Prop.~\ref{prop:m1-tight} (margin sufficient only; cannot be removed at a fixed spectrum) & proven & numerical checks \\
+Cor.~\ref{cor:m1-ood} (OOD excess $\le$ Lipschitz extrapolation in context distance) & proven & context distance per tier not reported \\
+Lemma~\ref{lem:m2-tail} (fading-memory tail; (b) not for chaotic plants) & proven & -- \\
+Thm.~\ref{thm:m2-window} (window rule; (b) linear plants) & (a) proven; (b) linear; nonlinear (b) conjecture & \node{C2-window-a1} \OutcomeCTwoWindowAOne, \node{C2-window-a2} \OutcomeCTwoWindowATwo \\
+Cor.~\ref{cor:m2-rule} (rule with $\ln\ell$) & proven; its use on the sweep is post hoc & explains the failures post hoc \\
+Prop.~\ref{prop:m2-current} (current input not enough) & proven & $L=1$ row of \node{C2-window-a1} \\
+Lemma~\ref{lem:m2-sfm} (SFM forgets at a guaranteed rate; (c) = the memory probe) & proven & probe rate $\ge$ floor: \CtwoFloorFiveProbeAboveFloor \\
+Prop.~\ref{prop:m3-iss} (ISS relative to the nominal observer) & (i),(ii),(iv) exact; (iii) decomposition & realised gains not measured by any node \\
+Cor.~\ref{cor:m3-faults} (sensor faults bounded and forgotten) & proven & \node{C3-faults}: filters win in \CthreeFaultsRegimes \\
+Prop.~\ref{prop:m3-mismatch} (bias floor vs fit error) & proven, linear plants & \node{C3-mismatch10--50} PASS, \node{C3-partial}, \node{C3-realistic} \OutcomeCThreeRealistic; \node{TEST-C3} \OutcomeTESTCThree \\
+Rem.~\ref{rem:m3-kf} (KF beats KKL on linear plants, also with outliers) & proven & -- \\
+Lemma~\ref{lem:D} (sampled-data observer) & proven & checks \\
+\bottomrule
+\end{tabular}
+\end{center}

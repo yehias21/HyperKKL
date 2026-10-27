@@ -1,0 +1,34 @@
+# network: role = test system. New plant (hyperkkl/systems_extra.py): ring of five
+# heterogeneous FitzHugh-Nagumo nodes, nx = 10, x = (v0, w0, ..., v4, w4), input on node 0,
+# v of nodes 0, 1, 3 measured (each unmeasured node has two measured neighbours).
+# IC box: the fhn box per node. nz = nx + 2 (the ny >= 2 convention). alpha = 0.3: latent
+# memory 31.7 against the slowest recovery time 1/(eps_min b) = 28.5 (the quad_tank rule;
+# alpha = 0.5 as in fhn gives 19). T = 100 (~3 oscillation periods; washout 31.7 < T/3).
+# dt = 0.0435 from the design, N = 2299. Saturating actuator as fhn (j = v0, k = 0.4).
+# t_ref (input protocol v2, signals.py): seconds per signal time unit. Rule t_ref = max(1, tau_slow / 3),
+# rounded, with tau_slow = median 1/|Re eig| of the linearisation along the zero-input trajectory
+# = 4.6 s -> t_ref = 1.5. T / t_ref = 100 / 1.5 = 67 signal time units (rule: >= ~20, so an episode holds enough input events).
+name: network
+plant: network
+role: test
+params: {}
+sensors: [0, 2, 6]
+ic_box:
+- &v [-2.5, 2.5]
+- &w [-1.5, 1.5]
+- *v
+- *w
+- *v
+- *w
+- *v
+- *w
+- *v
+- *w
+T: 100
+nz: 12
+alpha: 0.3
+u_scale: 1.0
+t_ref: 1.5
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

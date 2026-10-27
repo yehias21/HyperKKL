@@ -1,0 +1,34 @@
+id: C2-window-a1
+parent: R0
+title: Window length L sweep at the default bandwidth (secondary to the probe)
+contribution: C2
+question: With a raw input window of L samples instead of the full-history SFM context, how long
+  must the window be?
+hypothesis: A window >= L* = ln(1/eta)/alpha (eta = 0.05) is within 5% of the longest window (sufficient
+  direction of Corollary 1); shorter windows lose accuracy.
+decision_rule: Supported if e(L >= L*) is within 5% of e(512) on >= 5/6 dev systems, on id and
+  sequence_ood.
+methods:
+- lora@window:window=1
+- lora@window:window=2
+- lora@window:window=4
+- lora@window:window=8
+- lora@window:window=16
+- lora@window:window=32
+- lora@window:window=64
+- lora@window:window=128
+- lora@window:window=256
+- lora@window:window=512
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - lora@window:window=512
+  tier: sequence_ood
+  condition: clean
+priority: 5
+status: done
+created: '2026-10-25'

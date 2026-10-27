@@ -1,0 +1,281 @@
+{
+ "generated": "2026-10-25 22:49:31",
+ "tier": "sequence_ood",
+ "cells": [
+  {
+   "node": "C3-partial",
+   "system": "battery",
+   "seeds": 3,
+   "best_ours": "hyper",
+   "L": 0.07174222101457417,
+   "best_baseline": "greybox_ekf",
+   "B": 0.019126743803402253,
+   "r": 3.75088523964088,
+   "data_baselines": true,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-partial",
+   "system": "quad_tank",
+   "seeds": 3,
+   "best_ours": "hyper",
+   "L": 0.0624859836922648,
+   "best_baseline": "ekf_oracle",
+   "B": 0.02018878437229432,
+   "r": 3.0950840100118264,
+   "data_baselines": false,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-partial",
+   "system": "bioreactor",
+   "seeds": 3,
+   "best_ours": "hyper",
+   "L": 0.07025964432007943,
+   "best_baseline": "koopman_kf",
+   "B": 0.027130579672909032,
+   "r": 2.5896845982335015,
+   "data_baselines": true,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-partial",
+   "system": "duffing",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.053635343812250845,
+   "best_baseline": "nlox",
+   "B": 0.07229720977678274,
+   "r": 0.7418729433383349,
+   "data_baselines": false,
+   "incomplete_methods": [
+    "greybox_ekf",
+    "greybox_ekf_oracle",
+    "greybox_ukf",
+    "koopman_kf"
+   ]
+  },
+  {
+   "node": "C3-partial",
+   "system": "lorenz",
+   "seeds": 3,
+   "best_ours": "hyper",
+   "L": 0.01921021808811929,
+   "best_baseline": "nlox",
+   "B": 0.028675283392658457,
+   "r": 0.6699225191628815,
+   "data_baselines": false,
+   "incomplete_methods": [
+    "greybox_ekf",
+    "greybox_ekf_oracle",
+    "greybox_ukf",
+    "koopman_kf"
+   ]
+  },
+  {
+   "node": "C3-partial",
+   "system": "vdp",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.01793745209579356,
+   "best_baseline": "nlox",
+   "B": 0.030838963876400765,
+   "r": 0.5816489869012763,
+   "data_baselines": false,
+   "incomplete_methods": [
+    "greybox_ekf",
+    "greybox_ekf_oracle",
+    "greybox_ukf",
+    "koopman_kf"
+   ]
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "bioreactor",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.09770021517761052,
+   "best_baseline": "nlox",
+   "B": 0.03530411414491633,
+   "r": 2.7673889444321036,
+   "data_baselines": false,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "duffing",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.05612969445064664,
+   "best_baseline": "ukf",
+   "B": 0.02158446321845986,
+   "r": 2.600467469704893,
+   "data_baselines": false,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "lorenz",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.0069963441662063515,
+   "best_baseline": "nlox",
+   "B": 0.006822278039180674,
+   "r": 1.025514370130623,
+   "data_baselines": false,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "vdp",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.02048995178968956,
+   "best_baseline": "nlox",
+   "B": 0.03173332413037618,
+   "r": 0.6456919453350273,
+   "data_baselines": false,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "quad_tank",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.042177093360805884,
+   "best_baseline": "nlox",
+   "B": 0.12999866666117063,
+   "r": 0.3244425073276831,
+   "data_baselines": false,
+   "incomplete_methods": []
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "battery",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.051532789783474676,
+   "best_baseline": "ekf",
+   "B": 0.17735987377818674,
+   "r": 0.29055495296486067,
+   "data_baselines": false,
+   "incomplete_methods": []
+  }
+ ],
+ "selected": [
+  {
+   "node": "C3-partial",
+   "system": "battery",
+   "seeds": 3,
+   "best_ours": "hyper",
+   "L": 0.07174222101457417,
+   "best_baseline": "greybox_ekf",
+   "B": 0.019126743803402253,
+   "r": 3.75088523964088,
+   "data_baselines": true,
+   "incomplete_methods": [],
+   "role": "LOSE"
+  },
+  {
+   "node": "C3-partial",
+   "system": "quad_tank",
+   "seeds": 3,
+   "best_ours": "hyper",
+   "L": 0.0624859836922648,
+   "best_baseline": "ekf_oracle",
+   "B": 0.02018878437229432,
+   "r": 3.0950840100118264,
+   "data_baselines": false,
+   "incomplete_methods": [],
+   "role": "LOSE"
+  },
+  {
+   "node": "C3-partial",
+   "system": "lorenz",
+   "seeds": 3,
+   "best_ours": "hyper",
+   "L": 0.01921021808811929,
+   "best_baseline": "nlox",
+   "B": 0.028675283392658457,
+   "r": 0.6699225191628815,
+   "data_baselines": false,
+   "incomplete_methods": [
+    "greybox_ekf",
+    "greybox_ekf_oracle",
+    "greybox_ukf",
+    "koopman_kf"
+   ],
+   "role": "WIN"
+  },
+  {
+   "node": "C3-partial",
+   "system": "vdp",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.01793745209579356,
+   "best_baseline": "nlox",
+   "B": 0.030838963876400765,
+   "r": 0.5816489869012763,
+   "data_baselines": false,
+   "incomplete_methods": [
+    "greybox_ekf",
+    "greybox_ekf_oracle",
+    "greybox_ukf",
+    "koopman_kf"
+   ],
+   "role": "WIN"
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "bioreactor",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.09770021517761052,
+   "best_baseline": "nlox",
+   "B": 0.03530411414491633,
+   "r": 2.7673889444321036,
+   "data_baselines": false,
+   "incomplete_methods": [],
+   "role": "LOSE"
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "duffing",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.05612969445064664,
+   "best_baseline": "ukf",
+   "B": 0.02158446321845986,
+   "r": 2.600467469704893,
+   "data_baselines": false,
+   "incomplete_methods": [],
+   "role": "LOSE"
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "quad_tank",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.042177093360805884,
+   "best_baseline": "nlox",
+   "B": 0.12999866666117063,
+   "r": 0.3244425073276831,
+   "data_baselines": false,
+   "incomplete_methods": [],
+   "role": "WIN"
+  },
+  {
+   "node": "C3-mismatch30",
+   "system": "battery",
+   "seeds": 3,
+   "best_ours": "lora",
+   "L": 0.051532789783474676,
+   "best_baseline": "ekf",
+   "B": 0.17735987377818674,
+   "r": 0.29055495296486067,
+   "data_baselines": false,
+   "incomplete_methods": [],
+   "role": "WIN"
+  }
+ ]
+}

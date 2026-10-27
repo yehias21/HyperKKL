@@ -1,0 +1,34 @@
+id: C1-tuned
+parent: C1-where
+title: Tuned recipe per variant (equal tuning budget), dev systems
+contribution: C1
+question: After every variant gets the same tuning budget (8 configurations, selected on validation),
+  does HyperKKL (low-rank hypernetwork) still beat latent injection and the additive residual?
+hypothesis: Tuned HyperKKL still beats tuned latent and tuned concat on shape_ood and sequence_ood.
+decision_rule: Tuned HyperKKL (the low-rank hypernetwork, 'lora' code path) beats tuned latent
+  AND tuned concat with a paired 95% CI on >= 4/6 dev (C1-tuned) and >= 4/6 test systems (TEST-C1-tuned),
+  shape_ood and sequence_ood (each separately; PASS iff all four votes pass). Dense 'hyper' =
+  appendix ablation, not in the rule (PROTOCOL.md section 8, 2026-10-26 00:52).
+set:
+  eval.memory_probe: false
+methods:
+- latent[lr=0.004,latent_depth=3]
+- concat[lr=0.004,concat_depth=3]
+- film[lr=0.004,film_depth=2]
+- lora[lr=0.004]
+- hyper[lr=0.004]
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - latent[lr=0.004,latent_depth=3]
+  - concat[lr=0.004,concat_depth=3]
+  tier: shape_ood
+  condition: clean
+priority: 25
+status: done
+created: '2026-10-26'
+notes: methods copied verbatim from experiments/tuning/selection.json (2026-10-26 05:52:31); experiments/tuning/PROTOCOL.md

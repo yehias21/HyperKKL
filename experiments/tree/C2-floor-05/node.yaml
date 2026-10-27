@@ -1,0 +1,31 @@
+id: C2-floor-05
+parent: C1-where
+title: 'Forgetting floor: SFM context forgets at >= 0.5 x alpha'
+contribution: C2
+question: 'Corollary 1: input history older than ~ln(1/eta)/alpha barely affects the map. If the
+  context is forced to forget at rate >= c alpha (Lemma 2 then bounds its memory), does accuracy
+  suffer?'
+hypothesis: No loss for c <= 0.5 (memory ln(20)/(0.5 alpha) covers the theory window); a small
+  loss is possible at c = 1 (no margin).
+decision_rule: Memory beyond the theory window is unnecessary if C2-floor-05 is within CI of C1-where
+  (no floor) for lora and hyper on >= 5/6 dev systems, on id and sequence_ood. The probe (on)
+  must decay at >= the floor rate (Lemma 2 check).
+set:
+  phase2.context.sfm_floor: 0.5
+  eval.memory_probe: true
+methods:
+- lora
+- hyper
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - lora
+  tier: sequence_ood
+  condition: clean
+priority: 6
+status: done
+created: '2026-10-25'

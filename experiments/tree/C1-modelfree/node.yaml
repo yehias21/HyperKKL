@@ -1,0 +1,30 @@
+id: C1-modelfree
+parent: C1-where
+title: Model-free phase 1 (no PDE term, no f anywhere)
+contribution: C1
+question: How much of the accuracy needs the model in phase 1?
+hypothesis: Model-free phase 1 costs accuracy mainly on shape/sequence OOD (PDE term regularises
+  T0 off the data).
+decision_rule: Model needed if C1-where beats this node with CI excluding 0 on >= 4/6.
+set:
+  phase1.pde: false
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - latent
+  tier: shape_ood
+  condition: clean
+priority: 4
+status: done
+created: '2026-10-25'

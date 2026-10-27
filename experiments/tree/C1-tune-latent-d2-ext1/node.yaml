@@ -1,0 +1,23 @@
+id: C1-tune-latent-d2-ext1
+parent: C1-tune-latent-d2
+title: 'Tuning grid extension ext1: latent, latent_depth = default, lr in [0.008, 0.016]'
+contribution: C1
+question: Validation NRMSE of latent with latent_depth = default at the extended learning rates
+  (seed 0, dev).
+hypothesis: Part of the section-9 extension.
+decision_rule: See PROTOCOL.md section 9 (analysis/select_tuned.py --stages ...).
+methods:
+- latent[lr=0.008]
+- latent[lr=0.016]
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 23
+status: done
+created: '2026-10-26'
+notes: experiments/tuning/PROTOCOL.md section 9 (lr-grid extension after the pre-registered selection
+  hit the grid edge)

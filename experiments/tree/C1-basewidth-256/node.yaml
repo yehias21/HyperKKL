@@ -1,0 +1,28 @@
+id: C1-basewidth-256
+parent: C1-where
+title: Base decoder width 256 (default 128)
+contribution: C1
+question: Does a stronger or weaker base decoder change where the input should enter?
+hypothesis: Decoder-side gains shrink with a stronger base decoder (less to correct).
+decision_rule: Report the C1 ranking per width; 'base-dependent' if the winner changes on >= 3/6.
+set:
+  phase1.dec_width: 256
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines: []
+seeds:
+- 0
+- 1
+compare:
+  reference:
+  - latent
+  tier: shape_ood
+  condition: clean
+priority: 3
+status: done
+created: '2026-10-25'

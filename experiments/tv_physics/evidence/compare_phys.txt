@@ -1,0 +1,237 @@
+
+### PDE off vs on (fhn)  [pdefalse_fhn vs pdetrue_fhn]  phase1.use_pde  n_pairs=1
+config differences (arm, ctl) [count]: phase1.use_pde=(False, True)[1]
+ tier ood          n=1  geo-mean rel -3.1% CI[nan, nan]  mean abs diff -0.0014 ±nan  median rel -3.1%
+     fhn            n=1 mean rel -3.1%   raw: s0 0.0433->0.0420
+ tier waveform_ood n=1  geo-mean rel +6.6% CI[nan, nan]  mean abs diff +0.0007 ±nan  median rel +6.6%
+     fhn            n=1 mean rel +6.6%   raw: s0 0.0111->0.0119
+ tier id           n=1  geo-mean rel +2.0% CI[nan, nan]  mean abs diff +0.0002 ±nan  median rel +2.0%
+     fhn            n=1 mean rel +2.0%   raw: s0 0.0085->0.0086
+
+### PDE off vs on (bioreactor)  [pdefalse_bioreactor vs pdetrue_bioreactor]  phase1.use_pde  n_pairs=1
+config differences (arm, ctl) [count]: phase1.use_pde=(False, True)[1]
+ tier ood          n=1  geo-mean rel +34.7% CI[nan, nan]  mean abs diff +0.0083 ±nan  median rel +34.7%
+     bioreactor     n=1 mean rel +34.7%   raw: s0 0.0240->0.0324
+ tier waveform_ood n=1  geo-mean rel +156.0% CI[nan, nan]  mean abs diff +0.0081 ±nan  median rel +156.0%
+     bioreactor     n=1 mean rel +156.0%   raw: s0 0.0052->0.0133
+ tier id           n=1  geo-mean rel +225.2% CI[nan, nan]  mean abs diff +0.0063 ±nan  median rel +225.2%
+     bioreactor     n=1 mean rel +225.2%   raw: s0 0.0028->0.0091
+
+### freeze (residual OFF) vs unfrozen (ON), composed  [FD_loo_frz vs FA_wt]  freeze_encoder_deltas  n_pairs=9
+config differences (arm, ctl) [count]: phase2.freeze_encoder_deltas=(True, False)[9]
+ tier ood          n=9  geo-mean rel -19.6% CI[-29.0, -9.0]  mean abs diff -0.0017 ±0.0014  median rel -22.3%
+     bioreactor     n=3 mean rel -29.9% ±18.4  raw: s0 0.0208->0.0162, s1 0.0113->0.0079, s2 0.0103->0.0065
+     duffing_mult   n=3 mean rel -3.6% ±25.7  raw: s0 0.0005->0.0005, s1 0.0005->0.0005, s2 0.0005->0.0004
+     vdp            n=3 mean rel -22.5% ±9.7  raw: s0 0.0047->0.0035, s1 0.0039->0.0032, s2 0.0048->0.0036
+ tier waveform_ood n=9  geo-mean rel +6.3% CI[-2.5, +15.9]  mean abs diff +0.0001 ±0.0001  median rel -0.7%
+     bioreactor     n=3 mean rel +22.9% ±16.7  raw: s0 0.0016->0.0018, s1 0.0015->0.0019, s2 0.0015->0.0019
+     duffing_mult   n=3 mean rel -1.1% ±1.1  raw: s0 0.0005->0.0005, s1 0.0005->0.0005, s2 0.0005->0.0004
+     vdp            n=3 mean rel -1.1% ±5.2  raw: s0 0.0025->0.0026, s1 0.0026->0.0026, s2 0.0026->0.0025
+ tier id           n=9  geo-mean rel +2.8% CI[-2.8, +8.7]  mean abs diff +0.0000 ±0.0001  median rel -0.7%
+     bioreactor     n=3 mean rel +12.8% ±9.8  raw: s0 0.0017->0.0020, s1 0.0015->0.0017, s2 0.0017->0.0018
+     duffing_mult   n=3 mean rel -1.4% ±1.6  raw: s0 0.0004->0.0004, s1 0.0004->0.0004, s2 0.0004->0.0003
+     vdp            n=3 mean rel -2.2% ±6.2  raw: s0 0.0026->0.0026, s1 0.0027->0.0026, s2 0.0027->0.0026
+
+### unfrozen char (ON) vs frozen (OFF), SOAP+LBFGS legacy  [RES2char vs SL_both]  freeze_encoder_deltas  n_pairs=3
+config differences (arm, ctl) [count]: phase2.curriculum=('', None)[3]; phase2.curriculum_floor=(0.15, None)[3]; phase2.curriculum_frac=(0.6, None)[3]; phase2.freeze_encoder_deltas=(False, True)[3]; phase2.residual_mode=('characteristic', None)[3]; phase2.train_families=('[]', None)[3]
+ tier ood          n=3  geo-mean rel +9.8% CI[-30.9, +74.6]  mean abs diff +0.0002 ±0.0030  median rel +22.1%
+     bioreactor     n=1 mean rel +22.1%   raw: s0 0.0066->0.0081
+     duffing        n=1 mean rel +22.6%   raw: s0 0.0012->0.0014
+     vdp            n=1 mean rel -11.5%   raw: s0 0.0086->0.0076
+ tier waveform_ood n=3  geo-mean rel +26.6% CI[-50.5, +223.8]  mean abs diff +0.0002 ±0.0010  median rel +3.2%
+     bioreactor     n=1 mean rel +95.9%   raw: s0 0.0007->0.0014
+     duffing        n=1 mean rel +3.2%   raw: s0 0.0007->0.0007
+     vdp            n=1 mean rel +0.5%   raw: s0 0.0026->0.0026
+ tier id           n=3  geo-mean rel +31.7% CI[-56.5, +298.2]  mean abs diff +0.0003 ±0.0011  median rel +2.9%
+     bioreactor     n=1 mean rel +120.2%   raw: s0 0.0007->0.0015
+     duffing        n=1 mean rel +2.9%   raw: s0 0.0006->0.0006
+     vdp            n=1 mean rel +0.8%   raw: s0 0.0026->0.0026
+
+### BUGGED 'False' string (actually frozen) vs SL_both: noise floor  [RESchar vs SL_both]  null  n_pairs=3
+config differences (arm, ctl) [count]: phase2.curriculum=('', None)[3]; phase2.curriculum_floor=(0.15, None)[3]; phase2.curriculum_frac=(0.6, None)[3]; phase2.freeze_encoder_deltas=('False', True)[3]; phase2.residual_mode=('characteristic', None)[3]; phase2.train_families=('[]', None)[3]
+ tier ood          n=3  geo-mean rel +0.0% CI[+0.0, +0.0]  mean abs diff +0.0000 ±0.0000  median rel +0.0%
+     bioreactor     n=1 mean rel +0.0%   raw: s0 0.0066->0.0066
+     duffing        n=1 mean rel +0.0%   raw: s0 0.0012->0.0012
+     vdp            n=1 mean rel +0.0%   raw: s0 0.0086->0.0086
+ tier waveform_ood n=3  geo-mean rel +0.0% CI[+0.0, +0.0]  mean abs diff +0.0000 ±0.0000  median rel +0.0%
+     bioreactor     n=1 mean rel +0.0%   raw: s0 0.0007->0.0007
+     duffing        n=1 mean rel +0.0%   raw: s0 0.0007->0.0007
+     vdp            n=1 mean rel +0.0%   raw: s0 0.0026->0.0026
+ tier id           n=3  geo-mean rel +0.0% CI[+0.0, +0.0]  mean abs diff +0.0000 ±0.0000  median rel +0.0%
+     bioreactor     n=1 mean rel +0.0%   raw: s0 0.0007->0.0007
+     duffing        n=1 mean rel +0.0%   raw: s0 0.0006->0.0006
+     vdp            n=1 mean rel +0.0%   raw: s0 0.0026->0.0026
+
+### jacobian vs characteristic, composed  [FB_resjc vs FA_wt]  residual_mode  n_pairs=9
+config differences (arm, ctl) [count]: phase2.residual_mode=('jacobian', 'characteristic')[9]
+ tier ood          n=9  geo-mean rel +9.1% CI[-26.7, +62.4]  mean abs diff -0.0011 ±0.0036  median rel +21.7%
+     bioreactor     n=3 mean rel -28.8% ±107.8  raw: s0 0.0208->0.0090, s1 0.0113->0.0055, s2 0.0103->0.0125
+     duffing_mult   n=3 mean rel +58.1% ±36.5  raw: s0 0.0005->0.0008, s1 0.0005->0.0007, s2 0.0005->0.0007
+     vdp            n=3 mean rel +32.3% ±87.9  raw: s0 0.0047->0.0057, s1 0.0039->0.0040, s2 0.0048->0.0082
+ tier waveform_ood n=9  geo-mean rel +21.6% CI[+11.1, +33.0]  mean abs diff +0.0003 ±0.0001  median rel +20.4%
+     bioreactor     n=3 mean rel +19.4% ±31.6  raw: s0 0.0016->0.0019, s1 0.0015->0.0016, s2 0.0015->0.0019
+     duffing_mult   n=3 mean rel +35.6% ±35.6  raw: s0 0.0005->0.0007, s1 0.0005->0.0006, s2 0.0005->0.0007
+     vdp            n=3 mean rel +11.9% ±16.7  raw: s0 0.0025->0.0030, s1 0.0026->0.0029, s2 0.0026->0.0028
+ tier id           n=9  geo-mean rel +17.8% CI[+5.2, +31.7]  mean abs diff +0.0002 ±0.0001  median rel +19.8%
+     bioreactor     n=3 mean rel +6.1% ±32.3  raw: s0 0.0017->0.0021, s1 0.0015->0.0014, s2 0.0017->0.0018
+     duffing_mult   n=3 mean rel +37.6% ±35.1  raw: s0 0.0004->0.0005, s1 0.0004->0.0005, s2 0.0004->0.0005
+     vdp            n=3 mean rel +13.0% ±19.6  raw: s0 0.0026->0.0031, s1 0.0027->0.0029, s2 0.0027->0.0029
+
+### jacobian vs characteristic, SOAP+LBFGS  [RES2jac vs RES2char]  residual_mode  n_pairs=3
+config differences (arm, ctl) [count]: phase2.residual_mode=('jacobian', 'characteristic')[3]
+ tier ood          n=3  geo-mean rel +18.9% CI[-13.7, +63.8]  mean abs diff +0.0015 ±0.0034  median rel +20.9%
+     bioreactor     n=1 mean rel +34.0%   raw: s0 0.0081->0.0108
+     duffing        n=1 mean rel +3.7%   raw: s0 0.0014->0.0015
+     vdp            n=1 mean rel +20.9%   raw: s0 0.0076->0.0092
+ tier waveform_ood n=3  geo-mean rel +7.0% CI[-13.5, +32.2]  mean abs diff +0.0001 ±0.0006  median rel +9.0%
+     bioreactor     n=1 mean rel -2.5%   raw: s0 0.0014->0.0014
+     duffing        n=1 mean rel +9.0%   raw: s0 0.0007->0.0008
+     vdp            n=1 mean rel +15.2%   raw: s0 0.0026->0.0030
+ tier id           n=3  geo-mean rel +2.5% CI[-31.0, +52.1]  mean abs diff +0.0001 ±0.0008  median rel +8.6%
+     bioreactor     n=1 mean rel -14.4%   raw: s0 0.0015->0.0013
+     duffing        n=1 mean rel +8.6%   raw: s0 0.0006->0.0007
+     vdp            n=1 mean rel +15.7%   raw: s0 0.0026->0.0031
+
+### jacobian vs characteristic, SOAP 60/40  [SOAPres_diff vs SOAPres_int]  residual_mode  n_pairs=1
+config differences (arm, ctl) [count]: phase2.residual_mode=('jacobian', 'characteristic')[1]
+ tier ood          n=1  geo-mean rel +33.9% CI[nan, nan]  mean abs diff +0.0005 ±nan  median rel +33.9%
+     duffing        n=1 mean rel +33.9%   raw: s0 0.0014->0.0019
+ tier waveform_ood n=1  geo-mean rel +28.4% CI[nan, nan]  mean abs diff +0.0002 ±nan  median rel +28.4%
+     duffing        n=1 mean rel +28.4%   raw: s0 0.0007->0.0009
+ tier id           n=1  geo-mean rel +26.2% CI[nan, nan]  mean abs diff +0.0002 ±nan  median rel +26.2%
+     duffing        n=1 mean rel +26.2%   raw: s0 0.0007->0.0008
+
+### jacobian vs characteristic, SOAP 90/60  [SOAPres90_diff vs SOAPres90_int]  residual_mode  n_pairs=1
+config differences (arm, ctl) [count]: phase2.residual_mode=('jacobian', 'characteristic')[1]
+ tier ood          n=1  geo-mean rel +58.9% CI[nan, nan]  mean abs diff +0.0007 ±nan  median rel +58.9%
+     duffing        n=1 mean rel +58.9%   raw: s1 0.0011->0.0018
+ tier waveform_ood n=1  geo-mean rel +32.0% CI[nan, nan]  mean abs diff +0.0002 ±nan  median rel +32.0%
+     duffing        n=1 mean rel +32.0%   raw: s1 0.0007->0.0009
+ tier id           n=1  geo-mean rel +32.8% CI[nan, nan]  mean abs diff +0.0002 ±nan  median rel +32.8%
+     duffing        n=1 mean rel +32.8%   raw: s1 0.0007->0.0009
+
+### ALM (legacy)  [ALM vs LAT_enc]  p1 grad_method  n_pairs=4
+config differences (arm, ctl) [count]: phase1.alm_eta=(1.0, None)[4]; phase1.alm_mu0=(1.0, None)[4]; phase1.alm_mu_max=(10000.0, None)[4]; phase1.alm_rho=(1.0, None)[4]; phase1.balance_alpha=(0.9, None)[4]; phase1.balance_every=(1, None)[4]; phase1.balance_temp=(1.0, None)[4]; phase1.cond_penalty=(0.0, None)[4]; phase1.cond_tau=(0.2, None)[4]; phase1.grad_method=('alm', 'sum')[4]; phase1.lbfgs_frac=(0.25, None)[3]; phase1.ntk_every=(25, None)[4]; phase1.ntk_probe=(False, None)[4]; phase1.ntk_samples=(256, None)[4]; phase1.optimizer=('adam', None)[3]; phase2.lbfgs_frac=(0.25, None)[3]; phase2.optimizer=('adam', None)[3]; system.nz_override=(0, None)[4]
+ tier ood          n=4  geo-mean rel +14.0% CI[-33.3, +94.9]  mean abs diff +0.0022 ±0.0052  median rel +17.4%
+     bioreactor     n=1 mean rel +33.4%   raw: s0 0.0152->0.0203
+     duffing        n=1 mean rel +1.3%   raw: s0 0.0029->0.0029
+     lorenz         n=1 mean rel -24.2%   raw: s0 0.0055->0.0041
+     vdp            n=1 mean rel +64.8%   raw: s0 0.0075->0.0124
+ tier waveform_ood n=4  geo-mean rel +12.5% CI[-39.8, +110.1]  mean abs diff +0.0005 ±0.0027  median rel +5.7%
+     bioreactor     n=1 mean rel +91.6%   raw: s0 0.0030->0.0058
+     duffing        n=1 mean rel +0.4%   raw: s0 0.0010->0.0010
+     lorenz         n=1 mean rel -25.1%   raw: s0 0.0051->0.0038
+     vdp            n=1 mean rel +11.1%   raw: s0 0.0034->0.0038
+ tier id           n=4  geo-mean rel +3.5% CI[-29.8, +52.6]  mean abs diff -0.0000 ±0.0014  median rel +6.5%
+     bioreactor     n=1 mean rel +34.7%   raw: s0 0.0021->0.0028
+     duffing        n=1 mean rel +0.2%   raw: s0 0.0009->0.0009
+     lorenz         n=1 mean rel -24.6%   raw: s0 0.0052->0.0039
+     vdp            n=1 mean rel +12.9%   raw: s0 0.0035->0.0039
+
+### ReLoBRaLo (legacy)  [RELOBRALO vs LAT_enc]  p1 grad_method  n_pairs=2
+config differences (arm, ctl) [count]: phase1.alm_eta=(1.0, None)[2]; phase1.alm_mu0=(1.0, None)[2]; phase1.alm_mu_max=(10000.0, None)[2]; phase1.alm_rho=(1.0, None)[2]; phase1.balance_alpha=(0.9, None)[2]; phase1.balance_every=(1, None)[2]; phase1.balance_temp=(1.0, None)[2]; phase1.cond_penalty=(0.0, None)[2]; phase1.cond_tau=(0.2, None)[2]; phase1.grad_method=('relobralo', 'sum')[2]; phase1.lbfgs_frac=(0.25, None)[2]; phase1.ntk_every=(25, None)[2]; phase1.ntk_probe=(False, None)[2]; phase1.ntk_samples=(256, None)[2]; phase1.optimizer=('adam', None)[2]; phase2.lbfgs_frac=(0.25, None)[2]; phase2.optimizer=('adam', None)[2]; system.nz_override=(0, None)[2]
+ tier ood          n=2  geo-mean rel +8.7% CI[-86.5, +775.8]  mean abs diff +0.0005 ±0.0209  median rel +10.2%
+     bioreactor     n=1 mean rel -7.7%   raw: s0 0.0152->0.0140
+     vdp            n=1 mean rel +28.1%   raw: s0 0.0075->0.0096
+ tier waveform_ood n=2  geo-mean rel +3.0% CI[-72.7, +288.2]  mean abs diff +0.0001 ±0.0045  median rel +3.5%
+     bioreactor     n=1 mean rel -7.3%   raw: s0 0.0030->0.0028
+     vdp            n=1 mean rel +14.3%   raw: s0 0.0034->0.0039
+ tier id           n=2  geo-mean rel +12.1% CI[-45.5, +130.4]  mean abs diff +0.0004 ±0.0033  median rel +12.2%
+     bioreactor     n=1 mean rel +5.9%   raw: s0 0.0021->0.0022
+     vdp            n=1 mean rel +18.6%   raw: s0 0.0035->0.0041
+
+### invDirichlet (legacy)  [INVDIR vs LAT_enc]  p1 grad_method  n_pairs=2
+config differences (arm, ctl) [count]: phase1.alm_eta=(1.0, None)[2]; phase1.alm_mu0=(1.0, None)[2]; phase1.alm_mu_max=(10000.0, None)[2]; phase1.alm_rho=(1.0, None)[2]; phase1.balance_alpha=(0.9, None)[2]; phase1.balance_every=(1, None)[2]; phase1.balance_temp=(1.0, None)[2]; phase1.cond_penalty=(0.0, None)[2]; phase1.cond_tau=(0.2, None)[2]; phase1.grad_method=('invdir', 'sum')[2]; phase1.lbfgs_frac=(0.25, None)[2]; phase1.ntk_every=(25, None)[2]; phase1.ntk_probe=(False, None)[2]; phase1.ntk_samples=(256, None)[2]; phase1.optimizer=('adam', None)[2]; phase2.lbfgs_frac=(0.25, None)[2]; phase2.optimizer=('adam', None)[2]; system.nz_override=(0, None)[2]
+ tier ood          n=2  geo-mean rel +69.1% CI[-85.9, +1930.5]  mean abs diff +0.0095 ±0.0832  median rel +72.3%
+     bioreactor     n=1 mean rel +105.6%   raw: s0 0.0152->0.0312
+     vdp            n=1 mean rel +39.0%   raw: s0 0.0075->0.0105
+ tier waveform_ood n=2  geo-mean rel +44.1% CI[-94.8, +3870.8]  mean abs diff +0.0015 ±0.0144  median rel +49.1%
+     bioreactor     n=1 mean rel +87.1%   raw: s0 0.0030->0.0057
+     vdp            n=1 mean rel +11.0%   raw: s0 0.0034->0.0038
+ tier id           n=2  geo-mean rel +50.8% CI[-96.4, +6229.3]  mean abs diff +0.0013 ±0.0108  median rel +57.4%
+     bioreactor     n=1 mean rel +102.4%   raw: s0 0.0021->0.0042
+     vdp            n=1 mean rel +12.4%   raw: s0 0.0035->0.0039
+
+### anneal (both phases)  [G_anneal vs QL_zero]  grad_method  n_pairs=3
+config differences (arm, ctl) [count]: phase1.grad_method=('anneal', 'sum')[3]; phase1.lbfgs_frac=(None, 0.25)[3]; phase1.optimizer=(None, 'adam')[3]; phase2.grad_method=('anneal', 'sum')[3]; phase2.lbfgs_frac=(None, 0.25)[3]; phase2.optimizer=(None, 'adam')[3]
+ tier ood          n=3  geo-mean rel +352.4% CI[-49.0, +3917.5]  mean abs diff +0.0688 ±0.2595  median rel +221.6%
+     bioreactor     n=1 mean rel +1128.1%   raw: s0 0.0168->0.2062
+     duffing        n=1 mean rel +221.6%   raw: s0 0.0027->0.0086
+     vdp            n=1 mean rel +134.5%   raw: s0 0.0082->0.0192
+ tier waveform_ood n=3  geo-mean rel +862.4% CI[-39.2, +15122.6]  mean abs diff +0.0659 ±0.2479  median rel +564.6%
+     bioreactor     n=1 mean rel +3257.0%   raw: s0 0.0056->0.1867
+     duffing        n=1 mean rel +564.6%   raw: s0 0.0010->0.0070
+     vdp            n=1 mean rel +299.6%   raw: s0 0.0036->0.0142
+ tier id           n=3  geo-mean rel +1365.0% CI[-76.5, +91152.2]  mean abs diff +0.0928 ±0.3610  median rel +666.6%
+     bioreactor     n=1 mean rel +9594.1%   raw: s0 0.0027->0.2633
+     duffing        n=1 mean rel +666.6%   raw: s0 0.0009->0.0069
+     vdp            n=1 mean rel +323.1%   raw: s0 0.0037->0.0156
+
+### pcgrad (both phases)  [G_pcgrad vs QL_zero]  grad_method  n_pairs=3
+config differences (arm, ctl) [count]: phase1.grad_method=('pcgrad', 'sum')[3]; phase1.lbfgs_frac=(None, 0.25)[3]; phase1.optimizer=(None, 'adam')[3]; phase2.grad_method=('pcgrad', 'sum')[3]; phase2.lbfgs_frac=(None, 0.25)[3]; phase2.optimizer=(None, 'adam')[3]
+ tier ood          n=3  geo-mean rel +92.0% CI[-58.0, +777.5]  mean abs diff +0.0137 ±0.0526  median rel +120.1%
+     bioreactor     n=1 mean rel +226.8%   raw: s0 0.0168->0.0549
+     duffing        n=1 mean rel +120.1%   raw: s0 0.0027->0.0059
+     vdp            n=1 mean rel -1.6%   raw: s0 0.0082->0.0081
+ tier waveform_ood n=3  geo-mean rel +136.2% CI[-54.9, +1137.9]  mean abs diff +0.0039 ±0.0079  median rel +128.8%
+     bioreactor     n=1 mean rel +128.8%   raw: s0 0.0056->0.0127
+     duffing        n=1 mean rel +367.2%   raw: s0 0.0010->0.0049
+     vdp            n=1 mean rel +23.2%   raw: s0 0.0036->0.0044
+ tier id           n=3  geo-mean rel +152.5% CI[-45.1, +1061.7]  mean abs diff +0.0031 ±0.0056  median rel +202.7%
+     bioreactor     n=1 mean rel +202.7%   raw: s0 0.0027->0.0082
+     duffing        n=1 mean rel +317.6%   raw: s0 0.0009->0.0038
+     vdp            n=1 mean rel +27.3%   raw: s0 0.0037->0.0047
+
+### confg (both phases)  [G_confg vs QL_zero]  grad_method  n_pairs=3
+config differences (arm, ctl) [count]: phase1.grad_method=('confg', 'sum')[3]; phase1.lbfgs_frac=(None, 0.25)[3]; phase1.optimizer=(None, 'adam')[3]; phase2.grad_method=('confg', 'sum')[3]; phase2.lbfgs_frac=(None, 0.25)[3]; phase2.optimizer=(None, 'adam')[3]
+ tier ood          n=3  geo-mean rel +306.8% CI[-38.2, +2577.3]  mean abs diff +0.0507 ±0.1850  median rel +262.2%
+     bioreactor     n=1 mean rel +814.3%   raw: s0 0.0168->0.1535
+     duffing        n=1 mean rel +262.2%   raw: s0 0.0027->0.0096
+     vdp            n=1 mean rel +103.3%   raw: s0 0.0082->0.0167
+ tier waveform_ood n=3  geo-mean rel +723.2% CI[-52.0, +14033.1]  mean abs diff +0.0522 ±0.1966  median rel +661.7%
+     bioreactor     n=1 mean rel +2582.8%   raw: s0 0.0056->0.1492
+     duffing        n=1 mean rel +661.7%   raw: s0 0.0010->0.0080
+     vdp            n=1 mean rel +173.0%   raw: s0 0.0036->0.0097
+ tier id           n=3  geo-mean rel +837.5% CI[-42.7, +15241.7]  mean abs diff +0.0310 ±0.1013  median rel +781.2%
+     bioreactor     n=1 mean rel +2875.3%   raw: s0 0.0027->0.0808
+     duffing        n=1 mean rel +781.2%   raw: s0 0.0009->0.0080
+     vdp            n=1 mean rel +214.3%   raw: s0 0.0037->0.0116
+
+### ReLoBRaLo composed  [FB_relo vs FA_wt]  p1 grad_method  n_pairs=9
+config differences (arm, ctl) [count]: phase1.grad_method=('relobralo', 'sum')[9]
+ tier ood          n=9  geo-mean rel -4.2% CI[-14.9, +7.7]  mean abs diff +0.0002 ±0.0011  median rel -6.2%
+     bioreactor     n=3 mean rel +11.5% ±48.8  raw: s0 0.0208->0.0210, s1 0.0113->0.0151, s2 0.0103->0.0102
+     duffing_mult   n=3 mean rel -4.5% ±18.1  raw: s0 0.0005->0.0005, s1 0.0005->0.0004, s2 0.0005->0.0004
+     vdp            n=3 mean rel -16.6% ±5.6  raw: s0 0.0047->0.0038, s1 0.0039->0.0033, s2 0.0048->0.0039
+ tier waveform_ood n=9  geo-mean rel +2.2% CI[-1.9, +6.4]  mean abs diff +0.0000 ±0.0000  median rel +1.3%
+     bioreactor     n=3 mean rel -1.4% ±13.3  raw: s0 0.0016->0.0016, s1 0.0015->0.0015, s2 0.0015->0.0014
+     duffing_mult   n=3 mean rel +6.5% ±16.1  raw: s0 0.0005->0.0005, s1 0.0005->0.0005, s2 0.0005->0.0005
+     vdp            n=3 mean rel +1.8% ±3.3  raw: s0 0.0025->0.0026, s1 0.0026->0.0027, s2 0.0026->0.0026
+ tier id           n=9  geo-mean rel +2.4% CI[-1.8, +6.9]  mean abs diff +0.0000 ±0.0000  median rel +1.4%
+     bioreactor     n=3 mean rel -0.3% ±16.2  raw: s0 0.0017->0.0017, s1 0.0015->0.0016, s2 0.0017->0.0016
+     duffing_mult   n=3 mean rel +6.6% ±16.9  raw: s0 0.0004->0.0004, s1 0.0004->0.0004, s2 0.0004->0.0004
+     vdp            n=3 mean rel +1.5% ±5.7  raw: s0 0.0026->0.0027, s1 0.0027->0.0027, s2 0.0027->0.0027
+
+### invDirichlet composed  [FB_invd vs FA_wt]  p1 grad_method  n_pairs=9
+config differences (arm, ctl) [count]: phase1.grad_method=('invdir', 'sum')[9]
+ tier ood          n=9  geo-mean rel +5.3% CI[-14.2, +29.2]  mean abs diff +0.0003 ±0.0014  median rel -1.2%
+     bioreactor     n=3 mean rel +1.3% ±59.7  raw: s0 0.0208->0.0252, s1 0.0113->0.0084, s2 0.0103->0.0112
+     duffing_mult   n=3 mean rel +29.2% ±141.2  raw: s0 0.0005->0.0009, s1 0.0005->0.0005, s2 0.0005->0.0005
+     vdp            n=3 mean rel -3.3% ±16.0  raw: s0 0.0047->0.0048, s1 0.0039->0.0035, s2 0.0048->0.0046
+ tier waveform_ood n=9  geo-mean rel +4.0% CI[-1.7, +10.0]  mean abs diff +0.0000 ±0.0001  median rel +1.1%
+     bioreactor     n=3 mean rel +4.3% ±25.4  raw: s0 0.0016->0.0017, s1 0.0015->0.0017, s2 0.0015->0.0014
+     duffing_mult   n=3 mean rel +6.3% ±26.3  raw: s0 0.0005->0.0005, s1 0.0005->0.0005, s2 0.0005->0.0005
+     vdp            n=3 mean rel +2.1% ±6.9  raw: s0 0.0025->0.0027, s1 0.0026->0.0027, s2 0.0026->0.0026
+ tier id           n=9  geo-mean rel +6.4% CI[+0.4, +12.8]  mean abs diff +0.0001 ±0.0001  median rel +1.4%
+     bioreactor     n=3 mean rel +10.6% ±24.7  raw: s0 0.0017->0.0021, s1 0.0015->0.0017, s2 0.0017->0.0017
+     duffing_mult   n=3 mean rel +6.6% ±26.9  raw: s0 0.0004->0.0004, s1 0.0004->0.0004, s2 0.0004->0.0004
+     vdp            n=3 mean rel +2.9% ±9.5  raw: s0 0.0026->0.0027, s1 0.0027->0.0027, s2 0.0027->0.0027
+
+### ALM composed  [FB_alm vs FA_wt]  p1 grad_method  n_pairs=3
+config differences (arm, ctl) [count]: phase1.grad_method=('alm', 'sum')[3]
+ tier ood          n=3  geo-mean rel +8.3% CI[-42.6, +104.4]  mean abs diff +0.0024 ±0.0115  median rel +14.8%
+     bioreactor     n=3 mean rel +10.6% ±66.8  raw: s0 0.0208->0.0281, s1 0.0113->0.0129, s2 0.0103->0.0085
+ tier waveform_ood n=3  geo-mean rel +2.3% CI[-11.7, +18.6]  mean abs diff +0.0000 ±0.0002  median rel -0.7%
+     bioreactor     n=3 mean rel +2.5% ±15.3  raw: s0 0.0016->0.0017, s1 0.0015->0.0015, s2 0.0015->0.0015
+ tier id           n=3  geo-mean rel -1.5% CI[-17.2, +17.3]  mean abs diff -0.0000 ±0.0003  median rel -1.1%
+     bioreactor     n=3 mean rel -1.3% ±17.1  raw: s0 0.0017->0.0018, s1 0.0015->0.0015, s2 0.0017->0.0015

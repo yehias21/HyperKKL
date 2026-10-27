@@ -1,0 +1,22 @@
+# phase-1 PDE on/off
+PDE off vs on (fhn) | pdefalse_fhn | pdetrue_fhn | phase1.use_pde
+PDE off vs on (bioreactor) | pdefalse_bioreactor | pdetrue_bioreactor | phase1.use_pde
+# phase-2 encoder deltas + TV residual on/off
+freeze (residual OFF) vs unfrozen (ON), composed | FD_loo_frz | FA_wt | freeze_encoder_deltas
+unfrozen char (ON) vs frozen (OFF), SOAP+LBFGS legacy | RES2char | SL_both | freeze_encoder_deltas
+BUGGED 'False' string (actually frozen) vs SL_both: noise floor | RESchar | SL_both | null
+# residual form
+jacobian vs characteristic, composed | FB_resjc | FA_wt | residual_mode
+jacobian vs characteristic, SOAP+LBFGS | RES2jac | RES2char | residual_mode
+jacobian vs characteristic, SOAP 60/40 | SOAPres_diff | SOAPres_int | residual_mode
+jacobian vs characteristic, SOAP 90/60 | SOAPres90_diff | SOAPres90_int | residual_mode
+# phase-1 label/PDE balancing (grad_method)
+ALM (legacy) | ALM | LAT_enc | p1 grad_method
+ReLoBRaLo (legacy) | RELOBRALO | LAT_enc | p1 grad_method
+invDirichlet (legacy) | INVDIR | LAT_enc | p1 grad_method
+anneal (both phases) | G_anneal | QL_zero | grad_method
+pcgrad (both phases) | G_pcgrad | QL_zero | grad_method
+confg (both phases) | G_confg | QL_zero | grad_method
+ReLoBRaLo composed | FB_relo | FA_wt | p1 grad_method
+invDirichlet composed | FB_invd | FA_wt | p1 grad_method
+ALM composed | FB_alm | FA_wt | p1 grad_method

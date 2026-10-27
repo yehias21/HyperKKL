@@ -1,0 +1,23 @@
+id: C1-tune-latent-d2
+parent: C1-tune-select
+title: 'Tuning grid: latent, latent_depth = default, lr in [0.0005, 0.001, 0.002, 0.004]'
+contribution: C1
+question: Validation NRMSE of latent with latent_depth = default at 4 learning rates (seed 0,
+  dev).
+hypothesis: Part of C1-tune-select.
+decision_rule: See C1-tune-select (selection by analysis/select_tuned.py).
+methods:
+- latent[lr=0.0005]
+- latent[lr=0.001]
+- latent[lr=0.002]
+- latent[lr=0.004]
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 32
+status: done
+created: '2026-10-26'

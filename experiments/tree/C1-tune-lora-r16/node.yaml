@@ -1,0 +1,22 @@
+id: C1-tune-lora-r16
+parent: C1-tune-select
+title: 'Tuning grid: lora (HyperKKL), rank = 16, lr in [0.0005, 0.001, 0.002, 0.004]'
+contribution: C1
+question: Validation NRMSE of lora with rank = 16 at 4 learning rates (seed 0, dev).
+hypothesis: Part of C1-tune-select.
+decision_rule: See C1-tune-select (selection by analysis/select_tuned.py).
+methods:
+- lora[lr=0.0005,rank=16]
+- lora[lr=0.001,rank=16]
+- lora[lr=0.002,rank=16]
+- lora[lr=0.004,rank=16]
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 31
+status: done
+created: '2026-10-26'

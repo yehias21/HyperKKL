@@ -1,0 +1,178 @@
+{
+ "nrmse": {
+  "metric": "nrmse",
+  "references": [],
+  "summary": {},
+  "paired": {},
+  "extra": {
+   "battery": {
+    "params": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 140100
+    },
+    "cost_us_b1": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 431.6061269491911,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 442.7974857389927,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 381.2862280756235
+    },
+    "wall_s": 119.00773048400879,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "55009aabddc8331e"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0050834477879107,
+     "eps_dec": 1.7621270418167114,
+     "eps_pde_rms": 0.28138700127601624,
+     "eps_pde_ss_rms": 0.041742999106645584,
+     "l_dec_q95": 847.4838256835938,
+     "l_dec_mean": 387.22552490234375
+    },
+    "state_coverage": {}
+   },
+   "bioreactor": {
+    "params": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 140100
+    },
+    "cost_us_b1": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 531.397145241499,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 489.77947793900967,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 557.8506272286177
+    },
+    "wall_s": 105.39060664176941,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "d1738a20718d9889"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.008859860710799694,
+     "eps_dec": 0.020537156611680984,
+     "eps_pde_rms": 0.007415188010782003,
+     "eps_pde_ss_rms": 0.004582838620990515,
+     "l_dec_q95": 43.275733947753906,
+     "l_dec_mean": 18.011621475219727
+    },
+    "state_coverage": {}
+   },
+   "duffing": {
+    "params": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 140100
+    },
+    "cost_us_b1": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 494.86929550766945,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 494.1832832992077,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 504.7768447548151
+    },
+    "wall_s": 160.8548457622528,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "1df37db815b441a5"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0044870818965137005,
+     "eps_dec": 0.006029326468706131,
+     "eps_pde_rms": 0.0026648622006177902,
+     "eps_pde_ss_rms": 0.0002744958910625428,
+     "l_dec_q95": 298.7292785644531,
+     "l_dec_mean": 138.25332641601562
+    },
+    "state_coverage": {}
+   },
+   "lorenz": {
+    "params": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 140100
+    },
+    "cost_us_b1": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 438.66734951734543,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 404.1094798594713,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 548.3994912356138
+    },
+    "wall_s": 204.33817768096924,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "9f03544a7827c17a"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.1781575083732605,
+     "eps_dec": 0.30019041895866394,
+     "eps_pde_rms": 81.72639465332031,
+     "eps_pde_ss_rms": 9.092916488647461,
+     "l_dec_q95": 12.192252159118652,
+     "l_dec_mean": 4.488252639770508
+    },
+    "state_coverage": {}
+   },
+   "quad_tank": {
+    "params": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 140100
+    },
+    "cost_us_b1": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 465.8563807606697,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 485.150832682848,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 496.359383687377
+    },
+    "wall_s": 215.6316637992859,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "87139ab9abea40a2"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.013222943991422653,
+     "eps_dec": 0.14977796375751495,
+     "eps_pde_rms": 0.020671481266617775,
+     "eps_pde_ss_rms": 0.05350172892212868,
+     "l_dec_q95": 13.740856170654297,
+     "l_dec_mean": 6.703221321105957
+    },
+    "state_coverage": {}
+   },
+   "vdp": {
+    "params": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 140100,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 140100
+    },
+    "cost_us_b1": {
+     "film[lr=0.002,film_depth=2,ctx_rms=1]": 351.32632590830326,
+     "film[lr=0.004,film_depth=2,ctx_rms=1]": 350.35252571105957,
+     "film[lr=0.008,film_depth=2,ctx_rms=1]": 477.36983746290207
+    },
+    "wall_s": 179.7203164100647,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "fa3d2adbd5fb8097"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.003434413578361273,
+     "eps_dec": 0.013123605400323868,
+     "eps_pde_rms": 0.2465016394853592,
+     "eps_pde_ss_rms": 0.050782132893800735,
+     "l_dec_q95": 23.641637802124023,
+     "l_dec_mean": 10.035945892333984
+    },
+    "state_coverage": {}
+   }
+  }
+ }
+}

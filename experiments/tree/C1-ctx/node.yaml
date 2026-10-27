@@ -1,0 +1,30 @@
+id: C1-ctx
+parent: C1-where
+title: Matched budget INCLUDING the context encoder
+contribution: C1
+question: Does the C1 ranking survive when the context encoder's parameters count toward the budget?
+hypothesis: Ranking unchanged (the SFM encoder is small relative to 140k).
+decision_rule: Ranking preserved if the C1-where winner stays within CI of the best here on >=
+  4/6 systems.
+set:
+  phase2.budget_includes_context: true
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - latent
+  tier: shape_ood
+  condition: clean
+priority: 5
+status: done
+created: '2026-10-25'

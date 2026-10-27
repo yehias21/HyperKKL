@@ -1,0 +1,490 @@
+% =====================================================================================
+% Block M3 (revision 3): error bound for the deployed decoder-side observer, sensor faults, MODEL
+% INCOMPLETENESS (prop:m3-mismatch, the C3 anchor), measurement, and Lemma D (the single sampled-data
+% lemma; block M2 cites its part (e)). The ONLY \appendix of the document is issued here, before Lemma D.
+% No preamble; amsthm environments; natbib keys (entries at the end of this file).
+% Standing assumptions: the shared block of Assumption~\ref{ass:m1}, referred to as
+% (A1)-(A4) plus its regularity clause; this section adds only (L).
+% Checks: theory/checks/m3_checks.py (CPU, ~2 min).
+% =====================================================================================
+
+\section{Error bound for the deployed observer}\label{sec:m3}
+
+\paragraph{Setting.} Plant $\dot x=f(x,u)$, $y=h(x)$, input held on $[t_k,t_{k+1})$, $t_k=k\,dt$.
+The decoder-side observer, exactly as deployed, is
+\begin{equation}\label{eq:m3-obs}
+\hat z_{k+1}=A_d\hat z_k+W_0\tilde y_k+W_1\tilde y_{k+1},\qquad
+\hat x_k=\hat T^{+}(\hat z_k;\hat c_k),\qquad \hat c_k=E(\tilde u_0,\dots,\tilde u_k),
+\end{equation}
+with $A_d,W_0,W_1$ the exact step of Lemma~\ref{lem:D}(a), the context held between samples, and
+$\hat z_0$ a fixed function of the prior $\hat x_0$. Its response to a sensor sequence $(v_k)$ is
+the \emph{latent noise filter}, the sampled form of $(sI-A)^{-1}B$:
+\begin{equation}\label{eq:m3-H}
+H_0=W_1,\qquad H_m=A_d^{m-1}W_0+A_d^{m}W_1\ (m\ge1),\qquad
+\gamma_y:=\sum_{m\ge0}\|H_m\|\le\frac{\kappa\|B\|}{\alpha},\qquad \|H\|_2^2:=\sum_{m\ge0}\|H_m\|_F^2 ,
+\end{equation}
+where the inequality holds at every $dt$ (Lemma~\ref{lem:D}(c)).
+
+\paragraph{Reference condition.} Every bound is stated relative to the \emph{nominal} deployed
+observer $\hat x^{\rm nom}_k$: the same episode, the nominal sensor model (the one used in training,
+\texttt{data.sensor}), the true input record and the nominal prior. Deviations are
+$v_k:=\tilde y_k-\tilde y^{\rm nom}_k$ (sensor faults, extra noise), $\hat c_k-c^{\rm nom}_k$ (input
+corruption) and $\hat z_0-\hat z^{\rm nom}_0$ (initialisation). This is the condition the decoder
+was trained in: phase~2 regresses $x_k$ on the deployed latent of the nominal-noise record, so its
+validation error measures the nominal error directly, and no noise-free quantity is needed.
+
+\paragraph{Assumptions.} (A1)--(A4) and the regularity clause ($f(\cdot,u)\in C^1$, $h\in C^2$,
+hence $M_2:=\sup\|\ddot y\|$, $L_y:=\sup\|\dot y\|$ on each hold interval) of
+Assumption~\ref{ass:m1}, and
+\begin{enumerate}
+\item[(L)] $\hat T^{+}\in C^1$, and the context encoder satisfies
+$\|E(\tilde u_{0:k})-E(u_{0:k})\|\le\ell_E\sup_{j\le k}\|\tilde u_j-u_j\|$ (for SFM,
+$\ell_E\le(\ell_\psi/u_{\rm ref})(1+\|B_d\|/(1-e^{-\alpha_\xi dt}))$, Lemma~\ref{lem:m2-sfm}).
+\end{enumerate}
+Write $\ell_z,\ell_c$ for the sup of $\|\partial_z\hat T^{+}\|$, $\|\partial_c\hat T^{+}\|$ over the
+segments a given episode traverses (defined in Proposition~\ref{prop:m3-iss}), and
+$\ell^{\rm g}_z,\ell^{\rm g}_c$ for the global constants (finite for tanh/SiLU networks on a bounded
+context set, for every conditioner; for FiLM, LoRA and hyper the available bound is a product of layer norms that is
+orders of magnitude larger, Proposition~\ref{prop:m1-where}(b)). The latent deviations are linear,
+input-free and decoder-independent, so they are fixed before any Lipschitz constant is used.
+
+\begin{definition}[nominal error, held-out quantile]\label{def:m3-fit}
+For an episode $\omega\sim\mathcal D$ (initial state and input path from the training episode
+distribution) let $e_{\rm nom}(\omega):=\sup_{k\in S}\|\hat x^{\rm nom}_k-x(t_k)\|$, $S$ the steady
+window, and let $\varepsilon^\beta$ be its $(1-\beta)$-quantile. For $n$ i.i.d.\ held-out episodes,
+$\hat\varepsilon:=\max_ie_{\rm nom}(\omega_i)$ satisfies
+\begin{equation}\label{eq:m3-quantile}
+\mathbb P\big(\hat\varepsilon\ge\varepsilon^\beta\big)\ge1-(1-\beta)^n\qquad(n=64,\ \beta=0.05:\ 0.96),
+\end{equation}
+because all $n$ draws fall below the quantile with probability at most $(1-\beta)^n$.
+\end{definition}
+
+$\varepsilon^\beta$ contains everything the nominal observer gets wrong: approximation, window
+truncation (by Lemma~\ref{lem:m2-tail}(a) and Theorem~\ref{thm:m2-window}(a) at most $\tfrac{\ell}{2}\varepsilon(L)$
+for a sufficient context), nominal noise and the discretisation (Lemma~\ref{lem:D}(b) only relates the
+deployed latent to the continuous map, $\|\bar z_k-z(t_k)\|\le e_{\rm disc}=O(dt^2)$). It is a
+quantile with distribution-free confidence, not a supremum, and only for $\mathcal D$. It is defined on the
+\emph{true} plant's episodes (phase~2 regresses true-plant state labels on the deployed latent): no model of $f$
+enters it, which is the point of Proposition~\ref{prop:m3-mismatch}.
+
+% -------------------------------------------------------------------------------------
+\begin{proposition}[decoder-side observer: ISS relative to the nominal observer]\label{prop:m3-iss}
+[(i), (ii), (iv) proven and exact; (iii) proven as a decomposition, see the paragraph after the proof]
+Assume (A1)--(A4), (L). Let $\Delta z_k:=\hat z_k-\hat z^{\rm nom}_k$, $\Delta c_k:=\hat c_k-c_k$.
+\begin{enumerate}[label=(\roman*)]
+\item (latent deviation, exact) $\Delta z_k=A_d^k\Delta z_0+\sum_{i\le k}G^{(k)}_iv_i$ with
+$G^{(k)}_i=H_{k-i}$ ($i\ge1$), $G^{(k)}_0=A_d^{k-1}W_0$; hence
+$\|\Delta z_k\|\le\kappa e^{-\alpha t_k}\|\Delta z_0\|+\frac{\kappa\|B\|}{\alpha}\sup_{i\le k}\|v_i\|$ for every $k$,
+and $\limsup_k\|\Delta z_k\|\le\gamma_y\limsup_k\|v_k\|$.
+\item (path identity, exact)
+\begin{equation}\label{eq:m3-identity}
+\hat x_k-x(t_k)=\big(\hat x^{\rm nom}_k-x(t_k)\big)+\bar J_{z,k}\Delta z_k+\bar J_{c,k}\Delta c_k,
+\end{equation}
+$\bar J_{z,k}=\int_0^1\partial_z\hat T^{+}(\hat z^{\rm nom}_k+s\Delta z_k;\hat c_k)ds$,
+$\bar J_{c,k}=\int_0^1\partial_c\hat T^{+}(\hat z^{\rm nom}_k;c_k+s\Delta c_k)ds$.
+\item (ISS bound) If $\|v_k\|\le\delta_y$ and $\|\tilde u_k-u_k\|\le\delta_u$, then for every $k$
+\begin{equation}\label{eq:m3-iss}
+\|\hat x_k-x(t_k)\|\le\|\hat x^{\rm nom}_k-x(t_k)\|+\ell_z\Big(\kappa e^{-\alpha t_k}\|\Delta z_0\|+\frac{\kappa\|B\|}{\alpha}\delta_y\Big)+\ell_c\,\ell_E\,\delta_u ,
+\end{equation}
+with $\ell_z,\ell_c$ the sup of the Jacobian norms on the traversed segments
+$[\hat z^{\rm nom}_k,\hat z_k]\times\{\hat c_k\}$ and $\{\hat z^{\rm nom}_k\}\times[c_k,\hat c_k]$; on the
+steady window the first term is $\le\varepsilon^\beta$ for a $(1-\beta)$ fraction of episodes, and in
+the limsup $\kappa\|B\|/\alpha$ may be replaced by the exact $\gamma_y$.
+\item (stochastic deviations) For zero-mean i.i.d.\ $v_k$ with covariance $\sigma_v^2I$ (e.g.\ extra
+Gaussian noise), $\limsup_k(\mathbb E\|\hat x_k-x(t_k)\|^2)^{1/2}\le\limsup_k(\mathbb E\|\hat x^{\rm nom}_k-x(t_k)\|^2)^{1/2}+\ell^{\rm g}_z\sigma_v\|H\|_2+\ell_c\ell_E\delta_u$,
+$\|H\|_2^2=dt\,\mathrm{tr}W_c+o(dt)$, $AW_c+W_cA^\top+BB^\top=0$. The global constant is needed because
+unbounded noise leaves every neighbourhood of the data with positive probability.
+\end{enumerate}
+\end{proposition}
+
+\emph{Intuition.} The learned map never sees raw measurements: sensor deviations and
+initialisation reach it through a known, input-free stable filter, a wrong input record moves
+only the context, and each deviation is multiplied by the decoder's slope along the path it
+actually travels.
+
+\begin{proof}
+(i) $\hat z$ and $\hat z^{\rm nom}$ obey the same linear recursion with forcing difference
+$W_0v_k+W_1v_{k+1}$; unroll it, and use $\|A_d^k\|\le\kappa e^{-\alpha t_k}$ and
+$\sum_i\|G^{(k)}_i\|\le\kappa\|B\|/\alpha$ (Lemma~\ref{lem:D}(c)). (ii) Split
+$\hat T^{+}(\hat z;\hat c)-\hat T^{+}(\hat z^{\rm nom};c)$ at $\hat T^{+}(\hat z^{\rm nom};\hat c)$ and apply the
+fundamental theorem of calculus on each segment. (iii) Norms in \eqref{eq:m3-identity}, (i), (L),
+Definition~\ref{def:m3-fit}. (iv) $L^2(\mathbb P)$ norms of the pointwise inequality (Minkowski) with
+$\|\bar J_z\|\le\ell^{\rm g}_z$; $\mathbb E\|\sum_iG^{(k)}_iv_i\|^2=\sigma_v^2\sum_i\|G^{(k)}_i\|_F^2\to\sigma_v^2\|H\|_2^2$,
+a Riemann sum ($H_m=e^{At_m}B\,dt+O(dt^2)$) of $dt\int_0^\infty\|e^{As}B\|_F^2ds$.
+\end{proof}
+
+When the nominal sensor is noise-free, \eqref{eq:m3-iss} is the classical decomposition: fit
+error plus decoder slope times the ISS gain $\kappa\|B\|/\alpha$ of the latent filter
+\citep[cf.][Lemma~17, Theorem~19]{niazi2025kkl}, here for the sampled observer and with an
+input-corruption term. The latent error equation of \citet[Proposition~1]{shaaban2026hyperkkl}
+assumes no injection; with injection $\Phi\neq0$ the latent deviation is no longer input-free and
+the margin of Proposition~\ref{prop:m1-where} is needed (sampled form: Lemma~\ref{lem:D}(d)).
+The bound has no amplitude-dependent condition, but its constants $\ell_z,\ell_c$ may depend on the
+context.
+
+\emph{(iii) is a decomposition with measured constants, not a certificate.} With $\ell_z,\ell_c$ the suprema over the
+traversed segments, (iii) is (ii) with norms taken, and the constants are only known after the fact (lower bounds of the
+suprema when estimated from samples). Evaluated \emph{a priori}, with the phase-1 proxy \texttt{l\_dec\_q95} for the global
+constant $\ell^{\rm g}_z$ and the nominal sensor level $\delta_y=0.03\,y_{\rm std}$, the second term alone is
+$\ell_z\kappa\|B\|\delta_y/\alpha=66$ (battery; $\kappa\|B\|/\alpha=2.68$, $\ell=816$), $15$ (quad\_tank; $37.4$, $13.5$),
+$6.7$ (duffing), $5.9$ (bioreactor), $1.1$ (vdp), $0.40$ (lorenz), against measured nominal NRMSE $0.016$--$0.052$
+(C1-where, lora, \texttt{id}): $15\times$ to $1400\times$ too large (\texttt{check\_apriori\_vacuity}). The bound is therefore
+vacuous as a guarantee on every benchmark and is \emph{not} presented as one. What it offers is the exact attribution
+(ii) and the exact stochastic form (iv), both of which are measurable (Definition~\ref{def:m3-measured}).
+
+\begin{remark}[reading the bound]\label{rem:m3-knobs}
+Three quantities set the error: the nominal error $\varepsilon^\beta$ (capacity, data, window),
+the decoder slope $\ell_z$ times a design-only latent deviation ($\propto1/\alpha$), and the input
+sensitivity $\ell_c\ell_E$, which is zero for the autonomous observer. The architecture enters only
+through these constants: the bound says which one a conditioning mechanism must keep small, not
+which mechanism wins.
+\end{remark}
+
+\emph{What would test it (eval-only; implemented by no current node).} Under \texttt{input\_noise/bias/delay} the
+excess error is $\bar J_c\Delta c$ exactly: the autonomous observer is unaffected, and variants would order by their
+realised input gain $\|\bar J_c\Delta c\|/\|\Delta c\|$ if that gain were measured on saved checkpoints
+(Definition~\ref{def:m3-measured}; C3-faults has the conditions, no node records the gains). Under \texttt{poor\_init}
+the excess is $\bar J_zA_d^k\Delta z_0$, gone after a few $1/\alpha$ (C3-faults records the convergence time, which is
+the observable consequence). Upper bounds do not rank errors, so none of this is implied by the bound.
+
+\emph{Check} (\texttt{m3\_checks.py::check\_noise\_iss}, \texttt{check\_input\_corruption},
+\texttt{check\_identity}; linear plant with exact maps $z=Px+\nu$, decoder $P^{+}(z-c)$,
+$\ell_z=\ell_c=12.48$, $\ell_E=0.048$, $n_z=5$, $\alpha=1.5$, $dt=0.0206$ as for vdp).
+Worst-case bounded deviation: latent $0.0372\le\gamma_y\delta_y=0.0537\le\kappa\|B\|\delta_y/\alpha=0.0745$.
+White deviation, RMS latent $0.00427$ (Monte Carlo) vs $\sigma_v\|H\|_2=0.00430$; the sup form at
+$\delta_y=4\sigma_v$ is $30\times$ looser, so only (iv) is informative for Gaussian conditions. Input
+bias $0.1$ / delay $5$ / bounded noise: state error $0.022\le0.061$, $0.197\le1.21$, $0.024\le0.18$.
+Identity \eqref{eq:m3-identity} for a tanh-MLP decoder holds to $4\times10^{-10}$ (finite-difference Jacobians); its realised gain differs from the on-data
+$\|\partial_z\hat T^{+}\|_2$ by a factor $0.01$--$1.38$ (median $0.32$), so on-data slopes neither
+bound nor estimate it. Coverage of \eqref{eq:m3-quantile} at $n=64$, $\beta=0.05$: $0.961$ vs $0.963$.
+
+% -------------------------------------------------------------------------------------
+\begin{corollary}[sensor faults: bounded and forgotten, uniformly in the state]\label{cor:m3-faults}
+For a decoder-side observer and any sensor deviation $v$, pathwise
+$\|\hat x_k-x(t_k)\|\le\|\hat x^{\rm nom}_k-x(t_k)\|+\ell^{\rm g}_z\|\sum_iG^{(k)}_iv_i\|$. In particular:
+an outlier of size $M$ at $k_0$ adds at most
+$\ell^{\rm g}_z\kappa\|B\|M\,\big(w_1+e^{\alpha dt}w_0\big)e^{-\alpha(t_k-t_{k_0})}\le\ell^{\rm g}_z\kappa\|B\|M\,dt\,e^{\alpha dt}e^{-\alpha(t_k-t_{k_0})}$
+($w_0,w_1$ of Lemma~\ref{lem:D}(c), $w_0+w_1\le dt$), with time integral at most
+$\ell^{\rm g}_z\kappa\|B\|M\,dt/\alpha$, for every state, input and $M$; an outlier process (each
+sample with probability $p$, size $M$, random sign) adds at most $\ell^{\rm g}_z\gamma_ypM$ in mean and
+$\ell^{\rm g}_z\sqrt pM\|H\|_2$ in RMS; sample-and-hold dropout adds at most
+$\ell^{\rm g}_z\gamma_yL_y\,dt\,p/(1-p)$ in mean; a drift $b$ adds at most $\ell^{\rm g}_z\gamma_y\sup\|b\|$,
+and for slow drift $\Delta z_k\approx-A^{-1}Bb_k$, since the discrete DC gain is
+$(I-A_d)^{-1}(W_0+W_1)=-A^{-1}B$ exactly; coloured deviations obey
+$\mathbb E\|\Delta z\|^2=\sum_{m,m'}\mathrm{tr}(H_mR_v(m'-m)H_{m'}^\top)$.
+\end{corollary}
+
+\emph{Intuition.} There is no feedback from the estimate to the latent: a fault is a forcing of a
+fixed stable filter, so the observer's own error can never amplify it.
+
+\begin{proof}
+Proposition~\ref{prop:m3-iss}(ii) with $\Delta c=0$, $\Delta z_0=0$, $\|\bar J_z\|\le\ell^{\rm g}_z$. Outlier:
+$\Delta z_{k_0}=W_1Me$ and $\Delta z_k=(A_d^{k-k_0-1}W_0+A_d^{k-k_0}W_1)Me$, bounded with the merged kernels of
+Lemma~\ref{lem:D}(c); the integral is $dt\sum_m\|H_m\|M\le dt\,\kappa\|B\|M/\alpha$. Process:
+$\mathbb E\|v_i\|\le pM$ in (i), and $R_v(m)=pM^2\delta_m$. Dropout: a held sample differs from the
+current one by at most $L_y\,dt\,N_k$, $N_k$ geometric with $\mathbb EN_k\le p/(1-p)$. DC gain:
+$W_0+W_1=A^{-1}(A_d-I)B$ and $A,A_d$ commute; the quasi-static error is bounded by summation by parts,
+$\|\Delta z_k+A^{-1}Bb_k\|\le\sum_{m\ge1}\|\sum_{j\ge m}H_j\|\,\sup_j\|b_j-b_{j-1}\|$.
+\end{proof}
+
+\emph{What this proves about filters, and what it does not.} The corollary is a \emph{qualitative} ISS guarantee: the
+excess is bounded and decays at rate $\alpha$ for every state, input and fault size, given $\ell^{\rm g}_z$, with no
+feedback from the estimate to the latent. The EKF's stochastic stability is local (small initial error and noise,
+\citealp{reif1999stochastic}) and an outlier moves its linearisation point. A qualitative guarantee is not a comparative
+advantage, and the data say so: on \emph{exact} models no C3-faults condition (sensor, input, plant-drift and outage)
+reaches the learned-wins regime of $\ge4/6$ systems (learned-wins regime: \CthreeFaultsRegimes; the learned observer
+beats the best filter on $0/6$ under every sensor-side condition and on at most $2/6$ against the best filter of either
+kind under input bias, input delay or $10\%$ plant drift), and it wins on $0/6$ under colored Student-$t$ noise
+(C3-noise-ct), as Remark~\ref{rem:m3-kf} predicts for linear plants and as the EKF's
+\ConeLearnedOverEkfRangeSeq$\times$ (median \ConeLearnedOverEkfMedianSeq$\times$) smaller exact-model
+\texttt{sequence\_ood} error on the dev systems (C1-where) makes expected. Worse, the best \emph{learned}
+observer is itself above climatology (a failed estimator) under exact-model \texttt{outliers} (battery, duffing,
+quad\_tank) and under $30\%$ post-training plant drift (bioreactor, quad\_tank): the corollary bounds the excess by
+$\ell^{\rm g}_z\times$(filter response), and with $\ell^{\rm g}_z$ in the hundreds that bound is consistent with failure.
+Where learned observers win is model incompleteness (C3-mismatch10/20/30/50, C3-partial, C3-realistic), and the
+theoretical lever there is not robustness to sensor faults but the model term of Proposition~\ref{prop:m3-mismatch}.
+
+\emph{Exact filter-level ratios (design-invariant).} For the Butterworth design with $dt=0.1/\|A\|$,
+the \emph{latent} deviations of the stress conditions, relative to the nominal noise
+($0.03\,y_{\rm std}$), do not depend on the system: RMS $\times3.4$ for \texttt{colored}
+($\varrho=0.95$), $\times57$ for \texttt{outliers} ($p=0.02$, $M=12\,y_{\rm std}$), and $\times30$--$32$
+at the quasi-static peak for \texttt{sensor\_drift} ($0.3\,y_{\rm std}$); \texttt{dropout} costs
+$O(L_ydt)$ per held sample. These are exact properties of the known filter; the \emph{state}-level excess multiplies
+them by the variant's realised $\|\bar J_z\|$, which no current node records (Definition~\ref{def:m3-measured}).
+\emph{Check} \texttt{m3\_checks.py::check\_fault\_ratios} computes these ratios for vdp, duffing,
+bioreactor and lorenz (all agree to two digits; drift $\times32.1,32.1,32.1,30.5$).
+\texttt{check\_outliers}, \texttt{check\_dropout\_drift}: outlier peak $0.519\le0.536$, envelope never
+violated, integral $0.266\le0.369$; process mean $0.174\le0.258$, RMS $0.241$ vs $0.243$; dropout
+($p=0.1$) mean $0.00105\le0.00737$; DC identity to $10^{-16}$; random-walk drift peak $0.137\le0.322$,
+quasi-static deviation $0.0052\le0.049$.
+
+\begin{remark}[Kalman filter vs.\ learned KKL on linear plants]\label{rem:m3-kf}
+For $\dot x=Fx+Gu$, $y=Cx$ the exact maps are $z=Px+\nu$ with $PF=AP+BC$, $\dot\nu=A\nu-PGu$ and
+decoder $P^{+}(z-\nu)$, so the KKL estimate is an LTI filter of $(y,u)$ with sensor-to-error response
+$\Gamma_m=P^{+}H_m$; for $n_z=n_x$ it is the Luenberger observer with gain $P^{-1}B$. The steady KF
+has the same structure with gain $K$. (1) Gaussian noise with correct $(Q,R)$: the KF is the MMSE
+estimator, so no KKL design beats it. (2) White non-Gaussian noise (Gaussian plus outliers): every
+LTI filter has steady MSE $\mathrm{MSE}_w+(\sigma_v^2+pM^2)\|\Gamma\|^2_{H_2}$, the KF with
+$R=\sigma_v^2+pM^2$ is the best linear filter \citep{andersonmoore1979}, and the KKL observer against a
+KF tuned to the nominal $R$ is decided by $\|\Gamma\|_{H_2}$ alone. \emph{Check}
+(\texttt{check\_kf\_comparison}; oscillator, $\sigma_v=0.03$, $p=0.02$, $M=12$): Gaussian MSE KF
+$1.98\times10^{-3}<$ KKL $6.75\times10^{-3}$; with outliers KF(nominal $R$) $0.514$, KF($R_{\rm eff}$)
+$0.0115$, KKL $2.40$, each within $2\%$ of the formula. The KKL loses to both here ($\|P^{+}\|=12.5$):
+outlier robustness is not a general property of KKL observers, and on the benchmarks any advantage
+over the EKF must be attributed to its mis-tuning, local stability and linearisation, or, as the data show,
+to the filter's model being wrong (next).
+\end{remark}
+
+% -------------------------------------------------------------------------------------
+\subsection{Model incompleteness: the term that decides C3}
+
+\begin{proposition}[persistent model error: filter bias floor vs.\ learned fit error; linear plants]\label{prop:m3-mismatch}
+[proven for linear plants] Let the true plant be $x_{k+1}=Fx_k+Gu_k+d_k+w_k$, $y_k=Cx_k+v_k$, where $d_k$ is the part
+of the dynamics the modeller's model lacks (a wrong $F$ or a missing term: $d_k=\Delta F\,x_k+\Delta G\,u_k$), $w_k,v_k$
+white with covariances $Q,R$. Any fixed-gain predict--correct observer built on the model $(F,G,C)$, in particular the
+steady-state Kalman filter and every Luenberger observer, $\hat x_{k+1}=\hat x^-_{k+1}+K(y_{k+1}-C\hat x^-_{k+1})$,
+$\hat x^-_{k+1}=F\hat x_k+Gu_k$, has error $e_k=x_k-\hat x_k$ obeying
+\[
+e_{k+1}=(I-KC)F\,e_k+(I-KC)(d_k+w_k)-Kv_{k+1}.
+\]
+\begin{enumerate}[label=(\roman*)]
+\item (\emph{bias}) For a constant $d_k\equiv\bar d$ (e.g.\ a constant input and $\Delta F\bar x$ at the steady state), the
+error converges to the non-decaying bias $\bar e=\big(I-(I-KC)F\big)^{-1}(I-KC)\,\bar d$; in continuous time, for
+$\dot e=(F-KC)e+\Delta F\,x$, $\bar e=-(F-KC)^{-1}\Delta F\,\bar x$, the DC value of $(sI-(F-KC))^{-1}\Delta F\,x$.
+\item (\emph{bias--variance floor}) Let $Q\succ0$, $R\succ0$. For a stationary $d_k$ independent of $(w,v)$ (e.g.\ $d$
+evaluated along the noise-free trajectory, as in the check; with $d_k=\Delta F\,x_k$ along the noisy trajectory the part
+$\Delta F\,x^{\rm sto}_k$ is an extra process noise correlated with $w$, and $\Sigma$ must then be taken from the joint
+Lyapunov equation of $(x^{\rm sto},e)$) the steady mean-square error splits exactly as
+$\mathrm{MSE}(K)=b^2(K)+\mathrm{tr}\,\Sigma(K)$, with $b^2$ the mean square of the deterministic response to $d$
+through $\Phi_K=(I-KC)F$ and $\Sigma=\Phi_K\Sigma\Phi_K^\top+(I-KC)Q(I-KC)^\top+KRK^\top$. Inflating the process
+covariance to $Q+\lambda I$ (the oracle filters' \texttt{q\_inflate}) moves $K(\lambda)$ along a one-parameter curve
+that trades $b^2$ against $\mathrm{tr}\,\Sigma$ (in the check: $\|K\|$ and $\mathrm{tr}\,\Sigma$ increase, $b^2$ decreases,
+monotonically); the best achievable error $\mathrm{MSE}^\star:=\inf_K\mathrm{MSE}(K)\ge\inf_K\mathrm{tr}\,\Sigma(K)>0$
+depends on $(F,G,C,\Delta F,\Delta G,Q,R)$ and the input, and on no data. Only $n_y$ directions of $d$ can be cancelled
+by $K$, so $b^2$ keeps a positive limit as $\lambda\to\infty$ whenever $d$ has a component $K$ cannot cancel (e.g.\
+$C\bar d=0$, as for the missing stiffness term of the check).
+\item (\emph{learned decoder-side observer}) Its error obeys Proposition~\ref{prop:m3-iss} with $\varepsilon^\beta$
+measured on the true plant: $\|\hat x_k-x_k\|\le\varepsilon^\beta+\ell_z\|\Delta z_k\|+\ell_c\|\Delta c_k\|$ on a
+$(1-\beta)$ fraction of episodes, and no term depends on the model. In the linear case, a decoder fitted on true-plant
+data is $P_{\rm true}^{+}(z-\nu_{\rm true})$ with $P_{\rm true}F_{\rm true}=AP_{\rm true}+BC$ (continuous-time Sylvester
+equation of the true plant; for the sampled plant its discrete counterpart): its error is driven by $w,v$ only (no bias),
+with a mean-square error $\mathrm{MSE}_{\rm KKL}$ that is a property of the true plant and the noise; at a fixed true
+plant it does not depend on the modeller's model at all. The model enters the
+learned observer only through the phase-1 PDE regulariser of $T_0$ (and through \texttt{kkl\_mb}, which is a model-based
+filter and belongs to the other class).
+\end{enumerate}
+\emph{Prediction.} The learned observer beats the best (oracle-tuned) filter iff $\mathrm{MSE}^\star>\varepsilon^2$,
+where $\varepsilon$ is its fit error on the true plant. For a missing term $s\,d$ of fixed shape and scale $s$ (at a fixed
+true plant), $\mathrm{MSE}^\star(s)=\inf_K[s^2b_1^2(K)+\mathrm{tr}\,\Sigma(K)]$ ($b_1^2$ the bias term at $s=1$; $d$ independent of $(w,v)$ as in (ii)) is nondecreasing in $s$ and $\varepsilon$ does
+not depend on $s$, so there is at most one crossing: filters win below a threshold in the model error (possibly $0$) and
+learned observers above it. The threshold depends on the plant and the noise.
+\end{proposition}
+\emph{Intuition.} A model-based filter corrects its wrong model only through the $n_y$ measured directions and only
+at the cost of trusting the noisy measurement more; a decoder trained on the true plant has no model to be wrong about,
+it pays its fit error instead.
+\begin{proof}
+Subtract the predict--correct recursion from the true one: $x_{k+1}-\hat x^-_{k+1}=Fe_k+d_k+w_k$ and
+$e_{k+1}=(I-KC)(x_{k+1}-\hat x^-_{k+1})-Kv_{k+1}$. (i) Set $e_{k+1}=e_k$ with $w=v=0$; $(I-(I-KC)F)$ is invertible when
+the filter is stable. Continuous time: set $\dot e=0$. (ii) Linearity: the response to $d$ (deterministic) and to
+$(w,v)$ (zero mean, independent of $d$) are orthogonal in $L^2$, so the mean squares add; $\Sigma$ is the stationary
+covariance of the noise response (discrete Lyapunov equation). $\mathrm{tr}\,\Sigma(K)$ is the error of the linear filter
+$K$ under the nominal model and the true noises, so it is bounded below by the nominal-model MMSE, which is positive for
+$Q\succ0$, $R\succ0$; hence $\mathrm{MSE}^\star>0$ for every $d$. As $\lambda\to\infty$ the gain can cancel $d$ only on the $n_y$
+directions that $C$ measures, so $b^2$ has a positive limit when $(I-KC)\bar d$ cannot be made zero. (iii)
+Proposition~\ref{prop:m3-iss} with
+Definition~\ref{def:m3-fit}; in the linear case $z-P_{\rm true}x-\nu_{\rm true}$ obeys a stable linear recursion forced
+by $W_0v_k+W_1v_{k+1}-P_{\rm true}w_k$ only.
+\end{proof}
+\emph{Check} (\texttt{m3\_checks.py::check\_model\_mismatch}; damped oscillator, missing stiffness term
+$\Delta F=\epsilon\,[0\ 0;-1\ 0]$, $q=0.05$, $\sigma_v=0.03$, PRBS input). (i) the steady bias agrees with the formula to
+$10^{-8}$ (discrete, $\lambda=0$ and $10^{-3}$) and $10^{-6}$ (continuous Luenberger). (ii) at $\epsilon=0.3$
+(relative model error $|\Delta Fx|/|Fx|=0.29$), over $\lambda\in[0,10^{-1}]$: $\|K\|$ rises $0.25\to1.19$, $b^2$ falls
+$5.24\to4.80\cdot10^{-2}$, $\mathrm{tr}\,\Sigma$ rises $2.0\to3.0\cdot10^{-3}$, $\mathrm{MSE}$ is U-shaped with
+$\mathrm{MSE}^\star=5.09\cdot10^{-2}$; Monte Carlo agrees with $b^2+\mathrm{tr}\,\Sigma$ within $1\%$. (iii) the
+true-plant KKL has $\mathrm{MSE}=6.6\cdot10^{-3}$ and mean error $10^{-3}$ at every $\epsilon$. Threshold: filters win at
+relative model error $0$ and $0.05$ ($\mathrm{MSE}^\star=2.0,4.2\cdot10^{-3}$), learned wins from $0.10$ on
+($10.0\cdot10^{-3}$ and above), one crossing.
+
+{\sloppy\emph{What it predicts, and where it is tested} (verdicts from \texttt{paper/generated/RESULTS.md}, the mechanical
+application of each node's pre-registered rule; model errors are the generated macros). With model error the C3 nodes
+measure, the proposition predicts a single crossing in the relative model error: filters win below it, learned observers
+above, per plant. On the exact-model side no condition reaches a learned-wins regime (C3-faults: \CthreeFaultsRegimes;
+C3-noise-ct $0/6$). On the
+incomplete-model side the learned observer beats the best \emph{working} filter (a filter above climatology counts as
+failed) at every mismatch level, $10\%$ ($5/6$ \texttt{id}, $4/6$ \texttt{sequence\_ood}), $20\%$ ($5/6$, $5/6$), $30\%$
+($5/6$, $5/6$), $50\%$ ($6/6$, $5/6$), under a missing term (C3-partial $5/6$, $5/6$) and in the realistic node
+(\CthreeRealisticIdVsWorking, \CthreeRealisticSeqVsWorking); the pre-registered crossover hypothesis ``between $10\%$ and
+$30\%$'' therefore \textbf{fails} in the direction of the learned observer (first winning level $10\%$; the crossing lies
+below the smallest tested mismatch for the $\ge4/6$ level rule, although duffing and battery are non-wins at $10\%$).
+Across the $36$ model-wrong cells (\texttt{sequence\_ood}, vs.\ the best working filter) the learned observer wins in
+$30/36$. \emph{Within} each system the outcome is ordered by model error: the six non-wins are duffing under every
+parameter mismatch (model error \ModelErrDuffingMismatchThirty\ at $30\%$), while duffing under the missing term
+(\ModelErrDuffingPartial) is a win; battery at $10\%$ mismatch, while battery wins from $20\%$ (model error $0.064$); and
+quad\_tank under the missing term (\ModelErrQuadTankPartial), while quad\_tank wins under parameter mismatch
+(\ModelErrQuadTankMismatchThirty\ at $30\%$); the systems with the largest errors (bioreactor \ModelErrBioreactorPartial,
+lorenz \ModelErrLorenzPartial, vdp \ModelErrVdpPartial) are won at every level. \emph{Across} systems the ordering does
+\emph{not} hold: the smallest model error with a win ($0.064$, mismatch20/battery) is below the largest without one
+($0.152$, partial/quad\_tank). This is what the proposition allows (the threshold depends on the plant and the noise;
+the toy crosses at $0.05$--$0.10$): the data are consistent with one crossing per plant, at plant-dependent thresholds
+that overlap in the band $0.06$--$0.15$, not with a single cross-system threshold. This reading is post hoc, not a
+pre-registered test; TEST-C3 (frozen recipe, held-out plants) is \textbf{inconclusive} at the time of writing ($6/18$ jobs). The proposition is
+proven for linear plants; on the nonlinear benchmarks ``learned wins iff the floor exceeds the fit error'' is the reading
+of an \textbf{empirical} result. The ``no model term'' half of (iii) has one caveat: the phase-1 PDE term does use the
+(wrong) model; whether that helps or hurts is \emph{not} established (C3-partial-modelfree: the partial model beats a
+model-free phase~1 with a CI excluding zero on $0/6$ systems, so no claim that the partial model helps is made). Two
+further comparisons are needed before C3 can be read as a statement about KKL rather than about ``data beats a wrong
+model'': a Koopman/EDMDc Kalman observer and a grey-box (partial model plus learned residual) EKF trained on the same data
+(\texttt{baselines\_data.py}; not yet in the reported nodes).\par}
+
+% -------------------------------------------------------------------------------------
+\subsection{Measurement and certification}
+
+\begin{definition}[measured decomposition and predicted bound]\label{def:m3-measured}
+For a trained model, a stress condition and the steady window, in the $\sigma$-normalised norm of
+\texttt{metrics.py}, compute exactly: $\Delta z_k$ by running the known filter on $v=\tilde y-\tilde y^{\rm nom}$
+(and $A_d^k\Delta z_0$ for the prior); $\Delta c_k$ by running $E$ on $\tilde u$ and $u$; and
+$\bar J_{z,k},\bar J_{c,k}$ in \eqref{eq:m3-identity} by Gauss quadrature along the traversed segments.
+Report the three terms of \eqref{eq:m3-identity} (an exact attribution of the excess error) and the
+\emph{realised effective gains} $g_z=\mathrm{RMS}\|\bar J_z\Delta z\|/\mathrm{RMS}\|\Delta z\|$,
+$g_c=\mathrm{RMS}\|\bar J_c\Delta c\|/\mathrm{RMS}\|\Delta c\|$. The \emph{predicted bound} is
+$\widehat{\mathcal B}=\mathrm{NRMSE}_{\rm nom}+\hat g_z\mathrm{RMS}\|\Delta z\|+\hat g_c\mathrm{RMS}\|\Delta c\|$ with
+$\hat g_z,\hat g_c$ measured on \emph{other} conditions (or the a priori $\kappa\|B\|\delta_y/\alpha$,
+$\sigma_v\|H\|_2$, $\ell_E\delta_u$ in place of the RMS terms).
+\end{definition}
+
+With the gains of the same condition, $\widehat{\mathcal B}\ge\mathrm{NRMSE}$ is the triangle
+inequality and tests nothing. With transferred gains it is a prediction, and the test is one-sided:
+a point above the diagonal falsifies the transferred gain (the decoder is steeper along this
+condition's paths); a point below the diagonal confirms nothing. \emph{Status.} This procedure is evaluation-only on
+saved checkpoints (the filter, the encoder and the decoder are all available) and has not been run by any node in the
+current tree; until it is, the transferred-gain prediction is untested, and this section claims only (i), (ii), (iv) and
+the exact filter-level ratios above.
+
+\begin{remark}[what can be certified]\label{rem:m3-cert}
+The result is a decomposition into measurable terms, not a certificate. \emph{Exact} (no learning):
+$\kappa,\alpha,\gamma_y,\|H\|_2$, the latent deviation of any recorded fault, the path Jacobians on
+recorded data, and an upper bound on the SFM gain $\ell_E$ (product of layer norms,
+Lemma~\ref{lem:m2-sfm}). \emph{Lower bounds only}: any supremum of Jacobian norms estimated from samples.
+Exact Lipschitz constants are NP-hard to compute even for two-layer ReLU networks
+\citep{virmaux2018lipschitz}; certified upper bounds (layer-norm products, LipSDP,
+\citealp{fazlyab2019efficient}) are valid but loose. On-data Jacobians are the wrong set for sensor
+faults: with $n_z>n_x$ the nominal latents lie near an $n_x$-dimensional manifold (times the context
+fibre) and $\hat z=\hat z^{\rm nom}+\Delta z$ leaves it, where the decoder's slope is inductive bias; hence
+the traversed-segment Jacobians of Definition~\ref{def:m3-measured}. The random-direction quotient
+$l_{\rm dec}$ of \texttt{train.phase1\_diagnostics} estimates about $\|J\|_F/\sqrt{n_z}$ on the base
+decoder's data (check: $q_{0.95}=0.81\|J\|_2$ for a linear decoder) and is not the constant of the
+bound. \emph{Statistical}: the nominal error only through \eqref{eq:m3-quantile}.
+\end{remark}
+
+% -------------------------------------------------------------------------------------
+% the single \appendix of the document
+\appendix
+\section{Lemma D: the sampled-data observer}
+
+\begin{lemma}[Lemma D]\label{lem:D}
+Let $\|e^{At}\|\le\kappa e^{-\alpha t}$, $\rho_0:=e^{-\alpha dt}$, and let input and context be held on
+each $[t_k,t_{k+1})$. Let
+$w_0:=\int_0^{dt}\tfrac{\tau}{dt}e^{-\alpha\tau}d\tau=\frac{1-\rho_0(1+\alpha dt)}{\alpha^2dt}$,
+$w_1:=\int_0^{dt}(1-\tfrac\tau{dt})e^{-\alpha\tau}d\tau=\frac{\alpha dt-1+\rho_0}{\alpha^2dt}$, so
+$w_0+w_1=(1-\rho_0)/\alpha$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Exact step.} For $y$ affine and $g$ constant on the step, $\dot z=Az+By+g$ gives exactly
+$z_{k+1}=A_dz_k+W_0y_k+W_1y_{k+1}+W_gg$, with $A_d=e^{Adt}$,
+$W_0=\int_0^{dt}(1-\tfrac s{dt})e^{A(dt-s)}B\,ds$, $W_1=\int_0^{dt}\tfrac s{dt}e^{A(dt-s)}B\,ds$,
+$W_g=A^{-1}(A_d-I)$ (\texttt{design.latent\_step}).
+\item \emph{Interpolation.} With (A3) and the regularity clause, the clean iterate $\bar z_k$ from
+$\bar z_0=z(0)$ satisfies
+$\sup_k\|\bar z_k-z(t_k)\|\le e_{\rm disc}:=\frac{\kappa\|B\|M_2dt^3}{12(1-\rho_0)}\le\frac{\kappa\|B\|M_2dt^2e^{\alpha dt}}{12\alpha}$,
+also for switching inputs, since switches sit on the grid.
+\item \emph{Merged kernels.} $\|A_d^mW_0\|\le\kappa\|B\|\rho_0^mw_0$ and $\|A_d^mW_1\|\le\kappa\|B\|\rho_0^mw_1$. Hence
+$\sum_i\|G^{(k)}_i\|\le\kappa\|B\|/\alpha$ for every $k$ and $\gamma_y\le\kappa\|B\|/\alpha$ at every $dt$, and
+$\gamma_y\to\int_0^\infty\|e^{As}B\|ds$ as $dt\to0$. More generally every sampled constant is bounded by its
+continuous counterpart: $\rho_0^M=e^{-\alpha L}$, $c_d\le1/\alpha$ in (e), $\gamma_y\le\kappa\|B\|/\alpha$.
+\item \emph{Injection: step-size condition.} For the deployed exponential midpoint step (an
+exponential integrator, \citealp{hochbruck2010exponential}, with an explicit Euler predictor)
+$z_{k+1}=A_dz_k+W_0y_k+W_1y_{k+1}+W_g\Phi(z^h_k,c_k)$, $z^h_k=z_k+\tfrac{dt}2(Az_k+By_k+\Phi(z_k,c_k))$,
+with $\Phi(\cdot,c)$ $\ell_\Phi$-Lipschitz, two solutions driven by the same $(y,c)$ satisfy
+$\|z_k-z'_k\|\le\kappa\rho^k\|z_0-z'_0\|$,
+\[
+\rho:=\rho_0+\kappa(1-\rho_0)\frac{\ell_\Phi\beta}{\alpha},\qquad\beta:=1+\tfrac{dt}2(\|A\|+\ell_\Phi).
+\]
+So $\kappa\ell_\Phi\beta<\alpha$ suffices; it tends to $\kappa\ell_\Phi<\alpha$
+(Corollary~\ref{cor:m1-amplitude}) as $dt\to0$ with $-\ln\rho/dt\to\alpha-\kappa\ell_\Phi$, and $\beta\le1.1$
+under $\|A\|dt\le0.1$ (\texttt{design.choose\_dt}). If the stationary latent $\zeta_k=\hat T_0(x(t_k))$ satisfies
+$\zeta_{k+1}=(\text{clean step at }\zeta_k)+\int_0^{dt}e^{A(dt-s)}R\,ds+q_k$, with $\|R\|\le\varepsilon_{\rm res}$
+the PDE residual and $q_k$ the interpolation/quadrature defect with $\|A_d^mq_k\|\le\kappa\rho_0^m\bar q$, and the
+step is fed samples with $\|v_k\|\le\delta_y$, then
+\[
+\|\hat z_k-\zeta_k\|\le\kappa\rho^k\|\hat z_0-\zeta_0\|+\frac{\kappa\big(\|B\|(1+\ell_\Phi\tfrac{dt}2)\delta_y+\varepsilon_{\rm res}\big)}{\alpha-\kappa\ell_\Phi\beta}+\frac{\kappa\,\alpha\,\bar q}{(1-\rho_0)(\alpha-\kappa\ell_\Phi\beta)},
+\]
+a single factor $\kappa$, with $\bar q=O(dt^3)$ so the last term is $O(dt^2)$.
+\item \emph{Deployed fading memory.} If $u_j=u'_j$ for $j=k-M,\dots,k-1$, the deployed map
+$T^d_k(x;u)=\sum_{j\ge0}A_d^j(W_0y_{k-1-j}+W_1y_{k-j})$ satisfies
+$\|T^d_k(x;u)-T^d_k(x;u')\|\le2\kappa\|B\|\bar y\,\rho_0^Mc_d$, $c_d:=(w_0+\rho_0w_1)/(1-\rho_0)\le1/\alpha$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Variation of constants over one step with the affine $y$ inserted.
+(b) $\bar z_k-z(t_k)=-\int_0^{t_k}e^{A(t_k-s)}B(y-\ell)(s)ds$ with $\ell$ the piecewise-linear
+interpolant. On $[t_j,t_{j+1}]$ the input is constant, so $y\in C^2$ there, and the Peano form gives
+$\|y(t_j+\sigma)-\ell(t_j+\sigma)\|\le\tfrac{\sigma(dt-\sigma)}2M_2$ in any norm. Use
+$\|e^{A(t_k-s)}\|\le\kappa\rho_0^{k-1-j}$ on that interval and $\int_0^{dt}\tfrac{\sigma(dt-\sigma)}2d\sigma=\tfrac{dt^3}{12}$,
+sum the geometric series, and use $1-\rho_0\ge\alpha dt\,\rho_0$.
+(c) $A_d^mW_0=\int_0^{dt}(1-\tfrac s{dt})e^{A(mdt+dt-s)}B\,ds$, so
+$\|A_d^mW_0\|\le\kappa\|B\|\rho_0^m\int_0^{dt}(1-\tfrac s{dt})e^{-\alpha(dt-s)}ds=\kappa\|B\|\rho_0^mw_0$, and likewise
+for $W_1$. Then $\|H_0\|+\sum_{m\ge1}\|H_m\|\le\kappa\|B\|\big(w_1+\sum_{m\ge1}(\rho_0^{m-1}w_0+\rho_0^mw_1)\big)=\kappa\|B\|\frac{w_0+w_1}{1-\rho_0}=\frac{\kappa\|B\|}\alpha$,
+and the finite-$k$ coefficients are a sub-sum of the same terms. The limit holds because
+$H_m=e^{At_m}B\,dt+O(dt^2)$ with summable tails.
+(d) $\Delta_k=A_d^k\Delta_0+\sum_{j<k}A_d^{k-1-j}W_g(\Phi(z^h_j)-\Phi(z'^h_j))$ with
+$\|z^h_j-z'^h_j\|\le\beta\|\Delta_j\|$ and the merged kernel
+$\|A_d^{k-1-j}W_g\|=\|\int_0^{dt}e^{A((k-j)dt-s)}ds\|\le\kappa\rho_0^{k-1-j}(1-\rho_0)/\alpha$. With
+$a_k=e^{\alpha t_k}\|\Delta_k\|$ and $g=\kappa(e^{\alpha dt}-1)\ell_\Phi\beta/\alpha$, $a_k\le\kappa a_0+\sum_{j<k}ga_j$;
+the right side $S_k$ obeys $S_{k+1}\le(1+g)S_k$, so $\|\Delta_k\|\le\kappa(\rho_0(1+g))^k\|\Delta_0\|=\kappa\rho^k\|\Delta_0\|$.
+If $\kappa\ell_\Phi<\alpha$ and $\|A\|dt\le0.1$, then $\ell_\Phi dt<\alpha dt\le\|A\|dt$, so $\beta\le1.1$.
+For the forced bound, unroll $e_k=\hat z_k-\zeta_k$; every forcing term is merged with the kernel
+that propagates it: $\|A_d^{m}(W_0v_j+W_1v_{j+1})\|\le\kappa\rho_0^{m}\|B\|(w_0+w_1)\delta_y$,
+$\|A_d^m\int_0^{dt}e^{A(dt-s)}R\,ds\|\le\kappa\rho_0^m(1-\rho_0)\varepsilon_{\rm res}/\alpha$, the predictor mismatch
+$\le\beta\|e_j\|+\tfrac{dt}2\|B\|\delta_y$ enters through $A_d^mW_g$, and $\|A_d^mq_j\|\le\kappa\rho_0^m\bar q$. So
+$a_k\le\kappa a_0+\sum_{j<k}\big(ga_j+\kappa e^{\alpha(j+1)dt}D\big)$ with
+$D=\frac{1-\rho_0}{\alpha}\big(\|B\|(1+\ell_\Phi\tfrac{dt}2)\delta_y+\varepsilon_{\rm res}\big)+\bar q$, hence
+$S_{k+1}\le(1+g)S_k+\kappa e^{\alpha(k+1)dt}D$ and $\|e_k\|\le\kappa\rho^k\|e_0\|+\kappa D/(1-\rho)$; insert
+$1-\rho=(1-\rho_0)(\alpha-\kappa\ell_\Phi\beta)/\alpha$.
+(e) The samples $y_i$ coincide for $i\ge k-M$; bound by (c), summing from $j=M$ ($W_0$) and $j=M+1$
+($W_1$), with $\|y_i-y'_i\|\le2\bar y$.
+\end{proof}
+
+\emph{Continuous-time interpretation.} The latent step is exact for the held input, the context and
+any generated decoder weights are constant on each interval by construction, and the decoder runs
+at $t_k$ only. The bounds are about the implemented observer, and the continuous formulas are their
+$dt\to0$ limits; the sampled observer adds only $e_{\rm disc}$ and, with injection, the factor $\beta$.
+
+{\sloppy\emph{Check} (\texttt{m3\_checks.py}). (b) \texttt{check\_interpolation}: PRBS input, four step
+sizes, order $2.00$, bound/error $3.6$ (\texttt{check\_theory.lemma\_d} uses the same constant, bound/error $4.4$--$4.5$).
+(c) \texttt{check\_design\_constants}: $\gamma_y=1.074\le\kappa\|B\|/\alpha=1.491$
+($\int\|e^{As}B\|=1.075$); $\gamma_y\le\kappa\|B\|/\alpha$ at $\alpha dt\in\{0.03,0.3,1,3\}$ and for a
+non-normal $A$ with $\kappa=1.46$. The $\kappa$ of a non-normal $A$ is estimated by \texttt{spectral\_bounds} on a
+$400$-point grid, so those rows are consistency checks, not certificates; the deployed Butterworth $A$ is normal and has
+$\kappa=1$ exactly. (d) \texttt{check\_midpoint}: for $\Phi=\ell z$ the per-step gain is
+below $\rho$ (e.g.\ $0.99591\le0.99762$ at $\ell=1.3$); 200 random linear injections:
+$\max\|\text{step}\|/\rho=0.999$; for a non-normal $A$ ($\kappa=1.99$) $\max_k\|\text{step}^k\|/(\kappa\rho^k)=0.92$, so a single $\kappa$ suffices; $\Phi=-400z$, more stable in continuous time, gives discrete spectral radius $26.4$ at $\ell dt=8.2$,
+so the step-size part is needed; the numpy step equals \texttt{LatentStep} to $1.5\times10^{-7}$.
+(e) \texttt{m2\_checks.py::lemma\_d\_constants}.\par}
+
+% Bibliography entries (natbib keys):
+% bernard2019luenberger: P. Bernard, V. Andrieu. Luenberger observers for nonautonomous nonlinear
+%   systems. IEEE TAC 64(1):270-281, 2019. doi:10.1109/TAC.2018.2872202.
+% niazi2025kkl: M. U. B. Niazi, J. Cao, M. Barreau, K. H. Johansson. KKL observer synthesis for
+%   nonlinear systems via physics-informed learning. arXiv:2501.11655v2, 2025.
+% shaaban2026hyperkkl: Y. S. Shaaban, A. S. Sayed, M. U. B. Niazi, K. H. Johansson. HyperKKL:
+%   learning KKL observers for non-autonomous nonlinear systems via hypernetwork-based input
+%   conditioning. arXiv:2603.29744, 2026.
+% reif1999stochastic: K. Reif, S. Guenther, E. Yaz, R. Unbehauen. Stochastic stability of the
+%   discrete-time extended Kalman filter. IEEE TAC 44(4):714-728, 1999.
+% andersonmoore1979: B. D. O. Anderson, J. B. Moore. Optimal Filtering. Prentice-Hall, 1979.
+% hochbruck2010exponential: M. Hochbruck, A. Ostermann. Exponential integrators. Acta Numerica
+%   19:209-286, 2010.
+% virmaux2018lipschitz: A. Virmaux, K. Scaman. Lipschitz regularity of deep neural networks:
+%   analysis and efficient estimation. NeurIPS 2018.
+% fazlyab2019efficient: M. Fazlyab, A. Robey, H. Hassani, M. Morari, G. J. Pappas. Efficient and
+%   accurate estimation of Lipschitz constants for deep neural networks. NeurIPS 2019.

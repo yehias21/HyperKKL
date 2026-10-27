@@ -1,0 +1,58 @@
+\section{Framework: a learned KKL observer with an input context}\label{sec:framework}
+
+\paragraph{Setting.} The plant is $\dot x=f(x,u)$, $y=h(x)$, with $x\in\mathbb R^{n_x}$, $y\in\mathbb R^{n_y}$ and an input $u$ applied through a zero-order hold with values in a fixed box (no input-affine structure is assumed; every plant in the testbed passes through a saturating actuator). \emph{Scope and assumptions}, stated once: $u$ is measured and bounded in a fixed box; training uses full-state labels from the real plant; the plant is observable (backward distinguishability; Appendix~\ref{sec:m1}, (A4)); deployment is stationary (post-training drift is a stress condition only); and training and test data come from the same plant, so the held-out test systems test the \emph{recipe}, not transfer. The observer runs a fixed stable linear filter of the output,
+\begin{equation}\label{eq:latent}
+\dot z = Az + By,\qquad A\ \text{Hurwitz with spectral abscissa }-\alpha,\ \ \|e^{At}\|\le\kappa e^{-\alpha t},
+\end{equation}
+and decodes $\hat x$ from $z$. For an autonomous plant there is a stationary map $T_0$ with $z\to T_0(x)$ and a left inverse $T_0^+$ \citep{andrieu2006existence}. Under an input the latent equals the \emph{finite-start map} $T^0(x(t),t;u)=\int_0^t e^{A(t-s)}Bh(x(s))\,ds$, which depends on the input history \citep{bernard2019luenberger}; the state is a function of the latent \emph{and} of that history, so the decoder must receive an input context, and the question is where.
+
+\paragraph{The HyperKKL framework.} All variants share (Figure~\ref{fig:framework}): the filter \eqref{eq:latent} with a Butterworth $A$ and $n_z\ge 2n_x+1$ (Table~\ref{tab:systems}); base maps $T_0$, $T_0^+$ trained once per plant in a first phase on zero-input data with a physics-informed KKL-PDE residual \citep{niazi2025kkl} using the modeller's model of $f$ (possibly wrong, Section~\ref{sec:design}); and a causal context encoder $c_k=E(u_0,\dots,u_k)$. The default encoder is a \emph{spectral fading-memory} (SFM) filter bank, $\xi_{k+1}=A^\xi_d\xi_k+B_du_k$, $c_k=\psi([\xi_k,u_k])$, $A^\xi$ Hurwitz by construction, so the context forgets old inputs at a guaranteed rate (Lemma~\ref{lem:m2-sfm}); an optional \emph{floor} forces that rate to be at least a fraction of $\alpha$ (the C2 intervention). Every encoder has $E(0)=0$ exactly. In a second phase the base maps are frozen and one conditioning pathway is trained, with one objective for every variant: the deployed state error $\|(\hat x_k-x_k)/\sigma\|^2$ on the latent that the deployed filter actually carries. \textbf{HyperKKL} is the method: a hypernetwork \citep{ha2016} of the context writes a rank-$r$ update of every decoder layer,
+\begin{equation}\label{eq:hyperkkl}
+W_l\leftarrow W_l+U_l(c)\,V_l(c)/\sqrt r,\qquad U_l,V_l\ \text{generated from }c\ \text{by a shared trunk},
+\end{equation}
+with the rank $r$ a hyperparameter (default $r=4$): a small $r$ is a strongly regularised, low-dimensional family of decoders, a larger $r$ a fuller weight-space conditioning (the factorised form of LoRA, \citealp{hu2022}, here generated from $c$). The three alternative entry points, compared at the same budget, are
+\begin{align*}
+\text{latent:}\quad & \dot{\hat z}=A\hat z+By+\Phi(\hat z,c), && \hat x=T_0^+(\hat z) & \text{(input enters the dynamics)}\\
+\text{concat (additive):}\quad & \hat x=T_0^+(\hat z)+R([\hat z,c])-R([\hat z,0]) &&& \text{(output residual)}\\
+\text{FiLM:}\quad & h_l\leftarrow h_l\,(1+\gamma_l(c))+\beta_l(c) &&& \text{(feature modulation)}
+\end{align*}
+where $h_l$, $W_l$ are the pre-activations and weights of the frozen decoder. A \emph{dense-subspace} generator, $W_l\leftarrow W_l+\Delta W_l(c)$ with full-shape updates confined to a $k$-dimensional linear subspace ($k=4$ at the 140k budget, Table~\ref{tab:capacity}), is run as an ablation of the weight-space entry point, not as a competitor; ``weight-space'' below means HyperKKL and, where the pre-registered rules name it, this ablation. Every $\Delta$ is exactly zero at $c=0$, so at zero input every variant is the same autonomous observer.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex, scale=0.85, transform shape, node distance=4mm and 6mm, every node/.style={font=\small},
+  box/.style={draw, rounded corners=2pt, minimum height=7mm, inner sep=3pt, align=center},
+  cond/.style={draw, dashed, rounded corners=2pt, inner sep=2pt, font=\scriptsize, align=center, fill=blue!4}]
+\node[box] (plant) {plant\\$\dot x=f(x,u)$, $y=h(x)$};
+\node[box, right=9mm of plant] (filt) {latent filter\\$\dot{\hat z}=A\hat z+By$};
+\node[box, right=14mm of filt] (dec) {decoder $T_0^+$\\(frozen base, tanh MLP)};
+\node[right=7mm of dec] (xh) {$\hat x$};
+\node[box, below=7mm of filt] (enc) {context encoder $E$\\(SFM: $\dot\xi=A^\xi\xi+B^\xi u$)};
+\node[left=6mm of enc] (u) {$u$};
+\draw[->] (plant) -- node[above]{$y$} (filt);
+\draw[->] (filt) -- node[above]{$\hat z$} (dec);
+\draw[->] (dec) -- (xh);
+\draw[->] (u) -- (enc);
+\draw[->] (u) |- ($(plant.south)+(0,-2.5mm)$) -- (plant.south);
+\node[cond, above=2mm of filt.north, yshift=1mm] (L) {latent: $+\Phi(\hat z,c)$};
+\draw[->, dashed] (enc.north) -- ++(0,2mm) -| (L.south);
+\node[cond, above=2mm of dec.north, xshift=-13mm] (C) {concat: $+R([\hat z,c])$};
+\node[cond, above=2mm of dec.north, xshift=0mm] (F) {FiLM: $\gamma_l(c),\beta_l(c)$};
+\node[cond, above=2mm of dec.north, xshift=14mm] (W) {weights: HyperKKL\\$W_l+U_l(c)V_l(c)$, rank $r$};
+\draw[->, dashed] (enc.east) -| ($(dec.south)+(0,0)$);
+\node[font=\scriptsize, below=0.5mm of dec.south, xshift=3mm] {$c$ (one entry point per variant)};
+\draw[->, dashed] (C.south) -- (dec.north -| C.south);
+\draw[->, dashed] (F.south) -- (dec.north -| F.south);
+\draw[->, dashed] (W.south) -- (dec.north -| W.south);
+\end{tikzpicture}
+\caption{The HyperKKL framework. Solid: the parts shared by every variant (filter, frozen base decoder, context encoder). Dashed: the entry points of the input context $c$; HyperKKL is the weight-space entry (rank-$r$ updates $U_lV_l$ written by a hypernetwork of $c$), the other three are the compared alternatives. The deployed latent is an input-free linear filter for every decoder-side variant; only the latent variant changes the dynamics.}
+\label{fig:framework}
+\end{figure}
+
+\paragraph{What the theory says, informally.} The full statements and proofs are in Appendices~\ref{sec:m1}--\ref{sec:m3}; three results frame the experiments. Each is tagged with what it proves.
+
+\emph{C1: where the input enters is a stability--extrapolation trade-off} (Proposition~\ref{prop:m1-where}, proven). Latent injection makes the observer a recurrent system whose stability depends on the input: the error contracts only if $\mu_2(A+\partial_z\Phi(z,\hat c))\le-\mu<0$ on a set fixed in advance, the certified margin shrinks with the context (Corollary~\ref{cor:m1-amplitude}), and there are bounded, observable plants with an \emph{exact} injection whose latent observer diverges at a fixed filter spectrum (Proposition~\ref{prop:m1-tight}). Decoder-side conditioning keeps the latent an input-free stable filter, so stability holds for every input, but the decoder is queried at unseen contexts and its excess error there is at best linear in the distance to the training contexts (Corollary~\ref{cor:m1-ood}). The theory does \emph{not} rank concat, FiLM and the weight-space generators (Remark~\ref{rem:m1-capacity}), which is why C1 is an experiment.
+
+\emph{C2: a short input window suffices} (Lemma~\ref{lem:m2-tail}, Theorem~\ref{thm:m2-window}). The finite-start map and the map that sees only the last $L$ seconds of input differ by at most $\tfrac12\varepsilon(L)$, $\varepsilon(L)=2\kappa\|B\|\bar y\,e^{-\alpha L}/\alpha$, so a window $L^*\le(\ln(1/\eta)+\ln\ell+\mathrm{const})/\alpha$ is \emph{sufficient} for a relative error $\eta$, with $\ell$ the Lipschitz constant of the inverse of the windowed map (Corollary~\ref{cor:m2-rule}). Necessity is proven for linear plants only, and the counterfactual-past argument behind it does not apply to the chaotic plants. The pre-registered C2 rules dropped $\ln\ell$; Section~\ref{sec:c2} reports that they fail.
+
+\emph{C3: a wrong model leaves a bias floor that no data lowers} (Proposition~\ref{prop:m3-mismatch}, proven for linear plants). A fixed-gain predict--correct filter built on a model that lacks a term $d$ has error $e_{k+1}=(I-KC)Fe_k+(I-KC)(d_k+w_k)-Kv_{k+1}$, hence a non-decaying bias and a bias--variance floor $\inf_K\mathrm{MSE}(K)>0$ that inflating the process covariance (what the oracle-tuned filters do) can only trade against noise; the floor depends on the model error and on no data. A decoder trained on the true plant pays its fit error, in which no model term appears (Proposition~\ref{prop:m3-iss}). Prediction: a single crossing in the relative model error. On the nonlinear benchmarks this is the reading of an \emph{empirical} result. The ISS bound of Proposition~\ref{prop:m3-iss} is an exact decomposition with measured constants; a priori it is vacuous on every benchmark and is not offered as a certificate.

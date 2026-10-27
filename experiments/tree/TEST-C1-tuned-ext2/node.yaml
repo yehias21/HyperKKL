@@ -1,0 +1,29 @@
+id: TEST-C1-tuned-ext2
+parent: TEST-C1-tuned
+title: Tuned recipe after extension ext2 (new choices only), test
+contribution: C1
+question: As C1-tuned-ext2, held-out test plants.
+hypothesis: As C1-tuned.
+decision_rule: Verdict 'ext2' (PROTOCOL.md sections 9-10). Run once.
+methods:
+- latent[lr=0.008,ctx_rms=0.3]
+- concat[lr=0.016,concat_depth=3,ctx_rms=0.3]
+- film[lr=0.004,film_depth=2,ctx_rms=1]
+- lora[lr=0.008,rank=16,ctx_rms=1]
+- hyper[lr=0.002,ctx_rms=1]
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 19
+status: done
+created: '2026-10-26'
+notes: 'selected methods of selection_ext2.json (2026-10-26 16:20:59) not yet confirmed: [''latent[lr=0.008,ctx_rms=0.3]'',
+  ''concat[lr=0.016,concat_depth=3,ctx_rms=0.3]'', ''film[lr=0.004,film_depth=2,ctx_rms=1]'',
+  ''lora[lr=0.008,rank=16,ctx_rms=1]'', ''hyper[lr=0.002,ctx_rms=1]'']; the others reuse earlier
+  confirmation nodes. experiments/tuning/PROTOCOL.md sections 9-10'

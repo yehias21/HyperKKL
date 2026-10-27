@@ -1,0 +1,178 @@
+{
+ "nrmse": {
+  "metric": "nrmse",
+  "references": [],
+  "summary": {},
+  "paired": {},
+  "extra": {
+   "battery": {
+    "params": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 143833,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 143833,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 143833
+    },
+    "cost_us_b1": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 691.624078899622,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 712.3843394219875,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 708.7866682559252
+    },
+    "wall_s": 226.9189465045929,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "ca9926f0057e4d57"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0050834477879107,
+     "eps_dec": 1.7621270418167114,
+     "eps_pde_rms": 0.28138700127601624,
+     "eps_pde_ss_rms": 0.041742999106645584,
+     "l_dec_q95": 847.4838256835938,
+     "l_dec_mean": 387.22552490234375
+    },
+    "state_coverage": {}
+   },
+   "bioreactor": {
+    "params": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 142921,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 142921,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 142921
+    },
+    "cost_us_b1": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 614.9864848703146,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 639.4594628363848,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 535.9319131821394
+    },
+    "wall_s": 287.36073064804077,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "2f20c68cdf41a9c1"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.008859860710799694,
+     "eps_dec": 0.020537156611680984,
+     "eps_pde_rms": 0.007415188010782003,
+     "eps_pde_ss_rms": 0.004582838620990515,
+     "l_dec_q95": 43.275733947753906,
+     "l_dec_mean": 18.011621475219727
+    },
+    "state_coverage": {}
+   },
+   "duffing": {
+    "params": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 142921,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 142921,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 142921
+    },
+    "cost_us_b1": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 692.1537034213543,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 767.2858517616987,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 633.9531671255827
+    },
+    "wall_s": 359.59799361228943,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "ce1e4da9b7b04615"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.0044870818965137005,
+     "eps_dec": 0.006029326468706131,
+     "eps_pde_rms": 0.0026648622006177902,
+     "eps_pde_ss_rms": 0.0002744958910625428,
+     "l_dec_q95": 298.7292785644531,
+     "l_dec_mean": 138.25332641601562
+    },
+    "state_coverage": {}
+   },
+   "lorenz": {
+    "params": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 143481,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 143481,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 143481
+    },
+    "cost_us_b1": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 611.7802672088146,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 609.0313009917736,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 704.4386584311724
+    },
+    "wall_s": 356.6152365207672,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "bf42a5ffa04844b0"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.1781575083732605,
+     "eps_dec": 0.30019041895866394,
+     "eps_pde_rms": 81.72639465332031,
+     "eps_pde_ss_rms": 9.092916488647461,
+     "l_dec_q95": 12.192252159118652,
+     "l_dec_mean": 4.488252639770508
+    },
+    "state_coverage": {}
+   },
+   "quad_tank": {
+    "params": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 143465,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 143465,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 143465
+    },
+    "cost_us_b1": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 723.4714552760124,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 718.9556304365396,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 713.639697059989
+    },
+    "wall_s": 307.4513051509857,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "0416699b49a21fd9"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.013222943991422653,
+     "eps_dec": 0.14977796375751495,
+     "eps_pde_rms": 0.020671481266617775,
+     "eps_pde_ss_rms": 0.05350172892212868,
+     "l_dec_q95": 13.740856170654297,
+     "l_dec_mean": 6.703221321105957
+    },
+    "state_coverage": {}
+   },
+   "vdp": {
+    "params": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 142921,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 142921,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 142921
+    },
+    "cost_us_b1": {
+     "lora[lr=0.004,rank=16,ctx_rms=1]": 693.1036990135908,
+     "lora[lr=0.008,rank=16,ctx_rms=1]": 683.7552972137928,
+     "lora[lr=0.016,rank=16,ctx_rms=1]": 689.0339218080044
+    },
+    "wall_s": 308.70931792259216,
+    "code": [
+     "d228453526ab"
+    ],
+    "config": [
+     "cdf4b64a864558a6"
+    ],
+    "phase1": {
+     "eps_enc_rel": 0.003434413578361273,
+     "eps_dec": 0.013123605400323868,
+     "eps_pde_rms": 0.2465016394853592,
+     "eps_pde_ss_rms": 0.050782132893800735,
+     "l_dec_q95": 23.641637802124023,
+     "l_dec_mean": 10.035945892333984
+    },
+    "state_coverage": {}
+   }
+  }
+ }
+}

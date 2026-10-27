@@ -1,0 +1,23 @@
+# cartpole: role = test system (held out: frozen recipe only).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+# t_ref (input protocol v2, signals.py): seconds per signal time unit. Rule t_ref = max(1, tau_slow / 3),
+# rounded, with tau_slow = median 1/|Re eig| of the linearisation along the zero-input trajectory
+# = 0.18 s -> t_ref = 1. T / t_ref = 30 / 1 = 30 signal time units (rule: >= ~20, so an episode holds enough input events).
+name: cartpole
+plant: cartpole
+role: test
+params: {}
+sensors: [0, 2]
+ic_box:
+- [-5, 5]
+- [-3, 3]
+- [-0.5, 0.5]
+- [-4, 4]
+T: 30
+nz: 6
+alpha: 1.5
+u_scale: 1.0
+t_ref: 1
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

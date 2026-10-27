@@ -1,0 +1,6 @@
+- 2026-10-26 16:50 Dubai: folder created; campaign scratch package copied into code/pkg (sha1 list code/campaign_pkg_snapshot.sha1). Reading background; PREREG in preparation, no run yet.
+- 2026-10-26 17:03 Dubai: PREREG.md (17:10) + addendum 1 written before any real run. Unit tests 14/14 pass; smoke runs (quad_tank, vdp; all arms M0-M5) OK; long phase-1 episodes generated for all 24 (cell, seed). Starting the full run (72 jobs) on GPUs 0-4, 2 per GPU.
+- 2026-10-26 17:09 Dubai: first quad_tank {M0,M3} jobs done; M0 re-evaluation equals the stored A2 per seed (0.0356/0.0363 partial, 0.0227/0.0213 mm30). Full run continuing.
+- 2026-10-26 17:35 Dubai: quad_tank nearly complete (all arms, seeds 0-2 except a few M1 jobs); battery/vdp/bioreactor running. Interim look (no verdict yet): M3/M5 help on quad_tank partial, slow-pole arms do not.
+- 2026-10-26 18:15 Dubai: 42/72 jobs done, no failures; post-hoc prior diagnostic (quad_tank) running on GPU 5.
+- 2026-10-26 18:50 Dubai: all 72 jobs done (144 arm runs, 0 failures; M0 == stored A2 on all 8 cells). Post-hoc prior diagnostic done. RESULTS.md written: P-M1 FAIL, P-M2 FAIL (1/4), P-M3 FAIL (11/20), P-M4 FAIL (0/8). Only the z-window (M3) helps (5/8 better, 0 worse); slow poles hurt; quad_tank stays 1.6-1.7x behind the grey-box. No processes of this study running.

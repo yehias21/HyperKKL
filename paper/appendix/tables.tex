@@ -1,0 +1,71 @@
+\section{Generated tables and figures}\label{app:tables}
+
+All tables and figures in this appendix are produced by \texttt{analysis/paper\_results.py} from the runs' \texttt{results.json} and are not edited by hand.
+
+\FloatBarrier
+\subsection{The plants}
+\input{generated/tab5_systems}
+
+\FloatBarrier\clearpage  % keeps the heading with its first table
+\subsection{C1: all tiers and capacity}
+\input{generated/tab1_c1}
+\inputrelabel{generated/tab1b_c1_id}{-id}
+\input{generated/tab6_capacity}
+
+\FloatBarrier
+\subsection{C3: every scenario and plant}
+\inputrelabel{generated/tab2b_c3_id}{-id}
+\FloatBarrier  % print Table (id summary) before the longtables that follow
+\inputonce{generated/tab2_c3_full}
+\inputrelabel{generated/tab2b_c3_id_full}{-id}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.85\textwidth]{fig3_c3_crossover_id.pdf}
+\caption{As Figure~\ref{fig:c3}, in-distribution tier (\tier{id}). Climatology for \tier{id} is analytic for the nominal plant and a proxy for a perturbed plant (Appendix~\ref{app:protocol}).}
+\label{fig:c3id}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.85\textwidth]{fig3_c3_crossover_test.pdf}
+\caption{As Figure~\ref{fig:c3} for the held-out plants under the realistic deployment (\node{TEST-C3}, frozen recipe, run once): \OutcomeTESTCThree\ at the time of generation (\JobsTESTCThree\ jobs finished); plants without finished runs are marked PENDING.}
+\label{fig:c3test}
+\end{figure}
+
+\FloatBarrier
+\subsection{C2: forgetting floor, memory probe and window sweeps}
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{fig2a_c2_floor.pdf}
+\caption{C2 forgetting-floor intervention: change in NRMSE when the SFM context is forced to forget at $\ge c\alpha$, relative to no floor (paired, 3 seeds, 95\% CI; grey band: $\pm10\%$ equivalence margin). The pre-registered rule at $c=0.5$ fails. }
+\label{fig:c2floor}
+\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{fig2b_c2_probe.pdf}
+\caption{C2 memory probe (\tier{id}, 16 episodes, geometric mean over seeds): decoded change $|\Delta\hat x|$ when the last $L$ seconds of input are kept and everything older is swapped for another episode's input, with and without a $0.5\alpha$ forgetting floor. Black lines: decay at the design rate $\alpha$ (Lemma~\ref{lem:m2-tail}) and at $0.5\alpha$; coloured dotted lines: fitted tail rates. The \sys{lorenz} probe is flat.}
+\label{fig:c2probe}
+\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{fig2c_c2_window.pdf}
+\caption{C2 window sweeps (HyperKKL $r=4$ with a raw window encoder, mean over 3 seeds): $e(L)/e(512)$ against the window length in samples at the default bandwidth and, on three plants, at $2\alpha$. Black: pre-registered window $L^*=\ln(1/\eta)/\alpha$ ($\eta=0.05$); wine: refined $L^*=(\ln(1/\eta)+\ln\ell)/\alpha$ with the phase-1 proxy for $\ell$ (post hoc). Dotted: $+5\%$.}
+\label{fig:c2window}
+\end{figure}
+
+\FloatBarrier
+\subsection{Deployment scorecard}
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{fig4_scorecard.pdf}
+\caption{Deployment scorecard as mean rank per column over the dev plants (1 = best). (a) exact model under the stress conditions of \node{C3-faults}; (b) realistic deployment (\node{C3-realistic}). [F$k$/6]: the method's \tier{sequence\_ood} NRMSE is above climatology on $k$ of six plants.}
+\label{fig:scorecard}
+\end{figure}
+\inputonce{generated/tab3_scorecard_realistic}
+
+\FloatBarrier
+\subsection{Every decision rule}
+\inputonce{generated/tab4_decisions}

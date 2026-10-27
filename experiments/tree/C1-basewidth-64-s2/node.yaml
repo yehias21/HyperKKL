@@ -1,0 +1,27 @@
+id: C1-basewidth-64-s2
+parent: C1-basewidth-64
+title: 'C1-basewidth-64: third seed (statistics)'
+contribution: C1
+question: Third seed for the control node, so its equivalence test has >= 2 degrees of freedom.
+hypothesis: As the parent node.
+decision_rule: Pooled with the parent node (seeds 0-2).
+set:
+  phase1.dec_width: 64
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines: []
+seeds:
+- 2
+compare:
+  reference:
+  - latent
+  tier: sequence_ood
+  condition: clean
+priority: 12
+status: done
+created: '2026-10-25'

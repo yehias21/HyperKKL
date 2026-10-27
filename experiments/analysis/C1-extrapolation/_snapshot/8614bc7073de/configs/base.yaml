@@ -1,0 +1,106 @@
+# Defaults for every run. A system YAML is merged under `system:`; experiment nodes
+# override anything below with dotted keys (see hyperkkl/tree.py).
+
+# Learned observers trained and evaluated in a job. Names: a conditioning kind from
+# hyperkkl/conditioning.py (autonomous = no conditioning), optionally `kind@context`
+# to override the context encoder for that method only (e.g. lora@gru).
+methods: [autonomous, latent, concat, film, lora, hyper]
+
+# Reference observers: ekf, ukf, pf, kkl_mb (model-based stationary KKL), nlox
+# (neural Luenberger, Woelk et al. 2026).
+baselines: [ekf]
+
+# CUDA-graph the latent and NLOX rollout training steps (train._Graphed; identical
+# numerics to eager, ~14x faster). false = eager.
+cuda_graphs: true
+
+data:
+  n_p1: 400            # zero-input episodes from the envelope box, for the phase-1 labels
+  n_train: 600         # forced training episodes (crossed IC x signal design)
+  n_val: 64            # forced validation episodes (model selection only)
+  n_coll: 32768        # Sobol collocation states over the envelope (PDE term + half of every decoder batch)
+  k_cross: 3           # each signal paired with k ICs, each IC with ~k signals
+  noise_proc: 0.005    # process noise: std rate as a fraction of each state's reference std
+  sensor:              # sensor model in training AND evaluation (deployment condition)
+    noise: 0.03        # white Gaussian, fraction of each output's reference std
+  eps_label: 1.0e-3    # label tolerance that sets the washout (design.washout_time)
+  envelope_safety: 1.15
+  reject_scale: 1.5    # episodes leaving 1.5x the envelope are redrawn
+
+phase1:
+  enc_width: 192
+  enc_depth: 3
+  dec_width: 128       # base decoder, shared by every conditioning variant
+  dec_depth: 3
+  steps_enc: 6000
+  steps_dec: 6000
+  batch: 4096
+  lr: 2.0e-3
+  stride: 2
+  pde: true            # false = model-free phase 1 (no f anywhere)
+  lambda_pde: 1.0
+  decoder_data: [coll, traj]
+
+phase2:
+  steps: 3000
+  warmup: 100
+  lr: 2.0e-3
+  episodes_per_batch: 32
+  times_per_episode: 256
+  budget: 140000       # trainable parameters of the conditioner (matched across variants)
+  budget_includes_context: false   # true: the context encoder counts too (when encoders differ)
+  rank: 4              # lora rank
+  rollout_K: 256       # latent variant: rollout length (steps) per training sample
+  val_every: 250
+  context:
+    kind: sfm          # current | window | gru | sfm (shared by all variants of a job)
+    dim: 16
+    hidden: 64
+    window: 50         # window encoder only (samples)
+    sfm_blocks: 8
+
+nlox:
+  width: 64
+  dec_width: 128
+  dec_depth: 3
+  steps: 3000          # same optimiser steps as phase 2 (cheap since rollouts are CUDA-graphed)
+  lr: 1.0e-3
+  K: 256
+  episodes_per_batch: 32
+  val_every: 250
+
+eval:
+  split: dev           # dev for every design decision; test is touched once (frozen recipe)
+  rep: 0
+  n_episodes: 64
+  tiers: [id, ood, waveform_ood]
+  conditions: [clean]
+  settle_frac: 0.5
+  pf_particles: 512
+  # proposal inflation 1 + (inflate - 1) exp(-t / anneal_tau), chosen per job on the
+  # validation episodes (job.tune_pf); anneal_tau in seconds, 0 = constant
+  pf_grid:
+    - {inflate: 1.0, anneal_tau: 0.0}
+    - {inflate: 3.0, anneal_tau: 0.0}
+    - {inflate: 10.0, anneal_tau: 0.0}
+    - {inflate: 30.0, anneal_tau: 1.0}
+  save_traj: true
+
+# Stress conditions, applied to the SAME evaluation episodes as `clean` unless they
+# change the plant. Sensor entries are merged over data.sensor. No observer is told about a
+# condition: learned observers were trained on the nominal sensor model and the filters keep
+# the nominal Q, R (oracle values for `clean` only).
+conditions:
+  clean: {}
+  noise10: {sensor: {noise: 0.10}}
+  outliers: {sensor: {outlier_rate: 0.02, outlier_scale: 12.0}}
+  dropout: {sensor: {dropout: 0.10}}
+  colored: {sensor: {kind: colored, rho: 0.95}}
+  quantized: {sensor: {quant: 0.25}}
+  sensor_drift: {sensor: {drift: 0.3}}
+  poor_init: {init: poor}
+  input_noise: {input: {noise: 0.10}}
+  input_bias: {input: {bias: 0.10}}
+  input_delay: {input: {delay: 5}}
+  plant_drift10: {plant_shift: 0.10}
+  plant_drift30: {plant_shift: 0.30}

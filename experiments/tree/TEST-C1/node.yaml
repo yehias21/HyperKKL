@@ -1,0 +1,38 @@
+id: TEST-C1
+parent: C1-where
+title: 'FROZEN recipe, held-out test systems: where the input enters'
+contribution: C1
+question: Does the dev-system C1 conclusion (weight-space conditioning beats latent injection
+  and the additive 'concat' variant) hold on six plants never used for any design decision?
+hypothesis: Weight-space (lora or hyper) beats latent and concat on >= 4/6 test systems.
+decision_rule: Supported if the better of lora/hyper beats both latent and concat with a paired
+  CI excluding 0 on >= 4/6 test systems on shape_ood and on sequence_ood. Run once; no tuning.
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines:
+- ekf
+systems:
+- cartpole
+- fhn
+- highway_traffic
+- network
+- rossler
+- two_link_arm
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - latent
+  - concat
+  tier: sequence_ood
+  condition: clean
+priority: 20
+status: done
+created: '2026-10-25'

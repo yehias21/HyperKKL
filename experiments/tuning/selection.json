@@ -1,0 +1,4137 @@
+{
+ "generated": "2026-10-26 05:52:31",
+ "protocol": "experiments/tuning/PROTOCOL.md",
+ "rule": {
+  "score": "mean over dev systems of train.<method>.val_nrmse (seed 0)",
+  "tie": 0.005,
+  "tie_rule": "default kept unless argmin < (1 - tie) x default",
+  "seed": 0,
+  "systems": [
+   "battery",
+   "bioreactor",
+   "duffing",
+   "lorenz",
+   "quad_tank",
+   "vdp"
+  ],
+  "lr_grid": [
+   0.0005,
+   0.001,
+   0.002,
+   0.004
+  ],
+  "design": {
+   "latent": {
+    "knob": "latent_depth",
+    "values": [
+     2,
+     3
+    ]
+   },
+   "concat": {
+    "knob": "concat_depth",
+    "values": [
+     2,
+     3
+    ]
+   },
+   "film": {
+    "knob": "film_depth",
+    "values": [
+     1,
+     2
+    ]
+   },
+   "lora": {
+    "knob": "rank",
+    "values": [
+     4,
+     16
+    ]
+   },
+   "hyper": {
+    "knob": "gen_layers",
+    "values": [
+     "all",
+     2
+    ]
+   }
+  }
+ },
+ "selected": {
+  "latent": "latent[lr=0.004,latent_depth=3]",
+  "concat": "concat[lr=0.004,concat_depth=3]",
+  "film": "film[lr=0.004,film_depth=2]",
+  "lora": "lora[lr=0.004]",
+  "hyper": "hyper[lr=0.004]"
+ },
+ "variants": {
+  "latent": {
+   "status": "selected",
+   "selected": "latent[lr=0.004,latent_depth=3]",
+   "selected_node": "C1-tune-latent-d3",
+   "lr": 0.004,
+   "knob": "latent_depth",
+   "knob_value": 3,
+   "is_default": false,
+   "default": "latent[lr=0.002]",
+   "argmin": "latent[lr=0.004,latent_depth=3]",
+   "tie_to_default": false,
+   "score_selected": 0.07434074642757575,
+   "score_default": 0.08085217047482729,
+   "rel_vs_default": -0.08053493195063721,
+   "robustness": {
+    "gmean": {
+     "choice": "latent[lr=0.004,latent_depth=3]",
+     "agrees": true
+    },
+    "mean_rank": {
+     "choice": "latent[lr=0.004,latent_depth=3]",
+     "agrees": true
+    },
+    "val_loss": {
+     "choice": "latent[lr=0.004,latent_depth=3]",
+     "agrees": true
+    }
+   },
+   "configs": [
+    {
+     "node": "C1-tune-latent-d2",
+     "method": "latent[lr=0.0005]",
+     "lr": 0.0005,
+     "knob": "latent_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.23206496238708496,
+       "val_diverged": 0.0,
+       "val_loss": 0.049513060599565506,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 2140.573858499527,
+       "code": "b1a814aa4292",
+       "job_wall_s": 4862.580013036728
+      },
+      "bioreactor": {
+       "val_nrmse": 0.04018722474575043,
+       "val_diverged": 0.0,
+       "val_loss": 0.0017524980939924717,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1978.328296661377,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6515.592830896378
+      },
+      "duffing": {
+       "val_nrmse": 0.07665203511714935,
+       "val_diverged": 0.0,
+       "val_loss": 0.005971786566078663,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1600.6486179828644,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6274.835489988327
+      },
+      "lorenz": {
+       "val_nrmse": 0.09112869203090668,
+       "val_diverged": 0.0,
+       "val_loss": 0.03540399298071861,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1693.262246131897,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6212.2495193481445
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15844371914863586,
+       "val_diverged": 0.0,
+       "val_loss": 0.014127563685178757,
+       "n_params": 139657,
+       "width": 359,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1740.3812956809998,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6070.818252325058
+      },
+      "vdp": {
+       "val_nrmse": 0.027541864663362503,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007043683435767889,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 2938.54274058342,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6673.177941322327
+      }
+     },
+     "complete": true,
+     "score_mean": 0.10433641634881496,
+     "score_gmean": 0.08108816343501946,
+     "val_loss_mean": 0.017912211711518466,
+     "mean_rank": 7.666666666666667
+    },
+    {
+     "node": "C1-tune-latent-d2",
+     "method": "latent[lr=0.001]",
+     "lr": 0.001,
+     "knob": "latent_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.14809411764144897,
+       "val_diverged": 0.0,
+       "val_loss": 0.025672294199466705,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1177.9290599822998,
+       "code": "b1a814aa4292",
+       "job_wall_s": 4862.580013036728
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03693940490484238,
+       "val_diverged": 0.0,
+       "val_loss": 0.0014249228406697512,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1695.4887483119965,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6515.592830896378
+      },
+      "duffing": {
+       "val_nrmse": 0.07653103768825531,
+       "val_diverged": 0.0,
+       "val_loss": 0.005956483539193869,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1638.408607006073,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6274.835489988327
+      },
+      "lorenz": {
+       "val_nrmse": 0.07592906057834625,
+       "val_diverged": 0.0,
+       "val_loss": 0.03416315093636513,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1642.2228450775146,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6212.2495193481445
+      },
+      "quad_tank": {
+       "val_nrmse": 0.1563909351825714,
+       "val_diverged": 0.0,
+       "val_loss": 0.01398481521755457,
+       "n_params": 139657,
+       "width": 359,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1726.731726884842,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6070.818252325058
+      },
+      "vdp": {
+       "val_nrmse": 0.02650289610028267,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006440842407755554,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1628.536987543106,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6673.177941322327
+      }
+     },
+     "complete": true,
+     "score_mean": 0.08673124201595783,
+     "score_gmean": 0.07133396654276083,
+     "val_loss_mean": 0.01364095849567093,
+     "mean_rank": 5.833333333333333
+    },
+    {
+     "node": "C1-tune-latent-d2",
+     "method": "latent[lr=0.002]",
+     "lr": 0.002,
+     "knob": "latent_depth",
+     "knob_value": 2,
+     "default": true,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.11975239962339401,
+       "val_diverged": 0.0,
+       "val_loss": 0.01937507465481758,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 948.0743591785431,
+       "code": "b1a814aa4292",
+       "job_wall_s": 4862.580013036728
+      },
+      "bioreactor": {
+       "val_nrmse": 0.034000881016254425,
+       "val_diverged": 0.0,
+       "val_loss": 0.0011636428534984589,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1390.7669639587402,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6515.592830896378
+      },
+      "duffing": {
+       "val_nrmse": 0.0762304961681366,
+       "val_diverged": 0.0,
+       "val_loss": 0.0059080240316689014,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1517.3276705741882,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6274.835489988327
+      },
+      "lorenz": {
+       "val_nrmse": 0.07372792810201645,
+       "val_diverged": 0.0,
+       "val_loss": 0.03404945507645607,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1433.3907945156097,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6212.2495193481445
+      },
+      "quad_tank": {
+       "val_nrmse": 0.1554768830537796,
+       "val_diverged": 0.0,
+       "val_loss": 0.013704664073884487,
+       "n_params": 139657,
+       "width": 359,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1364.9493894577026,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6070.818252325058
+      },
+      "vdp": {
+       "val_nrmse": 0.025924434885382652,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006113064009696245,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1050.1484715938568,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6673.177941322327
+      }
+     },
+     "complete": true,
+     "score_mean": 0.08085217047482729,
+     "score_gmean": 0.06721791685153777,
+     "val_loss_mean": 0.012468694515215853,
+     "mean_rank": 3.5
+    },
+    {
+     "node": "C1-tune-latent-d2",
+     "method": "latent[lr=0.004]",
+     "lr": 0.004,
+     "knob": "latent_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.10127744823694229,
+       "val_diverged": 0.0,
+       "val_loss": 0.015604168176651001,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 432.73934602737427,
+       "code": "b1a814aa4292",
+       "job_wall_s": 4862.580013036728
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03226456791162491,
+       "val_diverged": 0.0,
+       "val_loss": 0.0010375306010246277,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1303.1557805538177,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6515.592830896378
+      },
+      "duffing": {
+       "val_nrmse": 0.06896325200796127,
+       "val_diverged": 0.0,
+       "val_loss": 0.0050453245639801025,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1335.9700820446014,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6274.835489988327
+      },
+      "lorenz": {
+       "val_nrmse": 0.07156398892402649,
+       "val_diverged": 0.0,
+       "val_loss": 0.0339200422167778,
+       "n_params": 139627,
+       "width": 358,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1271.3212537765503,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6212.2495193481445
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15577983856201172,
+       "val_diverged": 0.0,
+       "val_loss": 0.013483259826898575,
+       "n_params": 139657,
+       "width": 359,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 1042.74156498909,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6070.818252325058
+      },
+      "vdp": {
+       "val_nrmse": 0.02541729062795639,
+       "val_diverged": 0.0,
+       "val_loss": 0.0005871739122085273,
+       "n_params": 139685,
+       "width": 360,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 856.4562785625458,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6673.177941322327
+      }
+     },
+     "complete": true,
+     "score_mean": 0.07587773104508717,
+     "score_gmean": 0.0632215632311128,
+     "val_loss_mean": 0.011612916549590105,
+     "mean_rank": 2.1666666666666665
+    },
+    {
+     "node": "C1-tune-latent-d3",
+     "method": "latent[lr=0.0005,latent_depth=3]",
+     "lr": 0.0005,
+     "knob": "latent_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.22921523451805115,
+       "val_diverged": 0.0,
+       "val_loss": 0.04936514049768448,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2652.8332538604736,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8483.36166357994
+      },
+      "bioreactor": {
+       "val_nrmse": 0.04181694984436035,
+       "val_diverged": 0.0,
+       "val_loss": 0.0019366834312677383,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 3122.1884183883667,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6372.466616153717
+      },
+      "duffing": {
+       "val_nrmse": 0.07666350901126862,
+       "val_diverged": 0.0,
+       "val_loss": 0.005974411498755217,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2766.1915888786316,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8663.848598718643
+      },
+      "lorenz": {
+       "val_nrmse": 0.08126594126224518,
+       "val_diverged": 0.0,
+       "val_loss": 0.034523580223321915,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2086.486666202545,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6126.771088600159
+      },
+      "quad_tank": {
+       "val_nrmse": 0.1583426296710968,
+       "val_diverged": 0.0,
+       "val_loss": 0.014363712631165981,
+       "n_params": 140071,
+       "width": 257,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2782.1564660072327,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8556.470020771027
+      },
+      "vdp": {
+       "val_nrmse": 0.02684197388589382,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006606505485251546,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2060.4243359565735,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6019.327209949493
+      }
+     },
+     "complete": true,
+     "score_mean": 0.10235770636548598,
+     "score_gmean": 0.0795702824301353,
+     "val_loss_mean": 0.01780402980512008,
+     "mean_rank": 7.333333333333333
+    },
+    {
+     "node": "C1-tune-latent-d3",
+     "method": "latent[lr=0.001,latent_depth=3]",
+     "lr": 0.001,
+     "knob": "latent_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.1363738477230072,
+       "val_diverged": 0.0,
+       "val_loss": 0.023504560813307762,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2499.682436466217,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8483.36166357994
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03564373031258583,
+       "val_diverged": 0.0,
+       "val_loss": 0.001268985914066434,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1591.3694095611572,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6372.466616153717
+      },
+      "duffing": {
+       "val_nrmse": 0.07659026980400085,
+       "val_diverged": 0.0,
+       "val_loss": 0.005963357165455818,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2538.9695043563843,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8663.848598718643
+      },
+      "lorenz": {
+       "val_nrmse": 0.0734027698636055,
+       "val_diverged": 0.0,
+       "val_loss": 0.03401320055127144,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1582.65260887146,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6126.771088600159
+      },
+      "quad_tank": {
+       "val_nrmse": 0.1563810408115387,
+       "val_diverged": 0.0,
+       "val_loss": 0.014078914187848568,
+       "n_params": 140071,
+       "width": 257,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 2554.67950630188,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8556.470020771027
+      },
+      "vdp": {
+       "val_nrmse": 0.026269232854247093,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006283039692789316,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1573.398232460022,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6019.327209949493
+      }
+     },
+     "complete": true,
+     "score_mean": 0.08411014856149752,
+     "score_gmean": 0.06945528484271299,
+     "val_loss_mean": 0.013242887100204825,
+     "mean_rank": 5.0
+    },
+    {
+     "node": "C1-tune-latent-d3",
+     "method": "latent[lr=0.002,latent_depth=3]",
+     "lr": 0.002,
+     "knob": "latent_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.10918982326984406,
+       "val_diverged": 0.0,
+       "val_loss": 0.01655104197561741,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1757.9241642951965,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8483.36166357994
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03399740159511566,
+       "val_diverged": 0.0,
+       "val_loss": 0.0011689011007547379,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1025.2866253852844,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6372.466616153717
+      },
+      "duffing": {
+       "val_nrmse": 0.07647791504859924,
+       "val_diverged": 0.0,
+       "val_loss": 0.005943887401372194,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1770.5682327747345,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8663.848598718643
+      },
+      "lorenz": {
+       "val_nrmse": 0.07121873646974564,
+       "val_diverged": 0.0,
+       "val_loss": 0.03389124572277069,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1348.888328552246,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6126.771088600159
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15592795610427856,
+       "val_diverged": 0.0,
+       "val_loss": 0.013790708966553211,
+       "n_params": 140071,
+       "width": 257,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1745.4196693897247,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8556.470020771027
+      },
+      "vdp": {
+       "val_nrmse": 0.025802306830883026,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006017145933583379,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1321.326863527298,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6019.327209949493
+      }
+     },
+     "complete": true,
+     "score_mean": 0.07876902321974437,
+     "score_gmean": 0.06582488651069618,
+     "val_loss_mean": 0.011991249960071096,
+     "mean_rank": 3.1666666666666665
+    },
+    {
+     "node": "C1-tune-latent-d3",
+     "method": "latent[lr=0.004,latent_depth=3]",
+     "lr": 0.004,
+     "knob": "latent_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.09302300214767456,
+       "val_diverged": 0.0,
+       "val_loss": 0.013857926242053509,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1550.5987610816956,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8483.36166357994
+      },
+      "bioreactor": {
+       "val_nrmse": 0.02969546429812908,
+       "val_diverged": 0.0,
+       "val_loss": 0.0008715410949662328,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 610.6279809474945,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6372.466616153717
+      },
+      "duffing": {
+       "val_nrmse": 0.07283781468868256,
+       "val_diverged": 0.0,
+       "val_loss": 0.00544386263936758,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1531.9334874153137,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8663.848598718643
+      },
+      "lorenz": {
+       "val_nrmse": 0.06931034475564957,
+       "val_diverged": 0.0,
+       "val_loss": 0.033815380185842514,
+       "n_params": 139527,
+       "width": 256,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1044.997050523758,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6126.771088600159
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15576297044754028,
+       "val_diverged": 0.0,
+       "val_loss": 0.0135573148727417,
+       "n_params": 140071,
+       "width": 257,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1407.2717370986938,
+       "code": "b1a814aa4292",
+       "job_wall_s": 8556.470020771027
+      },
+      "vdp": {
+       "val_nrmse": 0.025414882227778435,
+       "val_diverged": 0.0,
+       "val_loss": 0.0005898949457332492,
+       "n_params": 139556,
+       "width": 257,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "latent_depth": 3
+       },
+       "wall_s": 1032.113118171692,
+       "code": "b1a814aa4292",
+       "job_wall_s": 6019.327209949493
+      }
+     },
+     "complete": true,
+     "score_mean": 0.07434074642757575,
+     "score_gmean": 0.061706553919691966,
+     "val_loss_mean": 0.011355986663450798,
+     "mean_rank": 1.3333333333333333
+    }
+   ]
+  },
+  "concat": {
+   "status": "selected",
+   "selected": "concat[lr=0.004,concat_depth=3]",
+   "selected_node": "C1-tune-concat-d3",
+   "lr": 0.004,
+   "knob": "concat_depth",
+   "knob_value": 3,
+   "is_default": false,
+   "default": "concat[lr=0.002]",
+   "argmin": "concat[lr=0.004,concat_depth=3]",
+   "tie_to_default": false,
+   "score_selected": 0.06569137175877889,
+   "score_default": 0.09631536932041247,
+   "rel_vs_default": -0.31795546004456143,
+   "robustness": {
+    "gmean": {
+     "choice": "concat[lr=0.004,concat_depth=3]",
+     "agrees": true
+    },
+    "mean_rank": {
+     "choice": "concat[lr=0.004,concat_depth=3]",
+     "agrees": true
+    },
+    "val_loss": {
+     "choice": "concat[lr=0.004,concat_depth=3]",
+     "agrees": true
+    }
+   },
+   "configs": [
+    {
+     "node": "C1-tune-concat-d2",
+     "method": "concat[lr=0.0005]",
+     "lr": 0.0005,
+     "knob": "concat_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.2592746317386627,
+       "val_diverged": 0.0,
+       "val_loss": 0.07048492133617401,
+       "n_params": 139656,
+       "width": 359,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 88.32447791099548,
+       "code": "b1a814aa4292",
+       "job_wall_s": 334.23497009277344
+      },
+      "bioreactor": {
+       "val_nrmse": 0.05026707053184509,
+       "val_diverged": 0.0,
+       "val_loss": 0.002689171116799116,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 50.34465503692627,
+       "code": "b1a814aa4292",
+       "job_wall_s": 210.76004219055176
+      },
+      "duffing": {
+       "val_nrmse": 0.07455351948738098,
+       "val_diverged": 0.0,
+       "val_loss": 0.005698140244930983,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 70.64437937736511,
+       "code": "b1a814aa4292",
+       "job_wall_s": 285.95620131492615
+      },
+      "lorenz": {
+       "val_nrmse": 0.15013092756271362,
+       "val_diverged": 0.0,
+       "val_loss": 0.0417623445391655,
+       "n_params": 139683,
+       "width": 360,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 60.37083578109741,
+       "code": "b1a814aa4292",
+       "job_wall_s": 287.74907660484314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15483839809894562,
+       "val_diverged": 0.0,
+       "val_loss": 0.025058753788471222,
+       "n_params": 139684,
+       "width": 360,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 116.4230887889862,
+       "code": "b1a814aa4292",
+       "job_wall_s": 526.0443346500397
+      },
+      "vdp": {
+       "val_nrmse": 0.027381394058465958,
+       "val_diverged": 0.0,
+       "val_loss": 0.000749841914512217,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 69.56515264511108,
+       "code": "b1a814aa4292",
+       "job_wall_s": 295.62034273147583
+      }
+     },
+     "complete": true,
+     "score_mean": 0.11940765691300233,
+     "score_gmean": 0.092303752593691,
+     "val_loss_mean": 0.024407195490008842,
+     "mean_rank": 7.666666666666667
+    },
+    {
+     "node": "C1-tune-concat-d2",
+     "method": "concat[lr=0.001]",
+     "lr": 0.001,
+     "knob": "concat_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.24163787066936493,
+       "val_diverged": 0.0,
+       "val_loss": 0.059407152235507965,
+       "n_params": 139656,
+       "width": 359,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 82.84188461303711,
+       "code": "b1a814aa4292",
+       "job_wall_s": 334.23497009277344
+      },
+      "bioreactor": {
+       "val_nrmse": 0.0466439388692379,
+       "val_diverged": 0.0,
+       "val_loss": 0.002206025179475546,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 47.347923040390015,
+       "code": "b1a814aa4292",
+       "job_wall_s": 210.76004219055176
+      },
+      "duffing": {
+       "val_nrmse": 0.07184357941150665,
+       "val_diverged": 0.0,
+       "val_loss": 0.005396767519414425,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 61.24332404136658,
+       "code": "b1a814aa4292",
+       "job_wall_s": 285.95620131492615
+      },
+      "lorenz": {
+       "val_nrmse": 0.12067882716655731,
+       "val_diverged": 0.0,
+       "val_loss": 0.036014020442962646,
+       "n_params": 139683,
+       "width": 360,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 59.61042785644531,
+       "code": "b1a814aa4292",
+       "job_wall_s": 287.74907660484314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15363875031471252,
+       "val_diverged": 0.0,
+       "val_loss": 0.024673903360962868,
+       "n_params": 139684,
+       "width": 360,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 115.9920973777771,
+       "code": "b1a814aa4292",
+       "job_wall_s": 526.0443346500397
+      },
+      "vdp": {
+       "val_nrmse": 0.026590749621391296,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007089963182806969,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 65.2523262500763,
+       "code": "b1a814aa4292",
+       "job_wall_s": 295.62034273147583
+      }
+     },
+     "complete": true,
+     "score_mean": 0.1101722860087951,
+     "score_gmean": 0.08580944659773874,
+     "val_loss_mean": 0.02140114417610069,
+     "mean_rank": 6.166666666666667
+    },
+    {
+     "node": "C1-tune-concat-d2",
+     "method": "concat[lr=0.002]",
+     "lr": 0.002,
+     "knob": "concat_depth",
+     "knob_value": 2,
+     "default": true,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.21856823563575745,
+       "val_diverged": 0.0,
+       "val_loss": 0.04832308739423752,
+       "n_params": 139656,
+       "width": 359,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 70.51056480407715,
+       "code": "b1a814aa4292",
+       "job_wall_s": 334.23497009277344
+      },
+      "bioreactor": {
+       "val_nrmse": 0.04277019575238228,
+       "val_diverged": 0.0,
+       "val_loss": 0.0018576188012957573,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 47.158228158950806,
+       "code": "b1a814aa4292",
+       "job_wall_s": 210.76004219055176
+      },
+      "duffing": {
+       "val_nrmse": 0.052990999072790146,
+       "val_diverged": 0.0,
+       "val_loss": 0.0033670873381197453,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 59.30768156051636,
+       "code": "b1a814aa4292",
+       "job_wall_s": 285.95620131492615
+      },
+      "lorenz": {
+       "val_nrmse": 0.0986558124423027,
+       "val_diverged": 0.0,
+       "val_loss": 0.03330545127391815,
+       "n_params": 139683,
+       "width": 360,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 60.71095609664917,
+       "code": "b1a814aa4292",
+       "job_wall_s": 287.74907660484314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.13888534903526306,
+       "val_diverged": 0.0,
+       "val_loss": 0.021541757509112358,
+       "n_params": 139684,
+       "width": 360,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 112.4220941066742,
+       "code": "b1a814aa4292",
+       "job_wall_s": 526.0443346500397
+      },
+      "vdp": {
+       "val_nrmse": 0.026021623983979225,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006793993525207043,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 63.24403643608093,
+       "code": "b1a814aa4292",
+       "job_wall_s": 295.62034273147583
+      }
+     },
+     "complete": true,
+     "score_mean": 0.09631536932041247,
+     "score_gmean": 0.07490439780270708,
+     "val_loss_mean": 0.018179066944867373,
+     "mean_rank": 4.166666666666667
+    },
+    {
+     "node": "C1-tune-concat-d2",
+     "method": "concat[lr=0.004]",
+     "lr": 0.004,
+     "knob": "concat_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.17692232131958008,
+       "val_diverged": 0.0,
+       "val_loss": 0.03441368043422699,
+       "n_params": 139656,
+       "width": 359,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 71.89250373840332,
+       "code": "b1a814aa4292",
+       "job_wall_s": 334.23497009277344
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03511354699730873,
+       "val_diverged": 0.0,
+       "val_loss": 0.0013025453081354499,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 46.969340801239014,
+       "code": "b1a814aa4292",
+       "job_wall_s": 210.76004219055176
+      },
+      "duffing": {
+       "val_nrmse": 0.0465071015059948,
+       "val_diverged": 0.0,
+       "val_loss": 0.0027775028720498085,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 49.52627182006836,
+       "code": "b1a814aa4292",
+       "job_wall_s": 285.95620131492615
+      },
+      "lorenz": {
+       "val_nrmse": 0.08578522503376007,
+       "val_diverged": 0.0,
+       "val_loss": 0.03213319182395935,
+       "n_params": 139683,
+       "width": 360,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 59.203813314437866,
+       "code": "b1a814aa4292",
+       "job_wall_s": 287.74907660484314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.09758517146110535,
+       "val_diverged": 0.0,
+       "val_loss": 0.014457090757787228,
+       "n_params": 139684,
+       "width": 360,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 113.08286046981812,
+       "code": "b1a814aa4292",
+       "job_wall_s": 526.0443346500397
+      },
+      "vdp": {
+       "val_nrmse": 0.017870480194687843,
+       "val_diverged": 0.0,
+       "val_loss": 0.00035054475301876664,
+       "n_params": 140096,
+       "width": 362,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 68.75387620925903,
+       "code": "b1a814aa4292",
+       "job_wall_s": 295.62034273147583
+      }
+     },
+     "complete": true,
+     "score_mean": 0.07663064108540614,
+     "score_gmean": 0.05924042859150207,
+     "val_loss_mean": 0.014239092658196265,
+     "mean_rank": 2.0
+    },
+    {
+     "node": "C1-tune-concat-d3",
+     "method": "concat[lr=0.0005,concat_depth=3]",
+     "lr": 0.0005,
+     "knob": "concat_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.25093263387680054,
+       "val_diverged": 0.0,
+       "val_loss": 0.06502971798181534,
+       "n_params": 140070,
+       "width": 257,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 74.27085900306702,
+       "code": "b1a814aa4292",
+       "job_wall_s": 307.48567605018616
+      },
+      "bioreactor": {
+       "val_nrmse": 0.04828811436891556,
+       "val_diverged": 0.0,
+       "val_loss": 0.00240901205688715,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 94.83202457427979,
+       "code": "b1a814aa4292",
+       "job_wall_s": 371.4655673503876
+      },
+      "duffing": {
+       "val_nrmse": 0.07190722227096558,
+       "val_diverged": 0.0,
+       "val_loss": 0.005381446331739426,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 101.21238803863525,
+       "code": "b1a814aa4292",
+       "job_wall_s": 451.6792368888855
+      },
+      "lorenz": {
+       "val_nrmse": 0.10902833193540573,
+       "val_diverged": 0.0,
+       "val_loss": 0.03469867259263992,
+       "n_params": 139554,
+       "width": 257,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 67.75418758392334,
+       "code": "b1a814aa4292",
+       "job_wall_s": 300.78725147247314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15516400337219238,
+       "val_diverged": 0.0,
+       "val_loss": 0.025167647749185562,
+       "n_params": 139555,
+       "width": 257,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 71.80833530426025,
+       "code": "b1a814aa4292",
+       "job_wall_s": 330.84196972846985
+      },
+      "vdp": {
+       "val_nrmse": 0.027418069541454315,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007493296288885176,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 42.32009553909302,
+       "code": "b1a814aa4292",
+       "job_wall_s": 208.87875175476074
+      }
+     },
+     "complete": true,
+     "score_mean": 0.11045639589428902,
+     "score_gmean": 0.085985031295206,
+     "val_loss_mean": 0.022239304390192654,
+     "mean_rank": 7.166666666666667
+    },
+    {
+     "node": "C1-tune-concat-d3",
+     "method": "concat[lr=0.001,concat_depth=3]",
+     "lr": 0.001,
+     "knob": "concat_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.22690071165561676,
+       "val_diverged": 0.0,
+       "val_loss": 0.05249578505754471,
+       "n_params": 140070,
+       "width": 257,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 69.59948587417603,
+       "code": "b1a814aa4292",
+       "job_wall_s": 307.48567605018616
+      },
+      "bioreactor": {
+       "val_nrmse": 0.04390794038772583,
+       "val_diverged": 0.0,
+       "val_loss": 0.001978193409740925,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 82.25609254837036,
+       "code": "b1a814aa4292",
+       "job_wall_s": 371.4655673503876
+      },
+      "duffing": {
+       "val_nrmse": 0.06510195881128311,
+       "val_diverged": 0.0,
+       "val_loss": 0.004628279712051153,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 104.28692817687988,
+       "code": "b1a814aa4292",
+       "job_wall_s": 451.6792368888855
+      },
+      "lorenz": {
+       "val_nrmse": 0.09038903564214706,
+       "val_diverged": 0.0,
+       "val_loss": 0.03243535757064819,
+       "n_params": 139554,
+       "width": 257,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 63.8869411945343,
+       "code": "b1a814aa4292",
+       "job_wall_s": 300.78725147247314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.15069317817687988,
+       "val_diverged": 0.0,
+       "val_loss": 0.023962436243891716,
+       "n_params": 139555,
+       "width": 257,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 67.3558030128479,
+       "code": "b1a814aa4292",
+       "job_wall_s": 330.84196972846985
+      },
+      "vdp": {
+       "val_nrmse": 0.026256004348397255,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006857479456812143,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 40.66267681121826,
+       "code": "b1a814aa4292",
+       "job_wall_s": 208.87875175476074
+      }
+     },
+     "complete": true,
+     "score_mean": 0.10054147150367498,
+     "score_gmean": 0.07838539661829792,
+     "val_loss_mean": 0.01936429998992632,
+     "mean_rank": 4.833333333333333
+    },
+    {
+     "node": "C1-tune-concat-d3",
+     "method": "concat[lr=0.002,concat_depth=3]",
+     "lr": 0.002,
+     "knob": "concat_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.19368678331375122,
+       "val_diverged": 0.0,
+       "val_loss": 0.04031038656830788,
+       "n_params": 140070,
+       "width": 257,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 64.12239861488342,
+       "code": "b1a814aa4292",
+       "job_wall_s": 307.48567605018616
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03529917448759079,
+       "val_diverged": 0.0,
+       "val_loss": 0.0013544359244406223,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 90.60791087150574,
+       "code": "b1a814aa4292",
+       "job_wall_s": 371.4655673503876
+      },
+      "duffing": {
+       "val_nrmse": 0.052034251391887665,
+       "val_diverged": 0.0,
+       "val_loss": 0.0033380084205418825,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 101.16985702514648,
+       "code": "b1a814aa4292",
+       "job_wall_s": 451.6792368888855
+      },
+      "lorenz": {
+       "val_nrmse": 0.0809299573302269,
+       "val_diverged": 0.0,
+       "val_loss": 0.03189680352807045,
+       "n_params": 139554,
+       "width": 257,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 62.629871129989624,
+       "code": "b1a814aa4292",
+       "job_wall_s": 300.78725147247314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.12702405452728271,
+       "val_diverged": 0.0,
+       "val_loss": 0.020119326189160347,
+       "n_params": 139555,
+       "width": 257,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 67.44813251495361,
+       "code": "b1a814aa4292",
+       "job_wall_s": 330.84196972846985
+      },
+      "vdp": {
+       "val_nrmse": 0.025574082508683205,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006534137646667659,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 46.37600803375244,
+       "code": "b1a814aa4292",
+       "job_wall_s": 208.87875175476074
+      }
+     },
+     "complete": true,
+     "score_mean": 0.08575805059323709,
+     "score_gmean": 0.06737387582968109,
+     "val_loss_mean": 0.016278729065864656,
+     "mean_rank": 2.8333333333333335
+    },
+    {
+     "node": "C1-tune-concat-d3",
+     "method": "concat[lr=0.004,concat_depth=3]",
+     "lr": 0.004,
+     "knob": "concat_depth",
+     "knob_value": 3,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.1307273805141449,
+       "val_diverged": 0.0,
+       "val_loss": 0.022734232246875763,
+       "n_params": 140070,
+       "width": 257,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 74.78776478767395,
+       "code": "b1a814aa4292",
+       "job_wall_s": 307.48567605018616
+      },
+      "bioreactor": {
+       "val_nrmse": 0.029496533796191216,
+       "val_diverged": 0.0,
+       "val_loss": 0.0009888755157589912,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 84.99116945266724,
+       "code": "b1a814aa4292",
+       "job_wall_s": 371.4655673503876
+      },
+      "duffing": {
+       "val_nrmse": 0.04366220906376839,
+       "val_diverged": 0.0,
+       "val_loss": 0.002489986829459667,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 96.87545847892761,
+       "code": "b1a814aa4292",
+       "job_wall_s": 451.6792368888855
+      },
+      "lorenz": {
+       "val_nrmse": 0.07059183716773987,
+       "val_diverged": 0.0,
+       "val_loss": 0.03126460686326027,
+       "n_params": 139554,
+       "width": 257,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 64.63811182975769,
+       "code": "b1a814aa4292",
+       "job_wall_s": 300.78725147247314
+      },
+      "quad_tank": {
+       "val_nrmse": 0.1019643247127533,
+       "val_diverged": 0.0,
+       "val_loss": 0.015041003003716469,
+       "n_params": 139555,
+       "width": 257,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 67.63111066818237,
+       "code": "b1a814aa4292",
+       "job_wall_s": 330.84196972846985
+      },
+      "vdp": {
+       "val_nrmse": 0.017705945298075676,
+       "val_diverged": 0.0,
+       "val_loss": 0.00033987118513323367,
+       "n_params": 139838,
+       "width": 258,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "concat_depth": 3
+       },
+       "wall_s": 47.98977255821228,
+       "code": "b1a814aa4292",
+       "job_wall_s": 208.87875175476074
+      }
+     },
+     "complete": true,
+     "score_mean": 0.06569137175877889,
+     "score_gmean": 0.05271418741966728,
+     "val_loss_mean": 0.012143095940700732,
+     "mean_rank": 1.1666666666666667
+    }
+   ]
+  },
+  "film": {
+   "status": "selected",
+   "selected": "film[lr=0.004,film_depth=2]",
+   "selected_node": "C1-tune-film-d2",
+   "lr": 0.004,
+   "knob": "film_depth",
+   "knob_value": 2,
+   "is_default": false,
+   "default": "film[lr=0.002]",
+   "argmin": "film[lr=0.004,film_depth=2]",
+   "tie_to_default": false,
+   "score_selected": 0.05012024442354838,
+   "score_default": 0.05649606976658106,
+   "rel_vs_default": -0.11285431658122447,
+   "robustness": {
+    "gmean": {
+     "choice": "film[lr=0.004,film_depth=2]",
+     "agrees": true
+    },
+    "mean_rank": {
+     "choice": "film[lr=0.004,film_depth=2]",
+     "agrees": true
+    },
+    "val_loss": {
+     "choice": "film[lr=0.004,film_depth=2]",
+     "agrees": true
+    }
+   },
+   "configs": [
+    {
+     "node": "C1-tune-film-d1",
+     "method": "film[lr=0.0005]",
+     "lr": 0.0005,
+     "knob": "film_depth",
+     "knob_value": 1,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.11590330302715302,
+       "val_diverged": 0.0,
+       "val_loss": 0.02037818357348442,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 58.14980387687683,
+       "code": "b1a814aa4292",
+       "job_wall_s": 279.09388303756714
+      },
+      "bioreactor": {
+       "val_nrmse": 0.024002322927117348,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007687322795391083,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 78.8070924282074,
+       "code": "b1a814aa4292",
+       "job_wall_s": 322.26628065109253
+      },
+      "duffing": {
+       "val_nrmse": 0.06991170346736908,
+       "val_diverged": 0.0,
+       "val_loss": 0.005123584996908903,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 96.57368779182434,
+       "code": "b1a814aa4292",
+       "job_wall_s": 367.03011775016785
+      },
+      "lorenz": {
+       "val_nrmse": 0.09000756591558456,
+       "val_diverged": 0.0,
+       "val_loss": 0.03366802632808685,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 52.369848012924194,
+       "code": "b1a814aa4292",
+       "job_wall_s": 233.90316486358643
+      },
+      "quad_tank": {
+       "val_nrmse": 0.08378451317548752,
+       "val_diverged": 0.0,
+       "val_loss": 0.009574754163622856,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 110.93908357620239,
+       "code": "b1a814aa4292",
+       "job_wall_s": 484.524849653244
+      },
+      "vdp": {
+       "val_nrmse": 0.026787403970956802,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007160996901802719,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 87.84613680839539,
+       "code": "b1a814aa4292",
+       "job_wall_s": 338.6973879337311
+      }
+     },
+     "complete": true,
+     "score_mean": 0.06839946874727805,
+     "score_gmean": 0.05830584060917828,
+     "val_loss_mean": 0.011704896838637069,
+     "mean_rank": 7.5
+    },
+    {
+     "node": "C1-tune-film-d1",
+     "method": "film[lr=0.001]",
+     "lr": 0.001,
+     "knob": "film_depth",
+     "knob_value": 1,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.09857504069805145,
+       "val_diverged": 0.0,
+       "val_loss": 0.01694449409842491,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 63.021575689315796,
+       "code": "b1a814aa4292",
+       "job_wall_s": 279.09388303756714
+      },
+      "bioreactor": {
+       "val_nrmse": 0.021130187436938286,
+       "val_diverged": 0.0,
+       "val_loss": 0.0005714963190257549,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 75.97667670249939,
+       "code": "b1a814aa4292",
+       "job_wall_s": 322.26628065109253
+      },
+      "duffing": {
+       "val_nrmse": 0.06376484036445618,
+       "val_diverged": 0.0,
+       "val_loss": 0.004417734686285257,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 92.63729739189148,
+       "code": "b1a814aa4292",
+       "job_wall_s": 367.03011775016785
+      },
+      "lorenz": {
+       "val_nrmse": 0.08327928930521011,
+       "val_diverged": 0.0,
+       "val_loss": 0.032371170818805695,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 45.69239544868469,
+       "code": "b1a814aa4292",
+       "job_wall_s": 233.90316486358643
+      },
+      "quad_tank": {
+       "val_nrmse": 0.07721753418445587,
+       "val_diverged": 0.0,
+       "val_loss": 0.008456854149699211,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 109.1545147895813,
+       "code": "b1a814aa4292",
+       "job_wall_s": 484.524849653244
+      },
+      "vdp": {
+       "val_nrmse": 0.026580367237329483,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007079486385919154,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 85.17870593070984,
+       "code": "b1a814aa4292",
+       "job_wall_s": 338.6973879337311
+      }
+     },
+     "complete": true,
+     "score_mean": 0.06175787653774023,
+     "score_gmean": 0.053212163634827704,
+     "val_loss_mean": 0.010578283118472124,
+     "mean_rank": 5.833333333333333
+    },
+    {
+     "node": "C1-tune-film-d1",
+     "method": "film[lr=0.002]",
+     "lr": 0.002,
+     "knob": "film_depth",
+     "knob_value": 1,
+     "default": true,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.07748693227767944,
+       "val_diverged": 0.0,
+       "val_loss": 0.013587186112999916,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 74.34883284568787,
+       "code": "b1a814aa4292",
+       "job_wall_s": 279.09388303756714
+      },
+      "bioreactor": {
+       "val_nrmse": 0.01816635951399803,
+       "val_diverged": 0.0,
+       "val_loss": 0.0004522140370681882,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 77.10685229301453,
+       "code": "b1a814aa4292",
+       "job_wall_s": 322.26628065109253
+      },
+      "duffing": {
+       "val_nrmse": 0.06158091127872467,
+       "val_diverged": 0.0,
+       "val_loss": 0.004234063904732466,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 68.40810680389404,
+       "code": "b1a814aa4292",
+       "job_wall_s": 367.03011775016785
+      },
+      "lorenz": {
+       "val_nrmse": 0.08125966787338257,
+       "val_diverged": 0.0,
+       "val_loss": 0.03236103430390358,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 41.567711353302,
+       "code": "b1a814aa4292",
+       "job_wall_s": 233.90316486358643
+      },
+      "quad_tank": {
+       "val_nrmse": 0.07398124039173126,
+       "val_diverged": 0.0,
+       "val_loss": 0.008082910440862179,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 105.67549252510071,
+       "code": "b1a814aa4292",
+       "job_wall_s": 484.524849653244
+      },
+      "vdp": {
+       "val_nrmse": 0.026501307263970375,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007031757850199938,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 80.76507520675659,
+       "code": "b1a814aa4292",
+       "job_wall_s": 338.6973879337311
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05649606976658106,
+     "score_gmean": 0.04898176218478508,
+     "val_loss_mean": 0.00990343076409772,
+     "mean_rank": 4.0
+    },
+    {
+     "node": "C1-tune-film-d1",
+     "method": "film[lr=0.004]",
+     "lr": 0.004,
+     "knob": "film_depth",
+     "knob_value": 1,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.07002844661474228,
+       "val_diverged": 0.0,
+       "val_loss": 0.012324320152401924,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 64.2107207775116,
+       "code": "b1a814aa4292",
+       "job_wall_s": 279.09388303756714
+      },
+      "bioreactor": {
+       "val_nrmse": 0.0167644415050745,
+       "val_diverged": 0.0,
+       "val_loss": 0.000411561515647918,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 73.78015065193176,
+       "code": "b1a814aa4292",
+       "job_wall_s": 322.26628065109253
+      },
+      "duffing": {
+       "val_nrmse": 0.059215426445007324,
+       "val_diverged": 0.0,
+       "val_loss": 0.003987309522926807,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 71.00002646446228,
+       "code": "b1a814aa4292",
+       "job_wall_s": 367.03011775016785
+      },
+      "lorenz": {
+       "val_nrmse": 0.08477045595645905,
+       "val_diverged": 0.0,
+       "val_loss": 0.03199272230267525,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 50.16152048110962,
+       "code": "b1a814aa4292",
+       "job_wall_s": 233.90316486358643
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06802113354206085,
+       "val_diverged": 0.0,
+       "val_loss": 0.007356727495789528,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 102.23765444755554,
+       "code": "b1a814aa4292",
+       "job_wall_s": 484.524849653244
+      },
+      "vdp": {
+       "val_nrmse": 0.026574838906526566,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007078129565343261,
+       "n_params": 140336,
+       "width": 179,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 61.224154233932495,
+       "code": "b1a814aa4292",
+       "job_wall_s": 338.6973879337311
+      }
+     },
+     "complete": true,
+     "score_mean": 0.054229123828311764,
+     "score_gmean": 0.04690756741730655,
+     "val_loss_mean": 0.009463408990995958,
+     "mean_rank": 3.3333333333333335
+    },
+    {
+     "node": "C1-tune-film-d2",
+     "method": "film[lr=0.0005,film_depth=2]",
+     "lr": 0.0005,
+     "knob": "film_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.1137075275182724,
+       "val_diverged": 0.0,
+       "val_loss": 0.01982121169567108,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 82.08844661712646,
+       "code": "b1a814aa4292",
+       "job_wall_s": 277.74139761924744
+      },
+      "bioreactor": {
+       "val_nrmse": 0.027169225737452507,
+       "val_diverged": 0.0,
+       "val_loss": 0.000974315102212131,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 83.156254529953,
+       "code": "b1a814aa4292",
+       "job_wall_s": 293.5882320404053
+      },
+      "duffing": {
+       "val_nrmse": 0.07130378484725952,
+       "val_diverged": 0.0,
+       "val_loss": 0.005292309448122978,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 55.401312828063965,
+       "code": "b1a814aa4292",
+       "job_wall_s": 209.05842113494873
+      },
+      "lorenz": {
+       "val_nrmse": 0.07254023849964142,
+       "val_diverged": 0.0,
+       "val_loss": 0.03150658309459686,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 57.86366319656372,
+       "code": "b1a814aa4292",
+       "job_wall_s": 266.31398129463196
+      },
+      "quad_tank": {
+       "val_nrmse": 0.0785897746682167,
+       "val_diverged": 0.0,
+       "val_loss": 0.009796712547540665,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 62.272515535354614,
+       "code": "b1a814aa4292",
+       "job_wall_s": 288.1609492301941
+      },
+      "vdp": {
+       "val_nrmse": 0.026320617645978928,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006913318648003042,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 66.02905464172363,
+       "code": "b1a814aa4292",
+       "job_wall_s": 244.67061567306519
+      }
+     },
+     "complete": true,
+     "score_mean": 0.06493852815280358,
+     "score_gmean": 0.05665044948789829,
+     "val_loss_mean": 0.011347077292157337,
+     "mean_rank": 6.166666666666667
+    },
+    {
+     "node": "C1-tune-film-d2",
+     "method": "film[lr=0.001,film_depth=2]",
+     "lr": 0.001,
+     "knob": "film_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.09536471962928772,
+       "val_diverged": 0.0,
+       "val_loss": 0.016333727166056633,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 65.72488284111023,
+       "code": "b1a814aa4292",
+       "job_wall_s": 277.74139761924744
+      },
+      "bioreactor": {
+       "val_nrmse": 0.023600220680236816,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007329233922064304,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 74.56153917312622,
+       "code": "b1a814aa4292",
+       "job_wall_s": 293.5882320404053
+      },
+      "duffing": {
+       "val_nrmse": 0.06371920555830002,
+       "val_diverged": 0.0,
+       "val_loss": 0.00438700383529067,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 41.28224468231201,
+       "code": "b1a814aa4292",
+       "job_wall_s": 209.05842113494873
+      },
+      "lorenz": {
+       "val_nrmse": 0.06841842085123062,
+       "val_diverged": 0.0,
+       "val_loss": 0.03118146024644375,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 53.11637234687805,
+       "code": "b1a814aa4292",
+       "job_wall_s": 266.31398129463196
+      },
+      "quad_tank": {
+       "val_nrmse": 0.07148034870624542,
+       "val_diverged": 0.0,
+       "val_loss": 0.008586777374148369,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 58.06748914718628,
+       "code": "b1a814aa4292",
+       "job_wall_s": 288.1609492301941
+      },
+      "vdp": {
+       "val_nrmse": 0.023995377123355865,
+       "val_diverged": 0.0,
+       "val_loss": 0.0005857015494257212,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 48.11318922042847,
+       "code": "b1a814aa4292",
+       "job_wall_s": 244.67061567306519
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05776304875810941,
+     "score_gmean": 0.05062249819162106,
+     "val_loss_mean": 0.010301265593928596,
+     "mean_rank": 4.166666666666667
+    },
+    {
+     "node": "C1-tune-film-d2",
+     "method": "film[lr=0.002,film_depth=2]",
+     "lr": 0.002,
+     "knob": "film_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.08035656809806824,
+       "val_diverged": 0.0,
+       "val_loss": 0.014124404639005661,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 52.270182609558105,
+       "code": "b1a814aa4292",
+       "job_wall_s": 277.74139761924744
+      },
+      "bioreactor": {
+       "val_nrmse": 0.019566353410482407,
+       "val_diverged": 0.0,
+       "val_loss": 0.0005206218338571489,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 58.562241315841675,
+       "code": "b1a814aa4292",
+       "job_wall_s": 293.5882320404053
+      },
+      "duffing": {
+       "val_nrmse": 0.06052611023187637,
+       "val_diverged": 0.0,
+       "val_loss": 0.004106083884835243,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 37.214338064193726,
+       "code": "b1a814aa4292",
+       "job_wall_s": 209.05842113494873
+      },
+      "lorenz": {
+       "val_nrmse": 0.06793728470802307,
+       "val_diverged": 0.0,
+       "val_loss": 0.03116130456328392,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 54.40875720977783,
+       "code": "b1a814aa4292",
+       "job_wall_s": 266.31398129463196
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06457555294036865,
+       "val_diverged": 0.0,
+       "val_loss": 0.00728971604257822,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 57.154720067977905,
+       "code": "b1a814aa4292",
+       "job_wall_s": 288.1609492301941
+      },
+      "vdp": {
+       "val_nrmse": 0.021618232131004333,
+       "val_diverged": 0.0,
+       "val_loss": 0.00048717204481363297,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 44.27627468109131,
+       "code": "b1a814aa4292",
+       "job_wall_s": 244.67061567306519
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05243001691997051,
+     "score_gmean": 0.0456294347510708,
+     "val_loss_mean": 0.009614883834728971,
+     "mean_rank": 2.6666666666666665
+    },
+    {
+     "node": "C1-tune-film-d2",
+     "method": "film[lr=0.004,film_depth=2]",
+     "lr": 0.004,
+     "knob": "film_depth",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.0694195032119751,
+       "val_diverged": 0.0,
+       "val_loss": 0.012440291233360767,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 58.067638874053955,
+       "code": "b1a814aa4292",
+       "job_wall_s": 277.74139761924744
+      },
+      "bioreactor": {
+       "val_nrmse": 0.017248470336198807,
+       "val_diverged": 0.0,
+       "val_loss": 0.0004160763055551797,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 60.62555646896362,
+       "code": "b1a814aa4292",
+       "job_wall_s": 293.5882320404053
+      },
+      "duffing": {
+       "val_nrmse": 0.05691450089216232,
+       "val_diverged": 0.0,
+       "val_loss": 0.0036997837014496326,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 43.72540831565857,
+       "code": "b1a814aa4292",
+       "job_wall_s": 209.05842113494873
+      },
+      "lorenz": {
+       "val_nrmse": 0.06701537221670151,
+       "val_diverged": 0.0,
+       "val_loss": 0.031123314052820206,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 54.28544092178345,
+       "code": "b1a814aa4292",
+       "job_wall_s": 266.31398129463196
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06315173208713531,
+       "val_diverged": 0.0,
+       "val_loss": 0.006856424733996391,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 57.928303956985474,
+       "code": "b1a814aa4292",
+       "job_wall_s": 288.1609492301941
+      },
+      "vdp": {
+       "val_nrmse": 0.026971887797117233,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007262029103003442,
+       "n_params": 140100,
+       "width": 150,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "film_depth": 2
+       },
+       "wall_s": 58.998514890670776,
+       "code": "b1a814aa4292",
+       "job_wall_s": 244.67061567306519
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05012024442354838,
+     "score_gmean": 0.044513083265046764,
+     "val_loss_mean": 0.009210348822913753,
+     "mean_rank": 2.3333333333333335
+    }
+   ]
+  },
+  "lora": {
+   "status": "selected",
+   "selected": "lora[lr=0.004]",
+   "selected_node": "C1-tune-lora-r4",
+   "lr": 0.004,
+   "knob": "rank",
+   "knob_value": 4,
+   "is_default": false,
+   "default": "lora[lr=0.002]",
+   "argmin": "lora[lr=0.004]",
+   "tie_to_default": false,
+   "score_selected": 0.04392687464132905,
+   "score_default": 0.04829957212011019,
+   "rel_vs_default": -0.09053284091020986,
+   "robustness": {
+    "gmean": {
+     "choice": "lora[lr=0.004]",
+     "agrees": true
+    },
+    "mean_rank": {
+     "choice": "lora[lr=0.004]",
+     "agrees": true
+    },
+    "val_loss": {
+     "choice": "lora[lr=0.004]",
+     "agrees": true
+    }
+   },
+   "configs": [
+    {
+     "node": "C1-tune-lora-r4",
+     "method": "lora[lr=0.0005]",
+     "lr": 0.0005,
+     "knob": "rank",
+     "knob_value": 4,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.10147784650325775,
+       "val_diverged": 0.0,
+       "val_loss": 0.01747165434062481,
+       "n_params": 141484,
+       "width": 44,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 54.969526529312134,
+       "code": "b1a814aa4292",
+       "job_wall_s": 248.24130749702454
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03247898072004318,
+       "val_diverged": 0.0,
+       "val_loss": 0.0013991170562803745,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 83.01258707046509,
+       "code": "b1a814aa4292",
+       "job_wall_s": 354.58261942863464
+      },
+      "duffing": {
+       "val_nrmse": 0.049923501908779144,
+       "val_diverged": 0.0,
+       "val_loss": 0.003041798248887062,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 125.54319405555725,
+       "code": "b1a814aa4292",
+       "job_wall_s": 571.5474445819855
+      },
+      "lorenz": {
+       "val_nrmse": 0.08406666666269302,
+       "val_diverged": 0.0,
+       "val_loss": 0.0331210233271122,
+       "n_params": 141132,
+       "width": 44,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 62.39196252822876,
+       "code": "b1a814aa4292",
+       "job_wall_s": 317.893319606781
+      },
+      "quad_tank": {
+       "val_nrmse": 0.07547595351934433,
+       "val_diverged": 0.0,
+       "val_loss": 0.00867706909775734,
+       "n_params": 141128,
+       "width": 44,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 99.54434084892273,
+       "code": "b1a814aa4292",
+       "job_wall_s": 527.3111624717712
+      },
+      "vdp": {
+       "val_nrmse": 0.02008095011115074,
+       "val_diverged": 0.0,
+       "val_loss": 0.0004311174270696938,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 106.72468852996826,
+       "code": "b1a814aa4292",
+       "job_wall_s": 480.511944770813
+      }
+     },
+     "complete": true,
+     "score_mean": 0.06058398323754469,
+     "score_gmean": 0.052510871731511526,
+     "val_loss_mean": 0.010690296582955247,
+     "mean_rank": 7.0
+    },
+    {
+     "node": "C1-tune-lora-r4",
+     "method": "lora[lr=0.001]",
+     "lr": 0.001,
+     "knob": "rank",
+     "knob_value": 4,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.08604894578456879,
+       "val_diverged": 0.0,
+       "val_loss": 0.014722073450684547,
+       "n_params": 141484,
+       "width": 44,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 51.26791000366211,
+       "code": "b1a814aa4292",
+       "job_wall_s": 248.24130749702454
+      },
+      "bioreactor": {
+       "val_nrmse": 0.0370999276638031,
+       "val_diverged": 0.0,
+       "val_loss": 0.0016258017858490348,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 77.13820171356201,
+       "code": "b1a814aa4292",
+       "job_wall_s": 354.58261942863464
+      },
+      "duffing": {
+       "val_nrmse": 0.04697649925947189,
+       "val_diverged": 0.0,
+       "val_loss": 0.002760007046163082,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 111.9199001789093,
+       "code": "b1a814aa4292",
+       "job_wall_s": 571.5474445819855
+      },
+      "lorenz": {
+       "val_nrmse": 0.07618270814418793,
+       "val_diverged": 0.0,
+       "val_loss": 0.03224070370197296,
+       "n_params": 141132,
+       "width": 44,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 65.15437936782837,
+       "code": "b1a814aa4292",
+       "job_wall_s": 317.893319606781
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06712880730628967,
+       "val_diverged": 0.0,
+       "val_loss": 0.007376303430646658,
+       "n_params": 141128,
+       "width": 44,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 102.03744721412659,
+       "code": "b1a814aa4292",
+       "job_wall_s": 527.3111624717712
+      },
+      "vdp": {
+       "val_nrmse": 0.019058680161833763,
+       "val_diverged": 0.0,
+       "val_loss": 0.0003979208995588124,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 108.45868134498596,
+       "code": "b1a814aa4292",
+       "job_wall_s": 480.511944770813
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05541592805335919,
+     "score_gmean": 0.049447336642215615,
+     "val_loss_mean": 0.00985380171914585,
+     "mean_rank": 5.833333333333333
+    },
+    {
+     "node": "C1-tune-lora-r4",
+     "method": "lora[lr=0.002]",
+     "lr": 0.002,
+     "knob": "rank",
+     "knob_value": 4,
+     "default": true,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.07761099934577942,
+       "val_diverged": 0.0,
+       "val_loss": 0.013631939888000488,
+       "n_params": 141484,
+       "width": 44,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 50.44121313095093,
+       "code": "b1a814aa4292",
+       "job_wall_s": 248.24130749702454
+      },
+      "bioreactor": {
+       "val_nrmse": 0.01692918688058853,
+       "val_diverged": 0.0,
+       "val_loss": 0.00037482124753296375,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 84.20297741889954,
+       "code": "b1a814aa4292",
+       "job_wall_s": 354.58261942863464
+      },
+      "duffing": {
+       "val_nrmse": 0.04668550193309784,
+       "val_diverged": 0.0,
+       "val_loss": 0.00271568913012743,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 119.0587706565857,
+       "code": "b1a814aa4292",
+       "job_wall_s": 571.5474445819855
+      },
+      "lorenz": {
+       "val_nrmse": 0.07110574096441269,
+       "val_diverged": 0.0,
+       "val_loss": 0.03181562200188637,
+       "n_params": 141132,
+       "width": 44,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 56.655829668045044,
+       "code": "b1a814aa4292",
+       "job_wall_s": 317.893319606781
+      },
+      "quad_tank": {
+       "val_nrmse": 0.0606641061604023,
+       "val_diverged": 0.0,
+       "val_loss": 0.006455693393945694,
+       "n_params": 141128,
+       "width": 44,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 112.86337423324585,
+       "code": "b1a814aa4292",
+       "job_wall_s": 527.3111624717712
+      },
+      "vdp": {
+       "val_nrmse": 0.016801897436380386,
+       "val_diverged": 0.0,
+       "val_loss": 0.0003178421757183969,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 111.56874823570251,
+       "code": "b1a814aa4292",
+       "job_wall_s": 480.511944770813
+      }
+     },
+     "complete": true,
+     "score_mean": 0.04829957212011019,
+     "score_gmean": 0.04054986079534993,
+     "val_loss_mean": 0.00921860130620189,
+     "mean_rank": 3.3333333333333335
+    },
+    {
+     "node": "C1-tune-lora-r4",
+     "method": "lora[lr=0.004]",
+     "lr": 0.004,
+     "knob": "rank",
+     "knob_value": 4,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.06263238191604614,
+       "val_diverged": 0.0,
+       "val_loss": 0.011477915570139885,
+       "n_params": 141484,
+       "width": 44,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 59.19479036331177,
+       "code": "b1a814aa4292",
+       "job_wall_s": 248.24130749702454
+      },
+      "bioreactor": {
+       "val_nrmse": 0.01414028462022543,
+       "val_diverged": 0.0,
+       "val_loss": 0.00029408818227238953,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 85.55932021141052,
+       "code": "b1a814aa4292",
+       "job_wall_s": 354.58261942863464
+      },
+      "duffing": {
+       "val_nrmse": 0.04368048161268234,
+       "val_diverged": 0.0,
+       "val_loss": 0.0024469285272061825,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 142.9129683971405,
+       "code": "b1a814aa4292",
+       "job_wall_s": 571.5474445819855
+      },
+      "lorenz": {
+       "val_nrmse": 0.0695849359035492,
+       "val_diverged": 0.0,
+       "val_loss": 0.03139152377843857,
+       "n_params": 141132,
+       "width": 44,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 72.85401725769043,
+       "code": "b1a814aa4292",
+       "job_wall_s": 317.893319606781
+      },
+      "quad_tank": {
+       "val_nrmse": 0.05747906491160393,
+       "val_diverged": 0.0,
+       "val_loss": 0.005779522471129894,
+       "n_params": 141128,
+       "width": 44,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 131.58808994293213,
+       "code": "b1a814aa4292",
+       "job_wall_s": 527.3111624717712
+      },
+      "vdp": {
+       "val_nrmse": 0.016044098883867264,
+       "val_diverged": 0.0,
+       "val_loss": 0.000285461253952235,
+       "n_params": 140596,
+       "width": 44,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 116.3706784248352,
+       "code": "b1a814aa4292",
+       "job_wall_s": 480.511944770813
+      }
+     },
+     "complete": true,
+     "score_mean": 0.04392687464132905,
+     "score_gmean": 0.036797145121107724,
+     "val_loss_mean": 0.00861257329718986,
+     "mean_rank": 1.3333333333333333
+    },
+    {
+     "node": "C1-tune-lora-r16",
+     "method": "lora[lr=0.0005,rank=16]",
+     "lr": 0.0005,
+     "knob": "rank",
+     "knob_value": 16,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.10813353955745697,
+       "val_diverged": 0.171875,
+       "val_loss": 0.01921704411506653,
+       "n_params": 143833,
+       "width": 11,
+       "lr": 0.0005,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 126.60797238349915,
+       "code": "b1a814aa4292",
+       "job_wall_s": 540.845360994339
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03617868572473526,
+       "val_diverged": 0.0,
+       "val_loss": 0.0017577613471075892,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.0005,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 97.41113805770874,
+       "code": "b1a814aa4292",
+       "job_wall_s": 461.86987590789795
+      },
+      "duffing": {
+       "val_nrmse": 0.05469678342342377,
+       "val_diverged": 0.0,
+       "val_loss": 0.0034648096188902855,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.0005,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 133.1143355369568,
+       "code": "b1a814aa4292",
+       "job_wall_s": 621.1870334148407
+      },
+      "lorenz": {
+       "val_nrmse": 0.08233404159545898,
+       "val_diverged": 0.0,
+       "val_loss": 0.033156901597976685,
+       "n_params": 143481,
+       "width": 11,
+       "lr": 0.0005,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 82.24119520187378,
+       "code": "b1a814aa4292",
+       "job_wall_s": 357.13303542137146
+      },
+      "quad_tank": {
+       "val_nrmse": 0.0874740406870842,
+       "val_diverged": 0.0,
+       "val_loss": 0.011036129668354988,
+       "n_params": 143465,
+       "width": 11,
+       "lr": 0.0005,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 132.6734585762024,
+       "code": "b1a814aa4292",
+       "job_wall_s": 603.1746785640717
+      },
+      "vdp": {
+       "val_nrmse": 0.02026689611375332,
+       "val_diverged": 0.0,
+       "val_loss": 0.00043508195085451007,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.0005,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 79.34123063087463,
+       "code": "b1a814aa4292",
+       "job_wall_s": 331.67312383651733
+      }
+     },
+     "complete": true,
+     "score_mean": 0.06484733118365209,
+     "score_gmean": 0.056118166867781365,
+     "val_loss_mean": 0.011511288049708432,
+     "mean_rank": 7.666666666666667
+    },
+    {
+     "node": "C1-tune-lora-r16",
+     "method": "lora[lr=0.001,rank=16]",
+     "lr": 0.001,
+     "knob": "rank",
+     "knob_value": 16,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.08933413773775101,
+       "val_diverged": 0.0,
+       "val_loss": 0.01552959717810154,
+       "n_params": 143833,
+       "width": 11,
+       "lr": 0.001,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 114.511465549469,
+       "code": "b1a814aa4292",
+       "job_wall_s": 540.845360994339
+      },
+      "bioreactor": {
+       "val_nrmse": 0.02646603062748909,
+       "val_diverged": 0.0,
+       "val_loss": 0.0009152403799816966,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.001,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 109.21440410614014,
+       "code": "b1a814aa4292",
+       "job_wall_s": 461.86987590789795
+      },
+      "duffing": {
+       "val_nrmse": 0.04767646640539169,
+       "val_diverged": 0.0,
+       "val_loss": 0.002822770271450281,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.001,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 124.64680314064026,
+       "code": "b1a814aa4292",
+       "job_wall_s": 621.1870334148407
+      },
+      "lorenz": {
+       "val_nrmse": 0.074238121509552,
+       "val_diverged": 0.0,
+       "val_loss": 0.03198397904634476,
+       "n_params": 143481,
+       "width": 11,
+       "lr": 0.001,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 64.43048763275146,
+       "code": "b1a814aa4292",
+       "job_wall_s": 357.13303542137146
+      },
+      "quad_tank": {
+       "val_nrmse": 0.07545867562294006,
+       "val_diverged": 0.0,
+       "val_loss": 0.008903956040740013,
+       "n_params": 143465,
+       "width": 11,
+       "lr": 0.001,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 117.59860467910767,
+       "code": "b1a814aa4292",
+       "job_wall_s": 603.1746785640717
+      },
+      "vdp": {
+       "val_nrmse": 0.018350720405578613,
+       "val_diverged": 0.0,
+       "val_loss": 0.0003717730287462473,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.001,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 74.8469626903534,
+       "code": "b1a814aa4292",
+       "job_wall_s": 331.67312383651733
+      }
+     },
+     "complete": true,
+     "score_mean": 0.055254025384783745,
+     "score_gmean": 0.04757001246658935,
+     "val_loss_mean": 0.010087885990894089,
+     "mean_rank": 5.5
+    },
+    {
+     "node": "C1-tune-lora-r16",
+     "method": "lora[lr=0.002,rank=16]",
+     "lr": 0.002,
+     "knob": "rank",
+     "knob_value": 16,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.0692196860909462,
+       "val_diverged": 0.0,
+       "val_loss": 0.01254403404891491,
+       "n_params": 143833,
+       "width": 11,
+       "lr": 0.002,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 123.04060506820679,
+       "code": "b1a814aa4292",
+       "job_wall_s": 540.845360994339
+      },
+      "bioreactor": {
+       "val_nrmse": 0.01960364356637001,
+       "val_diverged": 0.0,
+       "val_loss": 0.0004987936117686331,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.002,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 108.15831279754639,
+       "code": "b1a814aa4292",
+       "job_wall_s": 461.86987590789795
+      },
+      "duffing": {
+       "val_nrmse": 0.044275328516960144,
+       "val_diverged": 0.0,
+       "val_loss": 0.002525817137211561,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.002,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 135.27443504333496,
+       "code": "b1a814aa4292",
+       "job_wall_s": 621.1870334148407
+      },
+      "lorenz": {
+       "val_nrmse": 0.07048885524272919,
+       "val_diverged": 0.0,
+       "val_loss": 0.031183892861008644,
+       "n_params": 143481,
+       "width": 11,
+       "lr": 0.002,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 85.3941810131073,
+       "code": "b1a814aa4292",
+       "job_wall_s": 357.13303542137146
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06381475180387497,
+       "val_diverged": 0.0,
+       "val_loss": 0.0071213385090231895,
+       "n_params": 143465,
+       "width": 11,
+       "lr": 0.002,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 133.95299553871155,
+       "code": "b1a814aa4292",
+       "job_wall_s": 603.1746785640717
+      },
+      "vdp": {
+       "val_nrmse": 0.016598476096987724,
+       "val_diverged": 0.0,
+       "val_loss": 0.0003108942764811218,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.002,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 76.36133241653442,
+       "code": "b1a814aa4292",
+       "job_wall_s": 331.67312383651733
+      }
+     },
+     "complete": true,
+     "score_mean": 0.047333456886311374,
+     "score_gmean": 0.040610623979920574,
+     "val_loss_mean": 0.00903079507406801,
+     "mean_rank": 3.0
+    },
+    {
+     "node": "C1-tune-lora-r16",
+     "method": "lora[lr=0.004,rank=16]",
+     "lr": 0.004,
+     "knob": "rank",
+     "knob_value": 16,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.05721648037433624,
+       "val_diverged": 0.0,
+       "val_loss": 0.010816923342645168,
+       "n_params": 143833,
+       "width": 11,
+       "lr": 0.004,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 144.62368941307068,
+       "code": "b1a814aa4292",
+       "job_wall_s": 540.845360994339
+      },
+      "bioreactor": {
+       "val_nrmse": 0.019361209124326706,
+       "val_diverged": 0.0,
+       "val_loss": 0.00048134996904991567,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.004,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 124.96365880966187,
+       "code": "b1a814aa4292",
+       "job_wall_s": 461.86987590789795
+      },
+      "duffing": {
+       "val_nrmse": 0.04451294615864754,
+       "val_diverged": 0.0,
+       "val_loss": 0.0025442466139793396,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.004,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 162.91402506828308,
+       "code": "b1a814aa4292",
+       "job_wall_s": 621.1870334148407
+      },
+      "lorenz": {
+       "val_nrmse": 0.07054441422224045,
+       "val_diverged": 0.0,
+       "val_loss": 0.03130953758955002,
+       "n_params": 143481,
+       "width": 11,
+       "lr": 0.004,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 71.04090023040771,
+       "code": "b1a814aa4292",
+       "job_wall_s": 357.13303542137146
+      },
+      "quad_tank": {
+       "val_nrmse": 0.062166180461645126,
+       "val_diverged": 0.0,
+       "val_loss": 0.006317962892353535,
+       "n_params": 143465,
+       "width": 11,
+       "lr": 0.004,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 158.3327693939209,
+       "code": "b1a814aa4292",
+       "job_wall_s": 603.1746785640717
+      },
+      "vdp": {
+       "val_nrmse": 0.015360387042164803,
+       "val_diverged": 0.0,
+       "val_loss": 0.0002627093344926834,
+       "n_params": 142921,
+       "width": 11,
+       "lr": 0.004,
+       "rank": 16,
+       "arch": {},
+       "wall_s": 77.06152677536011,
+       "code": "b1a814aa4292",
+       "job_wall_s": 331.67312383651733
+      }
+     },
+     "complete": true,
+     "score_mean": 0.044860269563893475,
+     "score_gmean": 0.038627193484192746,
+     "val_loss_mean": 0.008622121623678444,
+     "mean_rank": 2.3333333333333335
+    }
+   ]
+  },
+  "hyper": {
+   "status": "selected",
+   "selected": "hyper[lr=0.004]",
+   "selected_node": "C1-tune-hyper-all",
+   "lr": 0.004,
+   "knob": "gen_layers",
+   "knob_value": "all",
+   "is_default": false,
+   "default": "hyper[lr=0.002]",
+   "argmin": "hyper[lr=0.004]",
+   "tie_to_default": false,
+   "score_selected": 0.04468111197153727,
+   "score_default": 0.047810412322481476,
+   "rel_vs_default": -0.06545227700269685,
+   "robustness": {
+    "gmean": {
+     "choice": "hyper[lr=0.004]",
+     "agrees": true
+    },
+    "mean_rank": {
+     "choice": "hyper[lr=0.004]",
+     "agrees": true
+    },
+    "val_loss": {
+     "choice": "hyper[lr=0.004]",
+     "agrees": true
+    }
+   },
+   "configs": [
+    {
+     "node": "C1-tune-hyper-all",
+     "method": "hyper[lr=0.0005]",
+     "lr": 0.0005,
+     "knob": "gen_layers",
+     "knob_value": "all",
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.09073922038078308,
+       "val_diverged": 0.0,
+       "val_loss": 0.01582540199160576,
+       "n_params": 140052,
+       "width": 4,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 294.4968605041504,
+       "code": "b1a814aa4292",
+       "job_wall_s": 956.1227760314941
+      },
+      "bioreactor": {
+       "val_nrmse": 0.02938130497932434,
+       "val_diverged": 0.0,
+       "val_loss": 0.001052607549354434,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 306.6702013015747,
+       "code": "b1a814aa4292",
+       "job_wall_s": 1114.354437828064
+      },
+      "duffing": {
+       "val_nrmse": 0.05357397347688675,
+       "val_diverged": 0.0,
+       "val_loss": 0.0034040254540741444,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 161.11026406288147,
+       "code": "b1a814aa4292",
+       "job_wall_s": 707.3242492675781
+      },
+      "lorenz": {
+       "val_nrmse": 0.07538941502571106,
+       "val_diverged": 0.0,
+       "val_loss": 0.03221539035439491,
+       "n_params": 139020,
+       "width": 4,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 184.4925560951233,
+       "code": "b1a814aa4292",
+       "job_wall_s": 777.5416464805603
+      },
+      "quad_tank": {
+       "val_nrmse": 0.07905256003141403,
+       "val_diverged": 0.0,
+       "val_loss": 0.009901289828121662,
+       "n_params": 139024,
+       "width": 4,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 324.6376008987427,
+       "code": "b1a814aa4292",
+       "job_wall_s": 961.6877913475037
+      },
+      "vdp": {
+       "val_nrmse": 0.02179548144340515,
+       "val_diverged": 0.0,
+       "val_loss": 0.0004943706444464624,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 261.98424887657166,
+       "code": "b1a814aa4292",
+       "job_wall_s": 866.7720835208893
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05832199255625407,
+     "score_gmean": 0.05145198412599934,
+     "val_loss_mean": 0.010482180970332896,
+     "mean_rank": 6.5
+    },
+    {
+     "node": "C1-tune-hyper-all",
+     "method": "hyper[lr=0.001]",
+     "lr": 0.001,
+     "knob": "gen_layers",
+     "knob_value": "all",
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.07538098096847534,
+       "val_diverged": 0.0,
+       "val_loss": 0.013360261917114258,
+       "n_params": 140052,
+       "width": 4,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 225.01475048065186,
+       "code": "b1a814aa4292",
+       "job_wall_s": 956.1227760314941
+      },
+      "bioreactor": {
+       "val_nrmse": 0.026336630806326866,
+       "val_diverged": 0.0,
+       "val_loss": 0.0008592585800215602,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 304.78396701812744,
+       "code": "b1a814aa4292",
+       "job_wall_s": 1114.354437828064
+      },
+      "duffing": {
+       "val_nrmse": 0.05241536349058151,
+       "val_diverged": 0.0,
+       "val_loss": 0.0032819625921547413,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 152.53719925880432,
+       "code": "b1a814aa4292",
+       "job_wall_s": 707.3242492675781
+      },
+      "lorenz": {
+       "val_nrmse": 0.06641079485416412,
+       "val_diverged": 0.0,
+       "val_loss": 0.031135374680161476,
+       "n_params": 139020,
+       "width": 4,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 181.30986642837524,
+       "code": "b1a814aa4292",
+       "job_wall_s": 777.5416464805603
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06768424808979034,
+       "val_diverged": 0.0,
+       "val_loss": 0.007921288721263409,
+       "n_params": 139024,
+       "width": 4,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 205.8172299861908,
+       "code": "b1a814aa4292",
+       "job_wall_s": 961.6877913475037
+      },
+      "vdp": {
+       "val_nrmse": 0.020536966621875763,
+       "val_diverged": 0.0,
+       "val_loss": 0.00044617406092584133,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 194.39897561073303,
+       "code": "b1a814aa4292",
+       "job_wall_s": 866.7720835208893
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05146083080520233,
+     "score_gmean": 0.046105973653502476,
+     "val_loss_mean": 0.009500720091940215,
+     "mean_rank": 4.333333333333333
+    },
+    {
+     "node": "C1-tune-hyper-all",
+     "method": "hyper[lr=0.002]",
+     "lr": 0.002,
+     "knob": "gen_layers",
+     "knob_value": "all",
+     "default": true,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.06623657792806625,
+       "val_diverged": 0.0,
+       "val_loss": 0.011803101748228073,
+       "n_params": 140052,
+       "width": 4,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 202.5339367389679,
+       "code": "b1a814aa4292",
+       "job_wall_s": 956.1227760314941
+      },
+      "bioreactor": {
+       "val_nrmse": 0.02289675362408161,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006617861799895763,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 269.9077003002167,
+       "code": "b1a814aa4292",
+       "job_wall_s": 1114.354437828064
+      },
+      "duffing": {
+       "val_nrmse": 0.052868135273456573,
+       "val_diverged": 0.0,
+       "val_loss": 0.003330679377540946,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 183.3470537662506,
+       "code": "b1a814aa4292",
+       "job_wall_s": 707.3242492675781
+      },
+      "lorenz": {
+       "val_nrmse": 0.06360917538404465,
+       "val_diverged": 0.0,
+       "val_loss": 0.03099149465560913,
+       "n_params": 139020,
+       "width": 4,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 180.08848810195923,
+       "code": "b1a814aa4292",
+       "job_wall_s": 777.5416464805603
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06206071376800537,
+       "val_diverged": 0.0,
+       "val_loss": 0.007056402042508125,
+       "n_params": 139024,
+       "width": 4,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 198.4401240348816,
+       "code": "b1a814aa4292",
+       "job_wall_s": 961.6877913475037
+      },
+      "vdp": {
+       "val_nrmse": 0.019191117957234383,
+       "val_diverged": 0.0,
+       "val_loss": 0.0003921877942048013,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 204.41775274276733,
+       "code": "b1a814aa4292",
+       "job_wall_s": 866.7720835208893
+      }
+     },
+     "complete": true,
+     "score_mean": 0.047810412322481476,
+     "score_gmean": 0.04271533002571067,
+     "val_loss_mean": 0.009039275299680108,
+     "mean_rank": 3.0
+    },
+    {
+     "node": "C1-tune-hyper-all",
+     "method": "hyper[lr=0.004]",
+     "lr": 0.004,
+     "knob": "gen_layers",
+     "knob_value": "all",
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.06042429804801941,
+       "val_diverged": 0.0,
+       "val_loss": 0.011067701503634453,
+       "n_params": 140052,
+       "width": 4,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 215.99713611602783,
+       "code": "b1a814aa4292",
+       "job_wall_s": 956.1227760314941
+      },
+      "bioreactor": {
+       "val_nrmse": 0.020570974797010422,
+       "val_diverged": 0.0,
+       "val_loss": 0.0005544340237975121,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 215.73786973953247,
+       "code": "b1a814aa4292",
+       "job_wall_s": 1114.354437828064
+      },
+      "duffing": {
+       "val_nrmse": 0.0445491187274456,
+       "val_diverged": 0.0,
+       "val_loss": 0.002635100856423378,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 165.15227365493774,
+       "code": "b1a814aa4292",
+       "job_wall_s": 707.3242492675781
+      },
+      "lorenz": {
+       "val_nrmse": 0.06272901594638824,
+       "val_diverged": 0.0,
+       "val_loss": 0.03096616454422474,
+       "n_params": 139020,
+       "width": 4,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 178.5545392036438,
+       "code": "b1a814aa4292",
+       "job_wall_s": 777.5416464805603
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06082632392644882,
+       "val_diverged": 0.0,
+       "val_loss": 0.006544600240886211,
+       "n_params": 139024,
+       "width": 4,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 178.171630859375,
+       "code": "b1a814aa4292",
+       "job_wall_s": 961.6877913475037
+      },
+      "vdp": {
+       "val_nrmse": 0.018986940383911133,
+       "val_diverged": 0.0,
+       "val_loss": 0.0003844412858597934,
+       "n_params": 137480,
+       "width": 4,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {},
+       "wall_s": 178.21891474723816,
+       "code": "b1a814aa4292",
+       "job_wall_s": 866.7720835208893
+      }
+     },
+     "complete": true,
+     "score_mean": 0.04468111197153727,
+     "score_gmean": 0.03986148181529874,
+     "val_loss_mean": 0.008692073742471015,
+     "mean_rank": 1.0
+    },
+    {
+     "node": "C1-tune-hyper-gen2",
+     "method": "hyper[lr=0.0005,gen_layers=2]",
+     "lr": 0.0005,
+     "knob": "gen_layers",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.09952779114246368,
+       "val_diverged": 0.0,
+       "val_loss": 0.01680530421435833,
+       "n_params": 138792,
+       "width": 8,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 188.73917722702026,
+       "code": "b1a814aa4292",
+       "job_wall_s": 582.2396059036255
+      },
+      "bioreactor": {
+       "val_nrmse": 0.03098464198410511,
+       "val_diverged": 0.0,
+       "val_loss": 0.0011811223812401295,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 174.83458280563354,
+       "code": "b1a814aa4292",
+       "job_wall_s": 556.8961760997772
+      },
+      "duffing": {
+       "val_nrmse": 0.07154929637908936,
+       "val_diverged": 0.0,
+       "val_loss": 0.005358587019145489,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 91.43511152267456,
+       "code": "b1a814aa4292",
+       "job_wall_s": 449.0459461212158
+      },
+      "lorenz": {
+       "val_nrmse": 0.07228262722492218,
+       "val_diverged": 0.0,
+       "val_loss": 0.0318971686065197,
+       "n_params": 136728,
+       "width": 8,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 112.19896149635315,
+       "code": "b1a814aa4292",
+       "job_wall_s": 462.8561840057373
+      },
+      "quad_tank": {
+       "val_nrmse": 0.07093369215726852,
+       "val_diverged": 0.0,
+       "val_loss": 0.008554085157811642,
+       "n_params": 137760,
+       "width": 8,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 114.19431400299072,
+       "code": "b1a814aa4292",
+       "job_wall_s": 485.5357766151428
+      },
+      "vdp": {
+       "val_nrmse": 0.025642942637205124,
+       "val_diverged": 0.0,
+       "val_loss": 0.0006584151415154338,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.0005,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 166.12413668632507,
+       "code": "b1a814aa4292",
+       "job_wall_s": 745.9841055870056
+      }
+     },
+     "complete": true,
+     "score_mean": 0.06182016525417566,
+     "score_gmean": 0.055431729439509435,
+     "val_loss_mean": 0.01074244708676512,
+     "mean_rank": 7.666666666666667
+    },
+    {
+     "node": "C1-tune-hyper-gen2",
+     "method": "hyper[lr=0.001,gen_layers=2]",
+     "lr": 0.001,
+     "knob": "gen_layers",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.07640162855386734,
+       "val_diverged": 0.0,
+       "val_loss": 0.013170462101697922,
+       "n_params": 138792,
+       "width": 8,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 155.00202894210815,
+       "code": "b1a814aa4292",
+       "job_wall_s": 582.2396059036255
+      },
+      "bioreactor": {
+       "val_nrmse": 0.027473710477352142,
+       "val_diverged": 0.0,
+       "val_loss": 0.0009221097570843995,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 154.3609356880188,
+       "code": "b1a814aa4292",
+       "job_wall_s": 556.8961760997772
+      },
+      "duffing": {
+       "val_nrmse": 0.06487143039703369,
+       "val_diverged": 0.0,
+       "val_loss": 0.004564211238175631,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 106.04929447174072,
+       "code": "b1a814aa4292",
+       "job_wall_s": 449.0459461212158
+      },
+      "lorenz": {
+       "val_nrmse": 0.06573274731636047,
+       "val_diverged": 0.0,
+       "val_loss": 0.031103605404496193,
+       "n_params": 136728,
+       "width": 8,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 108.23107957839966,
+       "code": "b1a814aa4292",
+       "job_wall_s": 462.8561840057373
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06547471135854721,
+       "val_diverged": 0.0,
+       "val_loss": 0.007640756666660309,
+       "n_params": 137760,
+       "width": 8,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 109.74182176589966,
+       "code": "b1a814aa4292",
+       "job_wall_s": 485.5357766151428
+      },
+      "vdp": {
+       "val_nrmse": 0.02325839176774025,
+       "val_diverged": 0.0,
+       "val_loss": 0.0005598804564215243,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.001,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 182.4922490119934,
+       "code": "b1a814aa4292",
+       "job_wall_s": 745.9841055870056
+      }
+     },
+     "complete": true,
+     "score_mean": 0.05386876997848352,
+     "score_gmean": 0.048874771980377436,
+     "val_loss_mean": 0.009660170937422663,
+     "mean_rank": 6.0
+    },
+    {
+     "node": "C1-tune-hyper-gen2",
+     "method": "hyper[lr=0.002,gen_layers=2]",
+     "lr": 0.002,
+     "knob": "gen_layers",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.07590077817440033,
+       "val_diverged": 0.0,
+       "val_loss": 0.013128607533872128,
+       "n_params": 138792,
+       "width": 8,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 114.42156195640564,
+       "code": "b1a814aa4292",
+       "job_wall_s": 582.2396059036255
+      },
+      "bioreactor": {
+       "val_nrmse": 0.024956021457910538,
+       "val_diverged": 0.0,
+       "val_loss": 0.0007758346619084477,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 106.18790340423584,
+       "code": "b1a814aa4292",
+       "job_wall_s": 556.8961760997772
+      },
+      "duffing": {
+       "val_nrmse": 0.06117061525583267,
+       "val_diverged": 0.0,
+       "val_loss": 0.004244728945195675,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 107.32412695884705,
+       "code": "b1a814aa4292",
+       "job_wall_s": 449.0459461212158
+      },
+      "lorenz": {
+       "val_nrmse": 0.0627303272485733,
+       "val_diverged": 0.0,
+       "val_loss": 0.03096984699368477,
+       "n_params": 136728,
+       "width": 8,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 107.69924259185791,
+       "code": "b1a814aa4292",
+       "job_wall_s": 462.8561840057373
+      },
+      "quad_tank": {
+       "val_nrmse": 0.06286108493804932,
+       "val_diverged": 0.0,
+       "val_loss": 0.007095525041222572,
+       "n_params": 137760,
+       "width": 8,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 109.74968266487122,
+       "code": "b1a814aa4292",
+       "job_wall_s": 485.5357766151428
+      },
+      "vdp": {
+       "val_nrmse": 0.02179739810526371,
+       "val_diverged": 0.0,
+       "val_loss": 0.0004944149404764175,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.002,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 191.8304524421692,
+       "code": "b1a814aa4292",
+       "job_wall_s": 745.9841055870056
+      }
+     },
+     "complete": true,
+     "score_mean": 0.051569370863338314,
+     "score_gmean": 0.046384343928610905,
+     "val_loss_mean": 0.009451493019393334,
+     "mean_rank": 4.5
+    },
+    {
+     "node": "C1-tune-hyper-gen2",
+     "method": "hyper[lr=0.004,gen_layers=2]",
+     "lr": 0.004,
+     "knob": "gen_layers",
+     "knob_value": 2,
+     "default": false,
+     "per_system": {
+      "battery": {
+       "val_nrmse": 0.06494022905826569,
+       "val_diverged": 0.0,
+       "val_loss": 0.011513380333781242,
+       "n_params": 138792,
+       "width": 8,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 105.0037260055542,
+       "code": "b1a814aa4292",
+       "job_wall_s": 582.2396059036255
+      },
+      "bioreactor": {
+       "val_nrmse": 0.022250855341553688,
+       "val_diverged": 0.0,
+       "val_loss": 0.000629913411103189,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 105.79794573783875,
+       "code": "b1a814aa4292",
+       "job_wall_s": 556.8961760997772
+      },
+      "duffing": {
+       "val_nrmse": 0.05865684896707535,
+       "val_diverged": 0.0,
+       "val_loss": 0.003981562331318855,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 106.97297358512878,
+       "code": "b1a814aa4292",
+       "job_wall_s": 449.0459461212158
+      },
+      "lorenz": {
+       "val_nrmse": 0.06303268671035767,
+       "val_diverged": 0.0,
+       "val_loss": 0.030978575348854065,
+       "n_params": 136728,
+       "width": 8,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 86.80632162094116,
+       "code": "b1a814aa4292",
+       "job_wall_s": 462.8561840057373
+      },
+      "quad_tank": {
+       "val_nrmse": 0.061388049274683,
+       "val_diverged": 0.0,
+       "val_loss": 0.006440741941332817,
+       "n_params": 137760,
+       "width": 8,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 108.36985492706299,
+       "code": "b1a814aa4292",
+       "job_wall_s": 485.5357766151428
+      },
+      "vdp": {
+       "val_nrmse": 0.02166285552084446,
+       "val_diverged": 0.0,
+       "val_loss": 0.00048565681208856404,
+       "n_params": 135696,
+       "width": 8,
+       "lr": 0.004,
+       "rank": 4,
+       "arch": {
+        "gen_layers": 2
+       },
+       "wall_s": 183.7846601009369,
+       "code": "b1a814aa4292",
+       "job_wall_s": 745.9841055870056
+      }
+     },
+     "complete": true,
+     "score_mean": 0.04865525414546331,
+     "score_gmean": 0.0438454065921707,
+     "val_loss_mean": 0.009004971696413122,
+     "mean_rank": 3.0
+    }
+   ]
+  }
+ }
+}

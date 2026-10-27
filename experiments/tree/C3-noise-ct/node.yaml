@@ -1,0 +1,43 @@
+id: C3-noise-ct
+parent: C1-where
+title: Non-Gaussian colored sensor noise (AR(1) Student-t)
+contribution: C3
+question: The sensor's noise is colored and heavy-tailed in training and deployment. Filters assume
+  white Gaussian noise (nominal R; oracle filters use its true variance).
+hypothesis: Learned observers trained on the real sensor beat nominal and variance-oracle filters;
+  Huber filters close part of the gap (they address tails, not color).
+decision_rule: Best learned vs best filter of each kind, paired CI on id and sequence_ood, >=
+  4/6.
+set:
+  data.sensor:
+    noise: 0.03
+    kind: colored_t
+    rho: 0.9
+    nu: 3.0
+methods:
+- latent
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- pf
+- kkl_mb
+- nlox
+- ekf_huber
+- ukf_huber
+- ekf_oracle
+- ukf_oracle
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - ekf
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 7
+status: done
+created: '2026-10-25'

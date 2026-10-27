@@ -1,0 +1,355 @@
+% =====================================================================================
+% Block M4 (appendix): how much information the measurements carry about the hidden state, and
+% when ANY observer must fail. Owns: def:m4-budget, prop:m4-gramian, thm:m4-bounds, prop:m4-excitation,
+% prop:m4-learning, rem:m4-kolmogorov, tab:m4-budgets. Uses (A1)-(A4) of Section~\ref{sec:m1} only for
+% the fading-memory reading (Lemma~\ref{lem:m2-tail}); every bound below is a statement about the plant,
+% the sensors and the noise, not about a learned map. Status legend as in Sections~\ref{sec:m1}--\ref{sec:m3}.
+% Checks: theory/checks/m4_checks.py (CPU, ~3 min). Computations: experiments/information/
+% (budgets.py, collect_achieved.py, score.py, dose_response.py; PREREG.md written before scoring).
+% New bibliography keys are listed as comments at the end of this file.
+% =====================================================================================
+\section{How much information the measurements carry, and when any observer must fail}\label{sec:m4}
+
+\paragraph{Setting.} The sampled plant exactly as the data generator produces it (\texttt{data.integrate}):
+\begin{equation}\label{eq:m4-plant}
+x_{k+1}=\Phi(x_k,u_k)+w_k,\qquad y_k=h(x_k)+v_k,\qquad w_k\sim\mathcal N(0,Q),\quad v_k\sim\mathcal N(0,R),
+\end{equation}
+$\Phi$ the RK4 step of $\dot x=f(x,u)$ under the zero-order hold, $Q=dt\,\mathrm{diag}(\sigma_p x_{\rm std})^2$
+(Euler--Maruyama increment after the step, $\sigma_p=0.005$), $R=\mathrm{diag}(\sigma_yy_{\rm std})^2$
+($\sigma_y=0.03$), $w,v$ independent and white. $F_k:=\partial_x\Phi(x_k,u_k)$, $H_k:=\partial_xh(x_k)$.
+$D_\sigma=\mathrm{diag}(x_{\rm std})$ is the normalisation of \texttt{metrics.py}; for a matrix $M$ write
+$\tilde M:=D_\sigma^{-1}MD_\sigma^{-1}$. An \emph{observer} is any measurable map
+$\hat x_k=\psi_k(y_{0:k},u_{0:k})$ (the deployed decoder-side observer, the EKF and the grey-box filter are
+such maps; the prior $\hat x_0$ is a constant). Errors are $e_k=\hat x_k-x_k$; the paper's per-state NRMSE on the
+settled window $S$ is a per-episode RMS of $e_{k,j}/\sigma_j$ averaged over episodes, and the quantity a Cram\'er--Rao
+bound controls is the \emph{pooled} RMS $\big(\tfrac1{|S|}\sum_{k\in S}\mathbb E[e_{k,j}^2]\big)^{1/2}/\sigma_j$, which
+is never smaller than the mean of per-episode RMS values (Jensen); every comparison below uses the pooled form.
+$\Sigma_x$ is the \emph{climatology}: the covariance of the settled state under the evaluation inputs, the
+reference against which NRMSE~$=1$ means ``no information''.
+
+\begin{definition}[information matrices along a window; information budget]\label{def:m4-budget}
+Fix an episode distribution (initial condition, input record, noises) and a window length $W$ (samples).
+\begin{enumerate}
+\item[(i)] \emph{Local recursion} (along one realised trajectory): $P_{k-W}=\Sigma_x$ and, for $i=k-W,\dots,k-1$,
+$P^-_{i+1}=F_iP_iF_i^\top+Q$, $P_{i+1}=\big((P^-_{i+1})^{-1}+H_{i+1}^\top R^{-1}H_{i+1}\big)^{-1}$ (after the update
+with $y_{k-W}$ at the start). $P_k(W)$ is the Kalman covariance of the linearised plant.
+\item[(ii)] \emph{Bayesian recursion} \citep{tichavsky1998posterior}: $J_{k-W}=\Sigma_x^{-1}+\mathbb E[H^\top R^{-1}H]$
+and
+\begin{gather*}
+J_{i+1}=D^{22}_i-(D^{12}_i)^\top(J_i+D^{11}_i)^{-1}D^{12}_i,\\
+D^{11}_i=\mathbb E[F_i^\top Q^{-1}F_i],\qquad D^{12}_i=-\mathbb E[F_i^\top]Q^{-1},\qquad D^{22}_i=Q^{-1}+\mathbb E[H_{i+1}^\top R^{-1}H_{i+1}],
+\end{gather*}
+the expectations over the episode distribution (estimated as averages over the evaluation episodes). Write
+$P^{\rm B}_k(W):=J_k^{-1}$. $W=\infty$ (``full past'') starts the recursion at $k=0$.
+\item[(iii)] \emph{Budget and bounds.} $\mathrm{bits}_k(W):=\tfrac12\log_2\det\tilde\Sigma_x-\tfrac12\log_2\det\tilde P^{\rm B}_k(W)$
+(information about $x_k$ delivered by the last $W$ samples of $(y,u)$ beyond climatology);
+$\beta_j(W):=\big(\mathrm{mean}_{k\in S}[\tilde P^{\rm B}_k(W)]_{jj}\big)^{1/2}$ (per-state floor);
+$\beta_{\rm unm}(W)$ its mean over unmeasured states; $\rho(W):=\beta_{\rm unm}(W)/\beta_{\rm unm}(\infty)$ (window deficit).
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}[Fisher information is the observability Gramian]\label{prop:m4-gramian}
+[proven] (a) For a linear plant $x_{k+1}=F_dx_k+G_du_k$, $y_k=Cx_k+v_k$ without process noise, the Fisher
+information about $x_k$ carried by $y_{k-W:k}$ (given $u$) is
+\[
+\mathcal I_k(W)=\sum_{i=0}^{W}\Phi_i^\top C^\top R^{-1}C\,\Phi_i,\qquad \Phi_i=\partial x_{k-i}/\partial x_k=F_d^{-i},
+\]
+the backward observability Gramian of the window weighted by $R^{-1}$ (for $R=\sigma^2I$: the Gramian over
+$\sigma^2$), and $J_k(W)=\Sigma_x^{-1}+\mathcal I_k(W)$ is the $Q\to0$ limit of both recursions of
+Definition~\ref{def:m4-budget}. It does not depend on $u$. (b) With process noise the two recursions coincide and
+equal the Kalman filter's posterior covariance (information form of the Riccati recursion). (c) For the nonlinear
+plant \eqref{eq:m4-plant} the Bayesian recursion is the exact Fisher information of the joint density of
+$(x_{0:k},y_{0:k})$ given $u$ \citep[Prop.~1]{tichavsky1998posterior}: $-\mathbb E[\nabla^2_{x_k,x_{k+1}}\log p(x_{k+1}|x_k,u_k)]$
+has the blocks $D^{11},D^{12},D^{22}-Q^{-1}$ exactly, because the transition noise is additive Gaussian, and
+$-\mathbb E[\nabla^2\log p(y|x)]=\mathbb E[H^\top R^{-1}H]$.
+\end{proposition}
+\emph{Intuition.} Each measurement in the window sees the current state through the backward flow; the Gramian
+adds up how far the window's outputs move when the current state moves, in units of the noise.
+\begin{proof}
+(a) $y_{k-i}=C F_d^{-i}x_k+(\text{known function of }u)+v_{k-i}$, a Gaussian linear model in $x_k$ with design
+matrix $CF_d^{-i}$; the Fisher information of independent Gaussian observations adds. The $Q\to0$ limit of (i):
+with $Q=0$ the covariance recursion is the information recursion $J\mapsto F^{-\top}JF^{-1}+H^\top R^{-1}H$ in
+the frame of $x_k$ (check [2]). (b) Linear plant: $F,H$ are constant, the expectations in (ii) are trivial, and
+the block elimination $D^{22}-D^{12\top}(J+D^{11})^{-1}D^{12}$ is the matrix-inversion-lemma form of the Riccati
+update. (c) Differentiate $\log p(x_{k+1}|x_k)=-\tfrac12\|x_{k+1}-\Phi(x_k,u_k)\|^2_{Q^{-1}}+c$ twice; the term
+$\mathbb E[(x_{k+1}-\Phi)^\top Q^{-1}\partial^2_{x}\Phi]$ vanishes because the residual is the zero-mean noise,
+independent of $x_k$.
+\end{proof}
+
+\begin{theorem}[what any observer must pay]\label{thm:m4-bounds}
+[(a), (b), (c) proven for the linear-Gaussian plant, where (a) is attained; (a) proven for the nonlinear plant
+\eqref{eq:m4-plant} in its Bayesian form (Gaussian noises, $\Phi,h\in C^1$, a prior density that is $C^1$ and
+vanishes at the boundary of its support; the uniform initial box violates the last condition at $k=0$, so the
+recursion is started from the smooth density of $x_1$, which changes nothing on the settled window); the
+\emph{numbers} for nonlinear plants are Monte Carlo estimates of the expectations in Definition~\ref{def:m4-budget}(ii)]
+For every observer $\psi$ and every $k$:
+\begin{enumerate}
+\item[(a)] (\emph{Bayesian Cram\'er--Rao / van Trees}) $\mathbb E[e_ke_k^\top]\succeq J_k^{-1}=P^{\rm B}_k(W)$ when
+$\psi_k$ uses the last $W$ samples only, and $\succeq P^{\rm B}_k(\infty)$ for any $\psi_k$. Hence the pooled
+NRMSE of state $j$ is at least $\beta_j(W)$, resp.\ $\beta_j(\infty)$, and the pooled total NRMSE at least
+$\big(\tfrac1n\sum_j\beta_j^2\big)^{1/2}$. For the linear-Gaussian plant the Kalman filter attains every one of
+these with equality.
+\item[(b)] (\emph{mutual information}) For a linear plant and any prior of covariance $\Sigma_x$,
+$I(x_k;y_{0:k}\,|\,u_{0:k})\le\mathrm{bits}_k(\infty)=\tfrac12\log_2\det\big(I+\tilde\Sigma_x\tilde{\mathcal I}_k\big)$,
+with equality for a Gaussian prior; the same with $W$ in place of $\infty$ for the window's information.
+\item[(c)] (\emph{rate--distortion: the guarantee in bits}) Let $D:=\tfrac1n\,\mathrm{mean}_{k\in S}\,\mathbb E\|D_\sigma^{-1}e_k\|^2$
+be the normalised total MSE of an observer that extracts $I$ bits about $x_k$ from the window
+($I\le\mathrm{bits}_k(W)$ by (b) and the data-processing inequality, since $\hat x_k$ is a function of the window).
+For a Gaussian prior
+\[
+D\ \ge\ (\det\tilde\Sigma_x)^{1/n}\,2^{-2I/n}\ \ge\ (\det\tilde\Sigma_x)^{1/n}\,2^{-2\,\mathrm{bits}_k(W)/n};
+\]
+equivalently, reaching a per-state RMS of $\sqrt D$ \emph{requires} at least
+$I^*(D)=\tfrac n2\log_2\big((\det\tilde\Sigma_x)^{1/n}/D\big)$ bits per window, and an observer whose window
+delivers fewer bits fails to reach $D$, whatever its architecture. For a non-Gaussian prior replace
+$\tfrac12\log_2\big((2\pi e)^n\det\tilde\Sigma_x\big)$ by the differential entropy $h(\tilde x_k)$ in the Shannon
+lower bound $R(D)\ge h(\tilde x_k)-\tfrac n2\log_2(2\pi eD)$. The two bounds are ordered: the rate--distortion
+floor never exceeds the Cram\'er--Rao total (arithmetic--geometric mean inequality on the eigenvalues of
+$\tilde P^{\rm B}_k$), so (a) is the sharper statement per state and (c) is the same statement in bits.
+\end{enumerate}
+\end{theorem}
+\emph{Intuition.} The window is a noisy channel from the current state to the observer; (a) says how precisely
+the state can be read off it in each direction, (c) counts the bits that reading requires. Both depend only on
+the plant, the sensors, the noise, the window and the input record, never on the observer.
+\begin{proof}
+(a) Van Trees' inequality \citep[Ch.~2.4]{vantrees1968detection}: for a prior with the stated regularity and any
+estimator, $\mathbb E[ee^\top]\succeq J_B^{-1}$ with $J_B$ the Bayesian information of $x_k$; the recursive form of
+$J_B$ for the Markov model \eqref{eq:m4-plant} is Theorem~1 of \citet{tichavsky1998posterior}, whose blocks are
+those of Proposition~\ref{prop:m4-gramian}(c); restricting the observer to the window is the same statement with
+the prior placed at $k-W$. Attainment: for the linear-Gaussian plant the posterior is Gaussian with covariance
+$P_k$ (the Kalman recursion), the conditional mean has exactly this error covariance, and $P_k=J_k^{-1}$ by
+Proposition~\ref{prop:m4-gramian}(b). (b) For a linear plant $y_{0:k}=\mathcal L x_k+\mathcal N$ with $\mathcal N$
+Gaussian and independent of $x_k$ (process noise, sensor noise, and the known input contribute a deterministic
+offset): among all inputs of covariance $\Sigma_x$ the Gaussian maximises the mutual information of an additive
+Gaussian channel \citep[Thm.~9.6.5]{cover2006elements}, and for a Gaussian prior
+$I=\tfrac12\log\det\Sigma_x-\tfrac12\log\det P_k$. (c) The Shannon lower bound \citep[Thm.~10.4.1 and
+eq.~(10.74)]{cover2006elements}: $R(D)\ge h(\tilde x)-\tfrac n2\log_2(2\pi eD)$ for squared error $nD$; with the
+Gaussian entropy, $R(D)\ge\tfrac12\log_2\big(\det\tilde\Sigma_x/D^n\big)$, and $R(D)\le I$ because the observer's
+output achieves distortion $D$ with $I$ bits of information about $x_k$ (rate--distortion converse). Solve for
+$D$. Ordering: $\tfrac1n\mathrm{tr}\,\tilde P\ge(\det\tilde P)^{1/n}=(\det\tilde\Sigma_x)^{1/n}2^{-2\,\mathrm{bits}/n}$.
+\end{proof}
+\noindent\emph{What is a guarantee here and what is not.} For a linear plant with Gaussian noises (a)--(c) are
+theorems with the constants of the data generator, and (a) is tight. For the nonlinear benchmarks (a) in its
+Bayesian form remains a theorem, but its expectations are Monte Carlo averages over the evaluation episodes, so
+the quoted floors carry sampling error (a few per cent on the slow states, check [7]). The local recursion (i) is
+the EKF's own covariance and is \emph{not} a bound for nonlinear plants; it is reported next to the Bayesian one
+because it is what an engineer computes and because the two differ exactly where the Bayesian bound is loose: by
+Jensen's inequality averaging information before inverting lowers the floor, so on the chaotic plants the Bayesian
+floor is far below anything achievable (lorenz $0.0014$ against the exact-model EKF's $0.0064$; r\"ossler $0.0014$
+against $0.048$ for the local recursion), while on the near-linear plants the two coincide (quad\_tank $0.0198$ both;
+Table~\ref{tab:m4-budgets}). Nothing in this section bounds a learned observer \emph{from above}.
+
+\begin{proposition}[excitation and the budget]\label{prop:m4-excitation}
+[(a), (b) proven; (c) proven; (d) proven (data processing) with an empirical reading]
+\begin{enumerate}
+\item[(a)] \emph{Linear plants: the input cannot buy information about the state.} $J_k(W)$ does not depend on
+$u$ (Proposition~\ref{prop:m4-gramian}(a,b)): the per-state floors $\beta_j(W)$ are the same for every input
+record. Excitation changes the climatology $\Sigma_x$, hence $\mathrm{bits}_k(W)$ \emph{relative to climatology},
+but not the absolute error floor. (This is the estimation-side counterpart of the identification-side fact that
+persistent excitation is needed to learn the \emph{model}, \citealp[Ch.~13]{ljung1999system}: with a known model
+the state information is a Gramian property.)
+\item[(b)] \emph{Nonlinear plants.} $u$ enters $J_k(W)$ only through the operating points $(x_i,u_i)$ at which
+$F_i,H_i$ are evaluated; the budget moves with the evaluation inputs exactly as much as the linearisation does.
+On quad\_tank (square-root orifice law) the full-past floor changes by less than $1\%$ when the input time scale is
+varied by a factor $16$ (check [4]; $\mathrm{bits}=21.27$ at every level of the dose-response experiment).
+\item[(c)] \emph{Short windows starve slow modes.} $J_k(W)$ is nondecreasing in $W$ and converges to the
+steady-state information, so $\rho(W)\ge1$ decreases to $1$. For an unmeasured state that reaches the output only
+through a mode of rate $\lambda_s$, the window information about it keeps growing until $W\approx1/\lambda_s$: a
+window short on the scale $1/\lambda_s$ is a deficit $\rho(W)\gg1$ no matter how rich the input. quad\_tank
+($\lambda_s^{-1}=84$~s, $\alpha=0.1$): $\beta_{\rm unm}=0.052,0.030,0.020$ at $W=1/\alpha,3/\alpha,\infty$
+($\rho(3/\alpha)=1.50$); battery (SOC is an integrator): $0.033,0.0084,0.0036$ ($\rho=2.3$); vdp: $0.0051,0.0038,0.0038$
+($\rho=1.0$).
+\item[(d)] \emph{What the latent can carry.} $z_k$ and $c_k$ are functions of $(y_{0:k},u_{0:k})$, so
+$I(x_k;z_k,c_k)\le I(x_k;y_{0:k},u_{0:k})\le\mathrm{bits}_k(\infty)$ and every decoder-side observer obeys
+Theorem~\ref{thm:m4-bounds} with the full-past floor. By Lemma~\ref{lem:m2-tail} the latent's dependence on
+measurements older than $W$ is attenuated by $e^{-\alpha W}$, and the context carries $u$ only; the \emph{reading}
+(not a theorem) is that a decoder-side observer with filter rate $\alpha$ is, in the information sense, a window
+observer with $W$ of a few $1/\alpha$, so its floor is $\beta_j(W)$ with $W\in[1/\alpha,3/\alpha]$ rather than
+$\beta_j(\infty)$. On quad\_tank HyperKKL's unmeasured error ($0.067$ id, $0.093$ sequence OOD) lies above
+$\beta_{\rm unm}(1/\alpha)=0.052$, i.e.\ $2.2\times$ the $3/\alpha$ floor and $3.4\times$ the full-past floor, while the
+grey-box EKF ($0.0196$) is \emph{at} the full-past floor ($0.0198$).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a), (b) are read off Definition~\ref{def:m4-budget} and Proposition~\ref{prop:m4-gramian}. (c) Monotonicity:
+adding measurements adds a positive semidefinite term and the Bayesian recursion is monotone in $J$
+\citep{tichavsky1998posterior}; the convergence is that of the Riccati recursion. (d) Data processing inequality.
+\end{proof}
+
+\begin{proposition}[the learning side: a necessary condition for any learned decoder]\label{prop:m4-learning}
+[proven, elementary; the sample-complexity statement is the well-specified linear case] Let the decoder be fitted by
+empirical risk minimisation on training triples $(z',c',x')$ with regressor features $\varphi(z',c')\in\mathbb R^p$
+(for a network, the features of its last layer; for the grey-box filter, the inputs of its residual network) and
+training covariance $C_\varphi=\mathbb E_{\rm train}[\varphi\varphi^\top]$.
+\begin{enumerate}
+\item[(a)] (\emph{rank / persistent excitation}) If $C_\varphi$ has a null space $\mathcal N\ne\{0\}$, two
+hypotheses that differ only by a linear functional supported on $\mathcal N$ have the same empirical risk for every
+sample size, so at a query with $\varphi\notin\mathcal N^\perp$ the learned map is undetermined by the data: its
+error there is at least half the diameter of the hypotheses compatible with the training set, independent of $N$.
+The condition that excludes this uniformly in time, $\inf_t\lambda_{\min}\big(\tfrac1W\sum_{i=t-W}^t\varphi_i\varphi_i^\top\big)\ge c>0$,
+is persistent excitation of the \emph{regressors}; it is a property of the training input distribution and of
+the plant together, not of the evaluation data.
+\item[(b)] (\emph{how many informative samples}) For a well-specified linear-in-$\varphi$ map with $p$ parameters
+and label noise $\sigma_\ell^2$, the excess risk of least squares is $\sigma_\ell^2\,\mathrm{tr}\,(N C_\varphi)^{-1}\approx\sigma_\ell^2p/N$
+\citep[Ch.~3]{hastie2009elements}; the same excess therefore needs $N\propto p$. A grey-box filter that knows the
+mass balance and learns only a low-dimensional residual ($p_g$) reaches a given excess with $N$ smaller by the
+factor $p_g/p_f$ than a generic decoder ($p_f$), and the directions it does \emph{not} learn (the known structure)
+have zero excess at every $N$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) The empirical risk depends on the hypothesis only through its values at the training regressors, which are
+$\mathcal N^\perp$-measurable; two hypotheses differing on $\mathcal N$ agree there. The lower bound is the
+two-point argument of Corollary~\ref{cor:m1-ood}(b). (b) $\hat w-w=(\varphi^\top\varphi)^{-1}\varphi^\top\epsilon$
+has covariance $\sigma_\ell^2(\varphi^\top\varphi)^{-1}$; take the trace and the law of large numbers
+$\varphi^\top\varphi\approx NC_\varphi$ (check [6]: ratios $0.84$--$1.49$ at $p=2$ and $p=64$).
+\end{proof}
+\noindent\emph{Honest scope.} (a) is necessary, not sufficient; (b) is the linear well-specified rate, and for the
+deep decoders of this paper only the direction of the statement is claimed (fewer effective parameters, fewer
+informative samples). The two sides are distinct: Theorem~\ref{thm:m4-bounds} is about the \emph{evaluation}
+episodes (what any observer can extract from them) and is unchanged by any amount of training data;
+Proposition~\ref{prop:m4-learning} is about the \emph{training} episodes and is unchanged by the evaluation
+sensor. An observer can fail for either reason, and the two have different remedies (a longer window or a better
+sensor against the first; richer or structured training against the second).
+
+\begin{remark}[Kolmogorov complexity: why it cannot give the number, and what it does say]\label{rem:m4-kolmogorov}
+The Kolmogorov complexity $K(s)$ of a string (the length of the shortest program producing it) is not computable:
+no algorithm outputs $K(s)$ for every $s$, and every computable lower bound of $K$ is bounded above
+\citep[Thm.~2.3.2 and its corollaries]{li2008kolmogorov}; it is also defined only up to an additive constant that
+depends on the reference machine. A ``guarantee'' of the form ``the observer fails because $K(\text{data})$ is too
+small'' is therefore not a statement one can evaluate on quad\_tank, and the per-system numbers of
+Table~\ref{tab:m4-budgets} are Shannon and Fisher quantities, which are computable from the model and the noise.
+The honest connection is through the minimum description length principle \citep{rissanen1978modeling,grunwald2007mdl}:
+a two-part code pays $L(\text{model})+L(\text{data}\,|\,\text{model})$ bits. The grey-box filter's first term is the
+few parameters of its residual network (the mass balance costs nothing, it is given); a generic decoder's first
+term is its weight description. The second term, the bits needed to encode the residual error of the state at the
+observer's precision, is bounded below by $I^*(D)$ of Theorem~\ref{thm:m4-bounds}(c): no coding scheme describes
+the state to within $D$ with fewer bits than the window carries. MDL thus \emph{interprets}
+Proposition~\ref{prop:m4-learning}(b) (fewer model bits, fewer samples to pay them) and reproduces
+Theorem~\ref{thm:m4-bounds}(c) in its data term; it adds no quantity beyond them, and the Kolmogorov version of
+the same two-part argument \citep[Ch.~5]{li2008kolmogorov} adds only uncomputability. We therefore make no
+Kolmogorov claim.
+\end{remark}
+
+\begin{table}[ht]\centering\scriptsize
+\caption{Information budget of the 12 plants (evaluation tier \texttt{id}, 64 episodes, Bayesian recursion;
+\texttt{experiments/information/budgets.json}). bits: information about the current state beyond climatology
+from the full past and from a $3/\alpha$ window. $\beta_{\rm unm}$: floor on the pooled NRMSE of the
+unmeasured states (full past; the local EKF-covariance value next to it; windows $3/\alpha$ and $1/\alpha$);
+$\rho=\beta_{\rm unm}(3/\alpha)/\beta_{\rm unm}(\infty)$. EKF/$\beta$: exact-model EKF pooled unmeasured RMS over the
+full-past floor (tightness). HyperKKL and grey-box: achieved unmeasured NRMSE (\texttt{id}; HyperKKL from the
+full-knowledge runs, best grey-box filter from the partial-knowledge runs; \texttt{achieved.json}). Group by the
+pre-registered thresholds of \texttt{PREREG.md} (rich: $\beta_{\rm unm}(3/\alpha)<0.02$ and $\rho<1.25$; window-starved:
+$\rho\ge1.4$; absolutely starved: $\beta_{\rm unm}(3/\alpha)\ge0.03$).}\label{tab:m4-budgets}
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{@{}lrrrrrrrrrrrrl@{}}\hline
+system & $n_x$ & $n_y$ & bits$_\infty$ & bits$_{3/\alpha}$ & $\beta_{\rm unm}(\infty)$ & local & $\beta_{\rm unm}(3/\alpha)$ & $\beta_{\rm unm}(1/\alpha)$ & $\rho$ & EKF/$\beta$ & HyperKKL & grey-box & group\\\hline
+battery & 5 & 2 & 39.3 & 37.5 & 0.0036 & 0.0054 & 0.0084 & 0.0333 & 2.31 & 1.99 & 0.054 & 0.027 & window \\
+bioreactor & 2 & 1 & 8.6 & 8.6 & 0.0085 & 0.0087 & 0.0085 & 0.0085 & 1.00 & 0.99 & 0.021 & 0.270 & rich \\
+duffing & 2 & 1 & 16.1 & 14.5 & 0.0053 & 0.0056 & 0.0113 & 0.0696 & 2.14 & 1.04 & 0.066 & 0.009 & window \\
+lorenz & 3 & 1 & 27.5 & 27.5 & 0.0014 & 0.0064 & 0.0014 & 0.0014 & 1.00 & 4.61 & 0.025 & 0.239 & rich \\
+quad\_tank & 4 & 2 & 21.3 & 20.3 & 0.0198 & 0.0198 & 0.0297 & 0.0517 & 1.50 & 0.99 & 0.067 & 0.020 & window \\
+vdp & 2 & 1 & 16.2 & 16.2 & 0.0038 & 0.0065 & 0.0038 & 0.0051 & 1.00 & 1.67 & 0.021 & 0.025 & rich \\
+cartpole & 4 & 2 & 29.4 & 27.0 & 0.0107 & 0.0107 & 0.0415 & 0.1200 & 3.89 & 0.95 & 0.175 & 0.048 & window \\
+fhn & 2 & 1 & 14.9 & 14.8 & 0.0077 & 0.0083 & 0.0078 & 0.0141 & 1.01 & 1.07 & 0.036 & 0.014 & rich \\
+highway\_traffic & 5 & 3 & 21.5 & 18.7 & 0.0186 & 0.0187 & 0.0512 & 0.0721 & 2.75 & 1.00 & 0.106 & 0.043 & window \\
+network & 10 & 3 & 48.5 & 48.3 & 0.0076 & 0.0090 & 0.0079 & 0.0110 & 1.04 & 1.17 & 0.046 & -- & rich \\
+rossler & 3 & 1 & 27.0 & 27.0 & 0.0014 & 0.0481 & 0.0014 & 0.0014 & 1.00 & 30.43 & 0.102 & 0.658 & rich \\
+two\_link\_arm & 4 & 2 & 21.0 & 21.0 & 0.0455 & 0.0841 & 0.0456 & 0.0500 & 1.00 & 1.85 & 0.172 & 0.315 & abs. \\\hline
+\end{tabular}
+\end{table}
+
+\paragraph{What it predicts, and how it is tested.} Pre-registered in \texttt{experiments/information/PREREG.md}
+(thresholds fixed from the budgets before any comparison with achieved errors), scored mechanically by
+\texttt{score.py} into \texttt{RESULTS.md}; the test plants' partial-knowledge runs (TEST-C3) use coloured Student-$t$
+noise on a $30\%$-perturbed plant, and the post hoc recomputation of their budgets under that model
+(\texttt{BUDGET\_FIX.md}) moves $\beta_{\rm unm}(3/\alpha)$ to $0.065$ (cartpole), $0.097$ (highway\_traffic) and $0.020$
+(two\_link\_arm, now marginal) without changing any group of Table~\ref{tab:m4-budgets} or any verdict below; the training-distribution budgets equal the evaluation ones to within
+$0.3$~bits on every plant, so the \texttt{id} column stands for both.
+\begin{enumerate}
+\item[(P0)] \emph{Guarantee.} Every achieved pooled RMS, per state and in total, of every method in every stored
+run (448 method--tier cells, $12$ plants, exact and partial knowledge) must lie above $0.95\,\beta_j(\infty)$.
+\textbf{FAIL by the letter}: $3$ cells are below, all of them the exact-model EKF on slow states (quad\_tank $x_3$
+on sequence OOD, $0.0233$ vs $0.0245$; cartpole $x_2$, $0.0134$ vs $0.0145$, and its total), and in all three the
+floor lies inside the bootstrap $95\%$ interval of the achieved pooled RMS (per-episode coefficient of variation
+$0.3$--$0.5$: a slow error process yields few independent samples per episode). No learned observer and no
+grey-box filter is below any floor. The $5\%$ tolerance was too strict for slow states; the post-hoc reading is
+``no floor exceeds the achieved error by more than its sampling uncertainty''.
+\emph{Tightness}: the exact-model EKF sits at the floor on the near-linear plants (ratio $0.95$--$1.07$ on
+quad\_tank, cartpole, bioreactor, duffing, highway\_traffic, fhn) and above it where the Bayesian floor is loose
+(lorenz $4.6$, r\"ossler $30$) or the EKF is not the optimal filter (battery $2.0$, vdp $1.7$, two\_link\_arm $1.9$).
+\item[(P1)] \emph{Rank correlation across plants.} HyperKKL's unmeasured NRMSE against $\beta_{\rm unm}(3/\alpha)$:
+Spearman $\rho_s=0.65$ ($p=0.02$, $n=12$; $0.76$ on sequence OOD) -- \textbf{PASS} (rule $\ge0.5$). Exact-model EKF
+against $\beta_{\rm unm}(\infty)$: $0.58$ -- \textbf{FAIL} (rule $\ge0.7$; the EKF is far from the Bayesian floor on
+the chaotic plants, where that floor is loose). Best grey-box against $\beta_{\rm unm}(\infty)$: $-0.05$ --
+\textbf{FAIL}: on bioreactor, lorenz, r\"ossler and two\_link\_arm the grey-box filter fails ($0.24$--$0.66$ NRMSE,
+divergence and model error), so its error is not information-limited; the floor binds only an estimator that is
+close to optimal.
+\item[(P2)] \emph{Where learned observers lose.} The gap (HyperKKL $-$ best grey-box)/grey-box on the unmeasured
+states, partial-knowledge runs: median $+464\%$ in the window-starved group against $-66\%$ in the rich group on
+sequence OOD ($+321\%$ vs $-63\%$ on \texttt{id}), with $5/5$ window-starved plants above the rich median --
+\textbf{PASS} on both tiers. The exception inside the rich group is fhn ($+533\%$), which the budget does not
+explain; two\_link\_arm (absolutely starved) has a small gap ($+19\%$) because both observers are poor there.
+\item[(P3)] \emph{Dose--response on the evaluation inputs} (quad\_tank, vdp, two\_link\_arm; input time scale
+$\times\{\tfrac14,\tfrac12,1,2,4\}$ within the same amplitude box; stored models, no retraining;
+\texttt{dose\_response.py}). Predicted: the budget is flat on quad\_tank (Proposition~\ref{prop:m4-excitation}(b)),
+every method stays above the floor at every level, the exact-model EKF's error tracks the budget where it moves
+and stays flat where it does not, and HyperKKL's error moves more than the EKF's (a learning-side, not an
+information effect). \emph{Found} ($3$ seeds, $32$ episodes per level): the budget is flat on all three plants
+(full-past floor max/min $1.000$, $1.05$, $1.14$) and so is the exact-model EKF ($1.06$, $1.09$, $1.16$) -- P3b
+\textbf{PASS} $3/3$; every method stays above $0.95\,\beta_j(\infty)$ on vdp and two\_link\_arm, while on quad\_tank
+$5$ of $30$ cells (exact-model EKF and grey-box, $x_3$/$x_4$) fall $5$--$7\%$ below it, once more within the sampling
+error of a slow state at $32$ episodes -- P3a \textbf{PASS} $2/3$ by the letter; the grey-box filter sits at
+$0.95$--$1.01$ of the full-past floor at every level. P3c \textbf{FAIL}: HyperKKL's error varies by only
+$1.08$--$1.32\times$ across the levels, less than $1.5\times$ the EKF's variation, and on quad\_tank it \emph{falls}
+monotonically with slower inputs ($0.076\to0.058$) while the budget does not move: a small learning-side
+(time-scale shift) effect, not an information effect, and smaller than predicted. HyperKKL stays at
+$1.9$--$2.6\times\beta_{\rm unm}(3/\alpha)$ and $2.9$--$3.8\times\beta_{\rm unm}(\infty)$ at every level (P3d).
+On two\_link\_arm every observer, the exact-model EKF included ($0.38$--$0.45$), is $15$--$20\times$ above the floor
+($0.021$--$0.024$): the floor is loose there (strong nonlinearity, Jensen) and the EKF is far from optimal; the
+plant is poorly observable in practice, not information-starved in the Bayesian sense.
+\item[(P4)] \emph{Prediction for the quad\_tank training-enrichment experiment} (\texttt{experiments/quadtank}).
+The arms change the training inputs only; the evaluation episodes, hence $\beta$, are unchanged:
+$\beta_{\rm unm}=0.0198$ (full past; $x_3$ $0.0245$, $x_4$ $0.0151$), $0.0201$ ($10/\alpha$), $0.0297$ ($3/\alpha$),
+$0.0517$ ($1/\alpha$). The stored grey-box EKF ($0.0185$--$0.0197$) is within $1\%$ of the full-past floor: it is
+information-optimal on quad\_tank, and no observer of any kind can beat it by more than that. Prediction: no arm
+brings HyperKKL's unmeasured error below $0.020$; if the fading-memory window is the binding constraint, not
+below $0.030$; the gap that training enrichment can close is from the present $0.065$--$0.095$ to the
+$0.03$--$0.05$ band at most, and the rest is the window deficit, which only a longer memory removes. The enriched
+inputs add no bits to the evaluation budget by construction (Proposition~\ref{prop:m4-excitation}(a,b));
+they can only change the training coverage of Proposition~\ref{prop:m4-learning}.
+\end{enumerate}
+\emph{Real battery} (\texttt{real\_battery.py}, Panasonic 18650PF, identified 2-RC model driven by the measured
+current, 30-min windows with the prior $20\%$ off, settled half, as in the real-data evaluation; the real
+sensor noise is not identified, so two settings are reported). With the tuned EKF's own $(Q,R)$ ($R_{V_m}=0.1$~V,
+which absorbs model error) the local SOC floor is $0.70$--$1.09\%$ SOC (US06, HWFET, NN; Bayesian $0.13\%$);
+with sensor-level noise ($R_{V_m}=3$~mV) it is $0.07$--$0.11\%$ ($0.02\%$). The achieved settled SOC RMSE is
+HyperKKL $2.18/0.91/0.73\%$, grey-box UKF $0.87/0.94/1.25\%$, EKF $8.85/1.19/1.95\%$ (\texttt{tab\_real}): every
+observer is $7$--$100\times$ above the sensor-level floor and the best ones sit at the level of the tuned filter's
+own covariance. On the real cell the error is model error (the identified ECM), not a shortage of information;
+the floor is a statement about the model and is reported, not used as a guarantee.
+
+\paragraph{Numerical checks.} \texttt{theory/checks/m4\_checks.py} (CPU). [1] Linear-Gaussian oscillator with PRBS
+input: the Kalman covariance equals both recursions of Definition~\ref{def:m4-budget} to $10^{-12}$; the Kalman
+filter's Monte Carlo MSE equals the floor within sampling error, and the exact KKL observer of
+Remark~\ref{rem:m3-kf} lies above it. [2] For a deterministic window the recursion with $Q\to0$ reproduces the
+backward observability Gramian over $\sigma^2$ to $1.5\cdot10^{-8}$ relative. [3] $\tfrac12\log_2\det(I+\tilde\Sigma\tilde{\mathcal I})$
+equals the prior-minus-posterior log-determinant; the Shannon lower bound lies below the Cram\'er--Rao total
+(AM--GM) and below the attained Kalman MSE. [4] Linear plant: $J$ is input-independent by construction;
+quad\_tank at input time scales $\times\tfrac14,1,4$: full-past floor spread below $1\%$. [5] vdp: the empirical
+(finite-difference) Gramian converges to the Jacobian Gramian as the perturbation shrinks. [6] A null direction
+of the regressor covariance is unlearnable at every $N$; least-squares excess risk equals $\sigma^2p/N$ within
+$0.84$--$1.49$ for $p=2$ and $p=64$ ($N=200$--$3200$). [7] Linearised quad\_tank, Kalman filter, $64$ episodes: pooled RMS within $2\%$
+of the floor on every state, per-episode RMS of $x_3$ scattering by a factor $3.8$ around it ($0.0115$--$0.0432$), mean of per-episode RMS
+below the pooled value (Jensen).
+
+% ---- bibliography entries used (for the main .bib) ----
+% tichavsky1998posterior: P. Tichavsky, C. H. Muravchik, A. Nehorai. Posterior Cramer-Rao bounds for discrete-time
+%   nonlinear filtering. IEEE Trans. Signal Processing 46(5):1386-1396, 1998.
+% vantrees1968detection: H. L. Van Trees. Detection, Estimation, and Modulation Theory, Part I. Wiley, 1968.
+% cover2006elements: T. M. Cover, J. A. Thomas. Elements of Information Theory, 2nd ed. Wiley, 2006.
+% ljung1999system: L. Ljung. System Identification: Theory for the User, 2nd ed. Prentice Hall, 1999.
+% hastie2009elements: T. Hastie, R. Tibshirani, J. Friedman. The Elements of Statistical Learning, 2nd ed. Springer, 2009.
+% li2008kolmogorov: M. Li, P. Vitanyi. An Introduction to Kolmogorov Complexity and Its Applications, 3rd ed. Springer, 2008.
+% rissanen1978modeling: J. Rissanen. Modeling by shortest data description. Automatica 14(5):465-471, 1978.
+% grunwald2007mdl: P. D. Grunwald. The Minimum Description Length Principle. MIT Press, 2007.

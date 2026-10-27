@@ -1,0 +1,36 @@
+id: TEST-C1-B
+parent: TEST-C1
+title: 'FROZEN recipe, bounded held-out test plants (cartpole_b, two_link_arm_b): where the input
+  enters'
+contribution: C1
+question: 'Post-hoc testbed change (disclosed): TEST-C1 rerun on the bounded variants of cartpole
+  and two_link_arm (experiments/cartpole_bounded/DESIGN.md).'
+hypothesis: Weight-space (lora or hyper) beats latent and concat on >= 4/6 test systems.
+decision_rule: Supported if the better of lora/hyper beats both latent and concat with a paired
+  CI excluding 0 on >= 4/6 test systems on shape_ood and on sequence_ood. Run once; no tuning.
+  (Same rule; bounded plants; old cartpole/two_link_arm results kept.)
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines:
+- ekf
+systems:
+- cartpole_b
+- two_link_arm_b
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - latent
+  - concat
+  tier: sequence_ood
+  condition: clean
+priority: 0
+status: planned
+created: '2026-10-26'

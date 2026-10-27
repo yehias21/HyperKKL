@@ -1,0 +1,25 @@
+id: C1-rank1
+parent: C1-where
+title: LoRA rank 1 at the matched 140k budget (default 4)
+contribution: C1
+question: Is the LoRA ~ hypernetwork tie an artefact of the low-rank choice?
+hypothesis: The weight-space advantage over latent/concat is stable across rank 1-16.
+decision_rule: Stable if lora at this rank stays within an equivalence margin of +-10% of lora
+  rank 4 (C1-where) or better, on >= 4/6 dev systems (sequence_ood).
+set:
+  phase2.rank: 1
+methods:
+- lora
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - lora
+  tier: sequence_ood
+  condition: clean
+priority: 15
+status: done
+created: '2026-10-25'

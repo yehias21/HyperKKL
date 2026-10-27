@@ -1,0 +1,66 @@
+id: C2-trunc-dev
+parent: C1-where
+title: Truncated-history SFM context on the six dev systems (in-sample report)
+contribution: C2
+question: 'How much input history does the decoder need? Corollary m2-rule: a window of L* = (ln(1/eta)
+  + ln l)/alpha seconds suffices (eta = 0.05, l = Lipschitz constant of the inverse windowed map,
+  proxy l_dec_q95). Tested with the SFM context whose filter state uses only the last H input
+  samples (inputs older than H -> 0), in training and deployment alike, so every arm has the same
+  trainable parameters (no capacity confound).'
+hypothesis: (S) for every arm H with L*_i <= H <= 0.5 N_i the error is within +5% of the untruncated
+  context (lora and hyper, id and sequence_ood); (T) at the largest arm H <= L*_i/4 the error
+  is significantly worse. L*_i per system is fixed in experiments/memory/PREREG.md from the existing
+  phase-1 l_dec_q95.
+decision_rule: 'Supported if (S) holds on >= 4/6 systems AND (T) holds on >= 4/6 systems (analysis.evidence.analyse_trunc;
+  paired relative change vs the same method''s inf arm, Student-t over 3 seeds; (S) point estimate
+  <= +5% on every informative arm, TOST at 5% reported; (T) 95% CI lower bound > 0). (S) alone
+  on >= 4/6: ''sufficient bound supported, tightness not''. Systems with no arm in [L*_i, 0.5
+  N_i] are not testable for (S).'
+set:
+  eval.tiers:
+  - id
+  - sequence_ood
+  eval.memory_probe: false
+methods:
+- lora@sfm:history=1
+- lora@sfm:history=8
+- lora@sfm:history=32
+- lora@sfm:history=64
+- lora@sfm:history=128
+- lora@sfm:history=256
+- lora@sfm:history=512
+- lora@sfm:history=1024
+- lora@sfm:history=2048
+- hyper@sfm:history=1
+- hyper@sfm:history=8
+- hyper@sfm:history=32
+- hyper@sfm:history=64
+- hyper@sfm:history=128
+- hyper@sfm:history=256
+- hyper@sfm:history=512
+- hyper@sfm:history=1024
+- hyper@sfm:history=2048
+- lora
+- hyper
+baselines: []
+systems:
+- battery
+- bioreactor
+- duffing
+- lorenz
+- quad_tank
+- vdp
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - lora
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 17
+status: done
+created: '2026-10-25'
+notes: Same arms and rule as C2-trunc-test; reported as in-sample (the dev systems informed C2-floor/C2-window).

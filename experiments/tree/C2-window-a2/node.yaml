@@ -1,0 +1,38 @@
+id: C2-window-a2
+parent: C2-window-a1
+title: Window sweep at alpha x 2 (second bandwidth)
+contribution: C2
+question: 'Does the window knee move as 1/alpha (Theorem: L* ~ (ln(1/eta) + ln l)/alpha)?'
+hypothesis: With dt proportional to 1/alpha the knee in samples is unchanged; in seconds it halves.
+decision_rule: Compare knees with C2-window-a1 on vdp, duffing, battery; supported if the knee
+  in samples changes by <= 2x on >= 2/3 systems.
+set:
+  system.alpha_scale: 2.0
+methods:
+- lora@window:window=1
+- lora@window:window=2
+- lora@window:window=4
+- lora@window:window=8
+- lora@window:window=16
+- lora@window:window=32
+- lora@window:window=64
+- lora@window:window=128
+- lora@window:window=256
+- lora@window:window=512
+baselines: []
+systems:
+- battery
+- duffing
+- vdp
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - lora@window:window=512
+  tier: sequence_ood
+  condition: clean
+priority: 14
+status: done
+created: '2026-10-25'

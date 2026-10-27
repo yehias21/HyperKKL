@@ -1,0 +1,194 @@
+%% paper/refs.bib -- bibliography of the TMLR submission.
+%% Sources: theory/refs.bib (every entry copied verbatim, keys unchanged, so that the theory
+%% sections \input from ../theory compile), and archive/final paper/aaai2027.bib (entries marked
+%% VERIFIED there, or standard records). Entries that could not be checked against a .bib file in
+%% this repository carried a "% TODO verify" line; all of them, and the archive entries
+%% flagged VERIFY, were checked against Crossref/publisher/proceedings records on 2026-10-25 (see
+%% BIB_VERIFICATION.md). One entry could not be found and is marked "% NOT FOUND".
+%% Duplicates of the same paper under two keys were avoided: the theory keys
+%% (bernard2019luenberger, andrieu2006existence, khalil2002nonlinear, boyd1985fading,
+%% virmaux2018lipschitz) are used; the archive aliases (bernard2019, andrieu2006, ...) are not.
+
+%% ---------------------------------------------------------------- theory/refs.bib (verbatim)
+@article{bernard2019luenberger, author={Bernard, Pauline and Andrieu, Vincent}, title={Luenberger Observers for Nonautonomous Nonlinear Systems}, journal={IEEE Transactions on Automatic Control}, volume={64}, number={1}, pages={270--281}, year={2019}, doi={10.1109/TAC.2018.2872202}}
+@article{andrieu2006existence, author={Andrieu, Vincent and Praly, Laurent}, title={On the Existence of a {Kazantzis--Kravaris/Luenberger} Observer}, journal={SIAM Journal on Control and Optimization}, volume={45}, number={2}, pages={432--456}, year={2006}}
+@article{brivadis2023further, author={Brivadis, Lucas and Andrieu, Vincent and Bernard, Pauline and Serres, Ulysse}, title={Further Remarks on {KKL} Observers}, journal={Systems \& Control Letters}, volume={172}, pages={105429}, year={2023}}
+@misc{niazi2025kkl, author={Niazi, M. Umar B. and Cao, John and Barreau, Matthieu and Johansson, Karl Henrik}, title={{KKL} Observer Synthesis for Nonlinear Systems via Physics-Informed Learning}, year={2025}, eprint={2501.11655}, archivePrefix={arXiv}}
+@misc{shaaban2026hyperkkl, author={Anonymous}, title={{HyperKKL}: Learning {KKL} Observers for Non-Autonomous Nonlinear Systems via Hypernetwork-Based Input Conditioning}, year={2026}, eprint={2603.29744}, archivePrefix={arXiv}}
+@article{boyd1985fading, author={Boyd, Stephen and Chua, Leon O.}, title={Fading Memory and the Problem of Approximating Nonlinear Operators with {Volterra} Series}, journal={IEEE Transactions on Circuits and Systems}, volume={32}, number={11}, pages={1150--1161}, year={1985}}
+@article{leshno1993multilayer, author={Leshno, Moshe and Lin, Vladimir Ya. and Pinkus, Allan and Schocken, Shimon}, title={Multilayer Feedforward Networks with a Nonpolynomial Activation Function Can Approximate Any Function}, journal={Neural Networks}, volume={6}, number={6}, pages={861--867}, year={1993}}
+@inproceedings{zeng2024expressive, author={Zeng, Yuchen and Lee, Kangwook}, title={The Expressive Power of Low-Rank Adaptation}, booktitle={International Conference on Learning Representations}, year={2024}}
+@article{lohmiller1998contraction, author={Lohmiller, Winfried and Slotine, Jean-Jacques E.}, title={On Contraction Analysis for Non-linear Systems}, journal={Automatica}, volume={34}, number={6}, pages={683--696}, year={1998}}
+@book{khalil2002nonlinear, author={Khalil, Hassan K.}, title={Nonlinear Systems}, edition={3rd}, publisher={Prentice Hall}, year={2002}}
+@inproceedings{miller2019stable, author={Miller, John and Hardt, Moritz}, title={Stable Recurrent Models}, booktitle={International Conference on Learning Representations}, year={2019}}
+@article{reif1999stochastic, author={Reif, Konrad and G{\"u}nther, Stefan and Yaz, Engin and Unbehauen, Rolf}, title={Stochastic Stability of the Discrete-Time Extended {Kalman} Filter}, journal={IEEE Transactions on Automatic Control}, volume={44}, number={4}, pages={714--728}, year={1999}}
+@book{andersonmoore1979, author={Anderson, Brian D. O. and Moore, John B.}, title={Optimal Filtering}, publisher={Prentice-Hall}, year={1979}}
+@article{hochbruck2010exponential, author={Hochbruck, Marlis and Ostermann, Alexander}, title={Exponential Integrators}, journal={Acta Numerica}, volume={19}, pages={209--286}, year={2010}}
+@inproceedings{virmaux2018lipschitz, author={Virmaux, Aladin and Scaman, Kevin}, title={Lipschitz Regularity of Deep Neural Networks: Analysis and Efficient Estimation}, booktitle={Advances in Neural Information Processing Systems}, year={2018}}
+@inproceedings{fazlyab2019efficient, author={Fazlyab, Mahyar and Robey, Alexander and Hassani, Hamed and Morari, Manfred and Pappas, George J.}, title={Efficient and Accurate Estimation of {Lipschitz} Constants for Deep Neural Networks}, booktitle={Advances in Neural Information Processing Systems}, year={2019}}
+@article{korda2018linear, author={Korda, Milan and Mezi{\'c}, Igor}, title={Linear Predictors for Nonlinear Dynamical Systems: {Koopman} Operator Meets Model Predictive Control}, journal={Automatica}, volume={93}, pages={149--160}, year={2018}}
+@article{proctor2016dmdc, author={Proctor, Joshua L. and Brunton, Steven L. and Kutz, J. Nathan}, title={Dynamic Mode Decomposition with Control}, journal={SIAM Journal on Applied Dynamical Systems}, volume={15}, number={1}, pages={142--161}, year={2016}}
+
+%% ---------------------------------------------------------------- archive/final paper/aaai2027.bib
+@article{kazantzis1998,
+  author  = {Kazantzis, Nikolaos and Kravaris, Costas},
+  title   = {Nonlinear observer design using {Lyapunov}'s auxiliary theorem},
+  journal = {Systems \& Control Letters},
+  volume  = {34}, number = {5}, pages = {241--247}, year = {1998}}
+@article{bernard2017,
+  author  = {Bernard, Pauline and Andrieu, Vincent and Praly, Laurent},
+  title   = {Expressing an observer in preferred coordinates by transforming an injective immersion into a surjective diffeomorphism},
+  journal = {SIAM Journal on Control and Optimization},
+  volume  = {56}, number = {3}, pages = {2327--2352}, year = {2018}, doi = {10.1137/15M1037755}}
+@inproceedings{ramos2020,
+  author    = {Ramos, Louise da Costa and Di Meglio, Florent and Morgenthaler, Val\'{e}ry and da Silva, Luis Fernando Figueira and Bernard, Pauline},
+  title     = {Numerical design of {Luenberger} observers for nonlinear systems},
+  booktitle = {IEEE Conference on Decision and Control (CDC)},
+  pages     = {5435--5442}, year = {2020}, doi = {10.1109/CDC42340.2020.9304163}}
+@inproceedings{janny2021,
+  author    = {Janny, Steeven and Andrieu, Vincent and Nadri, Madiha and Wolf, Christian},
+  title     = {Deep {KKL}: Data-driven output prediction for non-linear systems},
+  booktitle = {IEEE Conference on Decision and Control (CDC)},
+  pages     = {4376--4381}, year = {2021}, doi = {10.1109/CDC45484.2021.9683277}}
+@article{buisson2023,
+  author  = {Buisson-Fenet, Mona and Bahr, Lukas and Morgenthaler, Val\'{e}ry and Di Meglio, Florent},
+  title   = {Towards gain tuning for numerical {KKL} observers},
+  journal = {IFAC-PapersOnLine (22nd IFAC World Congress)},
+  volume  = {56}, number = {2}, pages = {4061--4067}, year = {2023}, doi = {10.1016/j.ifacol.2023.10.1730}}
+@inproceedings{niazi2023,
+  author    = {Niazi, Muhammad Umar B. and Cao, John and Sun, Xudong and Das, Amritam and Johansson, Karl Henrik},
+  title     = {Learning-based design of {Luenberger} observers for autonomous nonlinear systems},
+  booktitle = {American Control Conference (ACC)},
+  pages     = {3048--3055}, year = {2023}, doi = {10.23919/ACC55779.2023.10156294}}
+@inproceedings{peralez2021,
+  author    = {Peralez, Johan and Nadri, Madiha},
+  title     = {Deep learning-based {Luenberger} observer design for discrete-time nonlinear systems},
+  booktitle = {IEEE Conference on Decision and Control (CDC)},
+  pages     = {4370--4375}, year = {2021}, doi = {10.1109/CDC45484.2021.9683485}}
+@inproceedings{peralez2022,
+  author    = {Peralez, Johan and Nadri, Madiha and Astolfi, Daniele},
+  title     = {Neural network-based {KKL} observer for nonlinear discrete-time systems},
+  booktitle = {IEEE Conference on Decision and Control (CDC)},
+  pages     = {2105--2110}, year = {2022}, doi = {10.1109/CDC51059.2022.9992516}}
+% peralez2024 corrected 2026-10-26: the earlier IEEE L-CSS entry does not exist; replaced by the
+% verified L4DC 2024 paper (https://proceedings.mlr.press/v242/peralez24a.html); related.tex wording fixed.
+@inproceedings{peralez2024,
+  author    = {Peralez, Johan and Nadri, Madiha},
+  title     = {Deep model-free {KKL} observer: A switching approach},
+  booktitle = {Proceedings of the 6th Annual Learning for Dynamics and Control Conference (L4DC)},
+  series    = {Proceedings of Machine Learning Research}, volume = {242}, pages = {929--940},
+  year      = {2024}}
+@article{woelk2026,
+  author  = {Woelk, Moritz and Morris, Jarod and Tang, Wentao},
+  title   = {Neural {Luenberger} state observer for nonautonomous nonlinear systems},
+  journal = {arXiv preprint arXiv:2602.24252}, year = {2026}}
+@inproceedings{perez2018film,
+  author    = {Perez, Ethan and Strub, Florian and de Vries, Harm and Dumoulin, Vincent and Courville, Aaron},
+  title     = {{FiLM}: Visual Reasoning with a General Conditioning Layer},
+  booktitle = {AAAI Conference on Artificial Intelligence}, year = {2018}}
+@inproceedings{belbuteperes2021hyperpinn,
+  author    = {de Avila Belbute-Peres, Filipe and Chen, Yi-fan and Sha, Fei},
+  title     = {{HyperPINN}: Learning parameterized differential equations with physics-informed hypernetworks},
+  booktitle = {NeurIPS Workshop on the Symbiosis of Deep Learning and Differential Equations}, year = {2021}}
+@inproceedings{ha2016,
+  author    = {Ha, David and Dai, Andrew M. and Le, Quoc V.},
+  title     = {HyperNetworks},
+  booktitle = {International Conference on Learning Representations (ICLR)}, year = {2017}}
+@article{chauhan2024,
+  author  = {Chauhan, Vinod Kumar and Zhou, Jiandong and Lu, Ping and Molaei, Soheila and Clifton, David A.},
+  title   = {A brief review of hypernetworks in deep learning},
+  journal = {Artificial Intelligence Review}, volume = {57}, number = {9}, pages = {250}, year = {2024}, doi = {10.1007/s10462-024-10862-8}}
+@inproceedings{hu2022,
+  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  title     = {{LoRA}: Low-rank adaptation of large language models},
+  booktitle = {International Conference on Learning Representations (ICLR)}, year = {2022}}
+@inproceedings{cho2014,
+  author    = {Cho, Kyunghyun and van Merri\"{e}nboer, Bart and Gulcehre, Caglar and Bahdanau, Dzmitry and Bougares, Fethi and Schwenk, Holger and Bengio, Yoshua},
+  title     = {Learning phrase representations using {RNN} encoder--decoder for statistical machine translation},
+  booktitle = {Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages     = {1724--1734}, year = {2014}}
+@article{kalman1960,
+  author  = {Kalman, Rudolph E.},
+  title   = {A new approach to linear filtering and prediction problems},
+  journal = {Journal of Basic Engineering}, volume = {82}, number = {1}, pages = {35--45}, year = {1960}}
+@article{johansson2000,
+  author  = {Johansson, Karl Henrik},
+  title   = {The quadruple-tank process: a multivariable laboratory process with an adjustable zero},
+  journal = {IEEE Transactions on Control Systems Technology}, volume = {8}, number = {3}, pages = {456--465}, year = {2000}}
+@article{lorenz1963,
+  author  = {Lorenz, Edward N.}, title = {Deterministic nonperiodic flow},
+  journal = {Journal of the Atmospheric Sciences}, volume = {20}, number = {2}, pages = {130--141}, year = {1963}}
+@article{rossler1976,
+  author  = {R{\"o}ssler, Otto E.}, title = {An equation for continuous chaos},
+  journal = {Physics Letters A}, volume = {57}, number = {5}, pages = {397--398}, year = {1976}}
+@article{fitzhugh1961,
+  author  = {FitzHugh, Richard},
+  title   = {Impulses and physiological states in theoretical models of nerve membrane},
+  journal = {Biophysical Journal}, volume = {1}, number = {6}, pages = {445--466}, year = {1961}}
+@article{gauthier1992,
+  author  = {Gauthier, Jean-Paul and Hammouri, Hassan and Othman, S.},
+  title   = {A simple observer for nonlinear systems applications to bioreactors},
+  journal = {IEEE Transactions on Automatic Control}, volume = {37}, number = {6}, pages = {875--880}, year = {1992}}
+
+%% ---------------------------------------------------------------- added for this paper
+@article{julier2004unscented,
+  author  = {Julier, Simon J. and Uhlmann, Jeffrey K.},
+  title   = {Unscented filtering and nonlinear estimation},
+  journal = {Proceedings of the IEEE}, volume = {92}, number = {3}, pages = {401--422}, year = {2004}, doi = {10.1109/JPROC.2003.823141}}
+@article{gordon1993novel,
+  author  = {Gordon, Neil J. and Salmond, David J. and Smith, Adrian F. M.},
+  title   = {Novel approach to nonlinear/non-{Gaussian} {Bayesian} state estimation},
+  journal = {IEE Proceedings F (Radar and Signal Processing)}, volume = {140}, number = {2}, pages = {107--113}, year = {1993}, doi = {10.1049/ip-f-2.1993.0015}}
+@inproceedings{kidger2020neuralcde,
+  author    = {Kidger, Patrick and Morrill, James and Foster, James and Lyons, Terry},
+  title     = {Neural controlled differential equations for irregular time series},
+  booktitle = {Advances in Neural Information Processing Systems}, volume = {33}, year = {2020}}
+@inproceedings{rubanova2019latentode,
+  author    = {Rubanova, Yulia and Chen, Ricky T. Q. and Duvenaud, David},
+  title     = {Latent ordinary differential equations for irregularly-sampled time series},
+  booktitle = {Advances in Neural Information Processing Systems}, volume = {32}, year = {2019}}
+@inproceedings{chen2018neuralode,
+  author    = {Chen, Ricky T. Q. and Rubanova, Yulia and Bettencourt, Jesse and Duvenaud, David},
+  title     = {Neural ordinary differential equations},
+  booktitle = {Advances in Neural Information Processing Systems}, volume = {31}, year = {2018}}
+@article{revach2022kalmannet,
+  author  = {Revach, Guy and Shlezinger, Nir and Ni, Xiaoyong and Escoriza, Adri{\`a} L{\'o}pez and van Sloun, Ruud J. G. and Eldar, Yonina C.},
+  title   = {{KalmanNet}: Neural network aided {Kalman} filtering for partially known dynamics},
+  journal = {IEEE Transactions on Signal Processing}, volume = {70}, pages = {1532--1547}, year = {2022}, doi = {10.1109/TSP.2022.3158588}}
+@inproceedings{haarnoja2016backpropkf,
+  author    = {Haarnoja, Tuomas and Ajay, Anurag and Levine, Sergey and Abbeel, Pieter},
+  title     = {Backprop {KF}: Learning discriminative deterministic state estimators},
+  booktitle = {Advances in Neural Information Processing Systems}, volume = {29}, year = {2016}}
+@inproceedings{kirchmeyer2022coda,
+  author    = {Kirchmeyer, Matthieu and Yin, Yuan and Don{\`a}, J{\'e}r{\'e}mie and Baskiotis, Nicolas and Rakotomamonjy, Alain and Gallinari, Patrick},
+  title     = {Generalizing to new physical systems via context-informed dynamics model},
+  booktitle = {International Conference on Machine Learning}, series = {Proceedings of Machine Learning Research}, volume = {162}, pages = {11283--11301}, year = {2022}}
+@article{williams2015edmd,
+  author  = {Williams, Matthew O. and Kevrekidis, Ioannis G. and Rowley, Clarence W.},
+  title   = {A data-driven approximation of the {Koopman} operator: extending dynamic mode decomposition},
+  journal = {Journal of Nonlinear Science}, volume = {25}, number = {6}, pages = {1307--1346}, year = {2015}, doi = {10.1007/s00332-015-9258-5}}
+@article{lusch2018deep,
+  author  = {Lusch, Bethany and Kutz, J. Nathan and Brunton, Steven L.},
+  title   = {Deep learning for universal linear embeddings of nonlinear dynamics},
+  journal = {Nature Communications}, volume = {9}, number = {1}, pages = {4950}, year = {2018}, doi = {10.1038/s41467-018-07210-0}}
+@inproceedings{surana2016koopman,
+  author    = {Surana, Amit},
+  title     = {Koopman operator based observer synthesis for control-affine nonlinear systems},
+  booktitle = {IEEE Conference on Decision and Control (CDC)}, pages = {6492--6499}, year = {2016}, doi = {10.1109/CDC.2016.7799268}}
+@article{schuirmann1987tost,
+  author  = {Schuirmann, Donald J.},
+  title   = {A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability},
+  journal = {Journal of Pharmacokinetics and Biopharmaceutics}, volume = {15}, number = {6}, pages = {657--680}, year = {1987}, doi = {10.1007/BF01068419}}
+@article{huber1964robust,
+  author  = {Huber, Peter J.},
+  title   = {Robust estimation of a location parameter},
+  journal = {Annals of Mathematical Statistics}, volume = {35}, number = {1}, pages = {73--101}, year = {1964}, doi = {10.1214/aoms/1177703732}}
+
+%% dataset (from experiments/real/DATA.md)
+@misc{kollmeyer2018panasonic,
+  author       = {Kollmeyer, Phillip},
+  title        = {Panasonic 18650PF {Li-ion} Battery Data},
+  howpublished = {Mendeley Data, v1},
+  year         = {2018},
+  doi          = {10.17632/wykht8y7tg.1},
+  note         = {CC BY 4.0}}

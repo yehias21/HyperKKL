@@ -1,0 +1,23 @@
+id: C1-tune-concat-d2
+parent: C1-tune-select
+title: 'Tuning grid: concat, concat_depth = default, lr in [0.0005, 0.001, 0.002, 0.004]'
+contribution: C1
+question: Validation NRMSE of concat with concat_depth = default at 4 learning rates (seed 0,
+  dev).
+hypothesis: Part of C1-tune-select.
+decision_rule: See C1-tune-select (selection by analysis/select_tuned.py).
+methods:
+- concat[lr=0.0005]
+- concat[lr=0.001]
+- concat[lr=0.002]
+- concat[lr=0.004]
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 31
+status: done
+created: '2026-10-26'

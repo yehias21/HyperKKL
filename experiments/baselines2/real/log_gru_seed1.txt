@@ -1,0 +1,67 @@
+[10:59:18]     [gru] step   250 train 8.965e-03 val 2.308e-02
+[10:59:23]     [gru] step   500 train 5.004e-03 val 1.458e-02
+[10:59:29]     [gru] step   750 train 0.000e+00 val 9.735e-03
+[10:59:36]     [gru] step  1000 train 3.615e-03 val 7.457e-03
+[10:59:40]     [gru] step  1250 train 3.260e-03 val 5.937e-03
+[10:59:45]     [gru] step  1500 train 4.648e-03 val 4.687e-03
+[10:59:48]     [gru] step  1750 train 2.545e-03 val 3.920e-03
+[10:59:51]     [gru] step  2000 train 1.040e-03 val 3.320e-03
+[10:59:55]     [gru] step  2250 train 1.037e-03 val 2.834e-03
+[10:59:57]     [gru] step  2500 train 0.000e+00 val 2.686e-03
+[11:00:00]     [gru] step  2750 train 1.250e-03 val 2.613e-03
+[11:00:04]     [gru] step  3000 train 9.674e-04 val 2.595e-03
+[11:00:06]   gru lr 0.0003: val loss 0.002595  val settled SOC RMSE 0.862 %
+[11:00:10]     [gru] step   250 train 4.555e-03 val 1.309e-02
+[11:00:14]     [gru] step   500 train 2.205e-03 val 4.963e-03
+[11:00:16]     [gru] step   750 train 0.000e+00 val 2.731e-03
+[11:00:20]     [gru] step  1000 train 8.512e-04 val 2.117e-03
+[11:00:23]     [gru] step  1250 train 3.062e-04 val 1.098e-03
+[11:00:27]     [gru] step  1500 train 7.714e-04 val 1.039e-03
+[11:00:31]     [gru] step  1750 train 4.213e-04 val 8.081e-04
+[11:00:34]     [gru] step  2000 train 1.611e-04 val 7.539e-04
+[11:00:36]     [gru] step  2250 train 1.739e-04 val 5.547e-04
+[11:00:40]     [gru] step  2500 train 0.000e+00 val 5.878e-04
+[11:00:45]     [gru] step  2750 train 2.052e-04 val 5.415e-04
+[11:00:49]     [gru] step  3000 train 1.639e-04 val 5.494e-04
+[11:00:51]   gru lr 0.001: val loss 0.0005415  val settled SOC RMSE 0.535 %
+[11:00:56]     [gru] step   250 train 1.831e-03 val 5.312e-03
+[11:01:00]     [gru] step   500 train 7.548e-04 val 1.744e-03
+[11:01:03]     [gru] step   750 train 0.000e+00 val 2.123e-03
+[11:01:07]     [gru] step  1000 train 6.476e-04 val 1.048e-03
+[11:01:13]     [gru] step  1250 train 1.941e-04 val 8.176e-04
+[11:01:17]     [gru] step  1500 train 7.607e-04 val 8.281e-04
+[11:01:22]     [gru] step  1750 train 3.061e-04 val 4.459e-04
+[11:01:27]     [gru] step  2000 train 9.779e-05 val 3.977e-04
+[11:01:32]     [gru] step  2250 train 1.120e-04 val 3.376e-04
+[11:01:38]     [gru] step  2500 train 0.000e+00 val 3.770e-04
+[11:01:42]     [gru] step  2750 train 9.854e-05 val 3.270e-04
+[11:01:46]     [gru] step  3000 train 8.366e-05 val 3.326e-04
+[11:01:47]   gru lr 0.003: val loss 0.000327  val settled SOC RMSE 0.464 %
+[11:01:49]     [gru] step   250 train 1.926e-03 val 4.114e-03
+[11:01:50]     [gru] step   500 train 1.720e-03 val 4.908e-03
+[11:01:52]     [gru] step   750 train 0.000e+00 val 3.650e-03
+[11:01:53]     [gru] step  1000 train 1.640e-03 val 3.018e-03
+[11:01:55]     [gru] step  1250 train 1.307e-03 val 2.052e-03
+[11:01:57]     [gru] step  1500 train 2.706e-04 val 7.230e-04
+[11:01:58]     [gru] step  1750 train 3.208e-04 val 6.297e-04
+[11:01:59]     [gru] step  2000 train 1.645e-04 val 3.172e-04
+[11:02:02]     [gru] step  2250 train 8.150e-05 val 2.155e-04
+[11:02:05]     [gru] step  2500 train 0.000e+00 val 1.796e-04
+[11:02:08]     [gru] step  2750 train 5.642e-05 val 1.460e-04
+[11:02:11]     [gru] step  3000 train 7.142e-05 val 1.460e-04
+[11:02:12]   gru lr 0.01: val loss 0.000146  val settled SOC RMSE 0.347 %
+[11:02:12]   val: settled SOC RMSE 0.347 %
+[11:02:13]   test25/US06: settled SOC RMSE 1.812 %
+[11:02:14]   test25/HWFTa: settled SOC RMSE 0.792 %
+[11:02:15]   test25/HWFTb: settled SOC RMSE 1.074 %
+[11:02:15]   test25/NN: settled SOC RMSE 0.270 %
+[11:02:16]   test0/Cycle_1: settled SOC RMSE 11.213 %
+[11:02:18]   test0/Cycle_2: settled SOC RMSE 11.505 %
+[11:02:20]   test0/LA92: settled SOC RMSE 8.364 %
+[11:02:21]   test0/NN: settled SOC RMSE 7.924 %
+[11:02:24]   test0/Cycle_3: settled SOC RMSE 11.534 %
+[11:02:25]   test0/Cycle_4: settled SOC RMSE 12.799 %
+[11:02:27]   test0/US06: settled SOC RMSE 14.292 %
+[11:02:29]   test0/HWFET: settled SOC RMSE 16.045 %
+[11:02:30]   test0/UDDS: settled SOC RMSE 9.572 %
+[11:02:30] done

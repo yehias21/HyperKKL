@@ -1,0 +1,27 @@
+# two_link_arm: role = test system (held out: frozen recipe only).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+# t_ref (input protocol v2, signals.py): seconds per signal time unit. Rule t_ref = max(1, tau_slow / 3),
+# rounded, with tau_slow = median 1/|Re eig| of the linearisation along the zero-input trajectory
+# = 5.5 s -> t_ref = 2. T / t_ref = 100 / 2 = 50 signal time units (rule: >= ~20, so an episode holds enough input events).
+name: two_link_arm
+plant: two_link_arm
+role: test
+params: {}
+sensors: [0, 1]
+ic_box:
+- &id001 [-1, 1]
+- *id001
+- *id001
+- *id001
+T: 100
+nz: 6
+alpha: 2.0
+u_scale: 1.0
+t_ref: 2
+u_bounds: []
+# j, k: the automatic choice put the back-EMF on dq2 while the torque acts on joint 1 (non-
+# collocated): at u = 0 it pumps energy (E - E_min 20 -> 15 J after 100 s instead of decaying,
+# q2 winds to 115 rad). A motor's back-EMF acts on its own shaft speed: j = 2 (dq1), and
+# k = 0.1 keeps the arm lightly damped (the rule's k = 1 stops it within ~20 s).
+actuator: {kind: saturating, u_bar: 2.0, j: 2, k: 0.1}
+mismatch: 0.0

@@ -1,0 +1,460 @@
+main             07-26 20:16 n= 39 sys=bioreactor,fhn,lorenz,rossler,two_link_arm seeds=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9] methods=autonomous,dyn_gru,dyn_sfm,ekf,nlo
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/500n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+init_center      07-26 21:56 n=  3 sys=fhn,lorenz,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/40ep/120n p2 None/0.001/25ep/260n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+base             07-26 22:14 n=  2 sys=bioreactor,fhn seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+v2_random        07-26 22:16 n=  3 sys=bioreactor,fhn,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/30ep/100n p2 None/0.001/20ep/320n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+v2_center        07-26 22:18 n=  3 sys=bioreactor,fhn,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/30ep/100n p2 None/0.001/20ep/320n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+v2rand           07-26 22:23 n=  3 sys=bioreactor,fhn,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+v2               07-26 22:24 n=  3 sys=bioreactor,fhn,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+v3jit            07-26 22:29 n=  3 sys=bioreactor,fhn,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=None np=None im=None {'pjit': 0.15, 'p1.pde': True} 
+v3               07-26 22:30 n=  4 sys=bioreactor,fhn,lorenz,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=None np=None im=None {'p1.pde': True} 
+na               07-26 22:44 n=  7 sys=bioreactor,duffing,fhn,highway_traffic,lorenz,rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=None np=None im=nonaffine {'p1.pde': True} 
+nz               07-26 23:07 n=  3 sys=fhn,lorenz,two_link_arm seeds=[0] methods=autonomous,dyn_gru,ekf,nlo,omega_gru
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.02 np=0.01 im=affine {'p1.pde': True} 
+nzna             07-26 23:09 n=  3 sys=fhn,lorenz,rossler seeds=[0] methods=autonomous,dyn_gru,ekf,nlo,omega_gru
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.02 np=0.01 im=nonaffine {'p1.pde': True} 
+s2               07-26 23:20 n=  3 sys=fhn,lorenz,two_link_arm seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=affine {'p1.pde': True} 
+s2na             07-26 23:21 n=  5 sys=fhn,highway_traffic,lorenz,rossler,two_link_arm seeds=[0] methods=autonomous,dyn_gru,ekf,nlo
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+s3               07-26 23:27 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+rad5             07-26 23:29 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=affine {'rad': 5, 'p1.pde': True} 
+rad2             07-26 23:29 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=affine {'rad': 2, 'p1.pde': True} 
+rad0             07-26 23:29 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=affine {'p1.pde': True} 
+rad10            07-26 23:29 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=affine {'rad': 10, 'p1.pde': True} 
+nsw0.01          07-26 23:32 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.01 np=0.005 im=nonaffine {'p1.pde': True} 
+nsw0.0           07-26 23:32 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.0 np=0.005 im=nonaffine {'p1.pde': True} 
+nsw0.005         07-26 23:34 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.005 np=0.005 im=nonaffine {'p1.pde': True} 
+fix1             07-26 23:44 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.smooth': 0.0001, 'p1.pde': True} 
+fix2             07-26 23:48 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.smooth': 1.0, 'p1.pde': True} 
+lam100           07-27 00:12 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.smooth': 100, 'p1.pde': True} 
+lam0.3           07-27 00:16 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.smooth': 0.3, 'p1.pde': True} 
+lam30            07-27 00:17 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.smooth': 30, 'p1.pde': True} 
+lam3             07-27 00:17 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.smooth': 3, 'p1.pde': True} 
+lam10            07-27 00:17 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=None rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.smooth': 10, 'p1.pde': True} 
+cv1e-5           07-27 01:37 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=1e-05 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+cv1e-6           07-27 01:37 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=1e-06 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+cv1e-1           07-27 01:38 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.1 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+cv1e-4           07-27 01:40 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+cv1e-2           07-27 01:43 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.01 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+cv1e-3           07-27 01:44 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+sfm0             07-27 02:18 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_sfm,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+sfm4             07-27 02:20 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_sfm,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+cal_gru          07-27 02:46 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+cal_sfm          07-27 02:53 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_sfm,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+sfmg             07-27 02:59 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_sfm,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+best             07-27 03:07 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+all              07-27 03:22 n= 10 sys=bioreactor,duffing,duffing_lag,duffing_mult,fhn,highway_traffic,lorenz,rossler,two_link_arm,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+ba0.5            07-27 03:47 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 0.5, 'p1.pde': True} 
+ta0.5            07-27 03:51 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 0.5, 'p1.pde': True} 
+bf0              07-27 03:56 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 0.5, 'p1.pde': True} 
+bf2              07-27 03:57 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 1.0, 'p1.pde': True} 
+tf0              07-27 04:01 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 0.5, 'p1.pde': True} 
+bf4              07-27 04:01 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 2.0, 'p1.pde': True} 
+tf2              07-27 04:06 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 1.0, 'p1.pde': True} 
+pj0.0            07-27 04:07 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+pj0.20           07-27 04:09 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pjit': 0.2, 'p1.pde': True} 
+pj0.30           07-27 04:09 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pjit': 0.3, 'p1.pde': True} 
+pj0.10           07-27 04:09 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pjit': 0.1, 'p1.pde': True} 
+r0_fhn           07-27 04:14 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+r5_fhn           07-27 04:14 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'rad': 5, 'p1.pde': True} 
+r5_bioreactor    07-27 04:14 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'rad': 5, 'p1.pde': True} 
+r0_bioreactor    07-27 04:14 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+pb0.0            07-27 04:18 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+pb0.20           07-27 04:18 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pbias': 0.2, 'p1.pde': True} 
+pb0.10           07-27 04:18 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pbias': 0.1, 'p1.pde': True} 
+pb0.30           07-27 04:18 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pbias': 0.3, 'p1.pde': True} 
+r0_lorenz        07-27 04:18 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+pb0.05           07-27 04:18 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pbias': 0.05, 'p1.pde': True} 
+r5_lorenz        07-27 04:19 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'rad': 5, 'p1.pde': True} 
+pdefalse_fhn     07-27 04:21 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {} 
+pdetrue_fhn      07-27 04:21 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+pdetrue_bioreactor 07-27 04:21 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+pdefalse_bioreactor 07-27 04:21 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {} 
+tf4              07-27 04:22 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 2.0, 'p1.pde': True} 
+ol0.05           07-27 04:23 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.05, 'p1.pde': True} 
+ol0.0            07-27 04:23 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+ol0.02           07-27 04:24 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+ol0.01           07-27 04:24 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.01, 'p1.pde': True} 
+dr0.10_false     07-27 04:26 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'epbias': 0.1, 'p1.pde': True} 
+dr0.10_true      07-27 04:26 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'epbias': 0.1, 'p1.pde': True} 
+dr0.25_false     07-27 04:26 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'epbias': 0.25, 'p1.pde': True} 
+dr0.25_true      07-27 04:26 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'epbias': 0.25, 'p1.pde': True} 
+tf6              07-27 04:33 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 3.0, 'p1.pde': True} 
+tf8              07-27 04:43 n=  1 sys=highway_traffic seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'alpha_ov': 4.0, 'p1.pde': True} 
+nk_dropout       07-27 04:44 n=  2 sys=bioreactor,fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'dropout', 'p1.pde': True} 
+nk_quantized     07-27 04:45 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'quantized', 'p1.pde': True} 
+nk_colored       07-27 04:45 n=  2 sys=bioreactor,fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'colored', 'p1.pde': True} 
+nk_drift         07-27 04:45 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'drift', 'p1.pde': True} 
+qt_drift         07-27 05:18 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'drift', 'p1.pde': True} 
+qt_outlier       07-27 05:18 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+qt_dropout       07-27 05:18 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'dropout', 'p1.pde': True} 
+qt_gaussian      07-27 05:18 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+nb_outlier       07-27 06:18 n=  4 sys=duffing,duffing_mult,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+nb_dropout       07-27 06:18 n=  4 sys=duffing,duffing_mult,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'dropout', 'p1.pde': True} 
+qt2_drift        07-27 06:22 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'drift', 'p1.pde': True} 
+qt2_dropout      07-27 06:22 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'dropout', 'p1.pde': True} 
+sw_fhn           07-27 06:24 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+qt2_outlier      07-27 06:25 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+qt2_gaussian     07-27 06:26 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+sw_bioreactor    07-27 06:26 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+qt3_gaussian     07-27 06:27 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+ps10             07-27 06:28 n=  4 sys=duffing,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'epbias': 0.1, 'p1.pde': True} 
+nb_drift         07-27 06:30 n=  4 sys=duffing,duffing_mult,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'drift', 'p1.pde': True} 
+ep120            07-27 06:32 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/120ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+ep60             07-27 06:32 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+ps25             07-27 06:35 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'epbias': 0.25, 'p1.pde': True} 
+sp_zeta9         07-27 07:07 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+sp_zeta707       07-27 07:10 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta707', 'p1.pde': True} 
+sp_zeta5         07-27 07:14 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta5', 'p1.pde': True} 
+z9_fhn           07-27 07:26 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+z9_rossler       07-27 07:26 n=  1 sys=rossler seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+z9_vdp           07-27 07:30 n=  1 sys=vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+z9_duffing       07-27 07:33 n=  1 sys=duffing seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+z9_lorenz        07-27 07:36 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+z9_duffing_mult  07-27 07:44 n=  1 sys=duffing_mult seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+bw_fhn           07-27 07:47 n=  1 sys=fhn seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'butterworth', 'p1.pde': True} 
+bw_vdp           07-27 07:48 n=  1 sys=vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'butterworth', 'p1.pde': True} 
+bw_duffing       07-27 07:49 n=  1 sys=duffing seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'butterworth', 'p1.pde': True} 
+bw_duffing_mult  07-27 07:51 n=  1 sys=duffing_mult seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'butterworth', 'p1.pde': True} 
+z9m_rossler      07-27 07:55 n=  1 sys=rossler seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+bwm_rossler      07-27 07:55 n=  1 sys=rossler seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'butterworth', 'p1.pde': True} 
+qt_bw_matched    07-27 07:56 n=  1 sys=quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'butterworth', 'p1.pde': True} 
+z9m_lorenz       07-27 07:58 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'zeta9', 'p1.pde': True} 
+bwm_lorenz       07-27 07:58 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'spec_ov': 'butterworth', 'p1.pde': True} 
+sd_outlier       07-27 10:20 n= 25 sys=bioreactor,duffing,duffing_mult,lorenz,vdp seeds=[0, 1, 2, 3, 4] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+arch_dyn_gru     07-27 11:20 n=  9 sys=bioreactor,duffing,duffing_mult seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+arch_dyn_sfm     07-27 11:20 n=  9 sys=bioreactor,duffing,duffing_mult seeds=[0, 1, 2] methods=autonomous,dyn_sfm,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+rekf             07-27 11:22 n=  5 sys=bioreactor,duffing,duffing_mult,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+rank8            07-27 11:35 n=  3 sys=bioreactor seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=8 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+rank4            07-27 11:35 n=  3 sys=bioreactor seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+rank16           07-27 11:35 n=  3 sys=bioreactor seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=16 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+rank2            07-27 11:36 n=  3 sys=bioreactor seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=2 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+R_outlier        07-27 12:16 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'outl': 0.02, 'p1.pde': True} 
+R_dropout        07-27 12:32 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'dropout', 'p1.pde': True} 
+R_drift          07-27 12:47 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'drift', 'p1.pde': True} 
+R_colored        07-27 12:59 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'colored', 'p1.pde': True} 
+T3way            07-27 13:05 n=  9 sys=bioreactor,duffing,duffing_mult,fhn,highway_traffic,lorenz,quad_tank,rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,phi_gru,rekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+R_quantized      07-27 13:14 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/25ep/80n p2 None/0.001/15ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nk': 'quantized', 'p1.pde': True} 
+FULL             07-27 14:41 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+AR_full          07-27 22:08 n=  2 sys=rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+AR_a2            07-27 22:16 n=  2 sys=rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:alpha_ov
+NZ11             07-27 22:27 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,omega_current,phi_current,phi_gru
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+AR_a4            07-27 22:32 n=  2 sys=rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:alpha_ov
+W8               07-27 22:34 n=  4 sys=bioreactor,vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+W35              07-27 22:35 n=  2 sys=bioreactor seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 35, 'p1.pde': True} 
+W102             07-27 22:35 n=  2 sys=bioreactor seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 102, 'p1.pde': True} 
+W293             07-27 22:35 n=  2 sys=bioreactor seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 293, 'p1.pde': True} 
+W36              07-27 22:36 n=  2 sys=duffing seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 36, 'p1.pde': True} 
+W9               07-27 22:37 n=  2 sys=duffing seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 9, 'p1.pde': True} 
+W106             07-27 22:41 n=  2 sys=duffing seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 106, 'p1.pde': True} 
+W33              07-27 22:42 n=  2 sys=vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 33, 'p1.pde': True} 
+W98              07-27 22:43 n=  2 sys=vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 98, 'p1.pde': True} 
+W305             07-27 22:44 n=  2 sys=duffing seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 305, 'p1.pde': True} 
+W282             07-27 22:45 n=  2 sys=vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 282, 'p1.pde': True} 
+AR_a4d           07-27 22:51 n=  2 sys=rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/400n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:alpha_ov
+CW5              07-27 23:18 n=  6 sys=bioreactor,duffing,vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 5, 'p1.pde': True} 
+CW50             07-27 23:18 n=  6 sys=bioreactor,duffing,vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 50, 'p1.pde': True} 
+CW1              07-27 23:18 n=  6 sys=bioreactor,duffing,vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 1, 'p1.pde': True} 
+CW10             07-27 23:19 n=  6 sys=bioreactor,duffing,vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 10, 'p1.pde': True} 
+CW20             07-27 23:20 n=  6 sys=bioreactor,duffing,vdp seeds=[0, 1] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.W': 20, 'p1.pde': True} 
+PN_multiplicative 07-27 23:50 n=  4 sys=bioreactor,duffing,fhn,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pk': 'multiplicative', 'p1.pde': True} 
+PN_poisson       07-27 23:50 n=  4 sys=bioreactor,duffing,fhn,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'pk': 'poisson', 'p1.pde': True} 
+SYL_off          07-28 15:19 n=  4 sys=bioreactor,duffing,fhn,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+SYL_on           07-28 15:19 n=  4 sys=bioreactor,duffing,fhn,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.syl': True, 'p1.pde': True} 
+G_anneal         07-28 15:33 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'anneal', 'p2.gm': 'anneal', 'latinit': 'zero', 'p1.pde': True} 
+G_pcgrad         07-28 15:33 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'pcgrad', 'p2.gm': 'pcgrad', 'latinit': 'zero', 'p1.pde': True} 
+G_confg          07-28 15:43 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'confg', 'p2.gm': 'confg', 'latinit': 'zero', 'p1.pde': True} 
+LAT_enc          07-28 15:43 n=  8 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,quad_tank,rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf
+       p1 None/0.001/60ep/200n p2 None/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:p1.opt,p2.opt
+O_lbfgs          07-28 15:50 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam_lbfgs/0.001/60ep/200n p2 adam_lbfgs/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'latinit': 'zero', 'p1.pde': True} 
+O_soaphi         07-28 15:50 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap/0.01/60ep/200n p2 soap/0.01/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'latinit': 'zero', 'p1.pde': True} 
+O_soap           07-28 15:51 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap/0.001/60ep/200n p2 soap/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'latinit': 'zero', 'p1.pde': True} 
+A_lr1e2          07-28 16:11 n= 16 sys=bioreactor,duffing,lorenz,vdp seeds=[0, 1, 2, 3] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.01/60ep/200n p2 adam/0.01/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'latinit': 'zero', 'p1.pde': True} VAR:nz_ov
+S_full           07-28 16:11 n= 22 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,quad_tank,rossler,vdp seeds=[0, 1, 2, 3] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap/0.01/60ep/200n p2 soap/0.01/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:latinit,nz_ov
+L_bfgs           07-28 16:17 n=  6 sys=bioreactor,duffing,duffing_mult,fhn,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam_lbfgs/0.001/60ep/200n p2 adam_lbfgs/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:latinit,nz_ov
+QL_zero          07-28 16:18 n= 12 sys=bioreactor,duffing,fhn,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'latinit': 'zero', 'p1.pde': True} VAR:nz_ov
+QL_enc           07-28 16:18 n= 12 sys=bioreactor,duffing,fhn,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:nz_ov
+NZ5              07-28 16:57 n=  2 sys=bioreactor,duffing seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nz_ov': 5, 'p1.pde': True} 
+NTK_diag         07-28 16:58 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+EVR1             07-28 16:59 n=  2 sys=bioreactor,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True, 'evrep': 1} 
+A_lr3e2          07-28 16:59 n=  2 sys=bioreactor,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.03/60ep/200n p2 adam/0.03/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:latinit
+COLL_4x          07-28 17:57 n=  3 sys=bioreactor,duffing,duffing_mult seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.ncoll': 65536, 'p1.pde': True} 
+COLL_16x         07-28 17:58 n=  3 sys=bioreactor,duffing,duffing_mult seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.ncoll': 262144, 'p1.pde': True} 
+DEC_ep           07-28 18:02 n=  3 sys=bioreactor,duffing,duffing_mult seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/200ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+COND             07-28 18:09 n=  3 sys=bioreactor,duffing_mult,quad_tank seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+NZ3              07-28 18:11 n=  2 sys=bioreactor,duffing seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nz_ov': 3, 'p1.pde': True} 
+LAT_zero         07-28 18:12 n=  4 sys=bioreactor,quad_tank,rossler,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'latinit': 'zero', 'p1.pde': True} 
+NZ4              07-28 18:14 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nz_ov': 4, 'p1.pde': True} 
+EVR2             07-28 18:15 n=  2 sys=bioreactor,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True, 'evrep': 2} 
+NZ7              07-28 18:19 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nz_ov': 7, 'p1.pde': True} 
+ALM              07-28 19:04 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'alm', 'p1.pde': True} 
+INVDIR           07-28 19:04 n=  2 sys=bioreactor,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'invdir', 'p1.pde': True} 
+RELOBRALO        07-28 19:08 n=  2 sys=bioreactor,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'relobralo', 'p1.pde': True} 
+NZ10             07-28 19:11 n=  2 sys=bioreactor,duffing seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nz_ov': 10, 'p1.pde': True} 
+SL_both          07-28 19:13 n=  4 sys=bioreactor,duffing,lorenz,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap_lbfgs/0.01/60ep/200n p2 soap_lbfgs/0.01/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+NZ14             07-28 19:32 n=  1 sys=lorenz seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'nz_ov': 14, 'p1.pde': True} 
+MIXband          07-28 19:43 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:p2.fam
+MIXlow           07-28 19:43 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.fam': ['constant', 'step', 'ramp'], 'p1.pde': True} 
+MIXdef           07-28 19:43 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+MIXhigh          07-28 19:43 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.fam': ['prbs', 'am', 'square'], 'p1.pde': True} 
+MIXeval          07-28 19:46 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.fam': ['constant', 'ramp', 'sinusoid', 'am', 'prbs'], 'p1.pde': True} 
+MIXall667        07-28 20:00 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+CURRrev          07-28 20:43 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.cur': 'reverse', 'p1.pde': True} 
+CURR             07-28 20:43 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.cur': 'spectral', 'p1.pde': True} 
+CART             07-28 20:53 n=  1 sys=cartpole seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+CSOFT            07-28 21:04 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.cur': 'soft', 'p1.pde': True} 
+CSELF            07-28 21:05 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.cur': 'selfpaced', 'p1.pde': True} VAR:p2.res
+CSREV            07-28 21:05 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.cur': 'soft_rev', 'p1.pde': True} VAR:p2.res
+RESchar          07-28 21:15 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap_lbfgs/0.01/60ep/200n p2 soap_lbfgs/0.01/40ep/200n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+EP2x             07-28 21:16 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/120ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:p2.res
+EPboth           07-28 21:16 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 adam/0.001/180ep/200n p2 adam/0.001/120ep/667n frz=True res=None curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:p2.res
+RESjac           07-28 21:39 n=  1 sys=bioreactor seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap_lbfgs/0.01/60ep/200n p2 soap_lbfgs/0.01/40ep/200n frz=False res=jacobian curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+RES2char         07-28 22:09 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap_lbfgs/0.01/60ep/200n p2 soap_lbfgs/0.01/40ep/200n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+RES2jac          07-28 22:17 n=  3 sys=bioreactor,duffing,vdp seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap_lbfgs/0.01/60ep/200n p2 soap_lbfgs/0.01/40ep/200n frz=False res=jacobian curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+SOAPres_int      07-28 22:41 n=  1 sys=duffing seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap/0.01/60ep/200n p2 soap/0.01/40ep/200n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+SOAPres_diff     07-28 22:42 n=  1 sys=duffing seeds=[0] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap/0.01/60ep/200n p2 soap/0.01/40ep/200n frz=False res=jacobian curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+SOAPres90_int    07-28 22:45 n=  1 sys=duffing seeds=[1] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap/0.01/90ep/200n p2 soap/0.01/60ep/200n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+SOAPres90_diff   07-28 22:46 n=  1 sys=duffing seeds=[1] methods=autonomous,dyn_gru,ekf,rekf
+       p1 soap/0.01/90ep/200n p2 soap/0.01/60ep/200n frz=False res=jacobian curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+SMOKE            07-29 07:31 n=  2 sys=cartpole,duffing_mult seeds=[0] methods=autonomous,dyn_gru,ekf,phi_current,phi_gru
+       p1 soap/0.01/6ep/40n p2 soap/0.01/4ep/60n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} 
+FA_wt            07-29 07:54 n= 24 sys=bioreactor,cartpole,duffing_mult,fhn,lorenz,quad_tank,rossler,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FA_riv           07-29 08:04 n= 24 sys=bioreactor,cartpole,duffing_mult,fhn,lorenz,quad_tank,rossler,vdp seeds=[0, 1, 2] methods=autonomous,ekf,phi_current,phi_gru
+       p1 soap/0.01/200ep/667n p2 soap/0.01/200ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FA_riv60         07-29 08:37 n= 24 sys=bioreactor,cartpole,duffing_mult,fhn,lorenz,quad_tank,rossler,vdp seeds=[0, 1, 2] methods=autonomous,ekf,phi_current,phi_gru
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FA_rivA          07-29 08:52 n= 24 sys=bioreactor,cartpole,duffing_mult,fhn,lorenz,quad_tank,rossler,vdp seeds=[0, 1, 2] methods=autonomous,ekf,phi_current,phi_gru
+       p1 soap/0.01/200ep/667n p2 adam/0.001/200ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FB_adam          07-29 09:40 n=  6 sys=bioreactor,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 adam/0.01/200ep/667n p2 adam/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FB_lbfgs         07-29 09:50 n=  1 sys=bioreactor seeds=[1] methods=autonomous,dyn_gru,ekf
+       p1 soap_lbfgs/0.01/200ep/667n p2 soap_lbfgs/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True, 'evrep': 1} 
+FB_lrlo          07-29 10:00 n=  3 sys=bioreactor seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 adam/0.001/200ep/667n p2 adam/0.001/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FD_def           07-29 10:15 n= 24 sys=bioreactor,cartpole,duffing_mult,fhn,lorenz,quad_tank,rossler,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 adam/0.001/60ep/200n p2 adam/0.001/40ep/200n frz=True res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FC_p1vol         07-29 10:24 n=  9 sys=bioreactor,duffing_mult,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/200n p2 soap/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FD_loo_frz       07-29 10:36 n=  9 sys=bioreactor,duffing_mult,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/667n frz=True res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FB_relo          07-29 10:51 n=  9 sys=bioreactor,duffing_mult,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'relobralo', 'p1.pde': True} VAR:evrep
+FB_invd          07-29 11:10 n=  9 sys=bioreactor,duffing_mult,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'invdir', 'p1.pde': True} VAR:evrep
+FB_resjc         07-29 11:17 n=  9 sys=bioreactor,duffing_mult,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/667n frz=False res=jacobian curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep
+FC_mixband       07-29 11:32 n=  9 sys=bioreactor,duffing_mult,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/200n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.fam': ['sinusoid', 'multisine', 'am'], 'p1.pde': True} VAR:evrep
+FC_mixhigh       07-29 11:54 n=  9 sys=bioreactor,duffing_mult,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/200n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p2.fam': ['prbs', 'square', 'am'], 'p1.pde': True} VAR:evrep
+FB_alm           07-29 12:14 n=  3 sys=bioreactor seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/667n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.gm': 'alm', 'p1.pde': True} VAR:evrep
+FC_vol200        07-29 12:16 n=  5 sys=bioreactor,vdp seeds=[0, 1, 2] methods=autonomous,dyn_gru,ekf
+       p1 soap/0.01/200ep/667n p2 soap/0.01/60ep/200n frz=False res=characteristic curv=0.0001 rank=4 nm=0.03 np=0.005 im=nonaffine {'p1.pde': True} VAR:evrep

@@ -1,0 +1,27 @@
+id: C3-partial-modelfree
+parent: C3-partial
+title: Incomplete knowledge, model-free phase 1
+contribution: C3
+question: Is a partial model in the phase-1 PDE term still worth using, or does it hurt?
+hypothesis: The partial model still helps (structure) unless the model error is large.
+decision_rule: Model helps if C3-partial beats this node with CI excluding 0 on >= 4/6 systems.
+set:
+  system.knowledge: partial
+  phase1.pde: false
+methods:
+- latent
+- lora
+- hyper
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 6
+status: done
+created: '2026-10-25'

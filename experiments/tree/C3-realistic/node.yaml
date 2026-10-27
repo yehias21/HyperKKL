@@ -1,0 +1,44 @@
+id: C3-realistic
+parent: C1-where
+title: 'Realistic deployment: partial model + 30% parameter error + colored non-Gaussian noise'
+contribution: C3
+question: All three kinds of incomplete knowledge at once, as on a real plant.
+hypothesis: Learned observers win on >= 4/6 systems against every filter variant.
+decision_rule: Best learned vs best filter (any variant), paired CI, id and sequence_ood, >= 4/6.
+set:
+  system.knowledge: partial
+  system.mismatch: 0.3
+  data.sensor:
+    noise: 0.03
+    kind: colored_t
+    rho: 0.9
+    nu: 3.0
+methods:
+- latent
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- pf
+- kkl_mb
+- nlox
+- ekf_huber
+- ukf_huber
+- ekf_oracle
+- ukf_oracle
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+compare:
+  reference:
+  - ekf
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 8
+status: done
+created: '2026-10-25'

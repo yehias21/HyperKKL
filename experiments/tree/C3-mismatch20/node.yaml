@@ -1,0 +1,38 @@
+id: C3-mismatch20
+parent: C1-where
+title: 'Model mismatch: the real plant''s physical parameters are 20% off nominal'
+contribution: C3
+question: Filters use the nominal model; learned observers are trained on data from the real plant.
+  When does learning from data beat a wrong model?
+hypothesis: The filter-vs-learned crossover sits between 10% and 30% mismatch.
+decision_rule: Learned wins at a level if the best learned observer beats the best filter with
+  CI excluding 0 on >= 4/6 systems, on id and sequence_ood.
+set:
+  system.mismatch: 0.2
+methods:
+- latent
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- pf
+- kkl_mb
+- nlox
+- ekf_huber
+- ukf_huber
+- ekf_oracle
+- ukf_oracle
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - ekf
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 5
+status: done
+created: '2026-10-25'

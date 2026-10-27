@@ -1,0 +1,39 @@
+id: C1-where
+parent: R0
+title: Where should the input enter? Five locations at matched parameters and history
+contribution: C1
+question: 'With identical frozen base maps, context encoder (SFM) and a matched 140k-parameter
+  conditioner, which location generalises best to unseen input SHAPES and SEQUENCES within the
+  training amplitude box: latent dynamics, decoder input (concat), features (FiLM), low-rank weights
+  (LoRA), full weights (hypernetwork)?'
+hypothesis: 'Weight-space conditioning (hyper, lora) beats latent injection and concat on shape_ood
+  and sequence_ood (v1 waveform tier: hyper beat latent on 5/5 dev systems).'
+decision_rule: A location is preferred if it beats every other location with a paired 95% CI excluding
+  0 on the all-families column on >= 4/6 dev systems, on shape_ood and sequence_ood (clean), each
+  separately, and is significantly worse on none. Report id alongside (in-distribution accuracy).
+set:
+  eval.memory_probe: true
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines:
+- ekf
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+compare:
+  reference:
+  - latent
+  - concat
+  tier: shape_ood
+  condition: clean
+priority: 9
+status: done
+created: '2026-10-25'

@@ -1,0 +1,17 @@
+# duffing: role = dev system (design decisions are made here).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+name: duffing
+plant: duffing
+role: dev
+params: {kappa: 0.5}
+sensors: [0]
+ic_box:
+- [-1, 1]
+- [-1, 1]
+T: 50
+nz: 5
+alpha: 3.0
+u_scale: 1.0
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

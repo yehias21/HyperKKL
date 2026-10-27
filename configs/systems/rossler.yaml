@@ -1,0 +1,26 @@
+# rossler: role = test system (held out: frozen recipe only).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+# t_ref (input protocol v2, signals.py): seconds per signal time unit. Rule t_ref = max(1, tau_slow / 3),
+# rounded, with tau_slow = median 1/|Re eig| of the linearisation along the zero-input trajectory
+# = 25 s -> t_ref = 8. T / t_ref = 160 / 8 = 20 signal time units (rule: >= ~20, so an episode holds enough input events).
+# T raised 50 -> 160 s (v2) so that T / t_ref >= 20 (it was 6).
+name: rossler
+plant: rossler
+role: test
+params: {}
+sensors: [1]
+ic_box:
+- [-10, 10]
+- [-10, 10]
+- [-10, 10]
+T: 160
+nz: 7
+alpha: 1.0
+u_scale: 1.0
+t_ref: 8
+u_bounds: []
+# k: the automatic back-EMF gain (u_bar/2 / half-span = 0.1) equals a = 0.1, so x2' = x1 + (a - k) x2
+# lost its unstable term: lambda_max 0.07 -> 0.00, no x3 spikes (not chaotic). k = 0.02 keeps
+# a - k = 0.08: lambda_max ~0.05, x3 spikes to ~23 at zero input (k = 0.05 is already periodic).
+actuator: {kind: saturating, u_bar: 2.0, k: 0.02}
+mismatch: 0.0

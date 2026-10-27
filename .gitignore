@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+experiments/cache/
+experiments/queue/
+**/models/
+**/runs/
+**/logs/
+*.log
+*.pt
+*.npz

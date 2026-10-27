@@ -1,0 +1,46 @@
+id: C3-regimes
+parent: C3-partial
+title: KKL vs grey-box filters where KKL's advantages should show (partial knowledge)
+contribution: C3
+question: Under partial knowledge, do learned KKL observers beat the grey-box EKF/UKF (partial
+  model + learned residual, same data) under a poor initial guess, outliers, higher sensor noise,
+  post-training plant drift or a sensor outage — the conditions where global convergence and no
+  linearisation should matter?
+hypothesis: Grey-box filters keep winning on clean data, but KKL wins under poor_init (global
+  convergence) and loses less under outliers/outage; plant drift hurts both.
+decision_rule: 'Per condition, best KKL (lora/hyper) vs best grey-box filter (greybox_ekf/ukf/ekf_oracle):
+  paired 95% CI excluding 0 on >= 4/6 dev systems on sequence_ood = ''KKL-wins regime''; report
+  every condition with k/6 and the absolute NRMSE; also report divergence rate and forget-prior
+  time.'
+set:
+  system.knowledge: partial
+  eval.conditions:
+  - clean
+  - poor_init
+  - noise10
+  - outliers
+  - plant_drift10
+  - burst_outage
+methods:
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- greybox_ekf
+- greybox_ukf
+- greybox_ekf_oracle
+- koopman_kf
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - greybox_ekf
+  - hyper
+  tier: sequence_ood
+  condition: poor_init
+priority: 25
+status: done
+created: '2026-10-26'

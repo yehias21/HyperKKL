@@ -1,0 +1,21 @@
+# fhn: role = test system (held out: frozen recipe only).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+# t_ref (input protocol v2, signals.py): seconds per signal time unit. Rule t_ref = max(1, tau_slow / 3),
+# rounded, with tau_slow = median 1/|Re eig| of the linearisation along the zero-input trajectory
+# = 5.6 s -> t_ref = 2. T / t_ref = 100 / 2 = 50 signal time units (rule: >= ~20, so an episode holds enough input events).
+name: fhn
+plant: fhn
+role: test
+params: {}
+sensors: [0]
+ic_box:
+- [-2.5, 2.5]
+- [-1.5, 1.5]
+T: 100
+nz: 5
+alpha: 0.5
+u_scale: 1.0
+t_ref: 2
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

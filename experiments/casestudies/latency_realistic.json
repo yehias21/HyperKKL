@@ -1,0 +1,168 @@
+{
+ "host_load": [
+  "243.56",
+  "243.57",
+  "237.83"
+ ],
+ "cores": [
+  95
+ ],
+ "torch": "2.10.0+cu128",
+ "threads": 1,
+ "mcu": {
+  "hz": 480000000.0,
+  "flop_per_cycle": 0.5,
+  "cycles_per_transcendental": 40,
+  "overhead": 1.5
+ },
+ "cases": {
+  "A": {
+   "gru140": {
+    "kind": "learned",
+    "us_cpu_min": 648.666750639677,
+    "us_cpu_median": 736.3742465774218,
+    "flops": 555468,
+    "transcendentals": 991,
+    "n_tensor_elems": 140626,
+    "bytes_f32": 562504,
+    "mcu_us_est": 3595.55,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   },
+   "hk_A0": {
+    "kind": "learned",
+    "us_cpu_min": 1732.5431667268276,
+    "us_cpu_median": 2342.438163856665,
+    "flops": 363460,
+    "transcendentals": 4342,
+    "n_tensor_elems": 258245,
+    "bytes_f32": 1032980,
+    "mcu_us_est": 2814.375,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   },
+   "hk_A3": {
+    "kind": "learned",
+    "us_cpu_min": 2659.124191850424,
+    "us_cpu_median": 3018.460081269344,
+    "flops": 389924,
+    "transcendentals": 4422,
+    "n_tensor_elems": 274936,
+    "bytes_f32": 1099744,
+    "mcu_us_est": 2989.775,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   },
+   "hk_A4+D3": {
+    "kind": "learned",
+    "us_cpu_min": 3102.1361611783504,
+    "us_cpu_median": 3184.400840351979,
+    "flops": 875076,
+    "transcendentals": 7880,
+    "n_tensor_elems": 516575,
+    "bytes_f32": 2066300,
+    "mcu_us_est": 6454.225,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   },
+   "node5k_ekf": {
+    "kind": "filter",
+    "us_cpu_min": 6731.965517004331,
+    "us_cpu_median": 7849.6745228767395,
+    "flops": 199036,
+    "transcendentals": 66,
+    "n_tensor_elems": 10594,
+    "bytes_f32": 42376,
+    "mcu_us_est": 1252.225,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   },
+   "node5k_ukf": {
+    "kind": "filter",
+    "us_cpu_min": 2828.8567749162517,
+    "us_cpu_median": 3085.9756904343762,
+    "flops": 631372,
+    "transcendentals": 360,
+    "n_tensor_elems": 10624,
+    "bytes_f32": 42496,
+    "mcu_us_est": 3991.075,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   },
+   "ude5k_ekf": {
+    "kind": "filter",
+    "us_cpu_min": 14895.641971379519,
+    "us_cpu_median": 18771.75735930602,
+    "flops": 199036,
+    "transcendentals": 66,
+    "n_tensor_elems": 10594,
+    "bytes_f32": 42376,
+    "mcu_us_est": 1252.225,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   },
+   "ude5k_ukf": {
+    "kind": "filter",
+    "us_cpu_min": 3713.971128066381,
+    "us_cpu_median": 6072.999785343806,
+    "flops": 631372,
+    "transcendentals": 360,
+    "n_tensor_elems": 10624,
+    "bytes_f32": 42496,
+    "mcu_us_est": 3991.075,
+    "meets_budget_cpu": false,
+    "meets_budget_mcu_est": false
+   }
+  },
+  "B": {
+   "gru140": {
+    "kind": "learned",
+    "us_cpu_min": 621.4803084731102,
+    "us_cpu_median": 764.4840143620968,
+    "flops": 550548,
+    "transcendentals": 987,
+    "n_tensor_elems": 139376,
+    "bytes_f32": 557504,
+    "mcu_us_est": null,
+    "meets_budget_cpu": true,
+    "meets_budget_mcu_est": true
+   },
+   "hk_A0": {
+    "kind": "learned",
+    "us_cpu_min": 1032.8648115197818,
+    "us_cpu_median": 2114.514634013176,
+    "flops": 364794,
+    "transcendentals": 4304,
+    "n_tensor_elems": 257210,
+    "bytes_f32": 1028840,
+    "mcu_us_est": null,
+    "meets_budget_cpu": true,
+    "meets_budget_mcu_est": true
+   },
+   "hk_A3": {
+    "kind": "learned",
+    "us_cpu_min": 977.8051016231378,
+    "us_cpu_median": 1229.132351775964,
+    "flops": 381050,
+    "transcendentals": 4384,
+    "n_tensor_elems": 267079,
+    "bytes_f32": 1068316,
+    "mcu_us_est": null,
+    "meets_budget_cpu": true,
+    "meets_budget_mcu_est": true
+   },
+   "hk_A4+D3": {
+    "kind": "learned",
+    "us_cpu_min": 1250.0769086182117,
+    "us_cpu_median": 1381.873730570078,
+    "flops": 856916,
+    "transcendentals": 7840,
+    "n_tensor_elems": 503929,
+    "bytes_f32": 2015716,
+    "mcu_us_est": null,
+    "meets_budget_cpu": true,
+    "meets_budget_mcu_est": true
+   }
+  }
+ }
+}

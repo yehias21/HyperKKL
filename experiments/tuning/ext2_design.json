@@ -1,0 +1,55 @@
+{
+ "generated": "2026-10-26 11:46:39",
+ "from_selection": "selection_ext1b.json",
+ "ctx_rms": [
+  0.3,
+  1.0
+ ],
+ "design": {
+  "latent": {
+   "lrs": [
+    0.004,
+    0.008,
+    0.016
+   ],
+   "knob_value": null,
+   "from": "latent[lr=0.008]"
+  },
+  "concat": {
+   "lrs": [
+    0.008,
+    0.016,
+    0.032
+   ],
+   "knob_value": 3,
+   "from": "concat[lr=0.016,concat_depth=3]"
+  },
+  "film": {
+   "lrs": [
+    0.002,
+    0.004,
+    0.008
+   ],
+   "knob_value": 2,
+   "from": "film[lr=0.004,film_depth=2]"
+  },
+  "lora": {
+   "lrs": [
+    0.004,
+    0.008,
+    0.016
+   ],
+   "knob_value": 16,
+   "from": "lora[lr=0.008,rank=16]"
+  },
+  "hyper": {
+   "lrs": [
+    0.002,
+    0.004,
+    0.008
+   ],
+   "knob_value": null,
+   "from": "hyper[lr=0.004]"
+  }
+ }
+}

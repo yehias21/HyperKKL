@@ -1,0 +1,23 @@
+id: AR-smoke
+parent: AR-partial
+title: pipeline smoke, tiny budgets
+set:
+  phase1.steps_enc: 200
+  phase1.steps_dec: 200
+  phase2.steps: 100
+  phase2.val_every: 50
+  eval.n_episodes: 8
+methods:
+- lora
+- hyper
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01]
+- lora[phase1.lr=0.01,phase2.lr=0.01]
+- lora[phase1.optimizer=adam95,phase1.lr=0.01,phase2.optimizer=adam95,phase2.lr=0.01]
+- lora[phase1.steps_enc=400,phase1.steps_dec=400]
+- lora[phase2.ctx_guard=true]@gru
+- lora[phase2.delta_curv=0.0001,phase2.delta_reg=0.001]
+- lora[phase2.enc_aux=true]
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=400,phase1.steps_dec=400,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001,phase2.enc_aux=true]@gru
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=400,phase1.steps_dec=400,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001]@gru
+seeds:
+- 0

@@ -1,0 +1,27 @@
+id: C3-data150
+parent: C1-where
+title: 'Learning curve: 150 training episodes (default 600)'
+contribution: C3
+question: How much data does a learned observer need before it pays off?
+hypothesis: Error falls roughly as a power law in n_train; hyper needs more data than latent.
+decision_rule: Report error vs n_train (50/150/600) per method; crossover with the filters under
+  30% mismatch read from C3-mismatch30.
+set:
+  data.n_train: 150
+methods:
+- latent
+- lora
+- hyper
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - hyper
+  tier: shape_ood
+  condition: clean
+priority: 4
+status: done
+created: '2026-10-25'

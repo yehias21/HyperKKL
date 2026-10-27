@@ -1,0 +1,143 @@
+[
+ {
+  "cell": "TEST-C3/highway_traffic",
+  "seed": 0,
+  "cfg_src": "/mnt/raid0_gpu4/demo/data/papers/TMLR/hyperkkl/experiments/tree/TEST-C3/runs/highway_traffic/seed0/results.json",
+  "mismatch": 0.3,
+  "knowledge": "partial",
+  "model_params_equal_nominal": true,
+  "model_params_equal_real": false,
+  "rel_model_error_median": 2.611597320178505,
+  "episodes": {
+   "train": 600,
+   "p1": 400,
+   "val": 64,
+   "N+1": 7663
+  },
+  "transitions_train_p1": 7662000,
+  "greybox_n_fit_cap": 1000000,
+  "overlap": {
+   "id": {
+    "n": 64,
+    "identical_to_train": 0,
+    "families": [
+     "am",
+     "constant",
+     "drive",
+     "multisine",
+     "prbs",
+     "ramp",
+     "sinusoid",
+     "square",
+     "staircase",
+     "step"
+    ]
+   },
+   "shape_ood": {
+    "n": 64,
+    "identical_to_train": 0,
+    "families": [
+     "chirp",
+     "filtered_noise",
+     "sawtooth",
+     "triangle"
+    ]
+   },
+   "sequence_ood": {
+    "n": 64,
+    "identical_to_train": 0,
+    "families": [
+     "drive"
+    ]
+   },
+   "val_identical_to_train": 0
+  },
+  "train_families": [
+   "am",
+   "constant",
+   "drive",
+   "multisine",
+   "prbs",
+   "ramp",
+   "sinusoid",
+   "square",
+   "staircase",
+   "step",
+   "zero"
+  ],
+  "greybox_fit": {
+   "n_params": 4933,
+   "n_fit": 1000000,
+   "steps": 3000,
+   "val_loss": 0.178085058927536,
+   "val_r2": [
+    0.872126042842865,
+    0.785956859588623,
+    0.8088129758834839,
+    0.7901179790496826,
+    0.7308686971664429
+   ]
+  },
+  "ude_lr": {
+   "ude5k_ekf": 0.001
+  },
+  "val_rollout_nmse": {
+   "f_known only": {
+    "1": 4.0142417699793605e-06,
+    "8": 0.00021475554414328692,
+    "32": 0.0031792757806159734,
+    "128": 0.04109281621051477
+   },
+   "grey-box (one-step r)": {
+    "1": 6.558439204332834e-07,
+    "8": 5.383302510234042e-06,
+    "32": 2.195984406089635e-05,
+    "128": 9.34581235825227e-05
+   },
+   "ude5k": {
+    "1": 6.552181274978465e-07,
+    "8": 5.3278237938635554e-06,
+    "32": 2.110708589096363e-05,
+    "128": 8.241507553924943e-05
+   },
+   "TRUE plant (reference only)": {
+    "1": 6.538772402110335e-07,
+    "8": 5.278424329234475e-06,
+    "32": 2.04373753627153e-05,
+    "128": 7.364830653861347e-05
+   }
+  },
+  "seq_ood_eval_seed": {
+   "greybox_ekf": {
+    "mean": 0.02651240286650136,
+    "median": 0.017636947333812714,
+    "p90": 0.03320098705589772,
+    "diverged": 0.0
+   },
+   "greybox_ukf": {
+    "mean": 0.03505166037939489,
+    "median": 0.02374447602778673,
+    "p90": 0.04200328104197979,
+    "diverged": 0.0
+   },
+   "greybox_ekf_oracle": {
+    "mean": 0.02651240286650136,
+    "median": 0.017636947333812714,
+    "p90": 0.03320098705589772,
+    "diverged": 0.0
+   },
+   "ude5k_ekf": {
+    "mean": 0.04172972391825169,
+    "median": 0.01724901143461466,
+    "p90": 0.04561224132776264,
+    "diverged": 0.0
+   },
+   "ude5k_ukf": {
+    "mean": 0.033573366090422496,
+    "median": 0.023085434921085835,
+    "p90": 0.04385042451322081,
+    "diverged": 0.0
+   }
+  }
+ }
+]

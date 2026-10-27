@@ -1,0 +1,165 @@
+# Defaults for every run. A system YAML is merged under `system:`; experiment nodes
+# override anything below with dotted keys (see hyperkkl/tree.py).
+
+# Learned observers trained and evaluated in a job. Names: a conditioning kind from
+# hyperkkl/conditioning.py (autonomous = no conditioning), optionally `kind@context`
+# to override the context encoder for that method only (e.g. lora@gru).
+methods: [autonomous, latent, concat, film, lora, hyper]
+
+# Reference observers: ekf, ukf, pf, kkl_mb (model-based stationary KKL), nlox
+# (neural Luenberger, Woelk et al. 2026), and the fair-filter set (observers.py):
+#   ekf_huber, ukf_huber   Huber M-estimation update, NOMINAL Q, R (robust, not told the condition)
+#   ekf_oracle, ukf_oracle rebuilt per condition with condition-oracle Q, R (observers.oracle_noise:
+#                          the sensor of that condition, outlier mixture variance, and Q including the
+#                          model-error rate between the filter's model and the real plant of the block)
+#   ekf_oracle_huber       Huber + chi-square gate, oracle Q and the NOMINAL-sigma R (outliers ignored)
+# Oracle filters skip held samples (dropout, burst_outage) unless the sensor is quantised.
+# Data-driven baselines (baselines_data.py), fitted per job on the learned observers' own
+# training data (data.train + data.p1; selection on data.val), held in memory only:
+#   koopman_kf             EDMD with inputs (x + 200/400 thin-plate RBFs, k-means centres) + KF on
+#                          the lifted state; Q = regression residual, R nominal, P0 = lifted IC box
+#   koopman_kf_bilinear    the same with a bilinear lift psi+ = K psi + G u + sum u_i N_i psi + b
+#   greybox_ekf, _ukf      the modeller's model + an MLP residual fitted to the one-step RK4 defect;
+#                          nominal Q, R, P0 (greybox_ekf_oracle: condition-oracle EKF on it)
+# Options: an optional top-level `data_baselines:` section (keys: baselines_data.DEFAULTS).
+# Add them to finished runs without retraining: python -m hyperkkl reeval NODE --baselines ...
+baselines: [ekf]
+
+# What the modeller knows (systems.py, Plant.UNMODELLED / f_known). full = the true f at
+# nominal parameters; partial = one physically identified term missing or simplified. Every
+# model-based component gets the modeller's model (the phase-1 PDE term, EKF/UKF/PF, kkl_mb,
+# the oracle filters' model-error rate); the REAL plant that generates data keeps full
+# dynamics. Merged under every system (a system YAML or node may set system.knowledge).
+system:
+  knowledge: full
+
+# CUDA-graph the latent and NLOX rollout training steps (train._Graphed; identical
+# numerics to eager, ~14x faster). false = eager.
+cuda_graphs: true
+
+data:
+  n_p1: 400            # zero-input episodes from the envelope box, for the phase-1 labels
+  n_train: 600         # forced training episodes (crossed IC x signal design)
+  n_val: 64            # forced validation episodes (model selection only)
+  n_coll: 32768        # Sobol collocation states over the envelope (PDE term + half of every decoder batch)
+  k_cross: 3           # each signal paired with k ICs, each IC with ~k signals
+  noise_proc: 0.005    # process noise: std rate as a fraction of each state's reference std
+  sensor:              # sensor model in training AND evaluation (deployment condition)
+    noise: 0.03        # white Gaussian, fraction of each output's reference std
+  eps_label: 1.0e-3    # label tolerance that sets the washout (design.washout_time)
+  envelope_safety: 1.15
+  reject_scale: 1.5    # episodes leaving 1.5x the envelope are redrawn
+
+phase1:
+  enc_width: 192
+  enc_depth: 3
+  dec_width: 128       # base decoder, shared by every conditioning variant
+  dec_depth: 3
+  steps_enc: 6000
+  steps_dec: 6000
+  batch: 4096
+  lr: 2.0e-3
+  stride: 2
+  pde: true            # false = model-free phase 1 (no f anywhere)
+  lambda_pde: 1.0
+  decoder_data: [coll, traj]
+
+phase2:
+  steps: 3000
+  warmup: 100
+  lr: 2.0e-3
+  episodes_per_batch: 32
+  times_per_episode: 256
+  budget: 140000       # trainable parameters of the conditioner (matched across variants)
+  budget_includes_context: false   # true: the context encoder counts too (when encoders differ)
+  rank: 4              # lora rank
+  rollout_K: 256       # latent variant: rollout length (steps) per training sample
+  # Architecture knobs (C1 tuning study, experiments/tuning/PROTOCOL.md). ABSENT = the original
+  # architecture, bit for bit; the width is re-solved by match_width at the same budget:
+  #   gen_layers: L      hyper: generate deltas for the last L decoder layers only (default all)
+  #   film_depth: d      film: hidden layers of the generator (default 1)
+  #   concat_depth: d    concat: hidden layers of the residual MLP (default 2)
+  #   latent_depth: d    latent: hidden layers of the injection MLP (default 2)
+  #   ctx_rms: r         every variant: the conditioner sees s*c, s = r / RMS(c) of the freshly
+  #                      initialised context encoder on training data (conditioning.ContextScale)
+  # Per-method values: method string kind[key=value,...] (job.METHOD_KEYS), e.g.
+  # hyper[lr=0.001,gen_layers=2], lora[rank=16]@gru:dim=8
+  val_every: 250
+  context:
+    kind: sfm          # current | window | gru | sfm (shared by all variants of a job)
+    dim: 16
+    hidden: 64
+    window: 50         # window encoder only (samples)
+    sfm_blocks: 8
+    sfm_floor: 0.0     # sfm only: forgetting rate >= sfm_floor x the latent filter's slowest rate (C2 intervention)
+
+nlox:
+  width: 64
+  dec_width: 128
+  dec_depth: 3
+  steps: 3000          # same optimiser steps as phase 2 (cheap since rollouts are CUDA-graphed)
+  lr: 1.0e-3
+  K: 256
+  episodes_per_batch: 32
+  val_every: 250
+
+eval:
+  split: dev           # dev for every design decision; test is touched once (frozen recipe)
+  rep: 0
+  n_episodes: 64
+  # Input protocol v2 (hyperkkl/signals.py): every tier keeps v(t) in [-1, 1] (x u_scale),
+  # the actuator's bounded range. id = training families/ranges, unseen seeds; shape_ood =
+  # held-out waveforms (chirp, filtered_noise, triangle, sawtooth) in the training band;
+  # sequence_ood = the 'drive' family with an aggressive stop-and-go event sequence.
+  tiers: [id, shape_ood, sequence_ood]
+  conditions: [clean]
+  settle_frac: 0.5
+  pf_particles: 512
+  # proposal inflation 1 + (inflate - 1) exp(-t / anneal_tau), chosen per job on the
+  # validation episodes (job.tune_pf); anneal_tau in seconds, 0 = constant
+  pf_grid:
+    - {inflate: 1.0, anneal_tau: 0.0}
+    - {inflate: 3.0, anneal_tau: 0.0}
+    - {inflate: 10.0, anneal_tau: 0.0}
+    - {inflate: 30.0, anneal_tau: 1.0}
+  save_traj: true
+  # oracle filters (ekf_oracle, ukf_oracle, ekf_oracle_huber): (q_inflate, r_inflate) chosen per
+  # job on <= 32 validation episodes with ekf_oracle (job.tune_oracle); q_inflate multiplies
+  # the model-error variance in Q (searched only when the model is inexact), r_inflate R
+  oracle_grid: {q_inflate: [0.0, 0.3, 1.0, 3.0, 10.0], r_inflate: [1.0, 2.0]}
+  # C2 memory probe (evaluate.memory_probe): for conditioned decoder-side methods with an
+  # sfm / gru / window context, keep the last L input samples, replace the older input by
+  # another episode's (and by zero), recompute the context only (latent z unchanged) and
+  # record the decoded change vs L; fit the decay rate (1/s) and compare it with alpha.
+  # Cost-bounded: 16 id episodes, 8 settled time points, 24 log-spaced L in [1, 512].
+  memory_probe: false
+  # true: record each learned method's deployed settled NRMSE on the phase-2 VALIDATION episodes
+  # (job.validation_nrmse -> train.<method>.val_nrmse), the model-selection score of the C1 tuning study
+  # val_nrmse: true   (absent = off)
+
+# Stress conditions, applied to the SAME evaluation episodes as `clean` unless they
+# change the plant. Sensor entries are merged over data.sensor. No observer is told about a
+# condition: learned observers were trained on the nominal sensor model and the filters keep
+# the nominal Q, R (oracle values for `clean` only).
+conditions:
+  clean: {}
+  noise10: {sensor: {noise: 0.10}}
+  outliers: {sensor: {outlier_rate: 0.02, outlier_scale: 12.0}}
+  dropout: {sensor: {dropout: 0.10}}
+  colored: {sensor: {kind: colored, rho: 0.95}}
+  # AR(1) driven by unit-variance Student-t(nu) noise: coloured AND heavy-tailed (nu > 2)
+  colored_t: {sensor: {kind: colored_t, rho: 0.9, nu: 3.0}}
+  quantized: {sensor: {quant: 0.25}}
+  sensor_drift: {sensor: {drift: 0.3}}
+  poor_init: {init: poor}
+  input_noise: {input: {noise: 0.10}}
+  input_bias: {input: {bias: 0.10}}
+  input_delay: {input: {delay: 5}}
+  plant_drift10: {plant_shift: 0.10}
+  plant_drift30: {plant_shift: 0.30}
+  # the sensor freezes (sample-and-hold) for 2 t_ref starting at 0.6 T: recovery-time metric
+  burst_outage: {sensor: {burst: {start_frac: 0.6, len_tref: 2.0}}}
+  # long-horizon drift: episodes of horizon x T (16 of them, id tier only, same IC / signal
+  # regimes as id); drift ratio = NRMSE(last 20%) / NRMSE(20% after settling). Costs one extra
+  # sequential pass of horizon x N steps per observer (see README, "Deployment scorecard").
+  long: {horizon: 5.0, n_episodes: 16, tiers: [id]}

@@ -1,0 +1,35 @@
+id: R0
+parent: null
+title: 'Protocol-v2 sanity run: every method on every dev system, one seed'
+contribution: all
+question: Does the v2 input protocol (one amplitude box, per-plant t_ref, id / shape_ood / sequence_ood
+  tiers) train and evaluate cleanly, with no mass rejection and plausible errors?
+hypothesis: Every learned variant beats the autonomous observer on id; no NaN; rejection < 5%.
+decision_rule: Pass if no job fails, rejection < 5% per tier, and every conditioned variant beats
+  autonomous on id/clean on every dev system.
+methods:
+- autonomous
+- latent
+- concat
+- film
+- lora
+- hyper
+baselines:
+- ekf
+systems:
+- battery
+- bioreactor
+- duffing
+- lorenz
+- quad_tank
+- vdp
+seeds:
+- 0
+compare:
+  reference:
+  - autonomous
+  tier: id
+  condition: clean
+priority: 10
+status: done
+created: '2026-10-25'

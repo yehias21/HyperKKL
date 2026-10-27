@@ -1,0 +1,17 @@
+# bioreactor: role = dev system (design decisions are made here).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+name: bioreactor
+plant: bioreactor
+role: dev
+params: {mu_max: 1.0}
+sensors: [1]
+ic_box:
+- [0.8, 2.0]
+- [0.2, 2.0]
+T: 100
+nz: 5
+alpha: 0.5
+u_scale: 0.15
+u_bounds: [-0.25, 0.6]
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

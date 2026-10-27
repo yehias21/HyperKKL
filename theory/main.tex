@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage[numbers]{natbib}
+\usepackage{hyperref,booktabs,enumitem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\title{Theory: where the input should enter a learned KKL observer,\\ why a short input window suffices, and what learned observers can guarantee}
+\date{draft, generated from theory/m1--m3}
+% numbers produced by the mechanical results layer (analysis.paper_results); fallbacks keep the standalone build working
+\IfFileExists{../paper/generated/numbers.tex}{\input{../paper/generated/numbers.tex}}{}
+\providecommand{\CthreeFaultsRegimes}{none of 15 conditions}
+\providecommand{\CthreeRealisticIdVsWorking}{6/6}\providecommand{\CthreeRealisticSeqVsWorking}{6/6}
+\providecommand{\ModelErrDuffingMismatchThirty}{0.02}\providecommand{\ModelErrDuffingPartial}{0.13}
+\providecommand{\ModelErrQuadTankPartial}{0.15}\providecommand{\ModelErrBioreactorPartial}{2.15}
+\providecommand{\ModelErrLorenzPartial}{0.71}\providecommand{\ModelErrVdpPartial}{0.66}
+\providecommand{\ModelErrQuadTankMismatchThirty}{0.69}
+\providecommand{\ConeLearnedOverEkfRangeSeq}{2.7--14.1}\providecommand{\ConeLearnedOverEkfMedianSeq}{5.9}
+\begin{document}
+\maketitle
+\paragraph{Reading guide.} Every statement carries a status tag: [proven] under the stated assumptions, [proven, linear
+plants], [conjecture], or [empirical]; each is followed by a one-sentence intuition, a proof, what it predicts and which
+experiment node tests it (or that none does). In the paper the theory lives in the appendix; three statements go to the
+main text: Theorem~\ref{thm:m2-window} (why a short window suffices; two-sided for linear plants, with the practical rule
+of Corollary~\ref{cor:m2-rule}), Proposition~\ref{prop:m1-where} (where the input should enter: a stability margin that
+depends on the input against extrapolation at unseen contexts), and Proposition~\ref{prop:m3-mismatch} (when a learned
+observer beats a filter: a data-independent bias--variance floor under model incompleteness against the learned fit error
+on the true plant). Proposition~\ref{prop:m3-iss} is a decomposition with measured constants, not a certificate, and is
+presented as such. All numerical constants quoted are produced by \texttt{theory/checks/*.py}.
+\input{m1_existence_location}
+\input{m2_fading_memory}
+\input{m3_error_bounds}
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}

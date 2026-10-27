@@ -1,0 +1,18 @@
+# lorenz: role = dev system (design decisions are made here).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+name: lorenz
+plant: lorenz
+role: dev
+params: {}
+sensors: [1]
+ic_box:
+- [-20, 20]
+- [-30, 30]
+- [0, 50]
+T: 50
+nz: 7
+alpha: 2.0
+u_scale: 1.0
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

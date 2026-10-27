@@ -1,0 +1,40 @@
+id: C3-partial
+parent: C1-where
+title: 'Incomplete knowledge: the model lacks one physical term'
+contribution: C3
+question: When the modeller knows only part of the dynamics (a missing or simplified term, not
+  a wrong parameter), do learned observers trained on real-plant data beat filters built on the
+  partial model?
+hypothesis: Learned observers win on systems where the unmodelled term is large relative to f
+  (bioreactor, vdp, lorenz); filters keep winning where it is small (duffing, quad_tank).
+decision_rule: Per system, best learned vs best filter (nominal and robust/oracle), paired CI
+  on id and sequence_ood; report against the relative model error median |f - f_known| / |f|.
+set:
+  system.knowledge: partial
+methods:
+- latent
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- pf
+- kkl_mb
+- nlox
+- ekf_huber
+- ukf_huber
+- ekf_oracle
+- ukf_oracle
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - ekf
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 8
+status: done
+created: '2026-10-25'

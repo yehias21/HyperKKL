@@ -1,0 +1,28 @@
+id: AR-calib-realistic
+parent: C1-where
+title: timing calibration only (C3-realistic settings; not part of the test)
+set:
+  system.knowledge: partial
+  system.mismatch: 0.3
+  data.sensor:
+    noise: 0.03
+    kind: colored_t
+    rho: 0.9
+    nu: 3.0
+  eval.memory_probe: false
+  eval.save_traj: false
+methods:
+- lora
+- hyper
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01]
+- lora[phase1.lr=0.01,phase2.lr=0.01]
+- lora[phase1.optimizer=adam95,phase1.lr=0.01,phase2.optimizer=adam95,phase2.lr=0.01]
+- lora[phase1.steps_enc=18000,phase1.steps_dec=18000]
+- lora[phase2.ctx_guard=true]@gru
+- lora[phase2.delta_curv=0.0001,phase2.delta_reg=0.001]
+- lora[phase2.enc_aux=true]
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=18000,phase1.steps_dec=18000,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001,phase2.enc_aux=true]@gru
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=18000,phase1.steps_dec=18000,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001]@gru
+baselines: []
+seeds:
+- 0

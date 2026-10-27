@@ -1,0 +1,163 @@
+{
+ "cartpole/A2": {
+  "id": {
+   "frac_out": 0.0,
+   "err_in": 0.7090160775616748,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "shape_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.6225953381065962,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "sequence_ood": {
+   "frac_out": 0.0,
+   "err_in": 1.1705231794066702,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  }
+ },
+ "cartpole/A4": {
+  "id": {
+   "frac_out": 0.0,
+   "err_in": 0.3719411614863027,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "shape_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.27984160870422103,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "sequence_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.6442940359390783,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  }
+ },
+ "cartpole/lora": {
+  "id": {
+   "frac_out": 0.0,
+   "err_in": 0.466018693174622,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "shape_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.3670693134441321,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "sequence_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.6499968443487767,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  }
+ },
+ "cartpole/greybox_ukf": {
+  "id": {
+   "frac_out": 0.0,
+   "err_in": 0.053451505553025025,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "shape_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.04900663082220904,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "sequence_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.07222985455887404,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  }
+ },
+ "highway_traffic/lora": {
+  "id": {
+   "frac_out": 0.0,
+   "err_in": 0.2119973376944799,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0007149225817675714
+  },
+  "shape_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.20768023493434049,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "sequence_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.21858985035490083,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  }
+ },
+ "quad_tank/A2": {
+  "id": {
+   "frac_out": 0.0,
+   "err_in": 0.03836748814883048,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.07377401977118737
+  },
+  "shape_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.038070895568516824,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.0
+  },
+  "sequence_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.046732321533392386,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 4.859491280684216e-05
+  }
+ },
+ "battery/A2": {
+  "id": {
+   "frac_out": 0.0,
+   "err_in": 0.018285863667137813,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.03414466107272129
+  },
+  "shape_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.027554003393788357,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.015568443566962816
+  },
+  "sequence_ood": {
+   "frac_out": 0.0,
+   "err_in": 0.021009575185373556,
+   "err_out": NaN,
+   "verdict": "no",
+   "frac_out_q": 0.04035558571898651
+  }
+ }
+}

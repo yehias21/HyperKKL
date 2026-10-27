@@ -1,0 +1,11 @@
+PDE off vs on (fhn) | pdefalse_fhn:dyn_gru | pdetrue_fhn:dyn_gru | phase1 PDE
+PDE off vs on (bioreactor) | pdefalse_bioreactor:dyn_gru | pdetrue_bioreactor:dyn_gru | phase1 PDE
+zeta9 spectrum vs default (all) | z9_vdp:dyn_gru | all:dyn_gru | spectrum
+alpha 0.5 bioreactor | ba0.5:dyn_gru | all:dyn_gru | bandwidth
+first-diff smooth 1e-4 (traffic) | fix1:dyn_gru | cal_gru:dyn_gru | smooth
+first-diff smooth 10 (traffic) | lam10:dyn_gru | cal_gru:dyn_gru | smooth
+nz 3 vs default | NZ3:dyn_gru | LAT_enc:dyn_gru | latent dim
+nz 5 vs default | NZ5:dyn_gru | LAT_enc:dyn_gru | latent dim
+nz 10 vs default | NZ10:dyn_gru | LAT_enc:dyn_gru | latent dim
+gru vs ekf under outliers (sd_outlier) | sd_outlier:dyn_gru | sd_outlier:ekf | robustness
+gru vs rekf under outliers | R_outlier:dyn_gru | R_outlier:rekf | robustness

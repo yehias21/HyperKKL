@@ -1,0 +1,20 @@
+# highway_traffic: role = test system (held out: frozen recipe only).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+name: highway_traffic
+plant: highway_traffic
+role: test
+params: {}
+sensors: [0, 2, 4]
+ic_box:
+- &id001 [0.01, 0.1]
+- *id001
+- *id001
+- *id001
+- *id001
+T: 100
+nz: 12
+alpha: 0.5
+u_scale: 0.15
+u_bounds: [-0.25, 0.6]
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

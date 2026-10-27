@@ -1,0 +1,27 @@
+id: C1-tuned-ext1
+parent: C1-tuned
+title: Tuned recipe after extension ext1 (new choices only), dev systems
+contribution: C1
+question: Does the C1-tuned verdict change after the equal ext1 extension?
+hypothesis: As C1-tuned.
+decision_rule: 'Verdict ''ext1'': the C1-tuned rule on selection_ext1b.json (PROTOCOL.md sections
+  9-10).'
+methods:
+- latent[lr=0.008]
+- concat[lr=0.016,concat_depth=3]
+- lora[lr=0.008,rank=16]
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 20
+status: done
+created: '2026-10-26'
+notes: 'selected methods of selection_ext1b.json (2026-10-26 11:45:41) not yet confirmed: [''latent[lr=0.008]'',
+  ''concat[lr=0.016,concat_depth=3]'', ''lora[lr=0.008,rank=16]'']; the others reuse earlier confirmation
+  nodes. experiments/tuning/PROTOCOL.md sections 9-10'

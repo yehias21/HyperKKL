@@ -1,0 +1,17 @@
+# vdp: role = dev system (design decisions are made here).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+name: vdp
+plant: vdp
+role: dev
+params: {mu: 1.0}
+sensors: [0]
+ic_box:
+- [-3, 3]
+- [-3, 3]
+T: 50
+nz: 5
+alpha: 1.5
+u_scale: 1.0
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

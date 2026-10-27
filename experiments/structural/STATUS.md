@@ -1,0 +1,5 @@
+- 2026-10-26 16:51 Dubai: PREREG.md written (no observer run before). Code + 13 unit tests pass. Next: smoke tests.
+- 2026-10-26 17:51 Dubai: 5/42 jobs done (bioreactor ref s0, cartpole ref/struct s0, battery ref s0-1). No verdict yet. Note for the record: struct-tier data generation is slow (quad_tank N=6000 with redraws, ~40+ min).
+- 2026-10-26 18:50 Dubai: 17/42 jobs done, no failures. analyze.py tested on partial results (no verdict computed on complete data yet).
+- 2026-10-26 19:20 Dubai: PREREG addendum 1 (cartpole-excluded variant, coordinator decision) written before any verdict; analyze.py reports both ways; RESULTS_auto.md now auto-refreshed every 10 min (marked INTERIM until 42/42). 30/42 jobs done.
+- 2026-10-26 21:59 Dubai: 42/42 jobs done, 0 failures. Verdicts (sequence_ood): P-S1 FAIL (struct 2/4, ref 1/4; cartpole-excluded variant also FAIL 2/3, 1/3), P-S2 PASS, P-S3 FAIL (rho_s 0.536; excl. cartpole 0.543). RESULTS.md written.

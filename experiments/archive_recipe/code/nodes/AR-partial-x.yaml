@@ -1,0 +1,16 @@
+id: AR-partial-x
+parent: C1-where
+title: archive recipe test, partial knowledge (extra seeds, primary arms only)
+set:
+  system.knowledge: partial
+  eval.memory_probe: false
+  eval.save_traj: false
+methods:
+- lora
+- hyper
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=18000,phase1.steps_dec=18000,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001,phase2.enc_aux=true]@gru
+- lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=18000,phase1.steps_dec=18000,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001]@gru
+baselines: []
+seeds:
+- 3
+- 4

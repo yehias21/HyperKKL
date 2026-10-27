@@ -1,0 +1,51 @@
+id: TEST-C3
+parent: C3-realistic
+title: 'FROZEN recipe, held-out test systems: realistic deployment'
+contribution: C3
+question: 'Partial model + 30% parameter error + colored Student-t noise on six held-out plants:
+  does the best learned observer beat every filter variant?'
+hypothesis: Learned wins on >= 4/6 test systems; it loses where the unmodelled term is small.
+decision_rule: Best learned vs best WORKING filter (NRMSE below climatology), paired CI, id and
+  sequence_ood, >= 4/6; report against the relative model error of each plant. Run once.
+set:
+  system.knowledge: partial
+  system.mismatch: 0.3
+  data.sensor:
+    noise: 0.03
+    kind: colored_t
+    rho: 0.9
+    nu: 3.0
+methods:
+- latent
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- pf
+- kkl_mb
+- nlox
+- ekf_huber
+- ukf_huber
+- ekf_oracle
+- ukf_oracle
+systems:
+- cartpole
+- fhn
+- highway_traffic
+- network
+- rossler
+- two_link_arm
+seeds:
+- 0
+- 1
+- 2
+compare:
+  reference:
+  - ekf
+  - hyper
+  tier: sequence_ood
+  condition: clean
+priority: 19
+status: done
+created: '2026-10-25'

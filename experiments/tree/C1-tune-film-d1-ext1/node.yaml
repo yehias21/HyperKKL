@@ -1,0 +1,23 @@
+id: C1-tune-film-d1-ext1
+parent: C1-tune-film-d1
+title: 'Tuning grid extension ext1: film, film_depth = default, lr in [0.008, 0.016]'
+contribution: C1
+question: Validation NRMSE of film with film_depth = default at the extended learning rates (seed
+  0, dev).
+hypothesis: Part of the section-9 extension.
+decision_rule: See PROTOCOL.md section 9 (analysis/select_tuned.py --stages ...).
+methods:
+- film[lr=0.008]
+- film[lr=0.016]
+baselines: []
+seeds:
+- 0
+compare:
+  reference: []
+  tier: shape_ood
+  condition: clean
+priority: 22
+status: done
+created: '2026-10-26'
+notes: experiments/tuning/PROTOCOL.md section 9 (lr-grid extension after the pre-registered selection
+  hit the grid edge)

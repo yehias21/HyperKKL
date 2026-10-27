@@ -1,0 +1,23 @@
+
+== bioreactor PDE OFF pdefalse_bioreactor ood 0.0324 wave 0.0133 id 0.0091 phase1 extra use_pde= False
+  ON all            07-27 05:23 ood 0.0213 wave 0.0093 id 0.0099
+  ON pj0.0          07-27 06:07 ood 0.0154 wave 0.0032 id 0.0022
+  ON r0_bioreactor  07-27 06:14 ood 0.0154 wave 0.0032 id 0.0022
+  ON pb0.0          07-27 06:18 ood 0.0154 wave 0.0032 id 0.0022
+  ON pdetrue_bioreactor 07-27 06:21 ood 0.0240 wave 0.0052 id 0.0028
+  ON ol0.0          07-27 06:23 ood 0.0154 wave 0.0032 id 0.0022
+  ON sw_bioreactor  07-27 08:26 ood 0.0149 wave 0.0033 id 0.0022
+  ON T3way          07-27 15:05 ood 0.0396 wave 0.0175 id 0.0118
+  ood: ON n=8 mean 0.0202 sd 0.0085 min 0.0149 max 0.0396 ; OFF 0.0324 -> OFF/meanON-1 = +60.4%, OFF beats 1/8 ON replicates
+  waveform_ood: ON n=8 mean 0.0060 sd 0.0051 min 0.0032 max 0.0175 ; OFF 0.0133 -> OFF/meanON-1 = +120.9%, OFF beats 1/8 ON replicates
+  id: ON n=8 mean 0.0044 sd 0.0040 min 0.0022 max 0.0118 ; OFF 0.0091 -> OFF/meanON-1 = +104.0%, OFF beats 2/8 ON replicates
+
+== fhn PDE OFF pdefalse_fhn ood 0.0420 wave 0.0119 id 0.0086 phase1 extra use_pde= False
+  ON all            07-27 05:22 ood 0.0437 wave 0.0127 id 0.0114
+  ON r0_fhn         07-27 06:14 ood 0.0433 wave 0.0111 id 0.0085
+  ON pdetrue_fhn    07-27 06:21 ood 0.0433 wave 0.0111 id 0.0085
+  ON sw_fhn         07-27 08:24 ood 0.0437 wave 0.0115 id 0.0087
+  ON T3way          07-27 15:17 ood 0.0807 wave 0.0220 id 0.0140
+  ood: ON n=5 mean 0.0510 sd 0.0166 min 0.0433 max 0.0807 ; OFF 0.0420 -> OFF/meanON-1 = -17.6%, OFF beats 5/5 ON replicates
+  waveform_ood: ON n=5 mean 0.0137 sd 0.0047 min 0.0111 max 0.0220 ; OFF 0.0119 -> OFF/meanON-1 = -13.3%, OFF beats 2/5 ON replicates
+  id: ON n=5 mean 0.0102 sd 0.0025 min 0.0085 max 0.0140 ; OFF 0.0086 -> OFF/meanON-1 = -15.3%, OFF beats 3/5 ON replicates

@@ -1,0 +1,63 @@
+id: C3-faults
+parent: C1-where
+title: When does a learned KKL observer beat classical filters? Sensor faults, input faults, poor
+  init, plant drift
+contribution: C3
+question: Against EKF, UKF, PF, model-based KKL and NLOX (nominal model, oracle noise for clean),
+  and against robust (Huber) and condition-oracle filters, under which conditions do the learned
+  observers win?
+hypothesis: Filters win on clean, well-modelled data. Learned observers win under plant drift
+  and gross sensor faults against NOMINAL filters; robust/oracle filters close part of that gap.
+decision_rule: Per condition, count dev systems where the best learned observer beats the best
+  filter (nominal, and separately the best of robust/oracle) with a paired CI excluding 0. A 'learned
+  wins' regime needs >= 4/6 systems against the best filter of either kind.
+set:
+  eval.conditions:
+  - clean
+  - noise10
+  - outliers
+  - dropout
+  - colored
+  - colored_t
+  - quantized
+  - sensor_drift
+  - poor_init
+  - input_noise
+  - input_bias
+  - input_delay
+  - plant_drift10
+  - plant_drift30
+  - burst_outage
+  - long
+methods:
+- latent
+- lora
+- hyper
+baselines:
+- ekf
+- ukf
+- pf
+- kkl_mb
+- nlox
+- ekf_huber
+- ukf_huber
+- ekf_oracle
+- ukf_oracle
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+compare:
+  reference:
+  - ekf
+  - hyper
+  tier: sequence_ood
+  condition: clean
+  metrics:
+  - nrmse
+  - nrmse_transient
+priority: 8
+status: done
+created: '2026-10-25'

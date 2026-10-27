@@ -1,0 +1,82 @@
+# --- composed-config era (07-29), eval_rep = seed, 3 seeds ---
+composed vs default | FA_wt:dyn_gru | FD_def:dyn_gru | Table 5
+SOAP->Adam@1e-2 (lr-matched) | FB_adam:dyn_gru | FA_wt:dyn_gru | optimiser LOO
+Adam lr 1e-2 -> 1e-3 | FB_lrlo:dyn_gru | FB_adam:dyn_gru | step size at Adam
+SOAP -> SOAP+LBFGS | FB_lbfgs:dyn_gru | FA_wt:dyn_gru | polish
+freeze enc deltas (LOO) | FD_loo_frz:dyn_gru | FA_wt:dyn_gru | encoder LoRA off
+phase1 volume 667->200 | FC_p1vol:dyn_gru | FA_wt:dyn_gru | data volume p1
+phase2 volume 667->200 | FC_vol200:dyn_gru | FA_wt:dyn_gru | data volume p2
+mixband @200 vs pool@200 | FC_mixband:dyn_gru | FC_vol200:dyn_gru | composition matched total
+mixhigh @200 vs pool@200 | FC_mixhigh:dyn_gru | FC_vol200:dyn_gru | composition matched total
+mixband @200 vs pool@667 | FC_mixband:dyn_gru | FA_wt:dyn_gru | composition vs full
+mixhigh @200 vs pool@667 | FC_mixhigh:dyn_gru | FA_wt:dyn_gru | composition vs full
+ReLoBRaLo (p1) | FB_relo:dyn_gru | FA_wt:dyn_gru | rebalance
+inverse Dirichlet (p1) | FB_invd:dyn_gru | FA_wt:dyn_gru | rebalance
+ALM (p1) | FB_alm:dyn_gru | FA_wt:dyn_gru | rebalance
+residual char->jacobian | FB_resjc:dyn_gru | FA_wt:dyn_gru | residual form
+ladder: input-concat (SOAP200ep) | FA_riv:phi_current | FA_wt:dyn_gru | rung
+ladder: latent GRU (SOAP200ep) | FA_riv:phi_gru | FA_wt:dyn_gru | rung
+ladder: input-concat (SOAP60ep) | FA_riv60:phi_current | FA_wt:dyn_gru | rung
+ladder: latent GRU (SOAP60ep) | FA_riv60:phi_gru | FA_wt:dyn_gru | rung
+ladder: input-concat (Adam1e-3) | FA_rivA:phi_current | FA_wt:dyn_gru | rung
+ladder: latent GRU (Adam1e-3) | FA_rivA:phi_gru | FA_wt:dyn_gru | rung
+ladder: unconditioned | FA_wt:autonomous | FA_wt:dyn_gru | rung
+latent GRU vs input concat (SOAP200) | FA_riv:phi_gru | FA_riv:phi_current | info vs space
+weight vs EKF | FA_wt:dyn_gru | FA_wt:ekf | reference
+default vs EKF | FD_def:dyn_gru | FD_def:ekf | reference
+# --- legacy era (07-28), eval fixed (eval_rep 0), mostly seed 0 ---
+SOAP lr1e-2 vs Adam lr1e-2 | S_full:dyn_gru | A_lr1e2:dyn_gru | deck -29
+Adam lr1e-2 vs lr1e-3 (QL_zero) | A_lr1e2:dyn_gru | QL_zero:dyn_gru | deck -23 (latinit zero)
+Adam lr1e-2 vs lr1e-3 (QL_enc) | A_lr1e2:dyn_gru | QL_enc:dyn_gru | latinit mismatch check
+SOAP lr1e-2 vs Adam 1e-3 (LAT_enc) | S_full:dyn_gru | LAT_enc:dyn_gru | 
+SOAP lr1e-3 vs Adam 1e-3 | O_soap:dyn_gru | QL_zero:dyn_gru | 
+SOAP lr1e-2 (O_soaphi) vs Adam 1e-3 | O_soaphi:dyn_gru | QL_zero:dyn_gru | 
+Adam+LBFGS vs Adam | O_lbfgs:dyn_gru | QL_zero:dyn_gru | 
+Adam+LBFGS (L_bfgs) vs Adam | L_bfgs:dyn_gru | LAT_enc:dyn_gru | 
+SOAP+LBFGS vs SOAP (legacy) | SL_both:dyn_gru | S_full:dyn_gru | deck +49?
+Adam lr 3e-2 vs 1e-3 | A_lr3e2:dyn_gru | LAT_enc:dyn_gru | deck +1471
+ALM vs legacy | ALM:dyn_gru | LAT_enc:dyn_gru | deck +33
+ReLoBRaLo vs legacy | RELOBRALO:dyn_gru | LAT_enc:dyn_gru | deck +10
+inv-Dirichlet vs legacy | INVDIR:dyn_gru | LAT_enc:dyn_gru | deck +72
+NTK_diag vs legacy | NTK_diag:dyn_gru | LAT_enc:dyn_gru | deck +11
+anneal vs legacy(zero) | G_anneal:dyn_gru | QL_zero:dyn_gru | grad balancing
+pcgrad vs legacy(zero) | G_pcgrad:dyn_gru | QL_zero:dyn_gru | grad surgery
+confg vs legacy(zero) | G_confg:dyn_gru | QL_zero:dyn_gru | grad surgery
+collocation 4x | COLL_4x:dyn_gru | LAT_enc:dyn_gru | deck -8
+collocation 16x | COLL_16x:dyn_gru | LAT_enc:dyn_gru | deck +24
+phase1 epochs 60->200 | DEC_ep:dyn_gru | LAT_enc:dyn_gru | deck -17
+cond penalty | COND:dyn_gru | LAT_enc:dyn_gru | sigma_min penalty
+Sylvester warm start | SYL_on:dyn_gru | SYL_off:dyn_gru | init
+latent init zero vs encoder | QL_zero:dyn_gru | QL_enc:dyn_gru | eval fairness
+MIXlow vs MIXdef | MIXlow:dyn_gru | MIXdef:dyn_gru | composition
+MIXband vs MIXdef | MIXband:dyn_gru | MIXdef:dyn_gru | composition
+MIXhigh vs MIXdef | MIXhigh:dyn_gru | MIXdef:dyn_gru | composition
+MIXeval vs MIXdef | MIXeval:dyn_gru | MIXdef:dyn_gru | composition
+p2 volume 200->667 | MIXall667:dyn_gru | MIXdef:dyn_gru | deck -47
+curriculum spectral | CURR:dyn_gru | MIXall667:dyn_gru | deck +6
+curriculum reverse | CURRrev:dyn_gru | MIXall667:dyn_gru | deck +20
+curriculum soft | CSOFT:dyn_gru | MIXall667:dyn_gru | 
+curriculum selfpaced | CSELF:dyn_gru | MIXall667:dyn_gru | 
+curriculum soft reverse | CSREV:dyn_gru | MIXall667:dyn_gru | 
+p2 epochs 40->120 | EP2x:dyn_gru | MIXall667:dyn_gru | deck -26
+p1 180 + p2 120 | EPboth:dyn_gru | MIXall667:dyn_gru | 
+residual char vs jac (SOAP+LBFGS) | RES2char:dyn_gru | RES2jac:dyn_gru | masked by LBFGS
+residual char vs jac (SOAP) | SOAPres_int:dyn_gru | SOAPres_diff:dyn_gru | deck -21
+residual char vs jac (SOAP90) | SOAPres90_int:dyn_gru | SOAPres90_diff:dyn_gru | 
+unfrozen enc + char (SOAP+LBFGS) vs SL_both | RESchar:dyn_gru | SL_both:dyn_gru | encoder deltas on
+LoRA rank 2 vs 4 | rank2:dyn_gru | rank4:dyn_gru | outliers 2%
+LoRA rank 8 vs 4 | rank8:dyn_gru | rank4:dyn_gru | outliers 2%
+LoRA rank 16 vs 4 | rank16:dyn_gru | rank4:dyn_gru | outliers 2%
+SFM vs GRU (3 seeds, outliers) | arch_dyn_sfm:dyn_sfm | arch_dyn_gru:dyn_gru | context encoder
+phi_current vs dyn (NZ11) | NZ11:phi_current | NZ11:dyn_gru | ladder legacy
+omega_current vs dyn (NZ11) | NZ11:omega_current | NZ11:dyn_gru | ladder legacy
+phi_gru vs dyn (NZ11) | NZ11:phi_gru | NZ11:dyn_gru | ladder legacy
+autonomous vs dyn (NZ11) | NZ11:autonomous | NZ11:dyn_gru | ladder legacy
+phi_gru vs dyn (T3way, 25/15 ep) | T3way:phi_gru | T3way:dyn_gru | ladder short
+dyn_sfm vs dyn_gru (main) | main:dyn_sfm | main:dyn_gru | early
+context W=1 | CW1:dyn_gru | W8:dyn_gru | vs?
+eval rep 1 vs 0 | EVR1:dyn_gru | LAT_enc:dyn_gru | eval-set variance
+eval rep 2 vs 0 | EVR2:dyn_gru | LAT_enc:dyn_gru | eval-set variance
+full training vs short | FULL:dyn_gru | all:dyn_gru | budget
+curv 1e-4 vs none (traffic) | cv1e-4:dyn_gru | cal_gru:dyn_gru | curvature
+curv 1e-1 vs none (traffic) | cv1e-1:dyn_gru | cal_gru:dyn_gru | curvature

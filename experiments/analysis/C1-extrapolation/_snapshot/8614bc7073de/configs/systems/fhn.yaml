@@ -1,0 +1,17 @@
+# fhn: role = test system (held out: frozen recipe only).
+# Sensors, IC box, horizon, nz and alpha carried over from the archive's audited configs.
+name: fhn
+plant: fhn
+role: test
+params: {}
+sensors: [0]
+ic_box:
+- [-2.5, 2.5]
+- [-1.5, 1.5]
+T: 100
+nz: 5
+alpha: 0.5
+u_scale: 1.0
+u_bounds: []
+actuator: {kind: saturating, u_bar: 2.0}
+mismatch: 0.0

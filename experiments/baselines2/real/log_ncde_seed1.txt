@@ -1,0 +1,47 @@
+[11:02:45]     [ncde] step   250 train 3.250e-01 val 6.098e-01
+[11:03:46]     [ncde] step   500 train 1.002e-01 val 2.412e-01
+[11:04:55]     [ncde] step   750 train 0.000e+00 val 2.170e-01
+[11:06:00]     [ncde] step  1000 train 2.144e-01 val 2.722e-01
+[11:07:11]     [ncde] step  1250 train 8.211e-02 val 2.370e-01
+[11:08:44]     [ncde] step  1500 train 6.270e-02 val 1.791e-01
+[11:10:03]     [ncde] step  1750 train 4.885e-02 val 1.779e-01
+[11:10:55]     [ncde] step  2000 train 3.897e-02 val 1.524e-01
+[11:11:56]     [ncde] step  2250 train 3.010e-02 val 1.698e-01
+[11:12:56]     [ncde] step  2500 train 0.000e+00 val 1.391e-01
+[11:13:55]     [ncde] step  2750 train 2.228e-02 val 1.330e-01
+[11:14:58]     [ncde] step  3000 train 1.871e-02 val 1.380e-01
+[11:15:02]   ncde lr 0.0003: val loss 0.133  val settled SOC RMSE 5.131 %
+[11:16:34]     [ncde] step   250 train 3.255e-01 val 5.889e-01
+[11:18:15]     [ncde] step   500 train 1.409e-01 val 5.463e-01
+[11:19:54]     [ncde] step   750 train 0.000e+00 val 3.796e-01
+[11:21:15]     [ncde] step  1000 train 2.904e-01 val 3.850e-01
+[11:23:19]     [ncde] step  1250 train 1.284e-01 val 3.811e-01
+[11:26:15]     [ncde] step  1500 train 1.507e-01 val 2.647e-01
+[11:29:09]     [ncde] step  1750 train 1.048e-01 val 2.960e-01
+[11:32:27]     [ncde] step  2000 train 6.423e-02 val 1.985e-01
+[11:35:34]     [ncde] step  2250 train 6.051e-02 val 2.535e-01
+[11:38:19]     [ncde] step  2500 train 0.000e+00 val 2.868e-01
+[11:41:31]     [ncde] step  2750 train 2.192e-02 val 2.757e-01
+[11:45:30]     [ncde] step  3000 train 5.063e-02 val 2.967e-01
+[11:45:39]   ncde lr 0.001: val loss 0.1985  val settled SOC RMSE 7.786 %
+[11:49:41]     [ncde] step   250 train 5.630e-01 val 1.286e+00
+[11:53:29]     [ncde] step   500 train 1.680e-01 val 5.507e-01
+[11:57:51]     [ncde] step   750 train 0.000e+00 val 1.043e+00
+[12:02:30]     [ncde] step  1000 train 4.871e-01 val 8.006e-01
+[12:06:52]     [ncde] step  1250 train 3.086e-01 val 4.657e-01
+[12:11:15]     [ncde] step  1500 train 4.292e-01 val 4.773e-01
+[12:15:49]     [ncde] step  1750 train 1.583e-01 val 3.922e-01
+[12:20:37]     [ncde] step  2000 train 7.864e-02 val 3.832e-01
+[12:25:13]     [ncde] step  2250 train 1.404e-01 val 2.932e-01
+[12:28:44]     [ncde] step  2500 train 0.000e+00 val 2.913e-01
+[12:31:27]     [ncde] step  2750 train 2.660e-02 val 2.922e-01
+[12:34:26]     [ncde] step  3000 train 7.184e-02 val 2.831e-01
+[12:34:33]   ncde lr 0.003: val loss 0.2831  val settled SOC RMSE 9.591 %
+[12:37:49]     [ncde] step   250 train 1.764e+00 val 1.053e+00
+[12:41:03]     [ncde] step   500 train 3.726e-01 val 6.709e-01
+[12:45:34]     [ncde] step   750 train 0.000e+00 val 5.541e+00
+[12:50:23]     [ncde] step  1000 train 1.281e+00 val 2.365e+00
+[12:55:13]     [ncde] step  1250 train 5.546e-01 val 7.888e-01
+[13:00:10]     [ncde] step  1500 train 3.738e-01 val 8.865e-01
+[13:04:43]     [ncde] step  1750 train 1.893e-01 val 2.468e-01
+[13:08:36]     [ncde] step  2000 train 1.618e-01 val 3.217e-01

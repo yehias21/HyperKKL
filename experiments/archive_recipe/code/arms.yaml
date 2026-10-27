@@ -1,0 +1,11 @@
+A0_lora: lora
+A0_hyper: hyper
+A1_soap: lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01]
+A2_adam1e-2: lora[phase1.lr=0.01,phase2.lr=0.01]
+A2b_adam95_1e-2: lora[phase1.optimizer=adam95,phase1.lr=0.01,phase2.optimizer=adam95,phase2.lr=0.01]
+A3_p1x3: lora[phase1.steps_enc=18000,phase1.steps_dec=18000]
+A4_gru: lora[phase2.ctx_guard=true]@gru
+A5_curv: lora[phase2.delta_curv=0.0001,phase2.delta_reg=0.001]
+A6_enc: lora[phase2.enc_aux=true]
+A7_best: lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=18000,phase1.steps_dec=18000,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001,phase2.enc_aux=true]@gru
+A8_best_noenc: lora[phase1.optimizer=soap,phase1.lr=0.01,phase2.optimizer=soap,phase2.lr=0.01,phase1.steps_enc=18000,phase1.steps_dec=18000,phase2.ctx_guard=true,phase2.delta_curv=0.0001,phase2.delta_reg=0.001]@gru
