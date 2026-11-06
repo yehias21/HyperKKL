@@ -1,0 +1,52 @@
+{
+ "dataset": "neurobem",
+ "dt_model": 0.01,
+ "dt_seconds": 0.01,
+ "splits": {
+  "train": {
+   "n": 567,
+   "N1": 1001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "g_norm_max_dev": 5.0189476907824826e-08,
+   "attitude_vs_gyro_corr": 0.9864709147060214,
+   "rotor_speed_rad_s_min_max": [
+    257.4429931640625,
+    2690.6904296875
+   ]
+  },
+  "val": {
+   "n": 98,
+   "N1": 1001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "g_norm_max_dev": 4.7310334538863685e-08,
+   "attitude_vs_gyro_corr": 0.983902379986769,
+   "rotor_speed_rad_s_min_max": [
+    253.8978271484375,
+    2761.55517578125
+   ]
+  },
+  "test_id": {
+   "n": 106,
+   "N1": 1001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "g_norm_max_dev": 4.983491352916758e-08,
+   "attitude_vs_gyro_corr": 0.9857729042723464,
+   "rotor_speed_rad_s_min_max": [
+    255.9769287109375,
+    2713.97412109375
+   ]
+  },
+  "test_ood": {
+   "n": 110,
+   "N1": 1001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "g_norm_max_dev": 4.6638974682267076e-08,
+   "attitude_vs_gyro_corr": 0.9926530682237323,
+   "rotor_speed_rad_s_min_max": [
+    596.2933349609375,
+    2617.3466796875
+   ]
+  }
+ },
+ "recordings_in_more_than_one_role": {}
+}

@@ -1,0 +1,69 @@
+{
+ "dataset": "silverbox",
+ "source": {
+  "title": "Silverbox (nonlinear benchmark)",
+  "creator": "T. Wigren, J. Schoukens",
+  "repository": "nonlinearbenchmark.org (benchmark page https://www.nonlinearbenchmark.org/benchmarks/silverbox); file hosted on Google Drive by the benchmark site",
+  "landing": "https://www.nonlinearbenchmark.org/benchmarks/silverbox",
+  "license": "not stated by the data provider (the ECC 2013 paper says the data are 'available for free download')",
+  "redistribution": "UNKNOWN: this package does not redistribute the data; `fetch` downloads them from the benchmark site's link.",
+  "citation": "T. Wigren, J. Schoukens, Three free data sets for development and benchmarking in nonlinear system identification, European Control Conference (ECC) 2013, pp. 2933-2938, doi:10.23919/ECC.2013.6669201"
+ },
+ "files": [
+  {
+   "path": "SilverboxFiles.zip",
+   "url": "https://drive.google.com/uc?export=download&id=17iS-6oBUUgrmiAcrZoG9S5sOaljZnDSy",
+   "size": 5793999,
+   "sha256": "2398dda503ac4c30f46c7a1ba09d8a8864d001cc71bbeb59f207a054cc592d8c",
+   "sha256_source": "computed by us on 2026-11-01 (the host publishes no hash)",
+   "extract": true,
+   "extract_to": ".",
+   "members": [
+    "SilverboxFiles/SNLS80mV.mat",
+    "SilverboxFiles/README.txt"
+   ]
+  }
+ ],
+ "frozen": {
+  "params": {
+   "d": 0.42603790655282636,
+   "k1": 19.156918632387494,
+   "k3": 81.72668511593957,
+   "g": 19.23222938832401,
+   "b0": -0.10244568675281619
+  },
+  "identification": {
+   "q_v": 0.12417897439718875,
+   "accel_residual_rel": 0.35428259993952194,
+   "equation_error_init": {
+    "d": 0.2536837433466176,
+    "k1": 15.241728347416894,
+    "k3": 39.099344039300966,
+    "g": 10.237327902562466,
+    "b0": -0.05049340342492431
+   },
+   "equation_error_accel_residual_rel": 0.10653275401604828,
+   "output_error_segment_nrmse": 0.24055446038625738,
+   "oe_segments": 552,
+   "u_scale": 0.10140027374826022,
+   "r_y": 7.090369927874958e-06,
+   "v_std": 0.21303905583741445,
+   "y_std": 0.054535261335838955,
+   "y_mean": 0.0008002592028897731,
+   "v_mean": -1.1819751507173648e-05,
+   "label_noise_floor_nrmse": 0.08118127702003876,
+   "model_fit": {
+    "train": {
+     "sim_nrmse_pos": 0.24159306231191358,
+     "sim_nrmse_vel": 0.3159056464294987,
+     "onestep_nrmse_vel": 0.1788101320756292
+    },
+    "val": {
+     "sim_nrmse_pos": 0.2401573511138506,
+     "sim_nrmse_vel": 0.3144102537695154,
+     "onestep_nrmse_vel": 0.1764768083645094
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,181 @@
+\begin{thebibliography}{29}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Anderson and Moore(1979)]{andersonmoore1979}
+Brian D.~O. Anderson and John~B. Moore.
+\newblock \emph{Optimal Filtering}.
+\newblock Prentice-Hall, 1979.
+
+\bibitem[Andrieu and Praly(2006)]{andrieu2006existence}
+Vincent Andrieu and Laurent Praly.
+\newblock On the existence of a {Kazantzis--Kravaris/Luenberger} observer.
+\newblock \emph{SIAM Journal on Control and Optimization}, 45\penalty0
+  (2):\penalty0 432--456, 2006.
+
+\bibitem[Bernard and Andrieu(2019)]{bernard2019luenberger}
+Pauline Bernard and Vincent Andrieu.
+\newblock Luenberger observers for nonautonomous nonlinear systems.
+\newblock \emph{IEEE Transactions on Automatic Control}, 64\penalty0
+  (1):\penalty0 270--281, 2019.
+\newblock \doi{10.1109/TAC.2018.2872202}.
+
+\bibitem[Boyd and Chua(1985)]{boyd1985fading}
+Stephen Boyd and Leon~O. Chua.
+\newblock Fading memory and the problem of approximating nonlinear operators
+  with {Volterra} series.
+\newblock \emph{IEEE Transactions on Circuits and Systems}, 32\penalty0
+  (11):\penalty0 1150--1161, 1985.
+
+\bibitem[Brivadis et~al.(2023)Brivadis, Andrieu, Bernard, and
+  Serres]{brivadis2023further}
+Lucas Brivadis, Vincent Andrieu, Pauline Bernard, and Ulysse Serres.
+\newblock Further remarks on {KKL} observers.
+\newblock \emph{Systems \& Control Letters}, 172:\penalty0 105429, 2023.
+
+\bibitem[Cover and Thomas(2006)]{cover2006elements}
+Thomas~M. Cover and Joy~A. Thomas.
+\newblock \emph{Elements of Information Theory}.
+\newblock Wiley, 2nd edition, 2006.
+
+\bibitem[Fazlyab et~al.(2019)Fazlyab, Robey, Hassani, Morari, and
+  Pappas]{fazlyab2019efficient}
+Mahyar Fazlyab, Alexander Robey, Hamed Hassani, Manfred Morari, and George~J.
+  Pappas.
+\newblock Efficient and accurate estimation of {Lipschitz} constants for deep
+  neural networks.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2019.
+
+\bibitem[Gill and Levit(1995)]{gill1995applications}
+Richard~D. Gill and Boris~Y. Levit.
+\newblock Applications of the van {T}rees inequality: a {B}ayesian
+  {C}ram{\'e}r--{R}ao bound.
+\newblock \emph{Bernoulli}, 1\penalty0 (1--2):\penalty0 59--79, 1995.
+
+\bibitem[Gr{\"u}nwald(2007)]{grunwald2007mdl}
+Peter~D. Gr{\"u}nwald.
+\newblock \emph{The Minimum Description Length Principle}.
+\newblock MIT Press, 2007.
+
+\bibitem[Hastie et~al.(2009)Hastie, Tibshirani, and
+  Friedman]{hastie2009elements}
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
+\newblock \emph{The Elements of Statistical Learning}.
+\newblock Springer, 2nd edition, 2009.
+
+\bibitem[Hochbruck and Ostermann(2010)]{hochbruck2010exponential}
+Marlis Hochbruck and Alexander Ostermann.
+\newblock Exponential integrators.
+\newblock \emph{Acta Numerica}, 19:\penalty0 209--286, 2010.
+
+\bibitem[Khalil(2002)]{khalil2002nonlinear}
+Hassan~K. Khalil.
+\newblock \emph{Nonlinear Systems}.
+\newblock Prentice Hall, 3rd edition, 2002.
+
+\bibitem[Korda and Mezi{\'c}(2018)]{korda2018linear}
+Milan Korda and Igor Mezi{\'c}.
+\newblock Linear predictors for nonlinear dynamical systems: {Koopman} operator
+  meets model predictive control.
+\newblock \emph{Automatica}, 93:\penalty0 149--160, 2018.
+
+\bibitem[Leshno et~al.(1993)Leshno, Lin, Pinkus, and
+  Schocken]{leshno1993multilayer}
+Moshe Leshno, Vladimir~Ya. Lin, Allan Pinkus, and Shimon Schocken.
+\newblock Multilayer feedforward networks with a nonpolynomial activation
+  function can approximate any function.
+\newblock \emph{Neural Networks}, 6\penalty0 (6):\penalty0 861--867, 1993.
+
+\bibitem[Li and Vit{\'a}nyi(2008)]{li2008kolmogorov}
+Ming Li and Paul Vit{\'a}nyi.
+\newblock \emph{An Introduction to {K}olmogorov Complexity and Its
+  Applications}.
+\newblock Springer, 3rd edition, 2008.
+
+\bibitem[Ljung(1999)]{ljung1999system}
+Lennart Ljung.
+\newblock \emph{System Identification: Theory for the User}.
+\newblock Prentice Hall, 2nd edition, 1999.
+
+\bibitem[Lohmiller and Slotine(1998)]{lohmiller1998contraction}
+Winfried Lohmiller and Jean-Jacques~E. Slotine.
+\newblock On contraction analysis for non-linear systems.
+\newblock \emph{Automatica}, 34\penalty0 (6):\penalty0 683--696, 1998.
+
+\bibitem[Miller and Hardt(2019)]{miller2019stable}
+John Miller and Moritz Hardt.
+\newblock Stable recurrent models.
+\newblock In \emph{International Conference on Learning Representations}, 2019.
+
+\bibitem[Niazi et~al.(2025)Niazi, Cao, Barreau, and Johansson]{niazi2025kkl}
+M.~Umar~B. Niazi, John Cao, Matthieu Barreau, and Karl~Henrik Johansson.
+\newblock {KKL} observer synthesis for nonlinear systems via physics-informed
+  learning, 2025.
+
+\bibitem[Proctor et~al.(2016)Proctor, Brunton, and Kutz]{proctor2016dmdc}
+Joshua~L. Proctor, Steven~L. Brunton, and J.~Nathan Kutz.
+\newblock Dynamic mode decomposition with control.
+\newblock \emph{SIAM Journal on Applied Dynamical Systems}, 15\penalty0
+  (1):\penalty0 142--161, 2016.
+
+\bibitem[Reif et~al.(1999)Reif, G{\"u}nther, Yaz, and
+  Unbehauen]{reif1999stochastic}
+Konrad Reif, Stefan G{\"u}nther, Engin Yaz, and Rolf Unbehauen.
+\newblock Stochastic stability of the discrete-time extended {Kalman} filter.
+\newblock \emph{IEEE Transactions on Automatic Control}, 44\penalty0
+  (4):\penalty0 714--728, 1999.
+
+\bibitem[Rissanen(1978)]{rissanen1978modeling}
+Jorma Rissanen.
+\newblock Modeling by shortest data description.
+\newblock \emph{Automatica}, 14\penalty0 (5):\penalty0 465--471, 1978.
+
+\bibitem[Shaaban et~al.(2026)Shaaban, Sayed, Niazi, and
+  Johansson]{shaaban2026hyperkkl}
+Yahia~Salaheldin Shaaban, Abdelrahman~Sayed Sayed, M.~Umar~B. Niazi, and
+  Karl~Henrik Johansson.
+\newblock {HyperKKL}: Learning {KKL} observers for non-autonomous nonlinear
+  systems via hypernetwork-based input conditioning, 2026.
+
+\bibitem[Stam(1959)]{stam1959some}
+A.~J. Stam.
+\newblock Some inequalities satisfied by the quantities of information of
+  {F}isher and {S}hannon.
+\newblock \emph{Information and Control}, 2\penalty0 (2):\penalty0 101--112,
+  1959.
+
+\bibitem[Tichavsk{\'y} et~al.(1998)Tichavsk{\'y}, Muravchik, and
+  Nehorai]{tichavsky1998posterior}
+Petr Tichavsk{\'y}, Carlos~H. Muravchik, and Arye Nehorai.
+\newblock Posterior {C}ram{\'e}r--{R}ao bounds for discrete-time nonlinear
+  filtering.
+\newblock \emph{IEEE Transactions on Signal Processing}, 46\penalty0
+  (5):\penalty0 1386--1396, 1998.
+
+\bibitem[Van~Trees(1968)]{vantrees1968detection}
+Harry~L. Van~Trees.
+\newblock \emph{Detection, Estimation, and Modulation Theory, Part {I}}.
+\newblock Wiley, 1968.
+
+\bibitem[Virmaux and Scaman(2018)]{virmaux2018lipschitz}
+Aladin Virmaux and Kevin Scaman.
+\newblock Lipschitz regularity of deep neural networks: Analysis and efficient
+  estimation.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2018.
+
+\bibitem[Zamir(1998)]{zamir1998proof}
+Ram Zamir.
+\newblock A proof of the {F}isher information inequality via a data processing
+  argument.
+\newblock \emph{IEEE Transactions on Information Theory}, 44\penalty0
+  (3):\penalty0 1246--1250, 1998.
+
+\bibitem[Zeng and Lee(2024)]{zeng2024expressive}
+Yuchen Zeng and Kangwook Lee.
+\newblock The expressive power of low-rank adaptation.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+
+\end{thebibliography}

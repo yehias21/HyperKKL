@@ -1,0 +1,1676 @@
+{
+ "dataset": "neurobem",
+ "source": {
+  "title": "NeuroBEM quadrotor flight dataset",
+  "creator": "L. Bauersfeld, E. Kaufmann, P. Foehn, S. Sun, D. Scaramuzza (Robotics and Perception Group, University of Zurich)",
+  "repository": "University of Zurich, https://download.ifi.uzh.ch/rpg/NeuroBEM/",
+  "doi": "10.15607/RSS.2021.XVII.042",
+  "landing": "https://rpg.ifi.uzh.ch/NeuroBEM.html",
+  "license": "no licence text on the source (project page, Readme, download host and code archive checked on 2026-11-02; the only stated term is 'If you use this work in your research, please cite the following paper'). Use approved by the author, who states he checked the licence personally",
+  "redistribution": "NOT GRANTED by any text on the source, so all rights must be assumed reserved: do not rehost the raw data or the prepared episodes. `fetch` downloads from the original host. Check the terms with the UZH RPG providers before a public release",
+  "citation": "L. Bauersfeld, E. Kaufmann, P. Foehn, S. Sun, D. Scaramuzza, NeuroBEM: Hybrid Aerodynamic Quadrotor Model, Robotics: Science and Systems (RSS), 2021, doi:10.15607/RSS.2021.XVII.042, arXiv:2106.08015"
+ },
+ "files": [
+  {
+   "path": "Readme.md",
+   "url": "https://download.ifi.uzh.ch/rpg/NeuroBEM/Readme.md",
+   "size": 6174,
+   "sha256": "69c0a051bac4189620790b302a19d158557c52d160271b633325bed532f6350e",
+   "sha256_source": "computed by us on 2026-11-02 (the host publishes no hash)"
+  },
+  {
+   "path": "Flights.txt",
+   "url": "https://download.ifi.uzh.ch/rpg/NeuroBEM/Flights.txt",
+   "size": 7043,
+   "sha256": "62dbf4ecd520a12264593c837f0a60162ffa26e21e254e823c1b22a315823f1f",
+   "sha256_source": "computed by us on 2026-11-02 (the host publishes no hash)"
+  },
+  {
+   "path": "testset.txt",
+   "url": "https://download.ifi.uzh.ch/rpg/NeuroBEM/testset.txt",
+   "size": 338,
+   "sha256": "d59cd589105cf4cd3fcfe0a34a0b4824d6ae2560db13d34b9a7acd169deeb367",
+   "sha256_source": "computed by us on 2026-11-02 (the host publishes no hash)"
+  },
+  {
+   "path": "processed_data.zip",
+   "url": "https://download.ifi.uzh.ch/rpg/NeuroBEM/processed_data.zip",
+   "size": 657316788,
+   "sha256": "a3e2e83d156b48a95c346c4fd9b3ded0b62781331dc613f1cb9ab285be2b36a8",
+   "sha256_source": "computed by us on 2026-11-02 (the host publishes no hash)",
+   "extract": true,
+   "extract_to": "processed",
+   "members": [
+    "processed_data/merged_2021-02-03-13-43-38_seg_1.csv",
+    "processed_data/merged_2021-02-03-13-43-38_seg_2.csv",
+    "processed_data/merged_2021-02-03-13-43-38_seg_3.csv",
+    "processed_data/merged_2021-02-03-13-43-38_seg_4.csv",
+    "processed_data/merged_2021-02-03-13-44-49_seg_1.csv",
+    "processed_data/merged_2021-02-03-13-44-49_seg_2.csv",
+    "processed_data/merged_2021-02-03-13-44-49_seg_3.csv",
+    "processed_data/merged_2021-02-03-13-44-49_seg_4.csv",
+    "processed_data/merged_2021-02-03-13-53-04_seg_1.csv",
+    "processed_data/merged_2021-02-03-13-53-04_seg_2.csv",
+    "processed_data/merged_2021-02-03-13-54-06_seg_1.csv",
+    "processed_data/merged_2021-02-03-13-54-06_seg_2.csv",
+    "processed_data/merged_2021-02-03-13-54-06_seg_3.csv",
+    "processed_data/merged_2021-02-03-13-54-06_seg_4.csv",
+    "processed_data/merged_2021-02-03-16-10-37_seg_1.csv",
+    "processed_data/merged_2021-02-03-16-10-37_seg_2.csv",
+    "processed_data/merged_2021-02-03-16-10-37_seg_3.csv",
+    "processed_data/merged_2021-02-03-16-10-37_seg_4.csv",
+    "processed_data/merged_2021-02-03-16-12-22_seg_1.csv",
+    "processed_data/merged_2021-02-03-16-12-22_seg_2.csv",
+    "processed_data/merged_2021-02-03-16-12-22_seg_3.csv",
+    "processed_data/merged_2021-02-03-16-12-22_seg_4.csv",
+    "processed_data/merged_2021-02-03-16-45-38_seg_1.csv",
+    "processed_data/merged_2021-02-03-16-45-38_seg_2.csv",
+    "processed_data/merged_2021-02-03-16-47-27_seg_1.csv",
+    "processed_data/merged_2021-02-03-16-47-27_seg_2.csv",
+    "processed_data/merged_2021-02-03-16-54-28_seg_1.csv",
+    "processed_data/merged_2021-02-03-16-54-28_seg_2.csv",
+    "processed_data/merged_2021-02-03-16-54-28_seg_3.csv",
+    "processed_data/merged_2021-02-03-16-54-28_seg_4.csv",
+    "processed_data/merged_2021-02-03-16-55-55_seg_1.csv",
+    "processed_data/merged_2021-02-03-16-55-55_seg_2.csv",
+    "processed_data/merged_2021-02-03-16-55-55_seg_3.csv",
+    "processed_data/merged_2021-02-03-16-58-13_seg_1.csv",
+    "processed_data/merged_2021-02-03-16-58-13_seg_2.csv",
+    "processed_data/merged_2021-02-03-17-04-15_seg_1.csv",
+    "processed_data/merged_2021-02-03-17-04-15_seg_2.csv",
+    "processed_data/merged_2021-02-03-17-04-15_seg_3.csv",
+    "processed_data/merged_2021-02-03-17-04-15_seg_4.csv",
+    "processed_data/merged_2021-02-03-17-06-36_seg_1.csv",
+    "processed_data/merged_2021-02-03-17-14-47_seg_1.csv",
+    "processed_data/merged_2021-02-03-17-14-47_seg_2.csv",
+    "processed_data/merged_2021-02-03-17-26-08_seg_1.csv",
+    "processed_data/merged_2021-02-03-17-26-08_seg_2.csv",
+    "processed_data/merged_2021-02-03-17-33-11_seg_1.csv",
+    "processed_data/merged_2021-02-03-17-33-11_seg_2.csv",
+    "processed_data/merged_2021-02-03-17-37-27_seg_1.csv",
+    "processed_data/merged_2021-02-03-17-37-27_seg_2.csv",
+    "processed_data/merged_2021-02-03-17-37-27_seg_3.csv",
+    "processed_data/merged_2021-02-05-14-00-56_seg_1.csv",
+    "processed_data/merged_2021-02-05-14-00-56_seg_2.csv",
+    "processed_data/merged_2021-02-05-14-01-47_seg_1.csv",
+    "processed_data/merged_2021-02-05-14-01-47_seg_2.csv",
+    "processed_data/merged_2021-02-05-14-01-47_seg_3.csv",
+    "processed_data/merged_2021-02-05-14-02-47_seg_1.csv",
+    "processed_data/merged_2021-02-05-14-02-47_seg_2.csv",
+    "processed_data/merged_2021-02-05-14-02-47_seg_3.csv",
+    "processed_data/merged_2021-02-05-14-03-41_seg_1.csv",
+    "processed_data/merged_2021-02-05-14-03-41_seg_2.csv",
+    "processed_data/merged_2021-02-05-14-03-41_seg_3.csv",
+    "processed_data/merged_2021-02-05-14-03-41_seg_4.csv",
+    "processed_data/merged_2021-02-05-14-04-32_seg_1.csv",
+    "processed_data/merged_2021-02-05-14-04-32_seg_2.csv",
+    "processed_data/merged_2021-02-05-14-19-34_seg_1.csv",
+    "processed_data/merged_2021-02-05-14-19-34_seg_2.csv",
+    "processed_data/merged_2021-02-05-14-19-34_seg_3.csv",
+    "processed_data/merged_2021-02-05-14-24-35_seg_1.csv",
+    "processed_data/merged_2021-02-05-14-24-35_seg_2.csv",
+    "processed_data/merged_2021-02-05-14-24-35_seg_3.csv",
+    "processed_data/merged_2021-02-05-15-04-42_seg_1.csv",
+    "processed_data/merged_2021-02-05-15-04-42_seg_2.csv",
+    "processed_data/merged_2021-02-05-15-04-42_seg_3.csv",
+    "processed_data/merged_2021-02-05-15-40-15_seg_1.csv",
+    "processed_data/merged_2021-02-05-15-40-15_seg_2.csv",
+    "processed_data/merged_2021-02-05-15-46-49_seg_1.csv",
+    "processed_data/merged_2021-02-05-15-46-49_seg_2.csv",
+    "processed_data/merged_2021-02-05-15-46-49_seg_3.csv",
+    "processed_data/merged_2021-02-05-15-56-24_seg_1.csv",
+    "processed_data/merged_2021-02-05-15-56-24_seg_2.csv",
+    "processed_data/merged_2021-02-05-15-56-24_seg_3.csv",
+    "processed_data/merged_2021-02-05-15-58-59_seg_1.csv",
+    "processed_data/merged_2021-02-05-15-58-59_seg_2.csv",
+    "processed_data/merged_2021-02-05-15-58-59_seg_3.csv",
+    "processed_data/merged_2021-02-05-16-06-45_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-06-45_seg_2.csv",
+    "processed_data/merged_2021-02-05-16-06-45_seg_3.csv",
+    "processed_data/merged_2021-02-05-16-06-45_seg_4.csv",
+    "processed_data/merged_2021-02-05-16-10-53_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-10-53_seg_2.csv",
+    "processed_data/merged_2021-02-05-16-14-20_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-14-20_seg_2.csv",
+    "processed_data/merged_2021-02-05-16-16-00_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-16-00_seg_2.csv",
+    "processed_data/merged_2021-02-05-16-16-00_seg_3.csv",
+    "processed_data/merged_2021-02-05-16-19-10_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-19-10_seg_2.csv",
+    "processed_data/merged_2021-02-05-16-29-21_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-29-21_seg_2.csv",
+    "processed_data/merged_2021-02-05-16-29-21_seg_3.csv",
+    "processed_data/merged_2021-02-05-16-29-21_seg_4.csv",
+    "processed_data/merged_2021-02-05-16-31-14_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-31-14_seg_2.csv",
+    "processed_data/merged_2021-02-05-16-31-14_seg_3.csv",
+    "processed_data/merged_2021-02-05-16-31-14_seg_4.csv",
+    "processed_data/merged_2021-02-05-16-33-13_seg_1.csv",
+    "processed_data/merged_2021-02-05-16-33-13_seg_2.csv",
+    "processed_data/merged_2021-02-18-13-44-23_seg_1.csv",
+    "processed_data/merged_2021-02-18-13-44-23_seg_2.csv",
+    "processed_data/merged_2021-02-18-13-44-23_seg_3.csv",
+    "processed_data/merged_2021-02-18-14-15-53_seg_1.csv",
+    "processed_data/merged_2021-02-18-14-15-53_seg_2.csv",
+    "processed_data/merged_2021-02-18-15-47-24_seg_1.csv",
+    "processed_data/merged_2021-02-18-15-47-24_seg_2.csv",
+    "processed_data/merged_2021-02-18-15-47-24_seg_3.csv",
+    "processed_data/merged_2021-02-18-16-08-00_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-08-00_seg_2.csv",
+    "processed_data/merged_2021-02-18-16-08-00_seg_3.csv",
+    "processed_data/merged_2021-02-18-16-08-00_seg_4.csv",
+    "processed_data/merged_2021-02-18-16-31-30_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-31-30_seg_2.csv",
+    "processed_data/merged_2021-02-18-16-31-30_seg_3.csv",
+    "processed_data/merged_2021-02-18-16-41-41_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-41-41_seg_2.csv",
+    "processed_data/merged_2021-02-18-16-43-54_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-43-54_seg_2.csv",
+    "processed_data/merged_2021-02-18-16-43-54_seg_3.csv",
+    "processed_data/merged_2021-02-18-16-43-54_seg_4.csv",
+    "processed_data/merged_2021-02-18-16-47-02_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-47-02_seg_2.csv",
+    "processed_data/merged_2021-02-18-16-47-02_seg_3.csv",
+    "processed_data/merged_2021-02-18-16-48-24_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-48-24_seg_2.csv",
+    "processed_data/merged_2021-02-18-16-53-35_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-53-35_seg_2.csv",
+    "processed_data/merged_2021-02-18-16-55-00_seg_1.csv",
+    "processed_data/merged_2021-02-18-16-55-00_seg_2.csv",
+    "processed_data/merged_2021-02-18-17-03-20_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-03-20_seg_2.csv",
+    "processed_data/merged_2021-02-18-17-05-14_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-05-14_seg_2.csv",
+    "processed_data/merged_2021-02-18-17-05-14_seg_3.csv",
+    "processed_data/merged_2021-02-18-17-05-14_seg_4.csv",
+    "processed_data/merged_2021-02-18-17-06-27_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-09-50_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-12-03_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-19-08_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-19-08_seg_2.csv",
+    "processed_data/merged_2021-02-18-17-20-37_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-26-00_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-28-35_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-28-35_seg_2.csv",
+    "processed_data/merged_2021-02-18-17-42-11_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-42-11_seg_2.csv",
+    "processed_data/merged_2021-02-18-17-42-11_seg_3.csv",
+    "processed_data/merged_2021-02-18-17-44-17_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-47-42_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-48-50_seg_1.csv",
+    "processed_data/merged_2021-02-18-17-48-50_seg_2.csv",
+    "processed_data/merged_2021-02-18-17-48-50_seg_3.csv",
+    "processed_data/merged_2021-02-18-18-02-03_seg_1.csv",
+    "processed_data/merged_2021-02-18-18-03-06_seg_1.csv",
+    "processed_data/merged_2021-02-18-18-03-06_seg_2.csv",
+    "processed_data/merged_2021-02-18-18-08-45_seg_1.csv",
+    "processed_data/merged_2021-02-18-18-09-47_seg_1.csv",
+    "processed_data/merged_2021-02-23-10-43-02_seg_1.csv",
+    "processed_data/merged_2021-02-23-10-43-02_seg_2.csv",
+    "processed_data/merged_2021-02-23-10-43-02_seg_3.csv",
+    "processed_data/merged_2021-02-23-10-43-02_seg_4.csv",
+    "processed_data/merged_2021-02-23-10-48-03_seg_1.csv",
+    "processed_data/merged_2021-02-23-10-48-03_seg_2.csv",
+    "processed_data/merged_2021-02-23-10-48-03_seg_3.csv",
+    "processed_data/merged_2021-02-23-10-50-42_seg_1.csv",
+    "processed_data/merged_2021-02-23-10-50-42_seg_2.csv",
+    "processed_data/merged_2021-02-23-10-52-00_seg_1.csv",
+    "processed_data/merged_2021-02-23-10-52-00_seg_2.csv",
+    "processed_data/merged_2021-02-23-11-31-23_seg_1.csv",
+    "processed_data/merged_2021-02-23-11-31-23_seg_2.csv",
+    "processed_data/merged_2021-02-23-11-31-23_seg_3.csv",
+    "processed_data/merged_2021-02-23-11-31-23_seg_4.csv",
+    "processed_data/merged_2021-02-23-11-41-38_seg_1.csv",
+    "processed_data/merged_2021-02-23-11-41-38_seg_2.csv",
+    "processed_data/merged_2021-02-23-11-41-38_seg_3.csv",
+    "processed_data/merged_2021-02-23-11-41-38_seg_4.csv",
+    "processed_data/merged_2021-02-23-14-21-48_seg_1.csv",
+    "processed_data/merged_2021-02-23-14-21-48_seg_2.csv",
+    "processed_data/merged_2021-02-23-14-21-48_seg_3.csv",
+    "processed_data/merged_2021-02-23-14-24-07_seg_1.csv",
+    "processed_data/merged_2021-02-23-14-29-48_seg_1.csv",
+    "processed_data/merged_2021-02-23-14-29-48_seg_2.csv",
+    "processed_data/merged_2021-02-23-14-33-04_seg_1.csv",
+    "processed_data/merged_2021-02-23-14-33-04_seg_2.csv",
+    "processed_data/merged_2021-02-23-14-41-07_seg_1.csv",
+    "processed_data/merged_2021-02-23-14-41-07_seg_2.csv",
+    "processed_data/merged_2021-02-23-14-41-07_seg_3.csv",
+    "processed_data/merged_2021-02-23-17-27-24_seg_1.csv",
+    "processed_data/merged_2021-02-23-17-27-24_seg_2.csv",
+    "processed_data/merged_2021-02-23-17-27-24_seg_3.csv",
+    "processed_data/merged_2021-02-23-17-35-26_seg_1.csv",
+    "processed_data/merged_2021-02-23-17-45-47_seg_1.csv",
+    "processed_data/merged_2021-02-23-17-45-47_seg_2.csv",
+    "processed_data/merged_2021-02-23-17-45-47_seg_3.csv",
+    "processed_data/merged_2021-02-23-18-38-21_seg_1.csv",
+    "processed_data/merged_2021-02-23-18-38-21_seg_2.csv",
+    "processed_data/merged_2021-02-23-18-38-21_seg_3.csv",
+    "processed_data/merged_2021-02-23-18-43-00_seg_1.csv",
+    "processed_data/merged_2021-02-23-18-43-00_seg_2.csv",
+    "processed_data/merged_2021-02-23-18-50-03_seg_1.csv",
+    "processed_data/merged_2021-02-23-18-50-03_seg_2.csv",
+    "processed_data/merged_2021-02-23-18-50-03_seg_3.csv",
+    "processed_data/merged_2021-02-23-18-50-03_seg_4.csv",
+    "processed_data/merged_2021-02-23-19-04-50_seg_1.csv",
+    "processed_data/merged_2021-02-23-19-04-50_seg_2.csv",
+    "processed_data/merged_2021-02-23-19-04-50_seg_3.csv",
+    "processed_data/merged_2021-02-23-19-15-11_seg_1.csv",
+    "processed_data/merged_2021-02-23-19-15-11_seg_2.csv",
+    "processed_data/merged_2021-02-23-19-15-11_seg_3.csv",
+    "processed_data/merged_2021-02-23-19-26-38_seg_1.csv",
+    "processed_data/merged_2021-02-23-19-26-38_seg_2.csv",
+    "processed_data/merged_2021-02-23-19-26-38_seg_3.csv",
+    "processed_data/merged_2021-02-23-19-33-29_seg_1.csv",
+    "processed_data/merged_2021-02-23-19-33-29_seg_2.csv",
+    "processed_data/merged_2021-02-23-19-33-29_seg_3.csv",
+    "processed_data/merged_2021-02-23-19-45-06_seg_1.csv",
+    "processed_data/merged_2021-02-23-19-45-06_seg_2.csv",
+    "processed_data/merged_2021-02-23-19-45-06_seg_3.csv",
+    "processed_data/merged_2021-02-23-21-52-14_seg_1.csv",
+    "processed_data/merged_2021-02-23-21-52-14_seg_2.csv",
+    "processed_data/merged_2021-02-23-21-57-38_seg_1.csv",
+    "processed_data/merged_2021-02-23-21-57-38_seg_2.csv",
+    "processed_data/merged_2021-02-23-21-57-38_seg_3.csv",
+    "processed_data/merged_2021-02-23-22-03-52_seg_1.csv",
+    "processed_data/merged_2021-02-23-22-03-52_seg_2.csv",
+    "processed_data/merged_2021-02-23-22-03-52_seg_3.csv",
+    "processed_data/merged_2021-02-23-22-19-12_seg_1.csv",
+    "processed_data/merged_2021-02-23-22-19-12_seg_2.csv",
+    "processed_data/merged_2021-02-23-22-19-12_seg_3.csv",
+    "processed_data/merged_2021-02-23-22-26-25_seg_1.csv",
+    "processed_data/merged_2021-02-23-22-26-25_seg_2.csv",
+    "processed_data/merged_2021-02-23-22-26-25_seg_3.csv",
+    "processed_data/merged_2021-02-23-22-33-54_seg_1.csv",
+    "processed_data/merged_2021-02-23-22-33-54_seg_2.csv",
+    "processed_data/merged_2021-02-23-22-33-54_seg_3.csv",
+    "processed_data/merged_2021-02-23-22-33-54_seg_4.csv",
+    "processed_data/merged_2021-02-23-22-41-46_seg_1.csv",
+    "processed_data/merged_2021-02-23-22-41-46_seg_2.csv",
+    "processed_data/merged_2021-02-23-22-41-46_seg_3.csv",
+    "processed_data/merged_2021-02-23-22-54-17_seg_1.csv"
+   ]
+  },
+  {
+   "path": "raw_data.zip",
+   "url": "https://download.ifi.uzh.ch/rpg/NeuroBEM/raw_data.zip",
+   "size": 455214377,
+   "sha256": "c20d283eed80f5c968e7dc7b449cb785ffce2d5b3cc392cf1b9fadf31b29e907",
+   "sha256_source": "computed by us on 2026-11-02 (the host publishes no hash)",
+   "extract": true,
+   "extract_to": "rawlogs",
+   "members": [
+    "raw_data/2021-02-03-13-43-38.BFL",
+    "raw_data/2021-02-03-13-44-49.BFL",
+    "raw_data/2021-02-03-13-53-04.BFL",
+    "raw_data/2021-02-03-13-54-06.BFL",
+    "raw_data/2021-02-03-16-10-37.BFL",
+    "raw_data/2021-02-03-16-12-22.BFL",
+    "raw_data/2021-02-03-16-45-38.BFL",
+    "raw_data/2021-02-03-16-47-27.BFL",
+    "raw_data/2021-02-03-16-54-28.BFL",
+    "raw_data/2021-02-03-16-55-55.BFL",
+    "raw_data/2021-02-03-16-58-13.BFL",
+    "raw_data/2021-02-03-17-04-15.BFL",
+    "raw_data/2021-02-03-17-06-36.BFL",
+    "raw_data/2021-02-03-17-14-47.BFL",
+    "raw_data/2021-02-03-17-26-08.BFL",
+    "raw_data/2021-02-03-17-33-11.BFL",
+    "raw_data/2021-02-03-17-37-27.BFL",
+    "raw_data/2021-02-05-14-00-56.BFL",
+    "raw_data/2021-02-05-14-01-47.BFL",
+    "raw_data/2021-02-05-14-02-47.BFL",
+    "raw_data/2021-02-05-14-03-41.BFL",
+    "raw_data/2021-02-05-14-04-32.BFL",
+    "raw_data/2021-02-05-14-19-34.BFL",
+    "raw_data/2021-02-05-14-24-35.BFL",
+    "raw_data/2021-02-05-15-04-42.BFL",
+    "raw_data/2021-02-05-15-40-15.BFL",
+    "raw_data/2021-02-05-15-46-49.BFL",
+    "raw_data/2021-02-05-15-56-24.BFL",
+    "raw_data/2021-02-05-15-58-59.BFL",
+    "raw_data/2021-02-05-16-06-45.BFL",
+    "raw_data/2021-02-05-16-10-53.BFL",
+    "raw_data/2021-02-05-16-14-20.BFL",
+    "raw_data/2021-02-05-16-16-00.BFL",
+    "raw_data/2021-02-05-16-19-10.BFL",
+    "raw_data/2021-02-05-16-29-21.BFL",
+    "raw_data/2021-02-05-16-31-14.BFL",
+    "raw_data/2021-02-05-16-33-13.BFL",
+    "raw_data/2021-02-18-13-44-23.BFL",
+    "raw_data/2021-02-18-14-15-53.BFL",
+    "raw_data/2021-02-18-15-47-24.BFL",
+    "raw_data/2021-02-18-16-08-00.BFL",
+    "raw_data/2021-02-18-16-31-30.BFL",
+    "raw_data/2021-02-18-16-41-41.BFL",
+    "raw_data/2021-02-18-16-43-54.BFL",
+    "raw_data/2021-02-18-16-47-02.BFL",
+    "raw_data/2021-02-18-16-48-24.BFL",
+    "raw_data/2021-02-18-16-53-35.BFL",
+    "raw_data/2021-02-18-16-55-00.BFL",
+    "raw_data/2021-02-18-17-03-20.BFL",
+    "raw_data/2021-02-18-17-05-14.BFL",
+    "raw_data/2021-02-18-17-06-27.BFL",
+    "raw_data/2021-02-18-17-09-50.BFL",
+    "raw_data/2021-02-18-17-12-03.BFL",
+    "raw_data/2021-02-18-17-19-08.BFL",
+    "raw_data/2021-02-18-17-20-37.BFL",
+    "raw_data/2021-02-18-17-26-00.BFL",
+    "raw_data/2021-02-18-17-28-35.BFL",
+    "raw_data/2021-02-18-17-42-11.BFL",
+    "raw_data/2021-02-18-17-44-17.BFL",
+    "raw_data/2021-02-18-17-47-42.BFL",
+    "raw_data/2021-02-18-17-48-50.BFL",
+    "raw_data/2021-02-18-18-02-03.BFL",
+    "raw_data/2021-02-18-18-03-06.BFL",
+    "raw_data/2021-02-18-18-08-45.BFL",
+    "raw_data/2021-02-18-18-09-47.BFL",
+    "raw_data/2021-02-23-10-43-02.BFL",
+    "raw_data/2021-02-23-10-48-03.BFL",
+    "raw_data/2021-02-23-10-50-42.BFL",
+    "raw_data/2021-02-23-10-52-00.BFL",
+    "raw_data/2021-02-23-11-31-23.BFL",
+    "raw_data/2021-02-23-11-41-38.BFL",
+    "raw_data/2021-02-23-14-21-48.BFL",
+    "raw_data/2021-02-23-14-24-07.BFL",
+    "raw_data/2021-02-23-14-29-48.BFL",
+    "raw_data/2021-02-23-14-33-04.BFL",
+    "raw_data/2021-02-23-14-41-07.BFL",
+    "raw_data/2021-02-23-17-27-24.BFL",
+    "raw_data/2021-02-23-17-35-26.BFL",
+    "raw_data/2021-02-23-17-45-47.BFL",
+    "raw_data/2021-02-23-18-38-21.BFL",
+    "raw_data/2021-02-23-18-43-00.BFL",
+    "raw_data/2021-02-23-18-50-03.BFL",
+    "raw_data/2021-02-23-19-04-50.BFL",
+    "raw_data/2021-02-23-19-15-11.BFL",
+    "raw_data/2021-02-23-19-26-38.BFL",
+    "raw_data/2021-02-23-19-33-29.BFL",
+    "raw_data/2021-02-23-19-45-06.BFL",
+    "raw_data/2021-02-23-21-52-14.BFL",
+    "raw_data/2021-02-23-21-57-38.BFL",
+    "raw_data/2021-02-23-22-03-52.BFL",
+    "raw_data/2021-02-23-22-19-12.BFL",
+    "raw_data/2021-02-23-22-26-25.BFL",
+    "raw_data/2021-02-23-22-33-54.BFL",
+    "raw_data/2021-02-23-22-41-46.BFL",
+    "raw_data/2021-02-23-22-54-17.BFL"
+   ]
+  }
+ ],
+ "flights": {
+  "2021-02-03-13-43-38": {
+   "description": "wobbly circle 4 parts, delta=0.3, vel=0.5",
+   "family": "wobbly_circle",
+   "split": "train"
+  },
+  "2021-02-03-13-44-49": {
+   "description": "wobbly circle 4 parts, delta=0.3, vel=0.75",
+   "family": "wobbly_circle",
+   "split": "train"
+  },
+  "2021-02-03-13-53-04": {
+   "description": "circle, vel=2.0",
+   "family": "circle",
+   "split": "train"
+  },
+  "2021-02-03-13-54-06": {
+   "description": "circle, vel=2.5",
+   "family": "circle",
+   "split": "train"
+  },
+  "2021-02-03-16-10-37": {
+   "description": "linear oscillation, vel=2.0",
+   "family": "linear_osc",
+   "split": "train"
+  },
+  "2021-02-03-16-12-22": {
+   "description": "linear oscillation, vel=2.25",
+   "family": "linear_osc",
+   "split": "train"
+  },
+  "2021-02-03-16-45-38": {
+   "description": "linear oscillation, vel=2.4",
+   "family": "linear_osc",
+   "split": "test_id"
+  },
+  "2021-02-03-16-47-27": {
+   "description": "wobbly circle 9 parts, delta=0.15, vel=0.25",
+   "family": "wobbly_circle",
+   "split": "test_id"
+  },
+  "2021-02-03-16-54-28": {
+   "description": "linear oscillation, vel=2.6",
+   "family": "linear_osc",
+   "split": "train"
+  },
+  "2021-02-03-16-55-55": {
+   "description": "wobbly circle 9 parts, delta=0.15, vel=0.5",
+   "family": "wobbly_circle",
+   "split": "train"
+  },
+  "2021-02-03-16-58-13": {
+   "description": "3d circle, delta_z = 2, vel=1.5",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-03-17-04-15": {
+   "description": "3d circle, delta_z = 4, vel=2",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-03-17-06-36": {
+   "description": "3d circle, delta_z = 4, vel=2.5",
+   "family": "circle3d",
+   "split": "test_id"
+  },
+  "2021-02-03-17-14-47": {
+   "description": "3d circle, delta_z = 4, vel=2.9",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-03-17-26-08": {
+   "description": "lemniscate",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-03-17-33-11": {
+   "description": "circle, vel=2.75",
+   "family": "circle",
+   "split": "test_id"
+  },
+  "2021-02-03-17-37-27": {
+   "description": "circle, vel=3.0",
+   "family": "circle",
+   "split": "train"
+  },
+  "2021-02-05-14-00-56": {
+   "description": "battery test 01, short circle",
+   "family": "battery_circle",
+   "split": "train"
+  },
+  "2021-02-05-14-01-47": {
+   "description": "battery test 02, short circle",
+   "family": "battery_circle",
+   "split": "train"
+  },
+  "2021-02-05-14-02-47": {
+   "description": "battery test 03, short circle",
+   "family": "battery_circle",
+   "split": "test_id"
+  },
+  "2021-02-05-14-03-41": {
+   "description": "battery test 04, short circle",
+   "family": "battery_circle",
+   "split": "train"
+  },
+  "2021-02-05-14-04-32": {
+   "description": "battery test 05, short circle",
+   "family": "battery_circle",
+   "split": "val"
+  },
+  "2021-02-05-14-19-34": {
+   "description": "vertical oscillation, vel = 1",
+   "family": "vertical_osc",
+   "split": "test_ood"
+  },
+  "2021-02-05-14-24-35": {
+   "description": "vertical oscillation, vel = 1.7",
+   "family": "vertical_osc",
+   "split": "test_ood"
+  },
+  "2021-02-05-15-04-42": {
+   "description": "3d circle, vel = 0.45",
+   "family": "circle3d",
+   "split": "val"
+  },
+  "2021-02-05-15-40-15": {
+   "description": "cpc, 1.65 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-05-15-46-49": {
+   "description": "cpc, 2.475 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-05-15-56-24": {
+   "description": "cpc, 2.75 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-05-15-58-59": {
+   "description": "lemniscate, vel = 1",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-05-16-06-45": {
+   "description": "lemniscate, vel = 1.5",
+   "family": "lemniscate",
+   "split": "test_id"
+  },
+  "2021-02-05-16-10-53": {
+   "description": "lemniscate, vel = 1.75",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-05-16-14-20": {
+   "description": "lemniscate, vel = 2",
+   "family": "lemniscate",
+   "split": "val"
+  },
+  "2021-02-05-16-16-00": {
+   "description": "battery test 06, short circle",
+   "family": "battery_circle",
+   "split": "train"
+  },
+  "2021-02-05-16-19-10": {
+   "description": "battery test 08, short circle",
+   "family": "battery_circle",
+   "split": "train"
+  },
+  "2021-02-05-16-29-21": {
+   "description": "cpc, 2.475 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-05-16-31-14": {
+   "description": "cpc, 2.475 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-05-16-33-13": {
+   "description": "battery test 09, short circle",
+   "family": "battery_circle",
+   "split": "test_id"
+  },
+  "2021-02-18-13-44-23": {
+   "description": "3d circle, delta_z = 4, vel=2",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-14-15-53": {
+   "description": "3d circle, delta_z = 4, vel=2.9",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-15-47-24": {
+   "description": "3d circle, delta_z = 4, vel=2.9",
+   "family": "circle3d",
+   "split": "test_id"
+  },
+  "2021-02-18-16-08-00": {
+   "description": "3d circle, delta_z = 4, vel=2.9, ccw",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-16-31-30": {
+   "description": "3d circle, delta_z = 4, vel=2.9, ccw",
+   "family": "circle3d",
+   "split": "val"
+  },
+  "2021-02-18-16-41-41": {
+   "description": "linear oscillation, vel=2.0",
+   "family": "linear_osc",
+   "split": "val"
+  },
+  "2021-02-18-16-43-54": {
+   "description": "linear oscillation, vel=2.0",
+   "family": "linear_osc",
+   "split": "train"
+  },
+  "2021-02-18-16-47-02": {
+   "description": "linear oscillation, vel=2.25",
+   "family": "linear_osc",
+   "split": "train"
+  },
+  "2021-02-18-16-48-24": {
+   "description": "linear oscillation, vel=2.25",
+   "family": "linear_osc",
+   "split": "test_id"
+  },
+  "2021-02-18-16-53-35": {
+   "description": "linear oscillation, vel=2.4",
+   "family": "linear_osc",
+   "split": "train"
+  },
+  "2021-02-18-16-55-00": {
+   "description": "linear oscillation, vel=2.4",
+   "family": "linear_osc",
+   "split": "val"
+  },
+  "2021-02-18-17-03-20": {
+   "description": "lemniscate, vel = 1",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-18-17-05-14": {
+   "description": "lemniscate, vel = 1.5",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-18-17-06-27": {
+   "description": "lemniscate, vel = 1.5",
+   "family": "lemniscate",
+   "split": "test_id"
+  },
+  "2021-02-18-17-09-50": {
+   "description": "lemniscate, vel = 2",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-18-17-12-03": {
+   "description": "lemniscate, vel = 1.75",
+   "family": "lemniscate",
+   "split": "val"
+  },
+  "2021-02-18-17-19-08": {
+   "description": "cpc, 1.65 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-18-17-20-37": {
+   "description": "cpc, 2.475 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-18-17-26-00": {
+   "description": "cpc, 2.475 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-18-17-28-35": {
+   "description": "cpc, 2.75 TWR, offset z + 0.7m",
+   "family": "cpc",
+   "split": "test_ood"
+  },
+  "2021-02-18-17-42-11": {
+   "description": "3d circle ccw, radius = 3, vel = 3.25",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-17-44-17": {
+   "description": "3d circle, radius = 3, vel = 3.25",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-17-47-42": {
+   "description": "3d circle ccw, radius = 3.5, vel = 3.25",
+   "family": "circle3d",
+   "split": "test_id"
+  },
+  "2021-02-18-17-48-50": {
+   "description": "3d circle, radius = 3.5, vel = 3.25",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-18-02-03": {
+   "description": "3d circle ccw, radius = 4, vel = 3",
+   "family": "circle3d",
+   "split": "val"
+  },
+  "2021-02-18-18-03-06": {
+   "description": "3d circle, radius = 4, vel = 3",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-18-08-45": {
+   "description": "3d circle ccw, radius = 4.5, vel = 2.75",
+   "family": "circle3d",
+   "split": "train"
+  },
+  "2021-02-18-18-09-47": {
+   "description": "3d circle, radius = 4.5, vel = 2.75",
+   "family": "circle3d",
+   "split": "test_id"
+  },
+  "2021-02-23-10-43-02": {
+   "description": "lemniscate, vel = 0.35, r=7.5m, ccw, full battery",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-23-10-48-03": {
+   "description": "lemniscate, vel = 0.35, r=7.5m, full battery",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-23-10-50-42": {
+   "description": "lemniscate, vel = 1.0, r=7.5m, ccw",
+   "family": "lemniscate",
+   "split": "test_id"
+  },
+  "2021-02-23-10-52-00": {
+   "description": "lemniscate, vel = 1.0, r=7.5m,",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-23-11-31-23": {
+   "description": "random points 1, slow",
+   "family": "random_points",
+   "split": "train"
+  },
+  "2021-02-23-11-41-38": {
+   "description": "satellite, slow, full battery",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-14-21-48": {
+   "description": "lemniscate, vel = 1.4, r=7.5m, ccw, full battery",
+   "family": "lemniscate",
+   "split": "val"
+  },
+  "2021-02-23-14-24-07": {
+   "description": "lemniscate, vel = 1.4, r=7.5m,",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-23-14-29-48": {
+   "description": "lemniscate, vel = 1.6, r=7.5m, ccw, full battery, 20s",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-23-14-33-04": {
+   "description": "lemniscate, vel = 1.6, r=7.5m, 20s",
+   "family": "lemniscate",
+   "split": "test_id"
+  },
+  "2021-02-23-14-41-07": {
+   "description": "lemniscate, vel = 1.7, r=7.5m, ccw, full battery, 20s",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-23-17-27-24": {
+   "description": "lemniscate, vel = 1.6, r>7.5m, ccw, full battery, 20s",
+   "family": "lemniscate",
+   "split": "val"
+  },
+  "2021-02-23-17-35-26": {
+   "description": "lemniscate, vel = 1.6, r>7.5m, full battery, 20s",
+   "family": "lemniscate",
+   "split": "train"
+  },
+  "2021-02-23-17-45-47": {
+   "description": "random points 2, full battery",
+   "family": "random_points",
+   "split": "train"
+  },
+  "2021-02-23-18-38-21": {
+   "description": "random points 3, 80s",
+   "family": "random_points",
+   "split": "test_id"
+  },
+  "2021-02-23-18-43-00": {
+   "description": "random points 4, 100s",
+   "family": "random_points",
+   "split": "train"
+  },
+  "2021-02-23-18-50-03": {
+   "description": "random points 5, 120s",
+   "family": "random_points",
+   "split": "val"
+  },
+  "2021-02-23-19-04-50": {
+   "description": "random points 6, 120s",
+   "family": "random_points",
+   "split": "train"
+  },
+  "2021-02-23-19-15-11": {
+   "description": "random points 7, 120s, battery moved",
+   "family": "random_points",
+   "split": "train"
+  },
+  "2021-02-23-19-26-38": {
+   "description": "satellite x, medium, full battery",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-19-33-29": {
+   "description": "satellite x, fast, full battery",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-19-45-06": {
+   "description": "satellite x, fast, full battery, 60s",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-21-52-14": {
+   "description": "satellite y, fast, full battery, 60s",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-21-57-38": {
+   "description": "satellite y, fast, full battery, 60s",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-22-03-52": {
+   "description": "random points 7, 120s",
+   "family": "random_points",
+   "split": "test_id"
+  },
+  "2021-02-23-22-19-12": {
+   "description": "satellite y, fast, full battery, 60s",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-22-26-25": {
+   "description": "random points 8, 120s",
+   "family": "random_points",
+   "split": "train"
+  },
+  "2021-02-23-22-33-54": {
+   "description": "random points 9, 120s",
+   "family": "random_points",
+   "split": "val"
+  },
+  "2021-02-23-22-41-46": {
+   "description": "satellite x, fast, full battery, 60s",
+   "family": "satellite",
+   "split": "test_ood"
+  },
+  "2021-02-23-22-54-17": {
+   "description": "ellipse, vel = 2.4, x=16m, y=12m",
+   "family": "ellipse",
+   "split": "train"
+  }
+ },
+ "ood_families": [
+  "cpc",
+  "satellite",
+  "vertical_osc"
+ ],
+ "frozen": {
+  "alignment": {
+   "2021-02-03-13-43-38": {
+    "offset": 3.734754181106355,
+    "slope": 0.0037973022529500214,
+    "gyro_rms": 0.004244388207845961,
+    "gyro_std": 0.2786677923310322
+   },
+   "2021-02-03-13-44-49": {
+    "offset": 2.516429872214001,
+    "slope": 0.0037922688321574026,
+    "gyro_rms": 0.005708161608322253,
+    "gyro_std": 0.8508773126745175
+   },
+   "2021-02-03-13-53-04": {
+    "offset": 4.1125034453309794,
+    "slope": 0.00368440588352668,
+    "gyro_rms": 0.007367284598547982,
+    "gyro_std": 0.6125870275429346
+   },
+   "2021-02-03-13-54-06": {
+    "offset": 2.4082131869136623,
+    "slope": 0.003703655217347765,
+    "gyro_rms": 0.008488127565062242,
+    "gyro_std": 0.8012375451606264
+   },
+   "2021-02-03-16-10-37": {
+    "offset": 2.8137761108685915,
+    "slope": 0.003935798937395985,
+    "gyro_rms": 0.011598297229573252,
+    "gyro_std": 0.6527532245478525
+   },
+   "2021-02-03-16-12-22": {
+    "offset": 2.4574706000652116,
+    "slope": 0.003747529400546228,
+    "gyro_rms": 0.013939739163892564,
+    "gyro_std": 0.8136597895546853
+   },
+   "2021-02-03-16-45-38": {
+    "offset": 2.425292134511067,
+    "slope": 0.0037905883810478136,
+    "gyro_rms": 0.01840162308935645,
+    "gyro_std": 0.9101483476997255
+   },
+   "2021-02-03-16-47-27": {
+    "offset": 18.951250135569108,
+    "slope": 0.0037380652752598176,
+    "gyro_rms": 0.0035237172462596715,
+    "gyro_std": 0.19085326731154872
+   },
+   "2021-02-03-16-54-28": {
+    "offset": 1.5179661612645923,
+    "slope": 0.0037879373981135832,
+    "gyro_rms": 0.016484260085076193,
+    "gyro_std": 1.036975275317534
+   },
+   "2021-02-03-16-55-55": {
+    "offset": 2.8292667809001055,
+    "slope": 0.0036740433190564823,
+    "gyro_rms": 0.007523509137573532,
+    "gyro_std": 1.2122022561912915
+   },
+   "2021-02-03-16-58-13": {
+    "offset": 2.780324111975599,
+    "slope": 0.0037746856226673897,
+    "gyro_rms": 0.005217501146826124,
+    "gyro_std": 0.36066631018149453
+   },
+   "2021-02-03-17-04-15": {
+    "offset": 2.1846972719476154,
+    "slope": 0.00382743285098686,
+    "gyro_rms": 0.006443026325132888,
+    "gyro_std": 0.6064191718182553
+   },
+   "2021-02-03-17-06-36": {
+    "offset": 1.6328861911242605,
+    "slope": 0.003745020753398627,
+    "gyro_rms": 0.007516733668992805,
+    "gyro_std": 0.8376595197180163
+   },
+   "2021-02-03-17-14-47": {
+    "offset": 12.53464111639892,
+    "slope": 0.003774051636876172,
+    "gyro_rms": 0.00994217024139389,
+    "gyro_std": 1.042279148042474
+   },
+   "2021-02-03-17-26-08": {
+    "offset": 22.380406712060317,
+    "slope": 0.003875232588647383,
+    "gyro_rms": 0.014059647685479676,
+    "gyro_std": 1.3091197595661725
+   },
+   "2021-02-03-17-33-11": {
+    "offset": 14.330770708423245,
+    "slope": 0.003705662691326341,
+    "gyro_rms": 0.0091704546696264,
+    "gyro_std": 1.014660514500728
+   },
+   "2021-02-03-17-37-27": {
+    "offset": 0.9729825926694353,
+    "slope": 0.0038370413573399764,
+    "gyro_rms": 0.009788484632104728,
+    "gyro_std": 1.0223477052092576
+   },
+   "2021-02-05-14-00-56": {
+    "offset": 13.042634025053566,
+    "slope": 0.0027864096220282975,
+    "gyro_rms": 0.007678263330805817,
+    "gyro_std": 1.0033788920699604
+   },
+   "2021-02-05-14-01-47": {
+    "offset": 1.3350167523310597,
+    "slope": 0.003383876988503322,
+    "gyro_rms": 0.006256793915260447,
+    "gyro_std": 0.9421677523441345
+   },
+   "2021-02-05-14-02-47": {
+    "offset": 2.013248490488807,
+    "slope": 0.0034621101460862243,
+    "gyro_rms": 0.006546525292804383,
+    "gyro_std": 0.9425435363241988
+   },
+   "2021-02-05-14-03-41": {
+    "offset": 3.613539853360451,
+    "slope": 0.0033361587948757885,
+    "gyro_rms": 0.006467682262394801,
+    "gyro_std": 0.9396591187223587
+   },
+   "2021-02-05-14-04-32": {
+    "offset": 1.6219447002655083,
+    "slope": 0.0031095509298534403,
+    "gyro_rms": 0.006552547063766779,
+    "gyro_std": 0.9530753941193102
+   },
+   "2021-02-05-14-19-34": {
+    "offset": 7.532952990278484,
+    "slope": 0.003989758178032707,
+    "gyro_rms": 0.003937219062567855,
+    "gyro_std": 0.20420348043261355
+   },
+   "2021-02-05-14-24-35": {
+    "offset": 1.212180355061256,
+    "slope": 0.0038811119169961028,
+    "gyro_rms": 0.004538294100353456,
+    "gyro_std": 0.05528125432646863
+   },
+   "2021-02-05-15-04-42": {
+    "offset": 6.9098685399994695,
+    "slope": 0.0038684505803163365,
+    "gyro_rms": 0.004737360695351317,
+    "gyro_std": 0.45907569208860094
+   },
+   "2021-02-05-15-40-15": {
+    "offset": 19.035217226987882,
+    "slope": 0.003611860583523723,
+    "gyro_rms": 0.008294430127358523,
+    "gyro_std": 0.9916125022964701
+   },
+   "2021-02-05-15-46-49": {
+    "offset": 8.310366769782455,
+    "slope": 0.0035749965722514853,
+    "gyro_rms": 0.01072936438584013,
+    "gyro_std": 1.35921574411852
+   },
+   "2021-02-05-15-56-24": {
+    "offset": 2.134747318810884,
+    "slope": 0.003683617988981396,
+    "gyro_rms": 0.01135738977950735,
+    "gyro_std": 1.3693914013832709
+   },
+   "2021-02-05-15-58-59": {
+    "offset": 2.4641991705639343,
+    "slope": 0.0037255950321540754,
+    "gyro_rms": 0.0038849452186710547,
+    "gyro_std": 0.3743144698248636
+   },
+   "2021-02-05-16-06-45": {
+    "offset": 1.4124188377367237,
+    "slope": 0.0037994636018913483,
+    "gyro_rms": 0.005722925077063781,
+    "gyro_std": 0.816413818229502
+   },
+   "2021-02-05-16-10-53": {
+    "offset": 0.0004611485792999697,
+    "slope": 0.0036971735524668854,
+    "gyro_rms": 0.012697480358918843,
+    "gyro_std": 1.3205977851316628
+   },
+   "2021-02-05-16-14-20": {
+    "offset": 0.0004657044909792338,
+    "slope": 0.003730692132067655,
+    "gyro_rms": 0.01234168799769183,
+    "gyro_std": 1.4557541336736368
+   },
+   "2021-02-05-16-16-00": {
+    "offset": 6.031824090564959,
+    "slope": 0.003286971638773683,
+    "gyro_rms": 0.00755865332949443,
+    "gyro_std": 0.8665466547682825
+   },
+   "2021-02-05-16-19-10": {
+    "offset": 0.9475742599820364,
+    "slope": 0.0036559890966275975,
+    "gyro_rms": 0.008374606233537044,
+    "gyro_std": 1.0435456510778411
+   },
+   "2021-02-05-16-29-21": {
+    "offset": 0.6251844582905516,
+    "slope": 0.0036923650521134407,
+    "gyro_rms": 0.011335815694073392,
+    "gyro_std": 1.2672230034067615
+   },
+   "2021-02-05-16-31-14": {
+    "offset": 4.236576368525268,
+    "slope": 0.003642007713261308,
+    "gyro_rms": 0.009982809929294784,
+    "gyro_std": 1.216442023942623
+   },
+   "2021-02-05-16-33-13": {
+    "offset": 2.081180010384007,
+    "slope": 0.003113334607810839,
+    "gyro_rms": 0.007346210450237109,
+    "gyro_std": 0.8922471854938248
+   },
+   "2021-02-18-13-44-23": {
+    "offset": 0.00047563028922725103,
+    "slope": 0.0038825178573686585,
+    "gyro_rms": 0.004715083055785399,
+    "gyro_std": 0.5387909149056209
+   },
+   "2021-02-18-14-15-53": {
+    "offset": 0.8320522405538132,
+    "slope": 0.003837116369117658,
+    "gyro_rms": 0.007081250385975282,
+    "gyro_std": 0.9273161285244796
+   },
+   "2021-02-18-15-47-24": {
+    "offset": 1.9683949201332678,
+    "slope": 0.003945846683038279,
+    "gyro_rms": 0.006748023212150453,
+    "gyro_std": 0.9184966239653782
+   },
+   "2021-02-18-16-08-00": {
+    "offset": 1.9765147476245062,
+    "slope": 0.0036814739224434604,
+    "gyro_rms": 0.007143498240611344,
+    "gyro_std": 0.9252031768668517
+   },
+   "2021-02-18-16-31-30": {
+    "offset": 1.3242369323556993,
+    "slope": 0.003933984471121084,
+    "gyro_rms": 0.00663506326221,
+    "gyro_std": 0.9076118373744271
+   },
+   "2021-02-18-16-41-41": {
+    "offset": 1.5392146948209193,
+    "slope": 0.0038006837875925515,
+    "gyro_rms": 0.009095121416702453,
+    "gyro_std": 0.6908788376630153
+   },
+   "2021-02-18-16-43-54": {
+    "offset": 3.491443755646787,
+    "slope": 0.0037813416999339902,
+    "gyro_rms": 0.009026016065419199,
+    "gyro_std": 0.7151747735735803
+   },
+   "2021-02-18-16-47-02": {
+    "offset": 1.7961197353703324,
+    "slope": 0.0037934043388669347,
+    "gyro_rms": 0.01170861143635131,
+    "gyro_std": 0.8874772491760033
+   },
+   "2021-02-18-16-48-24": {
+    "offset": 1.4199224575042595,
+    "slope": 0.003779828747881193,
+    "gyro_rms": 0.012379828883013857,
+    "gyro_std": 0.8817434126404557
+   },
+   "2021-02-18-16-53-35": {
+    "offset": 2.7317191490128216,
+    "slope": 0.0036598269864333783,
+    "gyro_rms": 0.014478456596639025,
+    "gyro_std": 1.0552871903225618
+   },
+   "2021-02-18-16-55-00": {
+    "offset": 1.3645930454832436,
+    "slope": 0.003833244663848409,
+    "gyro_rms": 0.014012472290731154,
+    "gyro_std": 1.04134248912088
+   },
+   "2021-02-18-17-03-20": {
+    "offset": 1.7453159475555413,
+    "slope": 0.003859093060491195,
+    "gyro_rms": 0.003743531161474354,
+    "gyro_std": 0.3498086726118303
+   },
+   "2021-02-18-17-05-14": {
+    "offset": 2.2886822774800306,
+    "slope": 0.0038084143635330053,
+    "gyro_rms": 0.005650035440326564,
+    "gyro_std": 0.8796241908923402
+   },
+   "2021-02-18-17-06-27": {
+    "offset": 1.5107125054239594,
+    "slope": 0.0036034648571181198,
+    "gyro_rms": 0.005624136077483639,
+    "gyro_std": 0.899922872142436
+   },
+   "2021-02-18-17-09-50": {
+    "offset": 1.6671906492640312,
+    "slope": 0.003740530158365223,
+    "gyro_rms": 0.017204814431547363,
+    "gyro_std": 1.7561200427551626
+   },
+   "2021-02-18-17-12-03": {
+    "offset": 1.1248373258554334,
+    "slope": 0.0037327998831520027,
+    "gyro_rms": 0.009004207862407116,
+    "gyro_std": 1.2872729160197385
+   },
+   "2021-02-18-17-19-08": {
+    "offset": 1.424002035969109,
+    "slope": 0.0037569589787996667,
+    "gyro_rms": 0.008226247768600488,
+    "gyro_std": 1.0057806620821288
+   },
+   "2021-02-18-17-20-37": {
+    "offset": 1.3748052122374248,
+    "slope": 0.003556997808187123,
+    "gyro_rms": 0.0121665667782733,
+    "gyro_std": 1.3585616142072685
+   },
+   "2021-02-18-17-26-00": {
+    "offset": 3.348921115301532,
+    "slope": 0.003612348893881892,
+    "gyro_rms": 0.013520806447471116,
+    "gyro_std": 1.6272654310734045
+   },
+   "2021-02-18-17-28-35": {
+    "offset": 1.4644575495252237,
+    "slope": 0.0037514569888807696,
+    "gyro_rms": 0.013958010690120962,
+    "gyro_std": 1.4956126597660118
+   },
+   "2021-02-18-17-42-11": {
+    "offset": 1.3534174859405428,
+    "slope": 0.0037613945403678238,
+    "gyro_rms": 0.0058993225383602394,
+    "gyro_std": 1.017050408776998
+   },
+   "2021-02-18-17-44-17": {
+    "offset": 1.7861743510353216,
+    "slope": 0.0038965491407366875,
+    "gyro_rms": 0.00579663003148389,
+    "gyro_std": 1.060947856794037
+   },
+   "2021-02-18-17-47-42": {
+    "offset": 1.3945061964276952,
+    "slope": 0.0038662081654936113,
+    "gyro_rms": 0.00622702936406701,
+    "gyro_std": 1.0507944518421855
+   },
+   "2021-02-18-17-48-50": {
+    "offset": 1.0950684027496127,
+    "slope": 0.0036155017058588693,
+    "gyro_rms": 0.006523954200240353,
+    "gyro_std": 1.0665146899001499
+   },
+   "2021-02-18-18-02-03": {
+    "offset": 1.3916108681938102,
+    "slope": 0.0038905015579365865,
+    "gyro_rms": 0.006054758421729129,
+    "gyro_std": 1.0061983899661666
+   },
+   "2021-02-18-18-03-06": {
+    "offset": 1.04760783429227,
+    "slope": 0.003539516268056199,
+    "gyro_rms": 0.006141236179037862,
+    "gyro_std": 1.044194735136532
+   },
+   "2021-02-18-18-08-45": {
+    "offset": 1.0625257950399762,
+    "slope": 0.004009103783322627,
+    "gyro_rms": 0.006067975256474856,
+    "gyro_std": 0.9485177635118304
+   },
+   "2021-02-18-18-09-47": {
+    "offset": 1.2963856272274683,
+    "slope": 0.003505230571165333,
+    "gyro_rms": 0.005877354447886138,
+    "gyro_std": 0.9289797128739054
+   },
+   "2021-02-23-10-43-02": {
+    "offset": 2.156117095977772,
+    "slope": 0.003922861430307626,
+    "gyro_rms": 0.0035842660325755204,
+    "gyro_std": 0.04445561699600887
+   },
+   "2021-02-23-10-48-03": {
+    "offset": 1.7611550867903527,
+    "slope": 0.004060245403750611,
+    "gyro_rms": 0.0032525500740952485,
+    "gyro_std": 0.07463241531093319
+   },
+   "2021-02-23-10-50-42": {
+    "offset": 1.4463976733469337,
+    "slope": 0.003861479343623846,
+    "gyro_rms": 0.004798855586224857,
+    "gyro_std": 0.46747369506779474
+   },
+   "2021-02-23-10-52-00": {
+    "offset": 1.823344905067914,
+    "slope": 0.003857235443573086,
+    "gyro_rms": 0.004789509209481859,
+    "gyro_std": 0.4658287467051782
+   },
+   "2021-02-23-11-31-23": {
+    "offset": 2.7484873193117902,
+    "slope": 0.003726664168641437,
+    "gyro_rms": 0.0037523020011172754,
+    "gyro_std": 0.24261531880897586
+   },
+   "2021-02-23-11-41-38": {
+    "offset": 3.1951550231230974,
+    "slope": 0.0038082808989420287,
+    "gyro_rms": 0.004098610038991506,
+    "gyro_std": 0.4405069539969806
+   },
+   "2021-02-23-14-21-48": {
+    "offset": 2.177028506294671,
+    "slope": 0.00371122036585257,
+    "gyro_rms": 0.010548677917257769,
+    "gyro_std": 1.2083066709517667
+   },
+   "2021-02-23-14-24-07": {
+    "offset": 1.370690635393806,
+    "slope": 0.0036648376097612196,
+    "gyro_rms": 0.010618642996591958,
+    "gyro_std": 1.3727472430984147
+   },
+   "2021-02-23-14-29-48": {
+    "offset": 0.923714676607514,
+    "slope": 0.0035877241716127245,
+    "gyro_rms": 0.015860204348226103,
+    "gyro_std": 1.7237387848970789
+   },
+   "2021-02-23-14-33-04": {
+    "offset": 0.9277499509590434,
+    "slope": 0.003566063411802042,
+    "gyro_rms": 0.015835840879573824,
+    "gyro_std": 1.7623363097000466
+   },
+   "2021-02-23-14-41-07": {
+    "offset": 1.6261171157155774,
+    "slope": 0.003611555154854968,
+    "gyro_rms": 0.017077817987151567,
+    "gyro_std": 1.6874380205802817
+   },
+   "2021-02-23-17-27-24": {
+    "offset": 0.8170873032239783,
+    "slope": 0.0035672527935049275,
+    "gyro_rms": 0.017532142309558792,
+    "gyro_std": 1.4749558083777496
+   },
+   "2021-02-23-17-35-26": {
+    "offset": 1.6304876634911325,
+    "slope": 0.003605631721781032,
+    "gyro_rms": 0.016123507712083627,
+    "gyro_std": 1.4993478959498239
+   },
+   "2021-02-23-17-45-47": {
+    "offset": 1.2176203997829844,
+    "slope": 0.0037925954463687893,
+    "gyro_rms": 0.007044574826615611,
+    "gyro_std": 0.9749828212886912
+   },
+   "2021-02-23-18-38-21": {
+    "offset": 0.9729972580552522,
+    "slope": 0.0038498608067874516,
+    "gyro_rms": 0.005722112937094477,
+    "gyro_std": 0.9689088896437229
+   },
+   "2021-02-23-18-43-00": {
+    "offset": 0.8534818029308967,
+    "slope": 0.00379998741685614,
+    "gyro_rms": 0.00934624497087514,
+    "gyro_std": 1.3734183482097502
+   },
+   "2021-02-23-18-50-03": {
+    "offset": 1.2321574010610008,
+    "slope": 0.003872283175604786,
+    "gyro_rms": 0.0058619625423005734,
+    "gyro_std": 0.8100148014095703
+   },
+   "2021-02-23-19-04-50": {
+    "offset": 1.3309215291510563,
+    "slope": 0.003848597392270314,
+    "gyro_rms": 0.009441623270694113,
+    "gyro_std": 1.4182493199174935
+   },
+   "2021-02-23-19-15-11": {
+    "offset": 1.6297114051935502,
+    "slope": 0.0038578824514872395,
+    "gyro_rms": 0.013652348382577529,
+    "gyro_std": 1.8643644792916536
+   },
+   "2021-02-23-19-26-38": {
+    "offset": 3.3155828603050974,
+    "slope": 0.0037512877770545477,
+    "gyro_rms": 0.0059034242667766745,
+    "gyro_std": 1.002493031503112
+   },
+   "2021-02-23-19-33-29": {
+    "offset": 1.1118800454582156,
+    "slope": 0.0036701241276461006,
+    "gyro_rms": 0.0064727503495861285,
+    "gyro_std": 1.0977148197039424
+   },
+   "2021-02-23-19-45-06": {
+    "offset": 1.2994386390324766,
+    "slope": 0.003809759068462678,
+    "gyro_rms": 0.007347700627346568,
+    "gyro_std": 1.2359846833666395
+   },
+   "2021-02-23-21-52-14": {
+    "offset": 14.793000361852972,
+    "slope": 0.003938780783496842,
+    "gyro_rms": 0.007692517943643872,
+    "gyro_std": 1.3176973489218902
+   },
+   "2021-02-23-21-57-38": {
+    "offset": 4.273359544067137,
+    "slope": 0.00388161426165784,
+    "gyro_rms": 0.007577085849436595,
+    "gyro_std": 1.2357797194486873
+   },
+   "2021-02-23-22-03-52": {
+    "offset": 4.0095997111355,
+    "slope": 0.003871878224045901,
+    "gyro_rms": 0.013849894586685493,
+    "gyro_std": 1.8426591034802664
+   },
+   "2021-02-23-22-19-12": {
+    "offset": 9.662698277095462,
+    "slope": 0.003891259699669365,
+    "gyro_rms": 0.007488237021441144,
+    "gyro_std": 1.2418358345712073
+   },
+   "2021-02-23-22-26-25": {
+    "offset": 2.128474526975044,
+    "slope": 0.003916960286549874,
+    "gyro_rms": 0.008492995781233147,
+    "gyro_std": 1.2616672607084742
+   },
+   "2021-02-23-22-33-54": {
+    "offset": 4.20899034141838,
+    "slope": 0.003905919493207871,
+    "gyro_rms": 0.014884121165224628,
+    "gyro_std": 1.76669853319447
+   },
+   "2021-02-23-22-41-46": {
+    "offset": 4.662958625694682,
+    "slope": 0.0037994854394260064,
+    "gyro_rms": 0.008208849978714542,
+    "gyro_std": 1.2607979037804815
+   },
+   "2021-02-23-22-54-17": {
+    "offset": 2.293979692379871,
+    "slope": 0.0036773094989920128,
+    "gyro_rms": 0.0095458825825107,
+    "gyro_std": 1.0867054435353425
+   }
+  },
+  "params": {
+   "Jx": 0.0025,
+   "Jy": 0.0021,
+   "Jz": 0.0043,
+   "dx": 0.30647292924065084,
+   "dy": 0.2995742689329794,
+   "dz": 0.49008286785420996,
+   "tau_a": 0.05,
+   "bT0": 4.2228687717283,
+   "bT1": 3.688360607531423,
+   "bT2": 3.6381930310263617,
+   "bT3": 3.3655053041642566,
+   "Mx": 3.2216869665506893,
+   "My": -5.892899939476724,
+   "c0x": 0.1618934817644185,
+   "c0y": 3.9848624459529387,
+   "c0z": 0.021382530902984524,
+   "Bx0": -70.78315492934115,
+   "Bx1": -67.11471233191608,
+   "Bx2": 64.3360918121524,
+   "Bx3": 73.51563162239,
+   "By0": 65.33079835246056,
+   "By1": -63.61223398607301,
+   "By2": 49.788760261595655,
+   "By3": -73.31869587543171,
+   "Bz0": 2.0649357275287588,
+   "Bz1": -0.8020436168316107,
+   "Bz2": -2.276238987364489,
+   "Bz3": 1.003834926564831,
+   "Cxx": 0.6899511675632606,
+   "Cxy": 0.018918064754375984,
+   "Cxz": 0.005424307495468515,
+   "Cyx": -0.0021997080643100927,
+   "Cyy": 0.6036609512847642,
+   "Cyz": -0.02814195360769889,
+   "Czx": -0.2199966990010597,
+   "Czy": 0.2804492170960913,
+   "Czz": 0.7753791717561275,
+   "bx": -0.014614027306358189,
+   "by": 0.7027438892845858,
+   "bz": 2.561005424545731
+  },
+  "identification": {
+   "x_std": [
+    3.7922473623240087,
+    4.23316108925397,
+    2.482135087644111,
+    0.4503573901843291,
+    0.3997432039850391,
+    0.2772895290508506,
+    1.4752996773577713,
+    1.4393420791955813,
+    0.26955173634802965,
+    1.6804181762915427,
+    1.9753061630973185,
+    6.876440826745613
+   ],
+   "x_mean": [
+    -0.009988958696546233,
+    0.08246635228172602,
+    0.5507665044246113,
+    0.015623743779912765,
+    0.0068629536575720825,
+    0.748467038385985,
+    0.020467037616269276,
+    -0.006573241290500025,
+    -0.007791856333260598,
+    0.1095345802051258,
+    0.2684549258688517,
+    14.635368755311843
+   ],
+   "y_mean": [
+    0.020467037616269276,
+    -0.006573241290500025,
+    -0.007791856333260598,
+    0.1095345802051258,
+    0.2684549258688517,
+    14.635368755311843
+   ],
+   "r_y": [
+    0.06348788703405367,
+    0.07729803827683412,
+    0.011715597767501949,
+    1.3410113422896475,
+    1.6645848907285987,
+    2.548708855238443
+   ],
+   "u_std": [
+    359.46338947811375,
+    335.4427542732128,
+    349.7790921984079,
+    329.3145926355757
+   ],
+   "u_mean": [
+    58.0306325639402,
+    -49.424905322133846,
+    52.203966235141955,
+    -36.22460233652499
+   ],
+   "u_scale": 1041.6374440725372,
+   "specific_force_residual_std": [
+    0.5955335651921911,
+    0.46393635506100034,
+    1.2992018919383437
+   ],
+   "specific_force_std": [
+    1.512876373933108,
+    1.7069817704121582,
+    8.349991702257517
+   ],
+   "angular_acc_residual_std": [
+    8.592744029187417,
+    12.14872641569372,
+    1.7676561304631182
+   ],
+   "angular_acc_std": [
+    12.118106769074195,
+    15.136179509812948,
+    1.758183150259432
+   ],
+   "accelerometer_residual_std": [
+    1.3410113422896475,
+    1.6645848907285987,
+    2.548708855238443
+   ],
+   "n_train_samples": 184639,
+   "n_train_segments": 48,
+   "arm_check": {
+    "B_note": "thrust/torque consistency: rotor arm implied by B and bT with the Readme J, m",
+    "ly_m": 0.05987098895526894,
+    "lx_m": 0.045969352330984495
+   },
+   "model_fit": {
+    "train": {
+     "onestep": {
+      "v_ms": 0.016805138274688727,
+      "tilt_deg": 0.13547937459992213,
+      "w_rads": 0.09691402416618591,
+      "am_ms2": 0.7496330976420466
+     },
+     "n_windows": 300,
+     "open_loop_0.1s": {
+      "windows_not_tumbled": 1.0,
+      "v_ms": 0.29228874170848634,
+      "tilt_deg": 3.457214969061559,
+      "w_rads": 0.8091667108970524
+     },
+     "open_loop_0.5s": {
+      "windows_not_tumbled": 1.0,
+      "v_ms": 3.86491784573447,
+      "tilt_deg": 55.66845406881355,
+      "w_rads": 4.430059665609612
+     },
+     "open_loop_1s": {
+      "windows_not_tumbled": 1.0,
+      "v_ms": 5.117302715949964,
+      "tilt_deg": 85.22205520351704,
+      "w_rads": 10.906369276480506
+     },
+     "open_loop_10s": {
+      "windows_not_tumbled": 0.7933333333333333,
+      "v_ms": 15.510017463078073,
+      "tilt_deg": 98.14468881688099,
+      "w_rads": 31.318120513676277
+     }
+    },
+    "val": {
+     "onestep": {
+      "v_ms": 0.018284500398996914,
+      "tilt_deg": 0.16256639091133349,
+      "w_rads": 0.10253458515742618,
+      "am_ms2": 0.6853063130661066
+     },
+     "n_windows": 98,
+     "open_loop_0.1s": {
+      "windows_not_tumbled": 1.0,
+      "v_ms": 0.3513197587665156,
+      "tilt_deg": 4.604849024551169,
+      "w_rads": 1.0843157488504467
+     },
+     "open_loop_0.5s": {
+      "windows_not_tumbled": 1.0,
+      "v_ms": 4.202671597280901,
+      "tilt_deg": 66.59783287807556,
+      "w_rads": 4.50528582164476
+     },
+     "open_loop_1s": {
+      "windows_not_tumbled": 1.0,
+      "v_ms": 5.264852072584691,
+      "tilt_deg": 88.45399711657068,
+      "w_rads": 10.046625337729582
+     },
+     "open_loop_10s": {
+      "windows_not_tumbled": 0.8571428571428571,
+      "v_ms": 15.987039006226356,
+      "tilt_deg": 100.59854732635308,
+      "w_rads": 31.984527789914967
+     }
+    }
+   }
+  },
+  "filter_tuning": {
+   "q_inflate": 3.0,
+   "r_inflate": 1.0,
+   "val_scores": {
+    "q0.3_r1": 0.33467377708962537,
+    "q0.3_r3": 0.3580433780778279,
+    "q0.3_r10": 0.41408676430839025,
+    "q1_r1": 0.32792291433644166,
+    "q1_r3": 0.3339619864559203,
+    "q1_r10": 0.356494939839125,
+    "q3_r1": 0.3273288321279593,
+    "q3_r3": 0.3292743711024183,
+    "q3_r10": 0.33511245175557963,
+    "q10_r1": 0.3278800650380735,
+    "q10_r3": 0.32831496913360947,
+    "q10_r10": 0.32966056188177983
+   },
+   "n_val": 48
+  }
+ }
+}

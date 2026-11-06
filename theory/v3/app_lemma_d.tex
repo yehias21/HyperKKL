@@ -1,0 +1,93 @@
+% Lemma D (moved out of m3 in v3 so that the information section can precede the appendix)
+\section{Lemma D: the sampled-data observer}
+
+\begin{lemma}[Lemma D]\label{lem:D}
+Let $\|e^{At}\|\le\kappa e^{-\alpha t}$, $\rho_0:=e^{-\alpha dt}$, and let input and context be held on
+each $[t_k,t_{k+1})$. Let
+$w_0:=\int_0^{dt}\tfrac{\tau}{dt}e^{-\alpha\tau}d\tau=\frac{1-\rho_0(1+\alpha dt)}{\alpha^2dt}$,
+$w_1:=\int_0^{dt}(1-\tfrac\tau{dt})e^{-\alpha\tau}d\tau=\frac{\alpha dt-1+\rho_0}{\alpha^2dt}$, so
+$w_0+w_1=(1-\rho_0)/\alpha$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Exact step.} For $y$ affine and $g$ constant on the step, $\dot z=Az+By+g$ gives exactly
+$z_{k+1}=A_dz_k+W_0y_k+W_1y_{k+1}+W_gg$, with $A_d=e^{Adt}$,
+$W_0=\int_0^{dt}(1-\tfrac s{dt})e^{A(dt-s)}B\,ds$, $W_1=\int_0^{dt}\tfrac s{dt}e^{A(dt-s)}B\,ds$,
+$W_g=A^{-1}(A_d-I)$ (\texttt{design.latent\_step}).
+\item \emph{Interpolation.} With (A3) and the regularity clause, the clean iterate $\bar z_k$ from
+$\bar z_0=z(0)$ satisfies
+$\sup_k\|\bar z_k-z(t_k)\|\le e_{\rm disc}:=\frac{\kappa\|B\|M_2dt^3}{12(1-\rho_0)}\le\frac{\kappa\|B\|M_2dt^2e^{\alpha dt}}{12\alpha}$,
+also for switching inputs, since switches sit on the grid.
+\item \emph{Merged kernels.} $\|A_d^mW_0\|\le\kappa\|B\|\rho_0^mw_0$ and $\|A_d^mW_1\|\le\kappa\|B\|\rho_0^mw_1$. Hence
+$\sum_i\|G^{(k)}_i\|\le\kappa\|B\|/\alpha$ for every $k$ and $\gamma_y\le\kappa\|B\|/\alpha$ at every $dt$, and
+$\gamma_y\to\int_0^\infty\|e^{As}B\|ds$ as $dt\to0$. More generally every sampled constant is bounded by its
+continuous counterpart: $\rho_0^M=e^{-\alpha L}$, $c_d\le1/\alpha$ in (e), $\gamma_y\le\kappa\|B\|/\alpha$.
+\item \emph{Injection: step-size condition.} For the deployed exponential midpoint step (an
+exponential integrator, \citealp{hochbruck2010exponential}, with an explicit Euler predictor)
+$z_{k+1}=A_dz_k+W_0y_k+W_1y_{k+1}+W_g\Phi(z^h_k,c_k)$, $z^h_k=z_k+\tfrac{dt}2(Az_k+By_k+\Phi(z_k,c_k))$,
+with $\Phi(\cdot,c)$ $\ell_\Phi$-Lipschitz, two solutions driven by the same $(y,c)$ satisfy
+$\|z_k-z'_k\|\le\kappa\rho^k\|z_0-z'_0\|$,
+\[
+\rho:=\rho_0+\kappa(1-\rho_0)\frac{\ell_\Phi\beta}{\alpha},\qquad\beta:=1+\tfrac{dt}2(\|A\|+\ell_\Phi).
+\]
+So $\kappa\ell_\Phi\beta<\alpha$ suffices; it tends to $\kappa\ell_\Phi<\alpha$
+(Corollary~\ref{cor:m1-amplitude}) as $dt\to0$ with $-\ln\rho/dt\to\alpha-\kappa\ell_\Phi$, and $\beta\le1.1$
+under $\|A\|dt\le0.1$ (\texttt{design.choose\_dt}). If the stationary latent $\zeta_k=\hat T_0(x(t_k))$ satisfies
+$\zeta_{k+1}=(\text{clean step at }\zeta_k)+\int_0^{dt}e^{A(dt-s)}R\,ds+q_k$, with $\|R\|\le\varepsilon_{\rm res}$
+the PDE residual and $q_k$ the interpolation/quadrature defect with $\|A_d^mq_k\|\le\kappa\rho_0^m\bar q$, and the
+step is fed samples with $\|v_k\|\le\delta_y$, then
+\[
+\|\hat z_k-\zeta_k\|\le\kappa\rho^k\|\hat z_0-\zeta_0\|+\frac{\kappa\big(\|B\|(1+\ell_\Phi\tfrac{dt}2)\delta_y+\varepsilon_{\rm res}\big)}{\alpha-\kappa\ell_\Phi\beta}+\frac{\kappa\,\alpha\,\bar q}{(1-\rho_0)(\alpha-\kappa\ell_\Phi\beta)},
+\]
+a single factor $\kappa$, with $\bar q=O(dt^3)$ so the last term is $O(dt^2)$.
+\item \emph{Deployed fading memory.} If $u_j=u'_j$ for $j=k-M,\dots,k-1$, the deployed map
+$T^d_k(x;u)=\sum_{j\ge0}A_d^j(W_0y_{k-1-j}+W_1y_{k-j})$ satisfies
+$\|T^d_k(x;u)-T^d_k(x;u')\|\le2\kappa\|B\|\bar y\,\rho_0^Mc_d$, $c_d:=(w_0+\rho_0w_1)/(1-\rho_0)\le1/\alpha$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Variation of constants over one step with the affine $y$ inserted.
+(b) $\bar z_k-z(t_k)=-\int_0^{t_k}e^{A(t_k-s)}B(y-\ell)(s)ds$ with $\ell$ the piecewise-linear
+interpolant. On $[t_j,t_{j+1}]$ the input is constant, so $y\in C^2$ there, and the Peano form gives
+$\|y(t_j+\sigma)-\ell(t_j+\sigma)\|\le\tfrac{\sigma(dt-\sigma)}2M_2$ in any norm. Use
+$\|e^{A(t_k-s)}\|\le\kappa\rho_0^{k-1-j}$ on that interval and $\int_0^{dt}\tfrac{\sigma(dt-\sigma)}2d\sigma=\tfrac{dt^3}{12}$,
+sum the geometric series, and use $1-\rho_0\ge\alpha dt\,\rho_0$.
+(c) $A_d^mW_0=\int_0^{dt}(1-\tfrac s{dt})e^{A(mdt+dt-s)}B\,ds$, so
+$\|A_d^mW_0\|\le\kappa\|B\|\rho_0^m\int_0^{dt}(1-\tfrac s{dt})e^{-\alpha(dt-s)}ds=\kappa\|B\|\rho_0^mw_0$, and likewise
+for $W_1$. Then $\|H_0\|+\sum_{m\ge1}\|H_m\|\le\kappa\|B\|\big(w_1+\sum_{m\ge1}(\rho_0^{m-1}w_0+\rho_0^mw_1)\big)=\kappa\|B\|\frac{w_0+w_1}{1-\rho_0}=\frac{\kappa\|B\|}\alpha$,
+and the finite-$k$ coefficients are a sub-sum of the same terms. The limit holds because
+$H_m=e^{At_m}B\,dt+O(dt^2)$ with summable tails.
+(d) $\Delta_k=A_d^k\Delta_0+\sum_{j<k}A_d^{k-1-j}W_g(\Phi(z^h_j)-\Phi(z'^h_j))$ with
+$\|z^h_j-z'^h_j\|\le\beta\|\Delta_j\|$ and the merged kernel
+$\|A_d^{k-1-j}W_g\|=\|\int_0^{dt}e^{A((k-j)dt-s)}ds\|\le\kappa\rho_0^{k-1-j}(1-\rho_0)/\alpha$. With
+$a_k=e^{\alpha t_k}\|\Delta_k\|$ and $g=\kappa(e^{\alpha dt}-1)\ell_\Phi\beta/\alpha$, $a_k\le\kappa a_0+\sum_{j<k}ga_j$;
+the right side $S_k$ obeys $S_{k+1}\le(1+g)S_k$, so $\|\Delta_k\|\le\kappa(\rho_0(1+g))^k\|\Delta_0\|=\kappa\rho^k\|\Delta_0\|$.
+If $\kappa\ell_\Phi<\alpha$ and $\|A\|dt\le0.1$, then $\ell_\Phi dt<\alpha dt\le\|A\|dt$, so $\beta\le1.1$.
+For the forced bound, unroll $e_k=\hat z_k-\zeta_k$; every forcing term is merged with the kernel
+that propagates it: $\|A_d^{m}(W_0v_j+W_1v_{j+1})\|\le\kappa\rho_0^{m}\|B\|(w_0+w_1)\delta_y$,
+$\|A_d^m\int_0^{dt}e^{A(dt-s)}R\,ds\|\le\kappa\rho_0^m(1-\rho_0)\varepsilon_{\rm res}/\alpha$, the predictor mismatch
+$\le\beta\|e_j\|+\tfrac{dt}2\|B\|\delta_y$ enters through $A_d^mW_g$, and $\|A_d^mq_j\|\le\kappa\rho_0^m\bar q$. So
+$a_k\le\kappa a_0+\sum_{j<k}\big(ga_j+\kappa e^{\alpha(j+1)dt}D\big)$ with
+$D=\frac{1-\rho_0}{\alpha}\big(\|B\|(1+\ell_\Phi\tfrac{dt}2)\delta_y+\varepsilon_{\rm res}\big)+\bar q$, hence
+$S_{k+1}\le(1+g)S_k+\kappa e^{\alpha(k+1)dt}D$ and $\|e_k\|\le\kappa\rho^k\|e_0\|+\kappa D/(1-\rho)$; insert
+$1-\rho=(1-\rho_0)(\alpha-\kappa\ell_\Phi\beta)/\alpha$.
+(e) The samples $y_i$ coincide for $i\ge k-M$; bound by (c), summing from $j=M$ ($W_0$) and $j=M+1$
+($W_1$), with $\|y_i-y'_i\|\le2\bar y$.
+\end{proof}
+
+\emph{Continuous-time interpretation.} The latent step is exact for the held input, the context and
+any generated decoder weights are constant on each interval by construction, and the decoder runs
+at $t_k$ only. The bounds are about the implemented observer, and the continuous formulas are their
+$dt\to0$ limits; the sampled observer adds only $e_{\rm disc}$ and, with injection, the factor $\beta$.
+
+{\sloppy\emph{Check} (\texttt{m3\_checks.py}). (b) \texttt{check\_interpolation}: PRBS input, four step
+sizes, order $2.00$, bound/error $3.6$ (\texttt{check\_theory.lemma\_d} uses the same constant, bound/error $4.4$--$4.5$).
+(c) \texttt{check\_design\_constants}: $\gamma_y=1.074\le\kappa\|B\|/\alpha=1.491$
+($\int\|e^{As}B\|=1.075$); $\gamma_y\le\kappa\|B\|/\alpha$ at $\alpha dt\in\{0.03,0.3,1,3\}$ and for a
+non-normal $A$ with $\kappa=1.46$. The $\kappa$ of a non-normal $A$ is estimated by \texttt{spectral\_bounds} on a
+$400$-point grid, so those rows are consistency checks, not certificates; the deployed Butterworth $A$ is normal and has
+$\kappa=1$ exactly. (d) \texttt{check\_midpoint}: for $\Phi=\ell z$ the per-step gain is
+below $\rho$ (e.g.\ $0.99591\le0.99762$ at $\ell=1.3$); 200 random linear injections:
+$\max\|\text{step}\|/\rho=0.999$; for a non-normal $A$ ($\kappa=1.99$) $\max_k\|\text{step}^k\|/(\kappa\rho^k)=0.92$, so a single $\kappa$ suffices; $\Phi=-400z$, more stable in continuous time, gives discrete spectral radius $26.4$ at $\ell dt=8.2$,
+so the step-size part is needed; the numpy step equals \texttt{LatentStep} to $1.5\times10^{-7}$.
+(e) \texttt{m2\_checks.py::lemma\_d\_constants}.\par}
+

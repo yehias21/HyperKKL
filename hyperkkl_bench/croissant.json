@@ -1,0 +1,969 @@
+{
+ "@context": {
+  "@language": "en",
+  "@vocab": "https://schema.org/",
+  "cr": "http://mlcommons.org/croissant/",
+  "sc": "https://schema.org/",
+  "dct": "http://purl.org/dc/terms/"
+ },
+ "@type": "sc:Dataset",
+ "conformsTo": "http://mlcommons.org/croissant/1.0",
+ "name": "hyperkkl-bench",
+ "version": "2.0.0rc1",
+ "description": "Simulated nonlinear plants for benchmarking state estimators in two families: AUTONOMOUS systems (no input; limit cycles, chaos, oscillator networks) and NON-AUTONOMOUS input-driven systems under realistic operating profiles (v2, data_v2/), with the v1 input-shape / input-sequence tiers kept as legacy tiers and incomplete model knowledge, plus real-data tracks (quadrotor velocity and tilt, battery SOC, positioning-axis and oscillator velocity) whose raw data are NOT distributed: they are fetched from the original hosts (cr:FileObject entries below, with their SHA-256 and licences).",
+ "license": "https://opensource.org/licenses/MIT",
+ "url": "TBD",
+ "distribution": [
+  {
+   "@type": "cr:FileSet",
+   "@id": "core-parquet",
+   "name": "core-parquet",
+   "encodingFormat": "application/x-parquet",
+   "includes": "data/*/*/*.parquet",
+   "description": "HF export: data/<plant>/<variant>/<split>.parquet"
+  },
+  {
+   "@type": "cr:FileSet",
+   "@id": "extra-parquet",
+   "name": "extra-parquet",
+   "encodingFormat": "application/x-parquet",
+   "includes": "data_extra/data/*/*/*.parquet",
+   "description": "val_ood, label-free hidden splits, deployment and scaling plants"
+  },
+  {
+   "@type": "cr:FileSet",
+   "@id": "v2-parquet",
+   "name": "v2-parquet",
+   "encodingFormat": "application/x-parquet",
+   "includes": "data_v2/data/*/*/*/*.parquet",
+   "description": "v2 (hkb-data-2.0): data_v2/data/<family>/<plant>/<variant>/<split>.parquet; families autonomous / driven; splits train, train_event, val, val_event, val_ood, phase1, test tiers, label-free hidden_*"
+  },
+  {
+   "@type": "cr:FileSet",
+   "@id": "v2-metadata",
+   "name": "v2-metadata",
+   "encodingFormat": "application/json",
+   "includes": "data_v2/metadata/*/*.json",
+   "description": "v2 per-cell metadata (x_std per variant, sensors, input box, actuator, operators, SHA-256 per file)"
+  },
+  {
+   "@type": "cr:FileSet",
+   "@id": "metadata",
+   "name": "metadata",
+   "encodingFormat": "application/json",
+   "includes": "metadata/*.json",
+   "description": "per-plant metadata with SHA-256 of every file"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-18-17_02.17_25degC_Cycle_1_Pan18650PF.mat",
+   "name": "battery_pf:03-18-17_02.17_25degC_Cycle_1_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/57a2002f-d618-4dd8-96e3-37ffb6bc26c5/file_downloaded",
+   "sha256": "2926d32c3790062a5b29eeb5fdde7a580ae4d09b7a50b4ee9951ae5a42f24e28",
+   "contentSize": "2857090 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-19-17_03.25_25degC_Cycle_2_Pan18650PF.mat",
+   "name": "battery_pf:03-19-17_03.25_25degC_Cycle_2_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/565a773c-9b34-4d91-acee-b501f66cf9c6/file_downloaded",
+   "sha256": "9e716ba5040ead435bec2c3d382c87db1b8f7580ea262e2d8613bc109e3e67ea",
+   "contentSize": "2921369 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-19-17_09.07_25degC_Cycle_3_Pan18650PF.mat",
+   "name": "battery_pf:03-19-17_09.07_25degC_Cycle_3_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/5d1c9796-f570-45f2-8d45-5bb89a3a8a73/file_downloaded",
+   "sha256": "e7623286ed0f3269021141e2efdba95eb648a68e725d2c63520ce693623511fb",
+   "contentSize": "2630402 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-19-17_14.31_25degC_Cycle_4_Pan18650PF.mat",
+   "name": "battery_pf:03-19-17_14.31_25degC_Cycle_4_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/58a8c7b5-9bb0-492e-bda7-7b527b1bb3fc/file_downloaded",
+   "sha256": "5623114bb567a4afd9ffc5167a8d3961682d5d332030d070e735659c18082895",
+   "contentSize": "3175271 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-20-17_01.43_25degC_US06_Pan18650PF.mat",
+   "name": "battery_pf:03-20-17_01.43_25degC_US06_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/3adfe076-1b29-4002-a145-b736adf830ca/file_downloaded",
+   "sha256": "c12a57f8fa2bfcb7fcd30f243781390e1567acb369da647e6bdc08885deb0ac4",
+   "contentSize": "1414084 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-20-17_05.56_25degC_HWFTa_Pan18650PF.mat",
+   "name": "battery_pf:03-20-17_05.56_25degC_HWFTa_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/cd43ca76-7e05-401f-b6de-84a783a3b1f3/file_downloaded",
+   "sha256": "333d23b6eb7615d673190ee77d74e54f76ddbdc2b607eae6d1dd57ef6ed0e77b",
+   "contentSize": "2007189 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-20-17_19.27_25degC_HWFTb_Pan18650PF.mat",
+   "name": "battery_pf:03-20-17_19.27_25degC_HWFTb_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/ca790272-685f-4afa-83e6-8d5ed5a46a80/file_downloaded",
+   "sha256": "ecb2fe03608f26ea03b3d8520f86ad1eb51f7d358a97b290467afebc885af325",
+   "contentSize": "1970700 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-21-17_00.29_25degC_UDDS_Pan18650PF.mat",
+   "name": "battery_pf:03-21-17_00.29_25degC_UDDS_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/49c96285-4765-454e-853a-3c86bffa2e42/file_downloaded",
+   "sha256": "cb9d830727474c17a8eb624bfd16bbf1f4c306c8d32f831ed58ccdb820f0376a",
+   "contentSize": "5526237 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-21-17_09.38_25degC_LA92_Pan18650PF.mat",
+   "name": "battery_pf:03-21-17_09.38_25degC_LA92_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/0e344811-7e34-4fd6-bbef-bc4bfe901800/file_downloaded",
+   "sha256": "808e837526a8c319b9ea5c63466205de900eab6d708445318e9db0a082fe6f31",
+   "contentSize": "3635022 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/Drive_cycles/03-21-17_16.27_25degC_NN_Pan18650PF.mat",
+   "name": "battery_pf:03-21-17_16.27_25degC_NN_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/048adbe6-fc81-4295-91c9-5b483509d7c6/file_downloaded",
+   "sha256": "972a98f2fc86307dbcf9c3c9300ff7650bb6bb25943c245d789bce09e889630c",
+   "contentSize": "3111972 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/25degC/C20_OCV_and_1C_discharge_tests_start_of_tests/05-08-17_13.26_C20_OCV_Test_C20_25dC.mat",
+   "name": "battery_pf:05-08-17_13.26_C20_OCV_Test_C20_25dC.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/040c052b-f92f-42a0-a5de-86fa065585c0/file_downloaded",
+   "sha256": "c52c1941bc6ef8897578efea5316521297a05d5f6c042d07e66003bd5427f7fa",
+   "contentSize": "88295 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/05-30-17_12.56_0degC_Cycle_1_Pan18650PF.mat",
+   "name": "battery_pf:05-30-17_12.56_0degC_Cycle_1_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/0c82f301-af30-4e89-85e2-5d4397e31894/file_downloaded",
+   "sha256": "b40c5d6cb7ee52b22e140f7b9fa22fd1ca03fe6c998edaa4ad54cad1786efaa1",
+   "contentSize": "2182675 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/05-30-17_20.16_0degC_Cycle_2_Pan18650PF.mat",
+   "name": "battery_pf:05-30-17_20.16_0degC_Cycle_2_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/3ecac88b-686e-45eb-baf5-8ed937246967/file_downloaded",
+   "sha256": "c3329eae2d18622cfc2a0aeb3b4c64bd6e426ad782166b4e6e452d7fd0d4c3e5",
+   "contentSize": "2103994 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_10.36_0degC_LA92_Pan18650PF.mat",
+   "name": "battery_pf:06-01-17_10.36_0degC_LA92_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/3a9ec079-2ca6-4a3c-8393-b0be35bbf5b0/file_downloaded",
+   "sha256": "3225340cb1a3b8ef2527c703b71953ff7e47b853bf2442b9eb0185e37c5d7e4a",
+   "contentSize": "1997264 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_10.36_0degC_NN_Pan18650PF.mat",
+   "name": "battery_pf:06-01-17_10.36_0degC_NN_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/8357a381-ebda-48fb-be21-31b8001d5f99/file_downloaded",
+   "sha256": "697d8d0a1a79fceb1eb6e52609de815bcbceaf8bc336242f245ac4fda601522c",
+   "contentSize": "1481656 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_15.36_0degC_Cycle_3_Pan18650PF.mat",
+   "name": "battery_pf:06-01-17_15.36_0degC_Cycle_3_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/25e5c9f1-fde6-4635-a1dc-1ffa0d2c249c/file_downloaded",
+   "sha256": "6a37121c2ab6d7794dcb502b01e97aa1de1ca3f3ee6d0a628b56f2f96cb5de9c",
+   "contentSize": "1527906 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/06-01-17_22.03_0degC_Cycle_4_Pan18650PF.mat",
+   "name": "battery_pf:06-01-17_22.03_0degC_Cycle_4_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/8a4f0108-e726-463f-af23-84bb83ebd6ab/file_downloaded",
+   "sha256": "56f0ee7bd700df37cb272e8bafbb8618add3a324ad351199d59f596ea5c2be49",
+   "contentSize": "1815106 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/06-02-17_04.58_0degC_US06_Pan18650PF.mat",
+   "name": "battery_pf:06-02-17_04.58_0degC_US06_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/f0108285-6968-4608-be3e-7d46440cda6c/file_downloaded",
+   "sha256": "03707d28515c2d83ebcf9f29d52246c76706384b6846fd6a1adade88b624038e",
+   "contentSize": "986553 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/06-02-17_10.43_0degC_HWFET_Pan18650PF.mat",
+   "name": "battery_pf:06-02-17_10.43_0degC_HWFET_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/e6dece84-c2aa-46a2-84c4-c6dea2226bea/file_downloaded",
+   "sha256": "63e95c5d0c1c071f77137ad4518c1550845f20f9acded0440b8a34a8ce77927c",
+   "contentSize": "1593804 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/0degC/Drive_cycles/06-02-17_17.14_0degC_UDDS_Pan18650PF.mat",
+   "name": "battery_pf:06-02-17_17.14_0degC_UDDS_Pan18650PF.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/c1482ff0-af75-4e11-a888-5d0c2b34d5b1/file_downloaded",
+   "sha256": "f43128fcacbd3f2c65955e02a0431be32addd1c0c847677cbe30e9d9054c6aa5",
+   "contentSize": "2939920 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_pf/Panasonic_18650PF_Data/Readme_file_-_desc_of_tests_performed.txt",
+   "name": "battery_pf:Readme_file_-_desc_of_tests_performed.txt",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/wykht8y7tg/files/c8e0f8f6-0cb2-471d-b1f3-ccf4ed9097a4/file_downloaded",
+   "sha256": "ed236fbbc93b3ac6fba2d0a98c55d5572fbe31b1053dc1ce46c8e268a1c23aab",
+   "contentSize": "6426 B",
+   "encodingFormat": "text/plain",
+   "description": "real-data track battery_pf: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, Panasonic 18650PF Li-ion Battery Data, Mendeley Data, v1, 2018, doi:10.17632/wykht8y7tg.1"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/0degC/02-12-18_10.57 590_Mixed8_0degC_LGHG2.mat",
+   "name": "battery_lg:02-12-18_10.57 590_Mixed8_0degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/8fba9597-847c-434a-a0f9-4c3de86f5bce/file_downloaded",
+   "sha256": "d3f8f5ec81b193d0b6e8113bd8bf80381180ecabb07c7ab916482c6986cfe1af",
+   "contentSize": "1912443 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/0degC/11-30-18_08.39 589_HWFET_0degC_LGHG2.mat",
+   "name": "battery_lg:11-30-18_08.39 589_HWFET_0degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/1eec58b2-cf97-40df-9ed4-e65fdccc810f/file_downloaded",
+   "sha256": "bdc353382ac07e337c92d111face6e6e26c084b6e819166d6ac5b4b3b8627b3d",
+   "contentSize": "1263900 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/0degC/11-30-18_19.02 589_US06_0degC_LGHG2.mat",
+   "name": "battery_lg:11-30-18_19.02 589_US06_0degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/8d92b558-6a69-4d56-b7bd-f583e3b96729/file_downloaded",
+   "sha256": "390867012617455b692787e1b59f829b4784387277efa3fc83ade0084d92c78b",
+   "contentSize": "894226 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/10degC/11-13-18_18.38 567_US06_10degC_LGHG2.mat",
+   "name": "battery_lg:11-13-18_18.38 567_US06_10degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/9050dbd3-73d5-457b-aac0-f369ce5b5a24/file_downloaded",
+   "sha256": "9f630d0109938c6f92a3bea49f35f41eca1f0e6355e27c2b3962cd682803d121",
+   "contentSize": "1037092 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/10degC/11-15-18_22.19 571_Mixed8_10degC_LGHG2.mat",
+   "name": "battery_lg:11-15-18_22.19 571_Mixed8_10degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/b4d6db34-35c7-40e6-a24c-3fca8ee72ffe/file_downloaded",
+   "sha256": "4c107027efe5218b27bcbbd1c6c791d5cb9a85f18eb0d89fcf8bd8612548e3dd",
+   "contentSize": "2044496 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/10degC/11-20-18_10.41 576_HWFET_10degC_LGHG2.mat",
+   "name": "battery_lg:11-20-18_10.41 576_HWFET_10degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/59c31534-d5b3-4665-b73f-8f5850e91870/file_downloaded",
+   "sha256": "87150b6131ed21880416f1739daf9f9d95467beb81f123d3a21b192ebf0d8f24",
+   "contentSize": "1309282 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-26-18_09.29 549_C20DisCh_25degC_LGHG2.mat",
+   "name": "battery_lg:10-26-18_09.29 549_C20DisCh_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/aff85ceb-68df-4114-80aa-e592cda7d0d9/file_downloaded",
+   "sha256": "570746af29365dbe2aa7850a8b095bf4f131a6692a1c47dc065141dfc789260d",
+   "contentSize": "71421 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-28-18_17.44 551_UDDS_25degC_LGHG2.mat",
+   "name": "battery_lg:10-28-18_17.44 551_UDDS_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/68607e44-9689-4004-8692-114007debc8c/file_downloaded",
+   "sha256": "2beafcb42b5eec07ffa465b95abce1746d90504c440113276dc07f8b8a958b77",
+   "contentSize": "3363520 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-29-18_03.53 551_LA92_25degC_LGHG2.mat",
+   "name": "battery_lg:10-29-18_03.53 551_LA92_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/37689e74-34fb-46cd-b0b0-0f48103ad32f/file_downloaded",
+   "sha256": "43b9803b858e44ad29e7dcfa59fb395ebb06560732fac86b5fc0c1dc5bb62dcf",
+   "contentSize": "2208573 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-29-18_10.08 551_US06_25degC_LGHG2.mat",
+   "name": "battery_lg:10-29-18_10.08 551_US06_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/79423ea6-b7b2-49fa-aaeb-33fc8492422f/file_downloaded",
+   "sha256": "87eb8d7a735e6b54c582f663c21bcc06037390feb773770b9901163878c50485",
+   "contentSize": "938646 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-29-18_14.41 551_Mixed1_25degC_LGHG2.mat",
+   "name": "battery_lg:10-29-18_14.41 551_Mixed1_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/00e57f33-dc27-453d-8dd6-2e1ec57417d6/file_downloaded",
+   "sha256": "8e05da70b31c3f8b10d34592cce193daae0478ccabf9112bef59c778cdc3b74d",
+   "contentSize": "1675500 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-29-18_20.16 551_Mixed2_25degC_LGHG2.mat",
+   "name": "battery_lg:10-29-18_20.16 551_Mixed2_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/2e603f04-7841-42ba-bc25-cea6c404a7ba/file_downloaded",
+   "sha256": "9608ed630bf4cac74f6204dff3e6cfad04e70446f4fcf2d447f92291572d49fb",
+   "contentSize": "1718302 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-30-18_06.27 552_Mixed3_25degC_LGHG2.mat",
+   "name": "battery_lg:10-30-18_06.27 552_Mixed3_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/2540a4b4-fc29-48de-9736-0cd4e7d11981/file_downloaded",
+   "sha256": "07f9cdf938fc9f705ad68d30ba881f12cec91eeb43ac5a61a17a21436d065944",
+   "contentSize": "1611016 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-30-18_11.56 552_Mixed4_25degC_LGHG2.mat",
+   "name": "battery_lg:10-30-18_11.56 552_Mixed4_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/bfc6417b-5181-4936-8878-7795a5ef4850/file_downloaded",
+   "sha256": "ddd908addee5212c7dd231a2d388b5b2d07e6c1fecf04c0c42107bc58c55ffdf",
+   "contentSize": "1760414 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-30-18_17.36 552_Mixed5_25degC_LGHG2.mat",
+   "name": "battery_lg:10-30-18_17.36 552_Mixed5_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/d7970c41-7087-4919-befc-bd4566f2e2e5/file_downloaded",
+   "sha256": "9ff7675181f2e93106a0a4513e3f5fa23ce8ea8ca9c841ae55e789ddc52b597c",
+   "contentSize": "1571507 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-30-18_23.02 552_Mixed6_25degC_LGHG2.mat",
+   "name": "battery_lg:10-30-18_23.02 552_Mixed6_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/e911caf3-fedd-4a5b-a531-352cbb18e10c/file_downloaded",
+   "sha256": "453606081f7a821bf5c8149de085ed57d0a2f8a61ce51da9be087e3a52bb341a",
+   "contentSize": "1691404 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-31-18_04.38 552_Mixed7_25degC_LGHG2.mat",
+   "name": "battery_lg:10-31-18_04.38 552_Mixed7_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/79574b0b-449d-452d-a623-c5b1b15355ab/file_downloaded",
+   "sha256": "a76eb3f148d5655d3e07b442ad6c48a8d6229b98e71b20feb50de44ae9e5037a",
+   "contentSize": "1593659 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/25degC/10-31-18_10.05 552_Mixed8_25degC_LGHG2.mat",
+   "name": "battery_lg:10-31-18_10.05 552_Mixed8_25degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/fa214fda-b256-4b55-8c7f-8b3f0d46b5d9/file_downloaded",
+   "sha256": "fcda7ecd11afa526fb15743bf6aaeb7474917ac8a47606c025a2c231288d0298",
+   "contentSize": "1857516 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/40degC/11-06-18_08.01 556_HWFET_40degC_LGHG2.mat",
+   "name": "battery_lg:11-06-18_08.01 556_HWFET_40degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/63031a85-3a93-45d0-86a2-b1b88926c009/file_downloaded",
+   "sha256": "274df0939f8222335872446c9e82a5f2f1e283a6cc9a617544cc4e0e1fb55b31",
+   "contentSize": "1325931 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/battery_lg/40degC/11-06-18_19.09 556_US06_40degC_LGHG2.mat",
+   "name": "battery_lg:11-06-18_19.09 556_US06_40degC_LGHG2.mat",
+   "contentUrl": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/411fa760-3510-4b41-a2a8-37e1b80cf6f9/file_downloaded",
+   "sha256": "7eddd1dd28ee9f208ba4ed9314d731d5b1f16cb004de707f6145c6f47aba315d",
+   "contentSize": "1037860 B",
+   "encodingFormat": "application/x-matlab-data",
+   "description": "real-data track battery_lg: fetched from the original host (not redistributed). Licence: CC BY 4.0. Cite: P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/emps/EMPS.zip",
+   "name": "emps:EMPS.zip",
+   "contentUrl": "https://drive.google.com/uc?export=download&id=1zwoXYa9-3f8NQ0ohzmjpF7UxbNgRTHkS",
+   "sha256": "f0e575c2aba2cb1e236516eefb17674b7e1e4a28de6bfcdc5b5ad68193ef9f59",
+   "contentSize": "1949929 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track emps: fetched from the original host (not redistributed). Licence: not stated by the data provider (no licence on the benchmark page, in the zip or in the description). Cite: A. Janot, M. Gautier, M. Brunot, Data Set and Reference Models of EMPS, Workshop on Nonlinear System Identification Benchmarks, Eindhoven, 2019"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/silverbox/SilverboxFiles.zip",
+   "name": "silverbox:SilverboxFiles.zip",
+   "contentUrl": "https://drive.google.com/uc?export=download&id=17iS-6oBUUgrmiAcrZoG9S5sOaljZnDSy",
+   "sha256": "2398dda503ac4c30f46c7a1ba09d8a8864d001cc71bbeb59f207a054cc592d8c",
+   "contentSize": "5793999 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track silverbox: fetched from the original host (not redistributed). Licence: not stated by the data provider (the ECC 2013 paper says the data are 'available for free download'). Cite: T. Wigren, J. Schoukens, Three free data sets for development and benchmarking in nonlinear system identification, European Control Conference (ECC) 2013, pp. 2933-2938, doi:10.23919/ECC.2013.6669201"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/neurobem/Readme.md",
+   "name": "neurobem:Readme.md",
+   "contentUrl": "https://download.ifi.uzh.ch/rpg/NeuroBEM/Readme.md",
+   "sha256": "69c0a051bac4189620790b302a19d158557c52d160271b633325bed532f6350e",
+   "contentSize": "6174 B",
+   "encodingFormat": "text/plain",
+   "description": "real-data track neurobem: fetched from the original host (not redistributed). Licence: no licence text on the source (project page, Readme, download host and code archive checked on 2026-11-02; the only stated term is 'If you use this work in your research, please cite the following paper'). Use approved by the author, who states he checked the licence personally. Cite: L. Bauersfeld, E. Kaufmann, P. Foehn, S. Sun, D. Scaramuzza, NeuroBEM: Hybrid Aerodynamic Quadrotor Model, Robotics: Science and Systems (RSS), 2021, doi:10.15607/RSS.2021.XVII.042, arXiv:2106.08015"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/neurobem/Flights.txt",
+   "name": "neurobem:Flights.txt",
+   "contentUrl": "https://download.ifi.uzh.ch/rpg/NeuroBEM/Flights.txt",
+   "sha256": "62dbf4ecd520a12264593c837f0a60162ffa26e21e254e823c1b22a315823f1f",
+   "contentSize": "7043 B",
+   "encodingFormat": "text/plain",
+   "description": "real-data track neurobem: fetched from the original host (not redistributed). Licence: no licence text on the source (project page, Readme, download host and code archive checked on 2026-11-02; the only stated term is 'If you use this work in your research, please cite the following paper'). Use approved by the author, who states he checked the licence personally. Cite: L. Bauersfeld, E. Kaufmann, P. Foehn, S. Sun, D. Scaramuzza, NeuroBEM: Hybrid Aerodynamic Quadrotor Model, Robotics: Science and Systems (RSS), 2021, doi:10.15607/RSS.2021.XVII.042, arXiv:2106.08015"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/neurobem/testset.txt",
+   "name": "neurobem:testset.txt",
+   "contentUrl": "https://download.ifi.uzh.ch/rpg/NeuroBEM/testset.txt",
+   "sha256": "d59cd589105cf4cd3fcfe0a34a0b4824d6ae2560db13d34b9a7acd169deeb367",
+   "contentSize": "338 B",
+   "encodingFormat": "text/plain",
+   "description": "real-data track neurobem: fetched from the original host (not redistributed). Licence: no licence text on the source (project page, Readme, download host and code archive checked on 2026-11-02; the only stated term is 'If you use this work in your research, please cite the following paper'). Use approved by the author, who states he checked the licence personally. Cite: L. Bauersfeld, E. Kaufmann, P. Foehn, S. Sun, D. Scaramuzza, NeuroBEM: Hybrid Aerodynamic Quadrotor Model, Robotics: Science and Systems (RSS), 2021, doi:10.15607/RSS.2021.XVII.042, arXiv:2106.08015"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/neurobem/processed_data.zip",
+   "name": "neurobem:processed_data.zip",
+   "contentUrl": "https://download.ifi.uzh.ch/rpg/NeuroBEM/processed_data.zip",
+   "sha256": "a3e2e83d156b48a95c346c4fd9b3ded0b62781331dc613f1cb9ab285be2b36a8",
+   "contentSize": "657316788 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track neurobem: fetched from the original host (not redistributed). Licence: no licence text on the source (project page, Readme, download host and code archive checked on 2026-11-02; the only stated term is 'If you use this work in your research, please cite the following paper'). Use approved by the author, who states he checked the licence personally. Cite: L. Bauersfeld, E. Kaufmann, P. Foehn, S. Sun, D. Scaramuzza, NeuroBEM: Hybrid Aerodynamic Quadrotor Model, Robotics: Science and Systems (RSS), 2021, doi:10.15607/RSS.2021.XVII.042, arXiv:2106.08015"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/neurobem/raw_data.zip",
+   "name": "neurobem:raw_data.zip",
+   "contentUrl": "https://download.ifi.uzh.ch/rpg/NeuroBEM/raw_data.zip",
+   "sha256": "c20d283eed80f5c968e7dc7b449cb785ffce2d5b3cc392cf1b9fadf31b29e907",
+   "contentSize": "455214377 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track neurobem: fetched from the original host (not redistributed). Licence: no licence text on the source (project page, Readme, download host and code archive checked on 2026-11-02; the only stated term is 'If you use this work in your research, please cite the following paper'). Use approved by the author, who states he checked the licence personally. Cite: L. Bauersfeld, E. Kaufmann, P. Foehn, S. Sun, D. Scaramuzza, NeuroBEM: Hybrid Aerodynamic Quadrotor Model, Robotics: Science and Systems (RSS), 2021, doi:10.15607/RSS.2021.XVII.042, arXiv:2106.08015"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-0.zip",
+   "name": "calce:A123_DST-US06-FUDS-0.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-0.zip",
+   "sha256": "c18df3909de27c4409d5e9730c5078284f3883ee52193b559ca8e0ee17732505",
+   "contentSize": "13077073 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-10.zip",
+   "name": "calce:A123_DST-US06-FUDS-10.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-10.zip",
+   "sha256": "c69dbb1569c5757c19d29741472a773a5fc8ab051f0ee76bd1af45ea2a9b27b7",
+   "contentSize": "13420102 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-20.zip",
+   "name": "calce:A123_DST-US06-FUDS-20.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-20.zip",
+   "sha256": "e3b201def3696a973fc2940e189ed9cc0f12fae7fdc75ef6f79d0c82ac3815f1",
+   "contentSize": "29822523 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-25.zip",
+   "name": "calce:A123_DST-US06-FUDS-25.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-25.zip",
+   "sha256": "b7e5402815b491f4052e1fc02ac12723a28a6893e3f695f10a39b773043145f2",
+   "contentSize": "13787570 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-30.zip",
+   "name": "calce:A123_DST-US06-FUDS-30.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-30.zip",
+   "sha256": "1c606703b33cf1ca793fb790c14dbaff8b52c1b057c9edb44181cdc6d1948a1f",
+   "contentSize": "13865208 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-40.zip",
+   "name": "calce:A123_DST-US06-FUDS-40.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-40.zip",
+   "sha256": "b17af1850a1d508edf6dfb56f92822178bd32c28d65fac3de7f2ff2c0898f2e5",
+   "contentSize": "13928857 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-50.zip",
+   "name": "calce:A123_DST-US06-FUDS-50.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-50.zip",
+   "sha256": "7fae05b50c7f4edcc799a7d817d56fb701e1e8894b538e043d05d08ab60f91bc",
+   "contentSize": "14007462 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_DST-US06-FUDS-N10.zip",
+   "name": "calce:A123_DST-US06-FUDS-N10.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-N10.zip",
+   "sha256": "1753bbf603baf54388ea2fee28f3be00c082e525515efb2074f362f335988604",
+   "contentSize": "9213655 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV-10-20120629.zip",
+   "name": "calce:A123_OCV-10-20120629.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV-10-20120629.zip",
+   "sha256": "e69a81807d000d03a3585e8dfa28dc82e784c89adf705b18ce4063784d7564be",
+   "contentSize": "13781189 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV0-20120618.zip",
+   "name": "calce:A123_OCV0-20120618.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV0-20120618.zip",
+   "sha256": "6a933157e8317a01b6157c57c285b6b6f2c5585269aa9ce66ff7e00b0fa9510a",
+   "contentSize": "14151324 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV10-20120611.zip",
+   "name": "calce:A123_OCV10-20120611.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV10-20120611.zip",
+   "sha256": "6d53af243558c35b1b796c685a188ab2b82205617d4b7c2b74b838eb31447e9d",
+   "contentSize": "15367716 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV20-20120614.zip",
+   "name": "calce:A123_OCV20-20120614.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV20-20120614.zip",
+   "sha256": "3ad7ed3ccf5b14ed1366e92844d4da2c63aa09921392b9bd45c4b5d19070ea29",
+   "contentSize": "16017908 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV25-20120905.zip",
+   "name": "calce:A123_OCV25-20120905.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV25-20120905.zip",
+   "sha256": "3e1877772487b306a14249e80f8db8d28ca03cdba8bfa23b7c1a0f9650dbce3a",
+   "contentSize": "13065902 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV30-20120625.zip",
+   "name": "calce:A123_OCV30-20120625.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV30-20120625.zip",
+   "sha256": "f873df101741ea1ba06a0296e460590faa2b78ff8447c43b27f850fb46c7427a",
+   "contentSize": "14662123 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV40-20120627.zip",
+   "name": "calce:A123_OCV40-20120627.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV40-20120627.zip",
+   "sha256": "095c1bb5bed60c48fdc8b1ab30125e8f3b58b22a1ee95ee2180f6c90f291cd67",
+   "contentSize": "14459656 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  },
+  {
+   "@type": "cr:FileObject",
+   "@id": "real/calce/A123_OCV50-20120702.zip",
+   "name": "calce:A123_OCV50-20120702.zip",
+   "contentUrl": "https://web.calce.umd.edu/batteries/data/A123_OCV50-20120702.zip",
+   "sha256": "28178f47ebc6b9d98fdd7aab11604ba219274a533802a0f36f26ec83c5f8edef",
+   "contentSize": "15390889 B",
+   "encodingFormat": "application/zip",
+   "description": "real-data track calce: fetched from the original host (not redistributed). Licence: checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file. Cite: Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+  }
+ ],
+ "recordSet": [
+  {
+   "@type": "cr:RecordSet",
+   "@id": "episodes",
+   "name": "episodes",
+   "field": [
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/episode",
+     "name": "episode",
+     "dataType": "sc:Integer",
+     "description": "index within the split",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "episode"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/family",
+     "name": "family",
+     "dataType": "sc:Text",
+     "description": "input family",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "family"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/signal",
+     "name": "signal",
+     "dataType": "sc:Text",
+     "description": "JSON parameters of the input realisation",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "signal"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/dt",
+     "name": "dt",
+     "dataType": "sc:Float",
+     "description": "sample time (s)",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "dt"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/u",
+     "name": "u",
+     "dataType": "sc:Float",
+     "description": "applied input, list of N+1 (zero-order hold)",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "u"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/y",
+     "name": "y",
+     "dataType": "sc:Float",
+     "description": "noisy measurements, list of N+1 lists of n_y",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "y"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/x",
+     "name": "x",
+     "dataType": "sc:Float",
+     "description": "true state, list of N+1 lists of n_x (absent in hidden splits; NaN = unlabelled in cstr_exo training splits)",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "x"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes/x0",
+     "name": "x0",
+     "dataType": "sc:Float",
+     "description": "initial condition (absent in hidden splits)",
+     "source": {
+      "fileSet": {
+       "@id": "core-parquet"
+      },
+      "extract": {
+       "column": "x0"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "@type": "cr:RecordSet",
+   "@id": "episodes_v2",
+   "name": "episodes_v2",
+   "field": [
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/episode",
+     "name": "episode",
+     "dataType": "sc:Integer",
+     "description": "index within the split",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "episode"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/family",
+     "name": "family",
+     "dataType": "sc:Text",
+     "description": "input family",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "family"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/signal",
+     "name": "signal",
+     "dataType": "sc:Text",
+     "description": "JSON parameters of the input realisation",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "signal"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/dt",
+     "name": "dt",
+     "dataType": "sc:Float",
+     "description": "sample time (s)",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "dt"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/u",
+     "name": "u",
+     "dataType": "sc:Float",
+     "description": "applied input, list of N+1 (zero-order hold)",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "u"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/y",
+     "name": "y",
+     "dataType": "sc:Float",
+     "description": "noisy measurements, list of N+1 lists of n_y",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "y"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/x",
+     "name": "x",
+     "dataType": "sc:Float",
+     "description": "true state, list of N+1 lists of n_x (absent in hidden splits; NaN = unlabelled in cstr_exo training splits)",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "x"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/x0",
+     "name": "x0",
+     "dataType": "sc:Float",
+     "description": "initial condition (absent in hidden splits)",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "x0"
+      }
+     }
+    },
+    {
+     "@type": "cr:Field",
+     "@id": "episodes_v2/cmd",
+     "name": "cmd",
+     "dataType": "sc:Float",
+     "description": "operator command (profile test tiers only; used by the input_cmd_vs_applied condition)",
+     "source": {
+      "fileSet": {
+       "@id": "v2-parquet"
+      },
+      "extract": {
+       "column": "cmd"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

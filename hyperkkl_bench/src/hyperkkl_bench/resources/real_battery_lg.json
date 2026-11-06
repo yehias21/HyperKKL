@@ -1,0 +1,249 @@
+{
+ "dataset": "battery_lg",
+ "source": {
+  "title": "LG 18650HG2 Li-ion Battery Data",
+  "creator": "Phillip Kollmeyer, Mina Naguib, Michael Skells (McMaster University)",
+  "repository": "Mendeley Data, version 2",
+  "doi": "10.17632/b5mj79w5w9.2",
+  "landing": "https://data.mendeley.com/datasets/b5mj79w5w9/2",
+  "metadata_api": "https://data.mendeley.com/public-api/datasets/b5mj79w5w9",
+  "license": "CC BY 4.0",
+  "license_url": "http://creativecommons.org/licenses/by/4.0",
+  "license_text": "You can share, copy and modify this dataset so long as you give appropriate credit, provide a link to the CC BY license, and indicate if changes were made, but you may not do so in a way that suggests the rights holder has endorsed you or your use of the dataset. Note that further permission may be required for any content within the dataset that is identified as belonging to a third party.",
+  "redistribution": "allowed by CC BY 4.0 with attribution; this package nevertheless does NOT redistribute the raw files: they are fetched from Mendeley Data and checked against Mendeley's SHA-256",
+  "citation": "P. Kollmeyer, M. Naguib, M. Skells, LG 18650HG2 Li-ion Battery Data, Mendeley Data, v2, 2020, doi:10.17632/b5mj79w5w9.2"
+ },
+ "files": [
+  {
+   "path": "0degC/02-12-18_10.57 590_Mixed8_0degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/8fba9597-847c-434a-a0f9-4c3de86f5bce/file_downloaded",
+   "size": 1912443,
+   "sha256": "d3f8f5ec81b193d0b6e8113bd8bf80381180ecabb07c7ab916482c6986cfe1af"
+  },
+  {
+   "path": "0degC/11-30-18_08.39 589_HWFET_0degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/1eec58b2-cf97-40df-9ed4-e65fdccc810f/file_downloaded",
+   "size": 1263900,
+   "sha256": "bdc353382ac07e337c92d111face6e6e26c084b6e819166d6ac5b4b3b8627b3d"
+  },
+  {
+   "path": "0degC/11-30-18_19.02 589_US06_0degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/8d92b558-6a69-4d56-b7bd-f583e3b96729/file_downloaded",
+   "size": 894226,
+   "sha256": "390867012617455b692787e1b59f829b4784387277efa3fc83ade0084d92c78b"
+  },
+  {
+   "path": "10degC/11-13-18_18.38 567_US06_10degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/9050dbd3-73d5-457b-aac0-f369ce5b5a24/file_downloaded",
+   "size": 1037092,
+   "sha256": "9f630d0109938c6f92a3bea49f35f41eca1f0e6355e27c2b3962cd682803d121"
+  },
+  {
+   "path": "10degC/11-15-18_22.19 571_Mixed8_10degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/b4d6db34-35c7-40e6-a24c-3fca8ee72ffe/file_downloaded",
+   "size": 2044496,
+   "sha256": "4c107027efe5218b27bcbbd1c6c791d5cb9a85f18eb0d89fcf8bd8612548e3dd"
+  },
+  {
+   "path": "10degC/11-20-18_10.41 576_HWFET_10degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/59c31534-d5b3-4665-b73f-8f5850e91870/file_downloaded",
+   "size": 1309282,
+   "sha256": "87150b6131ed21880416f1739daf9f9d95467beb81f123d3a21b192ebf0d8f24"
+  },
+  {
+   "path": "25degC/10-26-18_09.29 549_C20DisCh_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/aff85ceb-68df-4114-80aa-e592cda7d0d9/file_downloaded",
+   "size": 71421,
+   "sha256": "570746af29365dbe2aa7850a8b095bf4f131a6692a1c47dc065141dfc789260d"
+  },
+  {
+   "path": "25degC/10-28-18_17.44 551_UDDS_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/68607e44-9689-4004-8692-114007debc8c/file_downloaded",
+   "size": 3363520,
+   "sha256": "2beafcb42b5eec07ffa465b95abce1746d90504c440113276dc07f8b8a958b77"
+  },
+  {
+   "path": "25degC/10-29-18_03.53 551_LA92_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/37689e74-34fb-46cd-b0b0-0f48103ad32f/file_downloaded",
+   "size": 2208573,
+   "sha256": "43b9803b858e44ad29e7dcfa59fb395ebb06560732fac86b5fc0c1dc5bb62dcf"
+  },
+  {
+   "path": "25degC/10-29-18_10.08 551_US06_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/79423ea6-b7b2-49fa-aaeb-33fc8492422f/file_downloaded",
+   "size": 938646,
+   "sha256": "87eb8d7a735e6b54c582f663c21bcc06037390feb773770b9901163878c50485"
+  },
+  {
+   "path": "25degC/10-29-18_14.41 551_Mixed1_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/00e57f33-dc27-453d-8dd6-2e1ec57417d6/file_downloaded",
+   "size": 1675500,
+   "sha256": "8e05da70b31c3f8b10d34592cce193daae0478ccabf9112bef59c778cdc3b74d"
+  },
+  {
+   "path": "25degC/10-29-18_20.16 551_Mixed2_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/2e603f04-7841-42ba-bc25-cea6c404a7ba/file_downloaded",
+   "size": 1718302,
+   "sha256": "9608ed630bf4cac74f6204dff3e6cfad04e70446f4fcf2d447f92291572d49fb"
+  },
+  {
+   "path": "25degC/10-30-18_06.27 552_Mixed3_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/2540a4b4-fc29-48de-9736-0cd4e7d11981/file_downloaded",
+   "size": 1611016,
+   "sha256": "07f9cdf938fc9f705ad68d30ba881f12cec91eeb43ac5a61a17a21436d065944"
+  },
+  {
+   "path": "25degC/10-30-18_11.56 552_Mixed4_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/bfc6417b-5181-4936-8878-7795a5ef4850/file_downloaded",
+   "size": 1760414,
+   "sha256": "ddd908addee5212c7dd231a2d388b5b2d07e6c1fecf04c0c42107bc58c55ffdf"
+  },
+  {
+   "path": "25degC/10-30-18_17.36 552_Mixed5_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/d7970c41-7087-4919-befc-bd4566f2e2e5/file_downloaded",
+   "size": 1571507,
+   "sha256": "9ff7675181f2e93106a0a4513e3f5fa23ce8ea8ca9c841ae55e789ddc52b597c"
+  },
+  {
+   "path": "25degC/10-30-18_23.02 552_Mixed6_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/e911caf3-fedd-4a5b-a531-352cbb18e10c/file_downloaded",
+   "size": 1691404,
+   "sha256": "453606081f7a821bf5c8149de085ed57d0a2f8a61ce51da9be087e3a52bb341a"
+  },
+  {
+   "path": "25degC/10-31-18_04.38 552_Mixed7_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/79574b0b-449d-452d-a623-c5b1b15355ab/file_downloaded",
+   "size": 1593659,
+   "sha256": "a76eb3f148d5655d3e07b442ad6c48a8d6229b98e71b20feb50de44ae9e5037a"
+  },
+  {
+   "path": "25degC/10-31-18_10.05 552_Mixed8_25degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/fa214fda-b256-4b55-8c7f-8b3f0d46b5d9/file_downloaded",
+   "size": 1857516,
+   "sha256": "fcda7ecd11afa526fb15743bf6aaeb7474917ac8a47606c025a2c231288d0298"
+  },
+  {
+   "path": "40degC/11-06-18_08.01 556_HWFET_40degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/63031a85-3a93-45d0-86a2-b1b88926c009/file_downloaded",
+   "size": 1325931,
+   "sha256": "274df0939f8222335872446c9e82a5f2f1e283a6cc9a617544cc4e0e1fb55b31"
+  },
+  {
+   "path": "40degC/11-06-18_19.09 556_US06_40degC_LGHG2.mat",
+   "url": "https://data.mendeley.com/public-files/datasets/b5mj79w5w9/files/411fa760-3510-4b41-a2a8-37e1b80cf6f9/file_downloaded",
+   "size": 1037860,
+   "sha256": "7eddd1dd28ee9f208ba4ed9314d731d5b1f16cb004de707f6145c6f47aba315d"
+  }
+ ],
+ "frozen": {
+  "Q_Ah": 2.7782,
+  "thermocouple_offset_K": -1.2341699999999989,
+  "params_25C": {
+   "Q": 2.7782,
+   "R0": 0.01906882955340247,
+   "R1": 0.012433439900373707,
+   "C1": 1177.1379725213321,
+   "R2": 0.039343389133670935,
+   "C2": 91502.03069107315,
+   "C_th": 132.06924528106424,
+   "hA": 0.47422292766118307,
+   "Ea_R": 3000.0,
+   "dUdT": -0.0001,
+   "T_amb": 296.91582999999997,
+   "tau_f": 2.0,
+   "ow0": 0.02,
+   "ow1": 0.02,
+   "o0": 3.1352467642380937,
+   "o1": 2.351076471970083,
+   "o2": 0.24694698995004183,
+   "o3": -29.500667833501037,
+   "o4": 98.17993671675784,
+   "o5": -140.5842043775464,
+   "o6": 96.36347752609801,
+   "o7": -26.094390699439902,
+   "o8": -0.25294690498368444,
+   "o9": 0.05178034724898833
+  },
+  "ecm_fit": {
+   "R0": 0.01906882955340247,
+   "R1": 0.012433439900373707,
+   "C1": 1177.1379725213321,
+   "R2": 0.039343389133670935,
+   "C2": 91502.03069107315,
+   "tau1_s": 14.63587423579174,
+   "tau2_s": 3599.999999999992,
+   "v_rmse_mV": 25.195712463007105,
+   "v_max_mV": 182.81144588012532,
+   "nfev": 10,
+   "active_bounds": [
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "thermal_fit": {
+   "C_th": 132.06924528106424,
+   "hA": 0.47422292766118307,
+   "tau_th_s": 278.49611981524316,
+   "dT_rmse_K": 0.16985358449349292
+  },
+  "ocv_fit_rms_V": 0.004269076706023687,
+  "x_std": [
+   0.2351632368044536,
+   0.01661132701440195,
+   0.010135336375370904,
+   0.3614967652473921,
+   0.23123130462186026
+  ],
+  "x_mean": [
+   0.5345148567488437,
+   0.012985770543782665,
+   0.02598825798403268,
+   0.42287614333493645,
+   0.01761829885547643
+  ],
+  "y_std": [
+   0.3614967652473921,
+   0.23123130462186026
+  ],
+  "filter_tuning": {
+   "ekf": {
+    "q_soc": 0.0003,
+    "c": 0.1,
+    "r_vm": 0.1
+   }
+  },
+  "filter_tuning_note": "battery_pf's validation-tuned EKF noise reused a priori (no tuning on this cell)",
+  "open_loop_model_fit_train_val": {
+   "25/UDDS": {
+    "vm_rmse_mV": 23.723998170156186
+   },
+   "25/LA92": {
+    "vm_rmse_mV": 23.919494010891103
+   },
+   "25/Mixed1": {
+    "vm_rmse_mV": 26.207405516586793
+   },
+   "25/Mixed2": {
+    "vm_rmse_mV": 24.585681137397415
+   },
+   "25/Mixed3": {
+    "vm_rmse_mV": 26.119908546589727
+   },
+   "25/Mixed4": {
+    "vm_rmse_mV": 23.9097388382784
+   },
+   "25/Mixed5": {
+    "vm_rmse_mV": 27.175691598685788
+   },
+   "25/Mixed6": {
+    "vm_rmse_mV": 26.896007447743003
+   },
+   "25/Mixed7": {
+    "vm_rmse_mV": 27.790576521579325
+   }
+  }
+ }
+}

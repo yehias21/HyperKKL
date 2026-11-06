@@ -1,0 +1,627 @@
+{
+ "_about": "Collect the per-plant difficulty axes from the research results into\nsrc/hyperkkl_bench/resources/difficulty.json, each value with its provenance (file + key path).\nRead-only on experiments/. Re-run after a source changes; tests check the file is consistent.\n\nAxes\n  n_x, n_y, measured / unmeasured             metadata\n  info_budget                                 Bayesian posterior CRB lower bound on the settled\n                                              unmeasured NRMSE (experiments/information): window\n                                              3/alpha (what a fading-memory observer can reach)\n                                              vs the full past; white = C1 sensor, realistic = C3\n                                              colored Student-t (test plants only; BUDGET_FIX.md)\n  window_ratio                                window / full-past bound (>= 1; large = needs memory)\n  repairability                               rho = 1 - MSE_greybox / MSE_model of the one-t_ref\n                                              open-loop output prediction (experiments/structural)\n  lyapunov                                    largest Lyapunov exponent (experiments/chaos_refs)\n  observability                               linearised observability Gramian over 3/alpha:\n                                              median condition number, rank-deficient fraction\n                                              (experiments/cartpole_bounded/inclusion)\n  inclusion                                   observable / weak / bounded flags (same files)\n",
+ "plants": {
+  "battery": {
+   "n_x": 5,
+   "n_y": 2,
+   "measured": [
+    "dT (temperature rise, K)",
+    "Vm (BMS voltage channel, V)"
+   ],
+   "unmeasured": [
+    "SOC",
+    "V1 (fast RC voltage, V)",
+    "V2 (slow RC voltage, V)"
+   ],
+   "group": "window-starved",
+   "role": "dev",
+   "alpha": 1.5,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.008367752957634837,
+     "full_past": 0.003615375032339841,
+     "window_ratio": 2.3144909954802935,
+     "bits_window": 37.53612324317715,
+     "bits_full": 39.29525758831645,
+     "window_key_s": "2",
+     "provenance": "experiments/information/budgets.json:battery.dists.eval_id.bayes"
+    }
+   },
+   "repairability": {
+    "rho": 0.8842427897164824,
+    "rho_ref": 0.9831815436671435,
+    "greybox_degradation_D": 0.3373989847035629,
+    "provenance": "experiments/structural/scores.json:P-S3[1]"
+   },
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 3028.148150464236,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.0063743059887576585,
+    "provenance": "experiments/cartpole_bounded/inclusion/battery.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/battery.json"
+   }
+  },
+  "bioreactor": {
+   "n_x": 2,
+   "n_y": 1,
+   "measured": [
+    "x2 (substrate)"
+   ],
+   "unmeasured": [
+    "x1 (biomass)"
+   ],
+   "group": "rich",
+   "role": "dev",
+   "alpha": 0.5,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.008540695499935965,
+     "full_past": 0.008540763290898349,
+     "window_ratio": 0.999992062657625,
+     "bits_window": 8.630030264798874,
+     "bits_full": 8.630017341558757,
+     "window_key_s": "6",
+     "provenance": "experiments/information/budgets.json:bioreactor.dists.eval_id.bayes"
+    }
+   },
+   "repairability": {
+    "rho": 0.6759919010209258,
+    "rho_ref": 0.9987697144346527,
+    "greybox_degradation_D": 6.871763572229809,
+    "provenance": "experiments/structural/scores.json:P-S3[4]"
+   },
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 5.551650005047592,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.008540763290898349,
+    "provenance": "experiments/cartpole_bounded/inclusion/bioreactor.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/bioreactor.json"
+   }
+  },
+  "duffing": {
+   "n_x": 2,
+   "n_y": 1,
+   "measured": [
+    "x1 (position)"
+   ],
+   "unmeasured": [
+    "x2 (velocity)"
+   ],
+   "group": "window-starved",
+   "role": "dev",
+   "alpha": 3.0,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.011346844792213704,
+     "full_past": 0.005311388624758992,
+     "window_ratio": 2.1363235857606964,
+     "bits_window": 14.540494616496082,
+     "bits_full": 16.074387605735264,
+     "window_key_s": "1",
+     "provenance": "experiments/information/budgets.json:duffing.dists.eval_id.bayes"
+    }
+   },
+   "repairability": null,
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 82.93447470765001,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.005311388624758992,
+    "provenance": "experiments/cartpole_bounded/inclusion/duffing.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/duffing.json"
+   }
+  },
+  "lorenz": {
+   "n_x": 3,
+   "n_y": 1,
+   "measured": [
+    "x2"
+   ],
+   "unmeasured": [
+    "x1",
+    "x3"
+   ],
+   "group": "rich",
+   "role": "dev",
+   "alpha": 2.0,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.0013976456904417336,
+     "full_past": 0.0013976456904017222,
+     "window_ratio": 1.0000000000286278,
+     "bits_window": 27.474653965177655,
+     "bits_full": 27.474653965252667,
+     "window_key_s": "1.5",
+     "provenance": "experiments/information/budgets.json:lorenz.dists.eval_id.bayes"
+    }
+   },
+   "repairability": {
+    "rho": 0.9999958343887578,
+    "rho_ref": 0.9999982795412091,
+    "greybox_degradation_D": 0.5567291662867969,
+    "provenance": "experiments/structural/scores.json:P-S3[6]"
+   },
+   "lyapunov": {
+    "lambda_max_mean_id": 0.8978845212068866,
+    "provenance": "experiments/chaos_refs/results.json:lyapunov.lorenz/nominal.tiers.id.lam_long.mean"
+   },
+   "observability": {
+    "gramian_cond_median": 5361.453926295648,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.0015637985704114192,
+    "provenance": "experiments/cartpole_bounded/inclusion/lorenz.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/lorenz.json"
+   }
+  },
+  "quad_tank": {
+   "n_x": 4,
+   "n_y": 2,
+   "measured": [
+    "h1 (lower tank 1, cm)",
+    "h2 (lower tank 2, cm)"
+   ],
+   "unmeasured": [
+    "h3 (upper tank 3, cm)",
+    "h4 (upper tank 4, cm)"
+   ],
+   "group": "window-starved",
+   "role": "dev",
+   "alpha": 0.1,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.029700630700500413,
+     "full_past": 0.019808922178621513,
+     "window_ratio": 1.4993562210342963,
+     "bits_window": 20.328819621932436,
+     "bits_full": 21.272284565004256,
+     "window_key_s": "30",
+     "provenance": "experiments/information/budgets.json:quad_tank.dists.eval_id.bayes"
+    }
+   },
+   "repairability": {
+    "rho": 0.9971207750870731,
+    "rho_ref": 0.9980846713441847,
+    "greybox_degradation_D": 3.3708599972634814,
+    "provenance": "experiments/structural/scores.json:P-S3[0]"
+   },
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 202.2038744965181,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.024541364820671194,
+    "provenance": "experiments/cartpole_bounded/inclusion/quad_tank.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/quad_tank.json"
+   }
+  },
+  "vdp": {
+   "n_x": 2,
+   "n_y": 1,
+   "measured": [
+    "x1 (position)"
+   ],
+   "unmeasured": [
+    "x2 (velocity)"
+   ],
+   "group": "rich",
+   "role": "dev",
+   "alpha": 1.5,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.0037857386490325854,
+     "full_past": 0.003778178491633934,
+     "window_ratio": 1.0020010058856117,
+     "bits_window": 16.218562018664716,
+     "bits_full": 16.226181367633718,
+     "window_key_s": "2",
+     "provenance": "experiments/information/budgets.json:vdp.dists.eval_id.bayes"
+    }
+   },
+   "repairability": {
+    "rho": 0.3585789223140876,
+    "rho_ref": 0.9950408269959633,
+    "greybox_degradation_D": 7.405564155945145,
+    "provenance": "experiments/structural/scores.json:P-S3[5]"
+   },
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 6.9963258519249525,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.003778178491633934,
+    "provenance": "experiments/cartpole_bounded/inclusion/vdp.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/vdp.json"
+   }
+  },
+  "cartpole_b": {
+   "n_x": 4,
+   "n_y": 2,
+   "measured": [
+    "x (cart position, m)",
+    "th (pole angle, rad)"
+   ],
+   "unmeasured": [
+    "v (cart velocity, m/s)",
+    "om (pole rate, rad/s)"
+   ],
+   "group": "rich",
+   "role": "test",
+   "alpha": 1.5,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.007303494924428958,
+     "full_past": 0.007093225038203162,
+     "window_ratio": 1.029643763604469,
+     "bits_window": 31.063884679986902,
+     "bits_full": 31.18119353868065,
+     "window_key_s": "2",
+     "provenance": "experiments/cartpole_bounded/budget_cartpole_b.json:dists.eval_id.white_gauss.bayes"
+    },
+    "realistic": {
+     "window_3_over_alpha": 0.008474074505407242,
+     "full_past": 0.0075287201378169905,
+     "window_ratio": 1.1255664110612515,
+     "bits_window": 30.210081413130954,
+     "bits_full": 30.625411456283842,
+     "window_key_s": "2",
+     "provenance": "experiments/cartpole_bounded/budget_cartpole_b.json:dists.eval_id.c3.bayes"
+    }
+   },
+   "repairability": null,
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 8580.516397354913,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.008647686484092684,
+    "provenance": "experiments/cartpole_bounded/inclusion/cartpole_b.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/cartpole_b.json"
+   }
+  },
+  "fhn": {
+   "n_x": 2,
+   "n_y": 1,
+   "measured": [
+    "v (membrane potential)"
+   ],
+   "unmeasured": [
+    "w (recovery variable)"
+   ],
+   "group": "rich",
+   "role": "test",
+   "alpha": 0.5,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.007765211292322298,
+     "full_past": 0.007670406618214551,
+     "window_ratio": 1.0123597977038947,
+     "bits_window": 14.842647557783003,
+     "bits_full": 14.863382040715882,
+     "window_key_s": "6",
+     "provenance": "experiments/information/budgets.json:fhn.dists.eval_id.bayes"
+    },
+    "realistic": {
+     "window_3_over_alpha": 0.008090649396314641,
+     "full_past": 0.007923166256296835,
+     "window_ratio": 1.0211384104031265,
+     "bits_window": 14.6932447095112,
+     "bits_full": 14.73010538850167,
+     "window_key_s": "6",
+     "provenance": "experiments/information/budgets_c3.json:fhn.dists.eval_id.c3.bayes"
+    }
+   },
+   "repairability": null,
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 5.722194624873532,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.007670406618214551,
+    "provenance": "experiments/cartpole_bounded/inclusion/fhn.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/fhn.json"
+   }
+  },
+  "highway_traffic": {
+   "n_x": 5,
+   "n_y": 3,
+   "measured": [
+    "rho1 (density cell 1, veh/m)",
+    "rho3 (density cell 3, veh/m)",
+    "rho5 (density cell 5, veh/m)"
+   ],
+   "unmeasured": [
+    "rho2 (density cell 2, veh/m)",
+    "rho4 (density cell 4, veh/m)"
+   ],
+   "group": "window-starved",
+   "role": "test",
+   "alpha": 0.5,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.05116048425187436,
+     "full_past": 0.018603840340635752,
+     "window_ratio": 2.7499958780083813,
+     "bits_window": 18.658108375613224,
+     "bits_full": 21.497023973491896,
+     "window_key_s": "6",
+     "provenance": "experiments/information/budgets.json:highway_traffic.dists.eval_id.bayes"
+    },
+    "realistic": {
+     "window_3_over_alpha": 0.09648187297392957,
+     "full_past": 0.020274749711278663,
+     "window_ratio": 4.758720790533733,
+     "bits_window": 18.91314604492157,
+     "bits_full": 23.385933176415048,
+     "window_key_s": "6",
+     "provenance": "experiments/information/budgets_c3.json:highway_traffic.dists.eval_id.c3.bayes"
+    }
+   },
+   "repairability": {
+    "rho": 0.9952223516675067,
+    "rho_ref": 0.9986193518000118,
+    "greybox_degradation_D": 0.11329048326129701,
+    "provenance": "experiments/structural/scores.json:P-S3[3]"
+   },
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 482.094853236282,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.019542851433739582,
+    "provenance": "experiments/cartpole_bounded/inclusion/highway_traffic.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/highway_traffic.json"
+   }
+  },
+  "network": {
+   "n_x": 10,
+   "n_y": 3,
+   "measured": [
+    "v0",
+    "v1",
+    "v3"
+   ],
+   "unmeasured": [
+    "w0",
+    "w1",
+    "v2",
+    "w2",
+    "w3",
+    "v4",
+    "w4"
+   ],
+   "group": "rich",
+   "role": "test",
+   "alpha": 0.3,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.007898108419155258,
+     "full_past": 0.0076178579753037046,
+     "window_ratio": 1.0367886149571306,
+     "bits_window": 48.284118793701445,
+     "bits_full": 48.51462803975368,
+     "window_key_s": "10",
+     "provenance": "experiments/information/budgets.json:network.dists.eval_id.bayes"
+    },
+    "realistic": {
+     "window_3_over_alpha": 0.008712157173035567,
+     "full_past": 0.008060228141142132,
+     "window_ratio": 1.0808822058727803,
+     "bits_window": 42.160201548163876,
+     "bits_full": 42.61872765282499,
+     "window_key_s": "10",
+     "provenance": "experiments/information/budgets_c3.json:network.dists.eval_id.c3.bayes"
+    }
+   },
+   "repairability": null,
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 5864.456043792041,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.011348377595600971,
+    "provenance": "experiments/cartpole_bounded/inclusion/network.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/network.json"
+   }
+  },
+  "rossler": {
+   "n_x": 3,
+   "n_y": 1,
+   "measured": [
+    "x2"
+   ],
+   "unmeasured": [
+    "x1",
+    "x3"
+   ],
+   "group": "rich",
+   "role": "test",
+   "alpha": 1.0,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.001427421818733345,
+     "full_past": 0.001427410517200317,
+     "window_ratio": 1.0000079175071865,
+     "bits_window": 26.96796753022772,
+     "bits_full": 26.968162226532616,
+     "window_key_s": "3",
+     "provenance": "experiments/information/budgets.json:rossler.dists.eval_id.bayes"
+    },
+    "realistic": {
+     "window_3_over_alpha": 0.001340402250173916,
+     "full_past": 0.0013400437845580374,
+     "window_ratio": 1.0002675029129715,
+     "bits_window": 28.70910865603099,
+     "bits_full": 28.711726581664703,
+     "window_key_s": "3",
+     "provenance": "experiments/information/budgets_c3.json:rossler.dists.eval_id.c3.bayes"
+    }
+   },
+   "repairability": null,
+   "lyapunov": {
+    "lambda_max_mean_id": 0.05060689670194903,
+    "provenance": "experiments/chaos_refs/results.json:lyapunov.rossler/nominal.tiers.id.lam_long.mean"
+   },
+   "observability": {
+    "gramian_cond_median": 28954993.78993566,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.001752937393993324,
+    "provenance": "experiments/cartpole_bounded/inclusion/rossler.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": true,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/rossler.json"
+   }
+  },
+  "two_link_arm": {
+   "n_x": 4,
+   "n_y": 2,
+   "measured": [
+    "q1 (shoulder angle, rad)",
+    "q2 (elbow angle, rad)"
+   ],
+   "unmeasured": [
+    "dq1 (rad/s)",
+    "dq2 (rad/s)"
+   ],
+   "group": "absolutely starved",
+   "role": "test",
+   "alpha": 2.0,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.045610055210836005,
+     "full_past": 0.045536866440017344,
+     "window_ratio": 1.0016072421433535,
+     "bits_window": 20.994054931463932,
+     "bits_full": 21.01548844218981,
+     "window_key_s": "1.5",
+     "provenance": "experiments/information/budgets.json:two_link_arm.dists.eval_id.bayes"
+    },
+    "realistic": {
+     "window_3_over_alpha": 0.02006646589536268,
+     "full_past": 0.01987604900266446,
+     "window_ratio": 1.009580218516904,
+     "bits_window": 28.45332530787648,
+     "bits_full": 28.486796777378174,
+     "window_key_s": "1.5",
+     "provenance": "experiments/information/budgets_c3.json:two_link_arm.dists.eval_id.c3.bayes"
+    }
+   },
+   "repairability": null,
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 7003.4746212034925,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.06510733993781782,
+    "provenance": "experiments/cartpole_bounded/inclusion/two_link_arm.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": true,
+    "provenance": "experiments/cartpole_bounded/inclusion/two_link_arm.json"
+   }
+  },
+  "legacy_cartpole": {
+   "n_x": 4,
+   "n_y": 2,
+   "measured": [
+    "x (cart position, m)",
+    "th (pole angle, rad)"
+   ],
+   "unmeasured": [
+    "v (cart velocity, m/s)",
+    "om (pole rate, rad/s)"
+   ],
+   "group": "window-starved",
+   "role": "legacy",
+   "alpha": 1.5,
+   "info_budget": {
+    "white": {
+     "window_3_over_alpha": 0.041526700556715326,
+     "full_past": 0.010664909066856167,
+     "window_ratio": 3.893769773037239,
+     "bits_window": 26.97860801699179,
+     "bits_full": 29.382646274291375,
+     "window_key_s": "2",
+     "provenance": "experiments/information/budgets.json:cartpole.dists.eval_id.bayes"
+    },
+    "realistic": {
+     "window_3_over_alpha": 0.06475743858730784,
+     "full_past": 0.01053060313207858,
+     "window_ratio": 6.149452009072696,
+     "bits_window": 23.808061312276703,
+     "bits_full": 27.19809454275166,
+     "window_key_s": "2",
+     "provenance": "experiments/information/budgets_c3.json:cartpole.dists.eval_id.c3.bayes"
+    }
+   },
+   "repairability": {
+    "rho": 0.9332324773486551,
+    "rho_ref": 0.9966797527010604,
+    "greybox_degradation_D": 1.5945860203401263,
+    "provenance": "experiments/structural/scores.json:P-S3[2] (unbounded cartpole)"
+   },
+   "lyapunov": null,
+   "observability": {
+    "gramian_cond_median": 27588.710070683563,
+    "frac_full_rank": 1.0,
+    "crb_unmeasured_max": 0.014524500456407092,
+    "provenance": "experiments/cartpole_bounded/inclusion/cartpole.json:gramian"
+   },
+   "inclusion": {
+    "observable": true,
+    "weakly_observable": false,
+    "bounded": false,
+    "provenance": "experiments/cartpole_bounded/inclusion/cartpole.json"
+   }
+  }
+ }
+}

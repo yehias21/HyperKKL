@@ -1,0 +1,39 @@
+{
+ "dataset": "emps",
+ "dt_model": 0.001,
+ "dt_seconds": 0.001,
+ "splits": {
+  "train": {
+   "n": 72,
+   "N1": 2001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.9999999255234685
+  },
+  "val": {
+   "n": 6,
+   "N1": 2001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.9999999089437446
+  },
+  "test_pulses_outage": {
+   "n": 45,
+   "N1": 2001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "outage_samples_per_episode": 400,
+   "vel_label_vs_increment_corr": 0.9999998344627336
+  },
+  "test_pulses": {
+   "n": 45,
+   "N1": 2001,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.9999998344627336
+  }
+ },
+ "recordings_in_more_than_one_role": {
+  "('emps', None)": [
+   "train",
+   "val"
+  ]
+ },
+ "index_ranges_disjoint": true
+}

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hyperkkl-bench"
+version = "2.0.0rc1"
+description = "Benchmark for state estimation of autonomous and input-driven (non-autonomous) nonlinear systems"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "TBD"}]
+dependencies = ["numpy>=1.22", "scipy>=1.8", "pyarrow>=10", "torch>=2.0"]
+
+[project.optional-dependencies]
+hub = ["huggingface_hub>=0.20"]
+real = ["pandas>=1.5", "openpyxl>=3.0"]   # openpyxl: calce workbooks (read as cell values only)
+test = ["pytest>=7"]
+
+[project.scripts]
+hyperkkl-bench = "hyperkkl_bench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+hyperkkl_bench = ["resources/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["network: needs internet access to the original data hosts", "slow: several minutes on CPU (plant checks, notebook, stored-model reproduction); deselect with -m 'not slow'"]

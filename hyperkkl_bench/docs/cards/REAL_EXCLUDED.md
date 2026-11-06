@@ -1,0 +1,16 @@
+# Real-data candidates that were NOT added
+
+| candidate | reason |
+|---|---|
+| Cascaded Tanks (Schoukens, Mattsson, Wigren, Noel; CC BY-SA 4.0) | input-driven and relevant, but the hidden upper-tank level has no measurement and no physically derived reference (it can only be inferred through the model itself), and each split is a single 1024-sample record (one train, one test): no well-defined hidden-state score and too little data for a learned-estimator track. A held-out-sensor variant is possible later. The official 4TU file URL also timed out from this host (the Google Drive mirror works). |
+| Wiener-Hammerstein 2009 and WH with process noise (Schoukens, Suykens, Ljung) | block-oriented electronic circuit: its internal states have no physical meaning and no reference, so there is no hidden quantity to estimate beyond output simulation (WH-2009 licence not stated; WH-PN CC BY-SA 4.0). |
+| Coupled electric drives (Wigren & Schoukens 2017) | 500 samples per record, a sign-insensitive speed sensor, and no reference for any hidden state (belt tension, motor speeds): no well-defined estimation task; licence not stated. |
+| CALCE INR 18650-20R (NMC) dynamic set | the A123 LiFePO4 set is the `calce` track; the NMC set repeats battery_pf / battery_lg and has no temperature channel. |
+| Sandia / batteryarchive.org | licence not stated; full CSVs only on e-mail request; not used. |
+| Blackbird UAV dataset (MIT) | 4.9 TB; the data host did not resolve from this machine; data licence unclear (the MIT licence covers the code repository). |
+| NanoDrone system-identification benchmark (IDSIA; licence checked by the author) | evaluated as a roll-channel task (experiments/real_candidates): a linear causal FIR on the past sensors alone (0.346) beats every estimator (GRU 0.395, EKF 0.423, HyperKKL 0.76-0.93); every published channel is zero-phase filtered (non-causal) and the velocity reference is the mocap-aided onboard filter; 15 flights; redundant with neurobem. |
+| NanoBench (Ullah, Baca 2026; BSD 3-Clause) | evaluated as the same roll-channel task: a linear causal FIR on past gyro + accelerometer (0.473) equals the GRU (0.480) and beats the model-based filters, so there is no nonlinear estimation task left; the motor commands add 2-8 %. The repository has 107 flights (README: 172), 20 exact duplicates and 18 with an onboard gyro that does not match Vicon. Redundant with neurobem. |
+| BMW i3 real driving (Steinstraeter et al., IEEE DataPort; login, licence confirmed by the author 2026-11-03) | staged as experimental only: the logged SoC is the BMS estimate, a coulomb counter of the logged current within each trip (Q = 61.7 Ah, residual < 0.1 %), so the score is agreement with the BMS, not true charge; 5 trips have broken labels; licence not confirmed. |
+| RACECAR (Indy Autonomous Challenge; CC BY-NC 4.0) | no throttle, brake or steering topic in any of the 23 bag topic lists: no measured input. |
+| BETTY (CMU et al., 32 TB) | throttle / brake / steering are logged per the paper, but the data host timed out from this machine and the site's data link is disabled. |
+| F-16 ground vibration test (Noel, Schoukens; CC BY-SA 4.0) | excluded: no physical hidden state has a reference (all outputs are accelerometers), so it is not a state-estimation task. |

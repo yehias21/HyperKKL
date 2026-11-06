@@ -1,0 +1,343 @@
+
+% v3: body of theory/lemma_information.tex integrated as a section of main.tex (main theoretical contribution).
+\section{An information limit for observers with finite memory}\label{sec:li}
+
+\paragraph{Summary.} \vthree{LI-1}{rewritten with the decided wording} A KKL observer forgets its measurements at the
+rate $\alpha$ of its latent filter, so up to a restart term it uses only a finite window of data.
+Lemma~\ref{lem:li-window} bounds what \emph{any} observer with a memory of $W$ samples can achieve: a window-limited
+Bayesian Cram\'er--Rao (van Trees) bound on the per-state error, equivalently a bit count. It is a
+\emph{necessary condition}: no observer whose memory is $W$ reaches an error below it, whatever its architecture,
+training data or size; it is exact and attained for linear-Gaussian plants; it is not a sufficiency result otherwise.
+The bound is a theorem with the Fisher information $J_\pi$ of the state law at the window start. The \emph{numbers}
+reported at finite windows replace $J_\pi$ by the inverse climatology, a Gaussian stand-in; they are therefore an
+approximation, exact only for Gaussian laws, and in general larger than the rigorous bound
+(Remark~\ref{rem:li-prior}). In particular, the ``window starvation'' of some plants (a finite-window number well above the
+full-past one) is a property of that stand-in and is \emph{not proven}: the rigorous window floor $A_Q$ is close to the
+full-past floor on every plant where the stand-in differs. Remark~\ref{rem:li-fading} turns the latent eigenvalues into a window;
+with the $z$-window of the default, the effective window is at least $6/\alpha$ (to be precise, the span
+$S\in[5.50,5.90]/\alpha$ plus a logarithmic term, Remark~\ref{rem:li-fading}), so the examples below use $W=6/\alpha$ instead
+of the $3/\alpha$ of the pre-registered reading. Lemma~\ref{lem:li-expansion} adds a local-expansion statement for linear
+time-varying plants; the dependence of the learned observer's error on the local Lyapunov expansion remains an
+empirical observation (Remark~\ref{rem:li-scope}). Nothing here says that an observer reaching the bound exists
+(outside the linear-Gaussian case) or that HyperKKL reaches it.
+
+\subsection{Setting}
+
+The sampled plant, exactly as the data generator produces it,
+\begin{equation}\label{eq:li-plant}
+x_{k+1}=\Phi(x_k,u_k)+w_k,\qquad y_k=h(x_k)+v_k,
+\end{equation}
+$\Phi$ the RK4 step under the zero-order hold, $F_k:=\partial_x\Phi(x_k,u_k)$, $H_k:=\partial_xh(x_k)$. $\sigma_j$ is the
+normalisation of state $j$ (the training standard deviation), and for a set $S$ of evaluation times the
+\emph{pooled} normalised RMS of an estimator $\hat x$ is
+$\mathrm{RMS}_j(\hat x):=\big(\mathrm{mean}_{k\in S}\E[(\hat x_{k,j}-x_{k,j})^2]\big)^{1/2}/\sigma_j$ (never smaller than the
+mean of per-episode RMS values, by Jensen).
+
+\begin{assumption}[information lemma]\label{ass:li}
+\begin{enumerate}[leftmargin=2.2em]
+\item[(I1)] \emph{Process noise.} $w_k$ i.i.d.\ $\mathcal N(0,Q)$, $Q\succ0$; $\Phi(\cdot,u)\in C^1$ for every $u$.
+\item[(I2)] \emph{Sensor noise.} $v_k$ i.i.d.\ with a positive $C^1$ density $p_v$ of finite Fisher information
+$J_v:=\E[\nabla\log p_v(v)\nabla\log p_v(v)^\top]$; $h\in C^1$. Gaussian: $J_v=R^{-1}$. Unit-variance Student-$t_\nu$ with
+scale $s$: $J_v=J_t s^{-2}I$, $J_t=\frac{\nu+1}{\nu+3}\cdot\frac{\nu}{\nu-2}$ ($=2$ at $\nu=3$). AR(1)-coloured noise
+$v_k=\rho v_{k-1}+\sqrt{1-\rho^2}\,s\,e_k$ is covered after whitening (Remark~\ref{rem:li-prior}(d)).
+\item[(I3)] \emph{Exogenous inputs.} The input record is random, independent of $(x_0,w,v)$, and observed by the
+observer as specified by its class (Definition~\ref{def:li-class}).
+\item[(I4)] \emph{Moments.} $\E\|x_k\|^2<\infty$ for every $k$, and the estimators considered have finite second moments.
+\end{enumerate}
+\end{assumption}
+\noindent No smoothness of the \emph{prior} is assumed: (I1) supplies it (Remark~\ref{rem:li-prior}(a)).
+
+\begin{definition}[observer classes; window information]\label{def:li-class}
+Fix $k$ and a window of $W$ samples. $\mathcal O_W$: estimators $\hat x_k=\psi(y_{k-W:k},u_{k-W:k})$ (memory $W$ in
+both measurements and inputs). $\mathcal O^u_W$: $\hat x_k=\psi(y_{k-W:k},u_{0:k})$ (memory $W$ in the
+measurements, the whole input record known). $\mathcal O_\infty$: $\psi(y_{0:k},u_{0:k})$. Let $\pi_W$ be the
+conditional law of $x_{k-W}$ given the inputs the class observes, $J_\pi:=\E[\nabla\log\pi_W\nabla\log\pi_W^\top]$ its
+(location) Fisher information averaged over those inputs, and define the \emph{window information}
+\begin{gather*}
+J_{k-W}=J_\pi+\E[H_{k-W}^\top J_vH_{k-W}],\qquad J_{i+1}=D^{22}_i-(D^{12}_i)^\top(J_i+D^{11}_i)^{-1}D^{12}_i\quad(k-W\le i<k),\\
+D^{11}_i=\E[F_i^\top Q^{-1}F_i],\qquad D^{12}_i=-\E[F_i^\top]Q^{-1},\qquad D^{22}_i=Q^{-1}+\E[H_{i+1}^\top J_vH_{i+1}],
+\end{gather*}
+expectations over the joint law of states and inputs \citep{tichavsky1998posterior}. Write $P_k(W):=J_k^{-1}$,
+\[
+\beta_j(W):=\big(\mathrm{mean}_{k\in S}[P_k(W)]_{jj}\big)^{1/2}/\sigma_j,\qquad A(W):=\mathrm{mean}_{j\notin\text{sensors}}\,\beta_j(W)
+\]
+(the unmeasured window bound). $A_\Sigma(W)$, $A_Q(W)$ denote the same quantity with $J_\pi$ replaced by
+$\Sigma_x^{-1}$ (inverse climatology: what \texttt{budgets.py} and \texttt{BUDGET\_FIX} compute) and by $Q^{-1}$.
+\end{definition}
+
+\subsection{The information-limit lemma}
+
+\begin{lemma}[information limit of a finite memory]\label{lem:li-window}
+Under Assumption~\ref{ass:li}, for every $k\ge W+1$:
+\begin{enumerate}[leftmargin=2.2em]
+\item[(a)] (\emph{window van Trees bound}) every $\hat x_k\in\mathcal O_W$ satisfies
+$\E[(\hat x_k-x_k)(\hat x_k-x_k)^\top]\succeq P_k(W)$; hence $\mathrm{RMS}_j(\hat x)\ge\beta_j(W)$ for every state $j$, and
+the mean unmeasured RMS is at least $A(W)$. The same holds for $\mathcal O^u_W$ with $\pi^u_W$ (law of $x_{k-W}$
+given $u_{0:k}$) in place of $\pi_W$, and for $\mathcal O_\infty$ with the recursion started at $k=1$.
+\item[(b)] (\emph{necessary condition}) consequently, if $\varepsilon<\beta_j(W)$, no observer with memory $W$
+reaches $\mathrm{RMS}_j\le\varepsilon$; if a competitor reaches mean unmeasured error $\varepsilon_{\rm c}<A(W)$, no
+observer in $\mathcal O_W$ can match it. Both statements are independent of the observer's architecture,
+training data and size.
+\item[(c)] (\emph{bits form}) let $X=x_{k,j}$. If $R_X(\varepsilon^2)>I(x_k;y_{k-W:k},u_{k-W:k})$, where $R_X$ is the
+rate--distortion function of $X$ for squared error, then no $\hat x_k\in\mathcal O_W$ has $\E[(\hat x_{k,j}-X)^2]\le\varepsilon^2$.
+\item[(d)] (\emph{linear-Gaussian: exact and attained}) \vthree{LI-2}{Gaussian inputs required for the bits part} if
+$\Phi(x,u)=Fx+Gu$, $h(x)=Cx$, $v$ Gaussian and $\pi_W$
+Gaussian with covariance $\Sigma_W$ not depending on the observed inputs (e.g.\ a stationary plant driven by white
+inputs), then $J_\pi=\Sigma_W^{-1}$, $P_k(W)$ is the covariance of the Kalman filter started at $k-W$ with prior
+$\Sigma_W$, that filter attains (a) with equality, and (c) is equivalent to (b): with
+$I_j(W)=\tfrac12\log_2\big((\Sigma_x)_{jj}/[P_k(W)]_{jj}\big)$ and $R_j(\varepsilon)=\tfrac12\log_2\big((\Sigma_x)_{jj}/\varepsilon^2\big)$,
+$\ R_j(\varepsilon)>I_j(W)\iff\varepsilon<\sqrt{[P_k(W)]_{jj}}$, the bits statement requiring in addition that the inputs be
+Gaussian, so that $x_{k,j}$ is Gaussian (with white binary inputs it is not: check V11b). In this case the bound is also sufficient: every
+$\varepsilon\ge\beta_j(W)$ is achieved by a window observer.
+\end{enumerate}
+\end{lemma}
+\emph{Intuition.} A memory of $W$ samples is a noisy channel from the current state to the observer, opened at
+$k-W$ with only the prior knowledge of the state there; the Bayesian information of that channel caps the precision
+of every function of it.
+
+\begin{proof}
+(a) Condition on the inputs $V$ the class observes and let $\theta=(x_{k-W},\dots,x_k)\in\mathbb R^{(W+1)n_x}$. Its
+conditional density is
+$\pi_W(x_{k-W}\,|\,V)\prod_{i=k-W}^{k-1}\mathcal N(x_{i+1};\Phi(x_i,u_i),Q)$ and the data density is
+$\prod_{i=k-W}^{k}p_v(y_i-h(x_i))$. The transitions inside the window use only $u_{k-W:k-1}$, which every class
+observes; inputs the class does not observe enter only through $\pi_W$, the law of $x_{k-W}$ given $V$ (this is what
+separates $\mathcal O_W$ from $\mathcal O^u_W$; Remark~\ref{rem:li-prior}(c)). By (I3) conditioning on $V$ leaves the
+noise laws unchanged. By Remark~\ref{rem:li-prior}(a) the prior density of
+$\theta$ is positive, absolutely continuous, and has finite Fisher information; the data density is $C^1$ in
+$\theta$ with finite Fisher information by (I2). The multivariate van Trees inequality
+\citep{vantrees1968detection,gill1995applications} gives, for any estimator $\hat\theta(Y,V)$ with finite second
+moments, $\E[(\hat\theta-\theta)(\hat\theta-\theta)^\top|V]\succeq\mathcal J(V)^{-1}$, where $\mathcal J(V)$ is the expected outer
+product of the score of the joint density of $(\theta,Y)$ given $V$. The score is a sum of factor scores: the
+transition factor contributes $F_i^\top Q^{-1}w_i$ to the $x_i$-block and $-Q^{-1}w_i$ to the $x_{i+1}$-block, the
+measurement factor $-H_i^\top\nabla\log p_v(v_i)$ to the $x_i$-block, and factor scores are uncorrelated because each
+noise is independent of everything before it and has zero-mean score. Hence $\mathcal J$ is block tridiagonal with
+blocks $D^{11},D^{12},D^{22}$ (conditional on $V$) and first block $J_\pi+\E[H^\top J_vH]$; only $C^1$ regularity of
+$\Phi,h$ is used (score form, no Hessians). Any estimator of $x_k$ extends to one of $\theta$; the $(k,k)$ block of
+$\mathcal J^{-1}$ is the inverse of the Schur complement computed by the recursion of Definition~\ref{def:li-class}
+\citep[Prop.~1 and Thm.~1]{tichavsky1998posterior}. Finally average over $V$: $M\mapsto[M^{-1}]_{kk}$ is matrix convex
+on positive definite matrices, so $\E_V[[\mathcal J(V)^{-1}]_{kk}]\succeq[(\E_V\mathcal J(V))^{-1}]_{kk}$, which is the
+recursion with expectations over states and inputs jointly. Per state: take diagonals, average over $k\in S$, divide
+by $\sigma_j^2$; the unmeasured statement is the termwise mean. $\mathcal O^u_W$, $\mathcal O_\infty$: same argument
+with the stated prior.\\
+(b) Contrapositive of (a). A trained observer is a fixed map once its training data are independent of the
+evaluation episode, which is the protocol.\\
+(c) If $\E[(\hat x_{k,j}-X)^2]\le\varepsilon^2$, the joint law of $(X,\hat x_{k,j})$ is a test channel meeting the distortion
+constraint, so $I(X;\hat x_{k,j})\ge R_X(\varepsilon^2)$ by the definition of $R_X$ \citep[Ch.~10]{cover2006elements}; and
+$I(X;\hat x_{k,j})\le I(x_k;y_{k-W:k},u_{k-W:k})$ by the data-processing inequality, $\hat x_{k,j}$ being a function of the
+window. Contradiction.\\
+(d) With linear dynamics, Gaussian noises and a Gaussian $\pi_W$, the expectations are trivial and the recursion is
+the information form of the Riccati recursion (matrix-inversion lemma), so $P_k(W)$ is the Kalman covariance; the
+posterior of $x_k$ given the window is Gaussian with covariance $P_k(W)$ and its mean attains the bound. For a
+Gaussian scalar $X$ of variance $(\Sigma_x)_{jj}$ (Gaussian inputs), $R_X(D)=\tfrac12\log_2((\Sigma_x)_{jj}/D)$, and $(X,\text{window})$ is jointly
+Gaussian with $\mathrm{Var}(X|\text{window})=[P_k(W)]_{jj}$, so $I(X;\text{window})=I_j(W)$; the equivalence is algebra, and
+the window Kalman filter achieves $\varepsilon=\beta_j(W)$.
+\end{proof}
+
+\begin{remark}[the prior at the window start: what is proven, what is computed]\label{rem:li-prior}
+(a) \emph{Regularity is automatic, and $J_\pi\preceq Q^{-1}$.} $x_{k-W}=\Phi(x_{k-W-1},u_{k-W-1})+w_{k-W-1}$ with $w$
+independent of the first term and of the inputs, so $\pi_W$ is a Gaussian convolution: positive, smooth, and by
+Blachman's identity $\nabla\log\pi_W(s)=\E[\nabla\log p_w(w)\,|\,x_{k-W}=s]$, whence
+$J_\pi=\E\big[\E[\nabla\log p_w|\cdot]\E[\nabla\log p_w|\cdot]^\top\big]\preceq\E[\nabla\log p_w\nabla\log p_w^\top]=Q^{-1}$
+\citep{stam1959some,zamir1998proof}. The recursion is monotone in its initial information, so
+$A_Q(W)\le A(W)$: $A_Q$ is a \emph{rigorous, computable} floor for every observer of the class.
+(b) \emph{The computed number is a Gaussian-prior surrogate.} For any density with covariance $\Sigma$,
+$J_\pi\succeq\Sigma^{-1}$ (integrate by parts: $\E[(x-\mu)\nabla\log\pi^\top]=-I$, then Cauchy--Schwarz). With
+$\Sigma=\Sigma_x$ (climatology), $A(W)\le A_\Sigma(W)$, with equality when $\pi_W$ is Gaussian with covariance
+$\Sigma_x$ (Lemma~\ref{lem:li-window}(d)). So the reported $A_\Sigma$ is exact for linear-Gaussian plants and in
+general an \emph{upper} approximation of the rigorous bound: $A_Q(W)\le A(W)\le A_\Sigma(W)$. How far apart the ends
+are is a property of the plant (check [S4]): vdp $0.0038=0.0038$; quad\_tank $0.0178$ vs $0.0297$; duffing $0.0046$ vs
+$0.0113$; battery $0.0033$ vs $0.0084$ ($W=3/\alpha$), the rigorous ends being close to the full-past bounds
+($0.0198$, $0.0053$, $0.0036$). \vthree{LI-3}{6/alpha values} At the corrected window $W=6/\alpha$ (check V9):
+quad\_tank $A_Q=0.0194$, $A_\Sigma=0.0222$; duffing $0.0053$, $0.0054$; battery $0.0035$, $0.0048$; cartpole $0.0079$,
+$0.0229$; highway\_traffic $0.0144$, $0.0368$. Since $\mathcal O_W\subset\mathcal O_\infty$, the rigorous floor of
+$\mathcal O_W$ is at least $\max\{A_Q(W),A_\infty\}$ with $A_\infty$ the rigorous full-past floor. The surrogate
+can be beaten: for a scalar plant whose state law at the window start is a two-component mixture, the exact
+posterior mean has mean-square error $0.0080$ while the climatology-prior number is $0.0385$; the bound with the true
+$J_\pi$ is $0.0080$ (check V12). Hence: the \emph{rigorous} window floors and the full-past floors computed with the rigorous start (prior information
+$Q^{-1}$ at $k=1$) are theorems; the stored full-past floors (climatology at $k=0$) agree with them to three digits on eleven
+plants and are $5.4\%$ higher on cartpole (check V9b) \vthree{LI-7}{qualified}; the \emph{window deficit} $\rho(W)=A_\Sigma(W)/A_\Sigma(\infty)$ of the window-starved plants is a statement
+about the Gaussian-prior surrogate, i.e.\ about observers that know no more about $x_{k-W}$ than its climatology.
+(c) \emph{The class matters.} An observer that knows the input before the window (class $\mathcal O^u_W$) can
+predict $x_{k-W}$ open-loop with the model: its prior is the open-loop prediction law, much tighter than climatology
+on stable plants. In the linear-Gaussian check [L2] $A^u(W)$ is attained and lies below $A(W)$ (unmeasured
+$x_2$, $W=5$: $0.039$ vs $0.161$); on the benchmarks the surrogate $A^u_\Sigma(3/\alpha)$ is $0.0199$ (quad\_tank),
+$0.0057$ (duffing), $0.0036$ (battery), essentially the full-past floor. A long \emph{input} memory therefore changes
+the bound, which is why Remark~\ref{rem:li-fading} counts the context's memory.
+(d) \emph{Coloured and heavy-tailed sensor noise.} For $v_k=\rho v_{k-1}+\sqrt{1-\rho^2}\,s\,e_k$, conditioning on
+$y_{k-W}$ and using $\tilde y_{i+1}=y_{i+1}-\rho y_i=h(x_{i+1})-\rho h(x_i)+\sqrt{1-\rho^2}\,s\,e_{i+1}$ keeps the factor
+graph a chain with pairwise factors, so the proof of (a) goes through with
+$D^{11}\mathrel{+}=\rho^2\E[H_i^\top J_eH_i]$, $D^{12}\mathrel{-}=\rho\E[H_i^\top J_eH_{i+1}]$, $D^{22}=Q^{-1}+\E[H_{i+1}^\top J_eH_{i+1}]$,
+$J_e=J_t/((1-\rho^2)s^2)$ (the recursion of \texttt{BUDGET\_FIX.md}). At the window start \texttt{BUDGET\_FIX} uses
+$J_t/s^2$ for the marginal of $v_{k-W}$, an upper bound on its true Fisher information (the marginal is a sum of
+independent terms; Stam's inequality), which can only lower the bound: the noise side remains rigorous; the
+state-prior caveat (b) is unchanged.
+(e) \emph{Where Monte Carlo enters.} For nonlinear plants the expectations $\E[F^\top Q^{-1}F]$, $\E[F]$, $\E[H^\top J_vH]$
+are averages over the evaluation episodes (64 in \texttt{budgets.json}); the bound is a theorem about the exact
+expectations and the reported numbers carry their sampling error (a few per cent on slow states, M4 check [7]).
+Linearisation enters nowhere in (a): $F$ and $H$ are exact Jacobians inside expectations. The \emph{local}
+recursion of \ref{def:m4-budget}(i) (an EKF covariance along one trajectory) is not a bound for nonlinear plants.
+\end{remark}
+
+\subsection{Fading memory and the window: the latent eigenvalues}
+
+The deployed default HyperKKL (method\_v2.tex) is $\hat x_k=D(Z_k,c_k)$ with
+$Z_k=(\hat z_k,\hat z_{k-s},\dots,\hat z_{k-(K-1)s})$, $\hat z_{k+1}=A_d\hat z_k+W_0y_k+W_1y_{k+1}$, $\|A_d^m\|\le\kappa e^{-\alpha m\,dt}$,
+and $c_k=\psi([\xi_k,u_k])$, $\xi_{k+1}=A^\xi_d\xi_k+B_du_k$, $\|(A^\xi_d)^m\|\le e^{-\alpha_\xi m\,dt}$ (the $z$-window features
+$g(Z_k)$ are part of $D$). Let $\ell_Z,\ell_c$ be global Lipschitz constants of $D$ in $Z$ (Euclidean norm of the
+stack) and in $c$, $\ell_\psi$ that of $\psi$, and let $\mathrm{span}:=(K-1)s$.
+
+\begin{remark}[fading memory is a window]\label{rem:li-fading}
+\vthree{LI-4}{was Corollary; kept as a remark by decision; statement and proof unchanged, (iii) added} [proven]
+Under Assumption~\ref{ass:li}, for every $W\ge\mathrm{span}$ and every state $j$,
+\[
+\mathrm{RMS}_j(\hat x)\ \ge\ \beta_j(W)-\frac{\Delta(W)}{\sigma_j},\qquad
+\Delta(W):=\ell_Z\,\kappa\,r_K(W)\,\bar Z_W+\ell_c\ell_\psi\,e^{-\alpha_\xi W dt}\,\bar\Xi_W,
+\]
+$r_K(W):=\big(\sum_{j=0}^{K-1}e^{-2\alpha(W-js)dt}\big)^{1/2}\le e^{-\alpha(W-\mathrm{span})dt}/\sqrt{1-e^{-2\alpha s\,dt}}$,
+$\bar Z_W:=(\mathrm{mean}_{k\in S}\E\|\hat z_{k-W}\|^2)^{1/2}$, $\bar\Xi_W:=(\mathrm{mean}_{k\in S}\E\|\xi_{k-W}\|^2)^{1/2}$. Hence
+$\mathrm{RMS}_j(\hat x)\ge\sup_{W\ge\mathrm{span}}[\beta_j(W)-\Delta(W)/\sigma_j]$, and $\Delta(W)\le\eta$ as soon as
+\[
+W\,dt\ \ge\ \max\Big\{\mathrm{span}\,dt+\frac1\alpha\ln\frac{2\ell_Z\kappa\bar Z}{\eta\sqrt{1-e^{-2\alpha s\,dt}}},\;
+\frac1{\alpha_\xi}\ln\frac{2\ell_c\ell_\psi\bar\Xi}{\eta}\Big\}=:W_{\rm eff}(\eta)\,dt .
+\]
+If the observer is compared within $\mathcal O^u_W$ (the input record known), the context term drops:
+$\mathrm{RMS}_j\ge\beta^u_j(W)-\ell_Z\kappa r_K(W)\bar Z_W/\sigma_j$.
+(iii) If the decoder depends on the latent only through the FIR feature $\hat z_k-A_d^{m}\hat z_{k-m}$ with $m\,dt\le W$
+(Lemma~\ref{lem:m2-fir}), the latent restart term is exactly $0$ (check V1c); the default decoder is not of this form.
+\end{remark}
+\emph{Intuition.} Restart the latent and the context at $k-W$: the restarted observer is a window observer, and it
+differs from the real one only through $e^{AW}$ and $e^{A^\xi W}$ acting on the state at the restart.
+\begin{proof}
+Define $\hat x^W_k:=D(Z^W_k,c^W_k)$ where $\hat z^W$ and $\xi^W$ obey the same recursions from $\hat z^W_{k-W}=0$,
+$\xi^W_{k-W}=0$. They use $y_{k-W:k}$ and $u_{k-W:k}$ only, and $D$ is fixed, so $\hat x^W_k\in\mathcal O_W$ and
+Lemma~\ref{lem:li-window}(a) gives $\mathrm{RMS}_j(\hat x^W)\ge\beta_j(W)$. The recursions are linear, so
+$\hat z_i-\hat z^W_i=A_d^{\,i-k+W}\hat z_{k-W}$ and $\xi_k-\xi^W_k=(A^\xi_d)^W\xi_{k-W}$; with $W\ge\mathrm{span}$ every
+entry of the stack lies after the restart, so $\|Z_k-Z^W_k\|\le\kappa r_K(W)\|\hat z_{k-W}\|$ and
+$\|c_k-c^W_k\|\le\ell_\psi e^{-\alpha_\xi W dt}\|\xi_{k-W}\|$. Lipschitz continuity of $D$ and Minkowski's inequality in
+$L^2(\mathbb P\times\mathrm{Unif}(S))$: $\mathrm{RMS}_j(\hat x)\ge\mathrm{RMS}_j(\hat x^W)-\mathrm{RMS}_j(\hat x-\hat x^W)\ge\beta_j(W)-\Delta(W)/\sigma_j$.
+The threshold: bound each term of $\Delta$ by $\eta/2$ (with $\bar Z\ge\bar Z_W$, $\bar\Xi\ge\bar\Xi_W$ uniform second
+moments). The $\mathcal O^u_W$ form keeps $c_k$ unchanged.
+\end{proof}
+\noindent\emph{Reading for the default.} \vthree{LI-5}{decided wording; precise span} The measurement memory is the $z$-window
+span $S$ ($\alpha S\in[5.50,5.90]$ on the twelve plants, check V8) plus $\ln(\cdot)/\alpha$; it is at least $6/\alpha$ as soon as
+the logarithm exceeds $0.50$, i.e.\ $2\ell_Z\kappa\bar Z/(\eta\sqrt{1-e^{-2\alpha s\,dt}})\ge1.65$, which holds for every
+$\eta\le\ell_Z\kappa\bar Z$ because $\sqrt{\cdot}\le1$; the input memory is $\ln(\cdot)/\alpha_\xi$ with $\alpha_\xi\approx0.14$--$0.18\,\alpha$ for
+the learned SFM (Lemma~\ref{lem:m2-sfm}), i.e.\ $5.6$--$7\times$ longer per logarithmic unit. Two consequences.
+(i) The window $W=3/\alpha$ used for $A$ in \texttt{PREREG.md}, \texttt{RESULTS.md} and \texttt{BUDGET\_FIX.md} was a
+reading for the pre-A3 decoder ($Z_k=\hat z_k$, $K=1$); for the final method $W_{\rm eff}\ge6/\alpha$ in the
+measurements, and longer still if the input memory is counted. Because the floor decreases with $W$, a bound computed at
+$6/\alpha$ is the \emph{largest} floor the remark allows for the default, not a floor it is guaranteed to obey: the
+inequality holds at $W_{\rm eff}$, which may be longer. Which observer class to use for the SFM input memory
+($\mathcal O_W$ or $\mathcal O^u_W$) is open (STATUS.md). (ii) The a priori $\Delta$ uses global Lipschitz
+constants, which for trained networks are norm products and make it vacuous at moderate $W$ (as for
+\ref{prop:m3-iss}(iii)); in check [L4] the a priori bound is informative only at $W\approx400$ samples, set by the
+context term. The tight version replaces $\Delta$ by the measured restart term
+$\mathrm{RMS}_j(\hat x-\hat x^W)$ (a \emph{restart probe}: rerun the stored observer with latent and context restarted
+at $k-W$), with which the inequality is exact; this probe has not been run on the stored models.
+
+\subsection{Local expansion}
+
+\begin{lemma}[information along expanding directions saturates; LTV linear-Gaussian]\label{lem:li-expansion}
+Let $x_{i+1}=F_ix_i+G_iu_i+w_i$, $w_i\sim\mathcal N(0,Q_i)$, $Q_i\succeq0$, $y_i=H_ix_i+v_i$, $v_i\sim\mathcal N(0,R_i)$,
+$R_i\succ0$, $F_i$ invertible, prior $x_{k-W}\sim\mathcal N(m,P_0)$, $P_0\succ0$, all independent; $\Phi_{k,i}:=(F_{k-1}\cdots F_i)^{-1}$
+($\Phi_{k,k}=I$), so that $\Phi_{k,i}v$ is the perturbation at time $i$ that the noise-free dynamics carry into $v$ at
+time $k$. Let $P_k$ be the Kalman covariance of $x_k$ given $(y_{k-W:k},u)$ and
+$\mathcal I_k:=\Phi_{k,k-W}^\top P_0^{-1}\Phi_{k,k-W}+\sum_{i=k-W}^{k}\Phi_{k,i}^\top H_i^\top R_i^{-1}H_i\Phi_{k,i}$.
+\begin{enumerate}[leftmargin=2.2em]
+\item[(a)] $P_k\succeq\mathcal I_k^{-1}$ (process noise only removes information).
+\item[(b)] For every unit vector $v$ and every estimator $\hat x_k$ of $x_k$ from $(y_{k-W:k},u)$:
+$\E[(v^\top(\hat x_k-x_k))^2]\ge v^\top P_kv\ge1/(v^\top\mathcal I_kv)$.
+\item[(c)] If $v$ is expanded by the dynamics over the window at finite-time rate at least $\lambda>0$, i.e.\
+$\|\Phi_{k,i}v\|\le C e^{-\lambda(k-i)dt}$ for $k-W\le i\le k$, then with $\bar r:=\max_i\|R_i^{-1/2}H_i\|$, $\bar p:=\|P_0^{-1}\|$,
+\[
+\E[(v^\top(\hat x_k-x_k))^2]\ \ge\ \Big[C^2\bar p\,e^{-2\lambda Wdt}+\frac{C^2\bar r^2}{1-e^{-2\lambda dt}}\Big]^{-1}
+\ \xrightarrow{W\to\infty}\ \frac{1-e^{-2\lambda dt}}{C^2\bar r^2}\approx\frac{2\lambda\,dt}{C^2\bar r^2}.
+\]
+The floor along $v$ increases with the expansion rate $\lambda$ and, unlike Lemma~\ref{lem:li-window}, does not
+vanish as the window grows: information along an expanding direction saturates.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Both covariances start from the same update at $k-W$. The prediction map $P\mapsto F_iPF_i^\top+Q_i$ is monotone in
+$P$ and in $Q_i$, and the update $P\mapsto(P^{-1}+H^\top R^{-1}H)^{-1}$ is monotone; by induction $P_k(Q)\succeq P_k(0)$
+\citep{andersonmoore1979}. With $Q=0$, $x_i=\Phi_{k,i}x_k+(\text{known})$, so the window is a static linear-Gaussian
+model of $x_k$ with design rows $H_i\Phi_{k,i}$ and prior covariance $\Phi_{k,k-W}^{-1}P_0\Phi_{k,k-W}^{-\top}$; its
+posterior information is $\mathcal I_k$. (b) The Kalman filter is the MMSE estimator, so every estimator has error
+covariance $\succeq P_k$; then $v^\top\mathcal I_k^{-1}v\ge(v^\top v)^2/(v^\top\mathcal I_kv)$ (Cauchy--Schwarz with
+$\mathcal I_k^{1/2}$). (c) $v^\top\mathcal I_kv\le\bar p\|\Phi_{k,k-W}v\|^2+\bar r^2\sum_{m=0}^W\|\Phi_{k,k-m}v\|^2$; insert the
+hypothesis and sum the geometric series.
+\end{proof}
+\noindent If $v$ is the leading left singular vector of the forward map $F_{k-1}\cdots F_i$, then
+$\|\Phi_{k,i}v\|=1/\sigma_1(F_{k-1}\cdots F_i)=e^{-(k-i)dt\,\lambda^{\rm FT}_1}$ with $\lambda^{\rm FT}_1$ the finite-time
+Lyapunov exponent over $[i,k]$; $C$ absorbs the rotation of the singular directions across lags.
+
+\begin{remark}[scope of Lemma~\ref{lem:li-expansion}, and the Lyapunov finding]\label{rem:li-scope}
+The lemma is exact for linear time-varying Gaussian plants (the Kalman filter is optimal), and therefore applies to
+the \emph{local} recursion of a nonlinear plant (the EKF covariance along a trajectory). It is \emph{not} a bound on
+the nonlinear Bayesian floor: the Bayesian recursion of Lemma~\ref{lem:li-window} averages $F$ before inverting, so
+expansion along individual trajectories does not appear in it, and we have no proof that would put it there.
+Empirically (Lorenz-96, $n_x=20$, half the nodes measured; \texttt{experiments/chaos\_deep} Stage~3 and
+\texttt{experiments/l96\_default}), HyperKKL's error tracks the finite-time expansion of the \emph{preceding}
+$0.5$ time units (within-episode Spearman $+0.27$ to $+0.37$, top/bottom FTLE-quintile error ratio $1.26$--$1.47$,
+unchanged by the final default; three interventions targeting it did not help). The \emph{direction} agrees with
+Lemma~\ref{lem:li-expansion} (the floor along expanding directions rises with the preceding expansion and is not
+removed by a longer memory). The \emph{magnitude} does not: with $\sigma_R=0.03\,y_{\rm std}$ the lemma's floor is
+$O(\sigma_R\sqrt{2\lambda dt})$, far below HyperKKL's error ($\approx0.2$ unmeasured for A3; Bayesian floor $0.0018$;
+NODE+EKF $\approx0.07$ unmeasured). The Lyapunov dependence of the \emph{learned} observer therefore remains an empirical observation; the
+lemma explains why an optimal observer would show the same sign, not why HyperKKL shows it at this size.
+\end{remark}
+
+\subsection{Empirical check}
+
+All numbers are produced by \texttt{theory/checks/lemma\_checks.py} (log: \texttt{lemma\_checks.log}) from the stored
+files of \texttt{experiments/information}, \texttt{p2\_rescore}, \texttt{beat\_greybox} and \texttt{chaos\_deep}.
+\vthree{LI-6}{rewritten at the corrected window $6/\alpha$; 3/alpha kept as the pre-registered reading}
+\begin{itemize}[leftmargin=1.5em]
+\item \emph{Guarantee, full past.} The stored full-past floors start the recursion from the climatology at $k=0$; the
+rigorous start (prior information $Q^{-1}\succeq J_\pi$ at $k=1$) agrees to three digits on eleven plants and is $5.4\%$
+lower on cartpole (unmeasured $0.0101$ vs $0.0107$; per state $x_2$: $0.0134$ vs $0.0145$; check V9b, which FAILED its
+$2\%$ agreement criterion on this plant). Recount of P0 over the $448$ cells of \texttt{achieved.json}: no learned
+observer and no grey-box filter is below $0.95\times$ the full-past floor. With tier-matched budgets two cells were below,
+both the exact-model EKF on cartpole (\texttt{id}, $x_2$ $0.0134$, total $0.0079$); against the rigorous floor they sit
+\emph{at} it ($0.0134$, $0.0079$), i.e.\ the optimal filter attains the bound, as Lemma~\ref{lem:li-window}(d) predicts near
+the linear regime. The pre-registered scoring found three (also quad\_tank $x_3$ on \texttt{sequence\_ood}). The newer
+arms are above the full-past floor in all $64$ arm-cells checked (A2/A4 of \texttt{p2\_rescore}, A3 of
+\texttt{beat\_greybox}, seed means).
+\item \emph{Competitor-accuracy form at the corrected window} (necessary condition, Lemma~\ref{lem:li-window}(b)). ``HyperKKL
+cannot beat the best grey-box filter (unmeasured error $\varepsilon$) if the window floor exceeds $\varepsilon$'', over the
+$22$ (plant, tier) pairs of \texttt{bits\_rule\_c3.json}, $W=6/\alpha$ (check V9c): with the surrogate $A_\Sigma(6/\alpha)$,
+``cannot'' on $4$ pairs (quad\_tank and highway\_traffic, both tiers); with the rigorous $A_Q(6/\alpha)$ on $1$
+(quad\_tank \texttt{sequence\_ood}, $0.0194>0.0185$), and with $\max\{A_Q,A_\infty\}$ also on quad\_tank \texttt{id}
+($0.0198>0.0196$). Violations (predicted ``cannot'', observed win): $0$ in every form. Against the $3/\alpha$ reading,
+duffing (both tiers) and cartpole \texttt{id} change from ``cannot'' to ``can''; all three were losses. The rule is
+one-sided: ``can win'' is not a prediction of a win (fhn, two\_link\_arm, cartpole lose although they can). The $\varepsilon$
+values are those of the one-step grey-box comparator, which the corrected grey-box replaces in the consolidated re-run
+(CLAIMS\_v3\_draft.md, Disclosure 7); with a smaller $\varepsilon$ more pairs become ``cannot'', so the rule must be re-scored.
+\item \emph{A3 against the corrected window.} No A3 cell of \texttt{beat\_greybox} (total NRMSE, $12$ cells) lies below
+$A_\Sigma(6/\alpha)$; at $3/\alpha$ two did (duffing and quad\_tank \texttt{id}), which is what a memory longer than $3/\alpha$
+predicts. (NRMSE is a mean of per-episode RMS, so ``below'' is inconclusive and ``above'' conclusive.)
+\item \emph{Honest caveats.} (1) P0 failed by the letter of its pre-registered $5\%$ tolerance. (2) The pre-registered
+grouping thresholds (rich / window-starved) were defined at $3/\alpha$ on the surrogate, and the competitor form was
+introduced post hoc (\texttt{BUDGET\_FIX.md}); the $6/\alpha$ rescoring here is also post hoc. (3) Window starvation is not
+proven (Remark~\ref{rem:li-prior}(b)). (4) Lorenz-96: the window carries all the bits (floor $0.0018$ unmeasured,
+window $=$ full past); the rule says ``can win'' against NODE+EKF and the default HyperKKL loses ($2.3\times$ all states,
+$2.7\times$ unmeasured): an extraction-limited failure the lemma does not address.
+\end{itemize}
+
+\paragraph{What the lemmas do not claim.} Neither lemma is a sufficiency result outside the linear-Gaussian case:
+an observer meeting $A(W)$ need not exist for a nonlinear plant (on Lorenz and R\"ossler the exact-model EKF is
+$4.6\times$ and $30\times$ above the Bayesian floor), and nothing here bounds a learned observer from above or says
+that more data, a larger network or a different conditioner would approach the floor. The lemmas say only what an
+observer with a given memory \emph{cannot} do, and Remark~\ref{rem:li-fading} says which memory HyperKKL has.
+
+{\sloppy \paragraph{Numerical checks} (\texttt{lemma\_checks.py}, CPU; rerun for v3: $21/21$ PASS,
+\texttt{theory/v3/lemma\_checks\_rerun.log}; v3 additions V1c, V8, V9, V11, V12 in \texttt{v3\_checks.py}). [L1] Linear-Gaussian plant, white Gaussian input: the
+window Kalman filter attains $A(W)$ for $W=5$--$200$ (Monte Carlo, $6\cdot10^4$ episodes), the information recursion
+equals the Kalman covariance, $A(W)$ is nonincreasing. [L2] The $y$-window filter that knows the input record attains
+$A^u(W)<A(W)$. [L3] Bits $\Leftrightarrow$ Fisher equivalence of (d). [L4] A KKL-type observer (stable latent,
+strided window, slow input context, least-squares decoder) satisfies Remark~\ref{rem:li-fading} at every $W$;
+its restarted copy obeys Lemma~\ref{lem:li-window}. [L5] Lemma~\ref{lem:li-expansion}(a)--(c) and the monotonicity in
+$\lambda$; the expanding direction saturates with $W$ while a contracting one keeps gaining. [N1] Forced Van der
+Pol with Gaussian initial law: the full-past EKF and a window EKF respect the rigorous bounds. [S1]--[S4] the stored
+runs, the rule, and the prior sensitivity quoted above.\par}
+

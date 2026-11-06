@@ -1,0 +1,45 @@
+{
+ "dataset": "silverbox",
+ "dt_model": 0.16383999999999999,
+ "dt_seconds": 0.0016384,
+ "splits": {
+  "train": {
+   "n": 209,
+   "N1": 2049,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.9978637972187884
+  },
+  "val": {
+   "n": 8,
+   "N1": 2049,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.9979285747470825
+  },
+  "test_multisine": {
+   "n": 20,
+   "N1": 2049,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.9978462025965548
+  },
+  "test_arrow": {
+   "n": 30,
+   "N1": 2049,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.997841140478156
+  },
+  "test_arrow_extrap": {
+   "n": 7,
+   "N1": 2049,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "vel_label_vs_increment_corr": 0.9978462436720364
+  }
+ },
+ "recordings_in_more_than_one_role": {
+  "('snls', None)": [
+   "test",
+   "train",
+   "val"
+  ]
+ },
+ "index_ranges_disjoint": true
+}

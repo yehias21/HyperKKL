@@ -1,0 +1,92 @@
+{
+ "dataset": "battery_pf",
+ "dt_model": 0.016666666666666666,
+ "dt_seconds": 1.0,
+ "splits": {
+  "train": {
+   "n": 502,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0004526237000705008
+  },
+  "val": {
+   "n": 58,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.00019762495327499408
+  },
+  "test_US06": {
+   "n": 18,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0003808038224588639
+  },
+  "test_HWFET": {
+   "n": 67,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 7.488595840324241e-05
+  },
+  "test_NN": {
+   "n": 58,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.00029140741020164396
+  },
+  "test0_Cycle_1": {
+   "n": 41,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0003747763379386426
+  },
+  "test0_Cycle_2": {
+   "n": 37,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0004642515571971484
+  },
+  "test0_LA92": {
+   "n": 60,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0003997666864048177
+  },
+  "test0_NN": {
+   "n": 49,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0006700983257980075
+  },
+  "test0_Cycle_3": {
+   "n": 26,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.00024618787282981724
+  },
+  "test0_Cycle_4": {
+   "n": 31,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0003645625929589724
+  },
+  "test0_US06": {
+   "n": 10,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0005487150052194689
+  },
+  "test0_HWFET": {
+   "n": 22,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.00012824451368331768
+  },
+  "test0_UDDS": {
+   "n": 62,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.00014804373522900316
+  }
+ },
+ "recordings_in_more_than_one_role": {}
+}

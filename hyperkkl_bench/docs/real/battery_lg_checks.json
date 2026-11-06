@@ -1,0 +1,80 @@
+{
+ "dataset": "battery_lg",
+ "dt_model": 0.016666666666666666,
+ "dt_seconds": 1.0,
+ "splits": {
+  "train": {
+   "n": 487,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0008307320833448872
+  },
+  "val": {
+   "n": 33,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0001205165981089662
+  },
+  "test_US06": {
+   "n": 13,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.00029634677496098716
+  },
+  "test_Mixed8": {
+   "n": 37,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.000664856557878124
+  },
+  "test0_US06": {
+   "n": 9,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.001951046513173016
+  },
+  "test0_HWFET": {
+   "n": 18,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.00012488798310278382
+  },
+  "test0_Mixed8": {
+   "n": 31,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0002049348911494775
+  },
+  "test10_US06": {
+   "n": 11,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0013962030053684682
+  },
+  "test10_HWFET": {
+   "n": 20,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 1.84536251395806e-05
+  },
+  "test10_Mixed8": {
+   "n": 35,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0001933603464925049
+  },
+  "test40_US06": {
+   "n": 13,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 0.0001238687473681388
+  },
+  "test40_HWFET": {
+   "n": 22,
+   "N1": 1801,
+   "max_abs_y_minus_x_sensors": 0.0,
+   "soc_charge_balance_max_err": 3.8583837081551664e-05
+  }
+ },
+ "recordings_in_more_than_one_role": {}
+}

@@ -1,0 +1,221 @@
+{
+ "name": "calce",
+ "files": [
+  {
+   "path": "A123_DST-US06-FUDS-0.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-0.zip",
+   "sha256": "c18df3909de27c4409d5e9730c5078284f3883ee52193b559ca8e0ee17732505",
+   "size": 13077073
+  },
+  {
+   "path": "A123_DST-US06-FUDS-10.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-10.zip",
+   "sha256": "c69dbb1569c5757c19d29741472a773a5fc8ab051f0ee76bd1af45ea2a9b27b7",
+   "size": 13420102
+  },
+  {
+   "path": "A123_DST-US06-FUDS-20.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-20.zip",
+   "sha256": "e3b201def3696a973fc2940e189ed9cc0f12fae7fdc75ef6f79d0c82ac3815f1",
+   "size": 29822523
+  },
+  {
+   "path": "A123_DST-US06-FUDS-25.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-25.zip",
+   "sha256": "b7e5402815b491f4052e1fc02ac12723a28a6893e3f695f10a39b773043145f2",
+   "size": 13787570
+  },
+  {
+   "path": "A123_DST-US06-FUDS-30.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-30.zip",
+   "sha256": "1c606703b33cf1ca793fb790c14dbaff8b52c1b057c9edb44181cdc6d1948a1f",
+   "size": 13865208
+  },
+  {
+   "path": "A123_DST-US06-FUDS-40.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-40.zip",
+   "sha256": "b17af1850a1d508edf6dfb56f92822178bd32c28d65fac3de7f2ff2c0898f2e5",
+   "size": 13928857
+  },
+  {
+   "path": "A123_DST-US06-FUDS-50.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-50.zip",
+   "sha256": "7fae05b50c7f4edcc799a7d817d56fb701e1e8894b538e043d05d08ab60f91bc",
+   "size": 14007462
+  },
+  {
+   "path": "A123_DST-US06-FUDS-N10.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_DST-US06-FUDS-N10.zip",
+   "sha256": "1753bbf603baf54388ea2fee28f3be00c082e525515efb2074f362f335988604",
+   "size": 9213655
+  },
+  {
+   "path": "A123_OCV-10-20120629.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV-10-20120629.zip",
+   "sha256": "e69a81807d000d03a3585e8dfa28dc82e784c89adf705b18ce4063784d7564be",
+   "size": 13781189
+  },
+  {
+   "path": "A123_OCV0-20120618.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV0-20120618.zip",
+   "sha256": "6a933157e8317a01b6157c57c285b6b6f2c5585269aa9ce66ff7e00b0fa9510a",
+   "size": 14151324
+  },
+  {
+   "path": "A123_OCV10-20120611.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV10-20120611.zip",
+   "sha256": "6d53af243558c35b1b796c685a188ab2b82205617d4b7c2b74b838eb31447e9d",
+   "size": 15367716
+  },
+  {
+   "path": "A123_OCV20-20120614.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV20-20120614.zip",
+   "sha256": "3ad7ed3ccf5b14ed1366e92844d4da2c63aa09921392b9bd45c4b5d19070ea29",
+   "size": 16017908
+  },
+  {
+   "path": "A123_OCV25-20120905.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV25-20120905.zip",
+   "sha256": "3e1877772487b306a14249e80f8db8d28ca03cdba8bfa23b7c1a0f9650dbce3a",
+   "size": 13065902
+  },
+  {
+   "path": "A123_OCV30-20120625.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV30-20120625.zip",
+   "sha256": "f873df101741ea1ba06a0296e460590faa2b78ff8447c43b27f850fb46c7427a",
+   "size": 14662123
+  },
+  {
+   "path": "A123_OCV40-20120627.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV40-20120627.zip",
+   "sha256": "095c1bb5bed60c48fdc8b1ab30125e8f3b58b22a1ee95ee2180f6c90f291cd67",
+   "size": 14459656
+  },
+  {
+   "path": "A123_OCV50-20120702.zip",
+   "url": "https://web.calce.umd.edu/batteries/data/A123_OCV50-20120702.zip",
+   "sha256": "28178f47ebc6b9d98fdd7aab11604ba219274a533802a0f36f26ec83c5f8edef",
+   "size": 15390889
+  }
+ ],
+ "frozen": {
+  "Q_Ah": 1.063561667212343,
+  "params_25C": {
+   "Q": 1.063561667212343,
+   "R0": 0.1574974902705519,
+   "R1": 0.02242516404453669,
+   "C1": 914.3676921867241,
+   "R2": 0.00010000000000000026,
+   "C2": 999999.9999999986,
+   "C_th": 889.2603013541079,
+   "hA": 1.2174850505880344,
+   "Ea_R": 3000.0,
+   "dUdT": -0.0001,
+   "T_amb": 298.15,
+   "tau_f": 2.0,
+   "ow0": 0.01,
+   "ow1": 0.02,
+   "o0": 2.93215382810015,
+   "o1": 4.34747444632358,
+   "o2": -29.968982057874893,
+   "o3": 117.56053665489588,
+   "o4": -259.2609230852193,
+   "o5": 316.37756477996675,
+   "o6": -198.22666077549673,
+   "o7": 49.521820864778405,
+   "o8": -0.813572416675526,
+   "o9": 0.20096212133685515
+  },
+  "thermocouple_offset_K": 0.0,
+  "arrhenius_condition": true,
+  "ecm_fit": {
+   "R0": 0.1574974902705519,
+   "R1": 0.02242516404453669,
+   "C1": 914.3676921867241,
+   "R2": 0.00010000000000000026,
+   "C2": 999999.9999999986,
+   "tau1_s": 20.504845494311716,
+   "tau2_s": 100.00000000000013,
+   "v_rmse_mV": 7.116309537986659,
+   "v_max_mV": 69.87524719047977,
+   "nfev": 17,
+   "active_bounds": [
+    0,
+    0,
+    0,
+    -1,
+    -1
+   ]
+  },
+  "thermal_fit": {
+   "C_th": 889.2603013541079,
+   "hA": 1.2174850505880344,
+   "tau_th_s": 730.4075733205949,
+   "dT_rmse_K": 0.15547818568714658
+  },
+  "ocv_fit_rms_V": 0.017136545562237898,
+  "x_std": [
+   0.22721527027332322,
+   0.01137712552264587,
+   1.9492941790410143e-05,
+   0.2081149229945073,
+   0.1541038827828376
+  ],
+  "x_mean": [
+   0.5159694435546038,
+   0.011337889779678435,
+   5.045695374757311e-05,
+   0.10116485840150874,
+   -0.520465405641053
+  ],
+  "y_std": [
+   0.2081149229945073,
+   0.1541038827828376
+  ],
+  "filter_tuning": {
+   "ekf": {
+    "q_soc": 0.0003,
+    "c": 0.1,
+    "r_vm": 0.1
+   }
+  },
+  "filter_tuning_note": "battery_pf's validation-tuned EKF noise reused a priori",
+  "open_loop_model_fit_train_val": {
+   "train/A1-007_DST_20C": {
+    "vm_rmse_mV": 72.35005978813035,
+    "soc_end_err_pct": 3.2002178684820137e-12
+   },
+   "train/A1-007_DST_25C": {
+    "vm_rmse_mV": 58.08361163518662,
+    "soc_end_err_pct": 3.4017927363905187e-12
+   },
+   "train/A1-007_DST_30C": {
+    "vm_rmse_mV": 42.32399380083242,
+    "soc_end_err_pct": 2.8477220581635265e-12
+   },
+   "train/A1-008_DST_20C": {
+    "vm_rmse_mV": 45.37795778943138,
+    "soc_end_err_pct": -2.198531445220727
+   },
+   "train/A1-008_DST_30C": {
+    "vm_rmse_mV": 18.02231550171307,
+    "soc_end_err_pct": -2.2320074154361347
+   },
+   "val/A1-008_DST_25C": {
+    "vm_rmse_mV": 40.89868517003863,
+    "soc_end_err_pct": -2.1959977629401486
+   }
+  },
+  "identification_note": "LFP hysteresis (charge - discharge C/20 voltage, mid SOC) 51.7 mV; OCV = DISCHARGE branch, ECM on SOC >= 0.1 (chosen on val)"
+ },
+ "source": {
+  "title": "CALCE battery data: A123 APR18650M1A (LiFePO4) dynamic profiles (DST, US06, FUDS) and low-current OCV tests",
+  "creator": "CALCE battery group, University of Maryland (M. Pecht et al.)",
+  "repository": "https://calce.umd.edu/battery-data (files on web.calce.umd.edu)",
+  "doi": "",
+  "landing": "https://calce.umd.edu/battery-data",
+  "license": "checked by the author, 2026-11-02. The source states only 'open access to our experimental test data' and 'Use of this data for publication purposes should include references to the CALCE article(s)'; no licence file",
+  "redistribution": "not granted explicitly: this package does not redistribute the data; `fetch` downloads them from the source",
+  "citation": "Y. Xing, W. He, M. Pecht, K. L. Tsui, State of charge estimation of lithium-ion batteries using the open-circuit voltage at various ambient temperatures, Applied Energy 113 (2014) 106-115; F. Zheng, Y. Xing, J. Jiang, B. Sun, J. Kim, M. Pecht, Influence of different open circuit voltage tests on state of charge online estimation for lithium-ion batteries, Applied Energy 183 (2016) 513-525"
+ }
+}

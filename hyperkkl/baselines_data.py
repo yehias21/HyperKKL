@@ -1,5 +1,5 @@
 """Data-driven baselines trained on EXACTLY the learned observers' training data
-(theory/reviews/editors/reviewer_c.md, items E1 and E2).
+(theory/reviews/editors/kawahara.md, items E1 and E2).
 
 Both use the state-labelled trajectories of the REAL plant that the learned KKL observers
 use: ``data['train']`` (forced episodes) + ``data['p1']`` (zero-input episodes); any

@@ -1,0 +1,198 @@
+{
+ "plant": "vdp",
+ "settings": {
+  "white": {
+   "source_node": "C1-where",
+   "derived_white_from_realistic": false,
+   "mismatch": 0.0,
+   "sensor": {
+    "noise": 0.03
+   },
+   "n": {
+    "train": 6,
+    "validation": 6,
+    "phase1": 6,
+    "id": 6,
+    "shape_ood": 6,
+    "sequence_ood": 6
+   },
+   "n_rejected_redrawn": {
+    "train": 0,
+    "validation": 0,
+    "phase1": 0,
+    "id": 0,
+    "shape_ood": 0,
+    "sequence_ood": 0
+   }
+  },
+  "realistic": {
+   "source_node": "C3-realistic",
+   "derived_white_from_realistic": false,
+   "mismatch": 0.3,
+   "sensor": {
+    "noise": 0.03,
+    "kind": "colored_t",
+    "rho": 0.9,
+    "nu": 3.0
+   },
+   "n": {
+    "train": 6,
+    "validation": 6,
+    "phase1": 6,
+    "id": 6,
+    "shape_ood": 6,
+    "sequence_ood": 6
+   },
+   "n_rejected_redrawn": {
+    "train": 0,
+    "validation": 0,
+    "phase1": 0,
+    "id": 0,
+    "shape_ood": 0,
+    "sequence_ood": 0
+   }
+  },
+  "mismatch30": {
+   "source_node": "C3-mismatch30",
+   "derived_white_from_realistic": false,
+   "mismatch": 0.3,
+   "sensor": {
+    "noise": 0.03
+   },
+   "n": {
+    "train": 6,
+    "validation": 6,
+    "phase1": 6,
+    "id": 6,
+    "shape_ood": 6,
+    "sequence_ood": 6
+   },
+   "n_rejected_redrawn": {
+    "train": 0,
+    "validation": 0,
+    "phase1": 0,
+    "id": 0,
+    "shape_ood": 0,
+    "sequence_ood": 0
+   }
+  }
+ },
+ "files": {},
+ "role": "dev",
+ "n_x": 2,
+ "n_y": 1,
+ "n_u": 1,
+ "state_names": [
+  "x1 (position)",
+  "x2 (velocity)"
+ ],
+ "sensors": [
+  0
+ ],
+ "sensor_names": [
+  "x1 (position)"
+ ],
+ "unmeasured": [
+  1
+ ],
+ "group": "rich",
+ "unmodelled_term": "the nonlinear damping law mu (1 - x1^2) x2 (model: undamped oscillator)",
+ "nominal_params": {
+  "mu": 1.0
+ },
+ "not_perturbed_params": [],
+ "mismatch30_params": {
+  "mu": 1.3498588075760032
+ },
+ "x_std": [
+  1.1583422952593867,
+  1.0663652289239645
+ ],
+ "y_std": [
+  1.1583422952593867
+ ],
+ "x_mean": [
+  -0.05917844865003287,
+  0.0014243470138539218
+ ],
+ "operating_domain": [
+  [
+   -3.5758704673521033,
+   3.6297104158145665
+  ],
+  [
+   -4.092473047793873,
+   3.849459799103516
+  ]
+ ],
+ "dt": 0.02060113295832983,
+ "N": 400,
+ "T": 8.240453183331931,
+ "t_ref": 1.0,
+ "alpha": 1.5,
+ "nz": 5,
+ "settle_frac": 0.5,
+ "settle_index": 200,
+ "input_box": {
+  "v_range": [
+   -1.0,
+   1.0
+  ],
+  "u_scale": 1.0,
+  "u_range": [
+   -1.0,
+   1.0
+  ],
+  "u_bounds": null
+ },
+ "actuator": {
+  "kind": "saturating",
+  "u_bar": 2.0,
+  "k_backemf": 0.3333333333333333,
+  "j_state": 1,
+  "x_ref": 0.0
+ },
+ "ic_box": [
+  [
+   -3,
+   3
+  ],
+  [
+   -3,
+   3
+  ]
+ ],
+ "process_noise_rel": 0.005,
+ "system_config": {
+  "name": "vdp",
+  "plant": "vdp",
+  "role": "dev",
+  "params": {
+   "mu": 1.0
+  },
+  "sensors": [
+   0
+  ],
+  "ic_box": [
+   [
+    -3,
+    3
+   ],
+   [
+    -3,
+    3
+   ]
+  ],
+  "T": 50,
+  "nz": 5,
+  "alpha": 1.5,
+  "u_scale": 1.0,
+  "t_ref": 1,
+  "u_bounds": [],
+  "actuator": {
+   "kind": "saturating",
+   "u_bar": 2.0
+  }
+ },
+ "note": "CI fixture: 6 episodes per split, first 401 samples"
+}

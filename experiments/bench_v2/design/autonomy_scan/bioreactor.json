@@ -1,0 +1,24 @@
+{
+ "bioreactor|0.0": {
+  "finite": 64,
+  "late_std_max": 4.3298697960381105e-06,
+  "ratio": 1.0,
+  "frac_active": 0.0,
+  "T": 500.29851389303985,
+  "sensors": [
+   1
+  ],
+  "nx": 2
+ },
+ "bioreactor|0.3": {
+  "finite": 64,
+  "late_std_max": 4.218847493575595e-06,
+  "ratio": 1.0,
+  "frac_active": 0.0,
+  "T": 500.29851389303985,
+  "sensors": [
+   1
+  ],
+  "nx": 2
+ }
+}

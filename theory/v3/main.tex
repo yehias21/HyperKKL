@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage[numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{hyperref,booktabs,enumitem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\E}{\mathbb E}
+% v3 change marker: every statement that is new or changed against theory/m1--m4 and lemma_information.tex carries
+% \vthree{ID}{what changed}. IDs are listed in theory/v3/STATUS.md. To print a clean copy:
+% \renewcommand{\vthree}[2]{}
+\newcommand{\vthree}[2]{{\color{blue!55!black}\textsf{\footnotesize[v3-#1: #2]}}}
+\title{Theory of learned KKL observers for input-driven systems:\\ where the input enters, how much memory the
+observer needs, and what no finite-memory observer can do}
+\date{draft v3, generated from theory/v3/\{m1,m2,m3,lemma\_information,m4\}}
+% numbers produced by the mechanical results layer (analysis.paper_results); fallbacks keep the standalone build working
+\IfFileExists{../../paper/generated/numbers.tex}{\input{../../paper/generated/numbers.tex}}{}
+\providecommand{\CthreeFaultsRegimes}{none of 15 conditions}
+\providecommand{\CthreeRealisticIdVsWorking}{6/6}\providecommand{\CthreeRealisticSeqVsWorking}{6/6}
+\providecommand{\ModelErrDuffingMismatchThirty}{0.02}\providecommand{\ModelErrDuffingPartial}{0.13}
+\providecommand{\ModelErrQuadTankPartial}{0.15}\providecommand{\ModelErrBioreactorPartial}{2.15}
+\providecommand{\ModelErrLorenzPartial}{0.71}\providecommand{\ModelErrVdpPartial}{0.66}
+\providecommand{\ModelErrQuadTankMismatchThirty}{0.69}
+\providecommand{\ConeLearnedOverEkfRangeSeq}{2.7--14.1}\providecommand{\ConeLearnedOverEkfMedianSeq}{5.9}
+\begin{document}
+\maketitle
+\paragraph{Reading guide.} \vthree{G1}{rewritten for the final method} The theory is about the observer as finally
+defined: a fixed linear contracting latent filter, a strided window of $K=20$ past latents ($z$-window), a spectral
+fading-memory (SFM) input context, and a low-rank hypernetwork decoder trained on mixed histories with the C5
+regulariser (Definition~\ref{def:m1-default}). There is no input-dependent latent gain $B(c)$ and no latent injection in
+the default. The benchmark covers autonomous and input-driven state estimation; the autonomous case is
+Proposition~\ref{prop:m1-autonomous}.
+
+Every statement carries a status tag: [proven] under the stated assumptions, [proven, linear plants], [conjecture], or
+[empirical]; each is followed by an intuition, a proof, what it predicts and which experiment tests it (or that none
+does). Proofs are written for the stated assumptions only; no claim is stronger than its proof. Statements that are new
+or changed in v3 are marked \vthree{ID}{note}. Statements for the main text:
+\begin{enumerate}[leftmargin=*,itemsep=1pt]
+\item Lemma~\ref{lem:li-window} (\emph{main theoretical contribution}): an information limit for every observer with a
+finite memory, a necessary condition. Its computed numbers at a window $W$ use the climatology as a Gaussian stand-in
+for the prior at the window start, so they are an approximation (Remark~\ref{rem:li-prior}); window starvation is not
+proven. The effective window of the default is at least $6/\alpha$ (Remark~\ref{rem:li-fading}), and every example uses
+that corrected window.
+\item Lemma~\ref{lem:m2-fir} and Theorem~\ref{thm:m2-window}: the $z$-window makes the latent an exact finite-memory map,
+so the truncation tail and the initial transient cancel, and the $K=1$ lower bound does not carry over.
+\item Proposition~\ref{prop:m1-where} (where the input enters) and Proposition~\ref{prop:m3-mismatch} (when a learned
+observer beats a filter: model incompleteness).
+\item Proposition~\ref{prop:m1-autonomous}: with no input the observer is a fixed filter plus a \emph{stationary} decoder
+of the $z$-window, so the autonomous KKL guarantees apply in the form stated there.
+\end{enumerate}
+The Lyapunov dependence of the learned observer's error is an empirical observation (Remark~\ref{rem:li-scope}).
+Proposition~\ref{prop:m3-iss} is a decomposition with measured constants, not a certificate. All numerical constants
+quoted are produced by \texttt{theory/checks/*.py}; the v3 checks are in \texttt{theory/checks/v3\_checks.py}.
+\input{m1_existence_location}
+\input{m2_fading_memory}
+\input{m3_error_bounds}
+\input{lemma_information}
+\appendix
+\input{m4_information}
+\input{app_lemma_d}
+\bibliographystyle{plainnat}
+\bibliography{../refs,../lemma_refs,refs_v3}
+\end{document}

@@ -1,0 +1,14 @@
+# Prepared for a future public repository (not pushed anywhere). Data-free tests run on every push;
+# data tests need HYPERKKL_BENCH_DATA (e.g. a cached subset of the HF dataset) and are skipped otherwise.
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -e ".[test]"
+      - run: pytest -m "not slow" -q
