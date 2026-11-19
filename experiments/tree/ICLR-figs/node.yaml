@@ -1,0 +1,14 @@
+id: ICLR-figs
+parent: ICLR
+title: 'Trajectories for Fig. 3 and Appendix E: the paper''s four input regimes, seed 0 (evaluation only; models from the ICLR cache)'
+contribution: iclr
+set:
+  eval.tiers: [fam_zero, fam_constant, fam_sinusoid, fam_square]
+  eval.conditions: [clean]
+  eval.save_traj: true
+methods: [autonomous, static, dynamic, curriculum]
+baselines: []
+seeds: [0]
+priority: 20
+status: planned
+created: '2026-11-19'

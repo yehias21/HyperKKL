@@ -340,8 +340,7 @@ trains 158k parameters for the Static variant and 3.6M (r = 32) or 14.3M (r = 12
 Dynamic variant, whose basis U spans every weight; the Static variant is the more accurate on two
 systems with 23–90 times fewer parameters."
 
-**Figure 3.** Regenerate from `experiments/tree/ICLR/runs/iclr_duffing/seed0/traj.npz` (fam_square
-tier).
+**Figure 3 and Appendix E.** `python experiments/iclr_figures.py` writes the 17 PNGs under the paper's paths to `experiments/figures/imgs/` (from node ICLR-figs, seed 0, first episode of each fam_* tier; delete both \staleplot notes after copying)
 
 **§5 Conclusion.** Replace the results summary with the abstract's sentences; replace "A curriculum
 baseline ... performs worse than the autonomous observer in every condition" by the fine-tuning

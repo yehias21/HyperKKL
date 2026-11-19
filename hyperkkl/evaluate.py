@@ -50,7 +50,8 @@ from .observers import (EKF, UKF, HuberEKF, HuberUKF, KKLObserver, LatentStep, M
 from .systems import build_plant
 
 
-TRAJ_TIERS = ("shape_ood", "sequence_ood")     # tiers whose first 4 clean trajectories are saved
+TRAJ_TIERS = ("shape_ood", "sequence_ood",        # tiers whose first 4 clean trajectories are saved
+              "fam_zero", "fam_constant", "fam_sinusoid", "fam_square")
 ORACLE = ("ekf_oracle", "ukf_oracle", "ekf_oracle_huber")
 
 
