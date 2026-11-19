@@ -516,12 +516,26 @@ def eval_data(cfg: dict, tier: str, plant_shift: float = 0.0, device="cpu", hori
             des = Design(des.A, des.B, des.dt, int(round(horizon * des.N)), des.alpha, des.step)
         shift = float(scfg.get("mismatch", 0.0)) + float(plant_shift)
         plant = build_plant(scfg, perturb=shift)
-        if tier not in S.TIERS:
-            raise ValueError(f"unknown evaluation tier {tier!r} (tiers: {S.TIERS})")
-        regime = tier                     # each tier is sampled with the regime of its name
         # k_cross = 1: every evaluation episode has its own signal and IC, so episodes are
         # independent units for the bootstrap (k = 3 gave 22 distinct signals in 64)
-        return generate(plant, des, scales, scfg, dict(dcfg, k_cross=1), S.families_for(tier),
+        dc, sc = dict(dcfg, k_cross=1), scfg
+        if tier in S.TIERS:
+            regime, fams = tier, S.families_for(tier)   # each tier is sampled with the regime of its name
+        elif tier.startswith("fam_"):
+            # one training family at the id ranges: the per-input columns of the ICLR workshop
+            # paper (fam_zero is the zero input, which the id tier drops)
+            regime, fams = "id", [tier[4:]]
+            S.range_key(fams[0], regime)
+        elif tier.startswith("amp") and tier[3:].replace(".", "", 1).isdigit():
+            # the id families with the input amplitude x k: OUT of the actuator range the
+            # protocol bounds (ICLR R1). Only the signal is scaled, the plant is unchanged;
+            # episodes are rejected only when they diverge, not when they leave the envelope
+            regime, fams = "id", S.families_for("id")
+            sc = dict(scfg, u_scale=float(scfg.get("u_scale", 1.0)) * float(tier[3:]))
+            dc["reject_scale"] = 1e6
+        else:
+            raise ValueError(f"unknown evaluation tier {tier!r} (tiers: {S.TIERS}, fam_<family>, amp<k>)")
+        return generate(plant, des, scales, sc, dc, fams,
                         n_ep, regime, split_seed(scfg["name"], tier, split, rep), device)
 
     return _cached(path, build)

@@ -1,0 +1,35 @@
+id: ICLR-encoder
+parent: ICLR
+title: 'Row 3: the input encoder of the hypernetwork (current sample / FIR window / GRU / LSTM
+  / spectral fading memory), Dynamic'
+contribution: iclr
+question: Is the LSTM the right input encoder? (reviewer tWeK)
+decision_rule: Paired relative NRMSE vs dynamic@lstm on id, 95% bootstrap CI.
+set:
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  eval.conditions:
+  - clean
+methods:
+- autonomous
+- dynamic@current
+- dynamic@window
+- dynamic@gru
+- dynamic@lstm
+- dynamic@sfm
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  tier: id
+  condition: clean
+  reference: dynamic@lstm
+priority: 6
+status: done
+created: '2026-11-18'

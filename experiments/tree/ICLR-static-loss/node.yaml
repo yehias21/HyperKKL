@@ -1,0 +1,38 @@
+id: ICLR-static-loss
+parent: ICLR
+title: 'Static HyperKKL training loss: deployed rollout (default) vs the stationary-PDE residual
+  of Eq. 10 as written (pde), its input-induced part (pde_input) and the model-free finite-difference
+  residual (fd)'
+contribution: iclr
+question: Does fitting the injection to a PDE residual at T(x) transfer to the deployed filter,
+  where the injection acts at zhat? Also records the measured small-gain ratio kappa Lip_z(Phi)
+  / alpha of each.
+decision_rule: Paired relative NRMSE vs static (rollout) on id, 95% bootstrap CI over seeds x
+  episodes.
+set:
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  eval.conditions:
+  - clean
+methods:
+- autonomous
+- static
+- static[static_loss=pde]
+- static[static_loss=pde_input]
+- static[static_loss=fd]
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  tier: id
+  condition: clean
+  reference: static
+priority: 8
+status: done
+created: '2026-11-18'

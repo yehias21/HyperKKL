@@ -1,0 +1,33 @@
+id: ICLR-finetune
+parent: ICLR
+title: 'Row 6: Phase 2 with the base maps fine-tuned jointly (unfreeze_base) vs frozen (Dynamic)'
+contribution: iclr
+question: Does joint fine-tuning of the base maps in Phase 2 help? (reviewer NpQ8)
+decision_rule: Paired relative NRMSE vs dynamic (frozen) on id and on fam_zero (fine-tuning breaks
+  exact zero-input consistency).
+set:
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  eval.conditions:
+  - clean
+methods:
+- autonomous
+- dynamic
+- dynamic[unfreeze_base=true]
+- dynamic[unfreeze_base=true,lr=0.0005]
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  tier: id
+  condition: clean
+  reference: dynamic
+priority: 7
+status: done
+created: '2026-11-18'

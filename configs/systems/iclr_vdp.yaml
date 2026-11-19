@@ -1,0 +1,19 @@
+# iclr_vdp: the Van der Pol oscillator of the ICLR workshop paper (Appendix A.2), mu = 3,
+#   x1' = x2,  x2' = mu (1 - x1^2) x2 - x1 + u,  y = x1,  additive input, no actuator model.
+# Design (nz, alpha, IC box, horizon, t_ref) as configs/systems/vdp.yaml.
+name: iclr_vdp
+plant: vdp
+role: dev
+params: {mu: 3.0}
+sensors: [0]
+ic_box:
+- [-3, 3]
+- [-3, 3]
+T: 50
+nz: 5
+alpha: 1.5
+u_scale: 1.0
+t_ref: 1
+u_bounds: []
+mismatch: 0.0
+dyn_rank: 32          # Dynamic HyperKKL rank r of Eq. 13 (32 oscillators, 128 chaotic)

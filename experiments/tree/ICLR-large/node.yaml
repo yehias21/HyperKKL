@@ -1,0 +1,27 @@
+id: ICLR-large
+parent: ICLR
+title: 'Row 11: a larger system (highway_traffic)'
+contribution: iclr
+question: Do the methods scale to a higher-dimensional plant?
+decision_rule: Paired relative NRMSE vs autonomous on id, 95% bootstrap CI.
+set:
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  eval.conditions:
+  - clean
+systems:
+- highway_traffic
+seeds:
+- 0
+- 1
+- 2
+compare:
+  tier: id
+  condition: clean
+  reference: autonomous
+priority: 5
+status: done
+created: '2026-11-18'

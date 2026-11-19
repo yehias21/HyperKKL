@@ -168,26 +168,56 @@ class ConditionedDecoder(nn.Module):
         return b.out.denorm(h)
 
 
-class LatentInjection(nn.Module):
-    """Phi(z, c) = M([z, c]) - M([z, 0]) in latent units; enters zhat' additively."""
+SILU_LIP = 1.0998              # max |silu'|
 
-    def __init__(self, nz: int, dc: int, width: int, z_std: torch.Tensor, depth=None):
+
+class LatentInjection(nn.Module):
+    """Phi(z, c) = M([z, c]) - M([z, 0]) in latent units; enters zhat' additively.
+
+    ``lip`` (optional, the ICLR revision's small-gain variant): Lip_z(Phi) <= lip by
+    construction. project_() caps every ||W_l||_2 at 1 after each optimiser step, and the
+    output is multiplied by the fixed gamma = lip / (2 (max z_std / min z_std) SILU_LIP^depth),
+    since Lip_z(Phi) <= 2 (max z_std / min z_std) Lip(M). phase2 sets lip = rho alpha / kappa,
+    so the small-gain condition kappa Lip_z(Phi) < alpha of Proposition 2 holds for rho < 1."""
+
+    def __init__(self, nz: int, dc: int, width: int, z_std: torch.Tensor, depth=None, lip=None):
         super().__init__()
-        self.M = MLP(nz + dc, nz, width, 2 if depth is None else int(depth), "silu", zero_last=True)
+        depth = 2 if depth is None else int(depth)
+        self.M = MLP(nz + dc, nz, width, depth, "silu", zero_last=True)
         self.register_buffer("z_std", torch.as_tensor(z_std, dtype=torch.float32))
+        self.capped = lip is not None
+        if self.capped:
+            ratio = float(self.z_std.max() / self.z_std.min())
+            self.register_buffer("gamma", torch.tensor(float(lip) / (2 * ratio * SILU_LIP ** depth)))
+
+    @torch.no_grad()
+    def project_(self):
+        for layer in self.M.layers:
+            s = float(torch.linalg.matrix_norm(layer.weight, 2))
+            if s > 1.0:
+                layer.weight.mul_(1.0 / s)
+
+    def lip_bound(self) -> float:
+        """Certified upper bound on Lip_z(Phi) from the current weights."""
+        p = 2 * float(self.z_std.max() / self.z_std.min()) * SILU_LIP ** (len(self.M.layers) - 1)
+        for layer in self.M.layers:
+            p *= float(torch.linalg.matrix_norm(layer.weight.detach(), 2))
+        return p * (float(self.gamma) if self.capped else 1.0)
 
     def forward(self, z, c):
         zn = z / self.z_std                     # two same-shape calls: exact 0 at c = 0 (see concat)
-        return (self.M(torch.cat([zn, c], -1)) - self.M(torch.cat([zn, torch.zeros_like(c)], -1))) * self.z_std
+        out = (self.M(torch.cat([zn, c], -1)) - self.M(torch.cat([zn, torch.zeros_like(c)], -1))) * self.z_std
+        return out * self.gamma if self.capped else out
 
 
 def build_conditioner(kind: str, base_dec: BaseMap, dc: int, width: int, rank: int,
                       z_std, gen_layers=None, film_depth=None, concat_depth=None,
-                      latent_depth=None) -> nn.Module:
+                      latent_depth=None, latent_lip=None) -> nn.Module:
     """Knobs that do not apply to ``kind`` are ignored (one phase-2 section serves every
     method of a job)."""
     if kind == "latent":
-        return LatentInjection(base_dec.layers[0].in_features, dc, width, z_std, depth=latent_depth)
+        return LatentInjection(base_dec.layers[0].in_features, dc, width, z_std, depth=latent_depth,
+                               lip=latent_lip)
     return ConditionedDecoder(base_dec, kind, dc, width, rank, gen_layers=gen_layers if kind == "hyper" else None,
                               film_depth=film_depth, concat_depth=concat_depth)
 

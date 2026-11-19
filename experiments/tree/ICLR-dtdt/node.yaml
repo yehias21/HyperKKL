@@ -1,0 +1,38 @@
+id: ICLR-dtdt
+parent: ICLR
+title: 'Row 2: the time-derivative term of Dynamic HyperKKL (Eq. 14 fd vs JVP chain rule vs BDF2
+  vs none) and the PDE term itself (lambda 0); the decoder target ablation (Eq. 8 as written)'
+contribution: iclr
+question: Does the choice of dT/dt, or the PDE term at all, change the deployed error? Does decoding
+  the encoder output (Eq. 8 as written, dyn_target=enc) instead of the filter latent hurt?
+decision_rule: Paired relative NRMSE vs dynamic[dtdt=fd] (Eq. 14) on id, 95% bootstrap CI over
+  seeds x episodes.
+set:
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  eval.conditions:
+  - clean
+methods:
+- autonomous
+- dynamic[dtdt=fd]
+- dynamic[dtdt=jvp]
+- dynamic[dtdt=fd2]
+- dynamic[dtdt=none]
+- dynamic[lambda_pde=0]
+- dynamic[dyn_target=enc]
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  tier: id
+  condition: clean
+  reference: dynamic[dtdt=fd]
+priority: 8
+status: done
+created: '2026-11-18'

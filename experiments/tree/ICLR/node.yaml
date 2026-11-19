@@ -1,0 +1,84 @@
+id: ICLR
+parent: null
+title: 'ICLR workshop revision: Static and Dynamic HyperKKL (paper-faithful, iclr.py) vs autonomous,
+  curriculum, EKF and model-based KKL on the paper''s four systems, 5 seeds'
+contribution: iclr
+question: Do the claims of Tables 1-2 hold on the Appendix A systems with 5 seeds, an EKF and
+  an exact model-based KKL reference, the paper's per-input columns (fam_*), zero-input consistency,
+  noisy y and noisy u (id-tier conditions) and out-of-range amplitude (amp2, amp4)? Reviewer rows
+  4, 5, 7, 8, 10; the curriculum ordering control (cur_levels=1).
+hypothesis: Static and Dynamic lower the error under forcing where the input moves the state (duffing,
+  vdp, rossler); on lorenz at u_scale 1 the input barely matters; both equal the autonomous observer
+  at zero input exactly.
+decision_rule: Per system and tier, paired relative NRMSE change vs autonomous with 95% bootstrap
+  CI over seeds x episodes; a claim of Tables 1-2 is kept only where the CI excludes 0 in its
+  direction.
+set:
+  phase1.decoder_data:
+  - label
+  phase2.context.kind: lstm
+  phase2.context.window: 100
+  eval.val_nrmse: true
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  - fam_sinusoid
+  - fam_square
+  - amp2
+  - amp4
+  eval.conditions:
+  - clean
+  - noise10
+  - input_noise05
+  - input_noise
+  - input_noise20
+  conditions.noise10:
+    sensor:
+      noise: 0.1
+    tiers:
+    - id
+  conditions.input_noise05:
+    input:
+      noise: 0.05
+    tiers:
+    - id
+  conditions.input_noise:
+    input:
+      noise: 0.1
+    tiers:
+    - id
+  conditions.input_noise20:
+    input:
+      noise: 0.2
+    tiers:
+    - id
+methods:
+- autonomous
+- static
+- dynamic
+- curriculum
+- curriculum[cur_levels=1]
+baselines:
+- ekf
+- kkl_mb
+systems:
+- iclr_duffing
+- iclr_vdp
+- iclr_rossler
+- iclr_lorenz
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+compare:
+  tier: id
+  condition: clean
+  reference: autonomous
+priority: 10
+status: done
+created: '2026-11-18'

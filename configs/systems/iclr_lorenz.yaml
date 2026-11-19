@@ -1,0 +1,20 @@
+# iclr_lorenz: the Lorenz system of the ICLR workshop paper (Appendix A.4), sigma = 10, rho = 28,
+#   beta = 8/3, input additive in x2' (no saturating actuator), y = x2.
+# Design (nz, alpha, IC box, horizon, t_ref) as configs/systems/lorenz.yaml.
+name: iclr_lorenz
+plant: lorenz
+role: dev
+params: {}
+sensors: [1]
+ic_box:
+- [-20, 20]
+- [-30, 30]
+- [0, 50]
+T: 50
+nz: 7
+alpha: 2.0
+u_scale: 1.0
+t_ref: 1
+u_bounds: []
+mismatch: 0.0
+dyn_rank: 128          # Dynamic HyperKKL rank r of Eq. 13 (32 oscillators, 128 chaotic)

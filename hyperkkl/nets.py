@@ -171,6 +171,19 @@ class GRUEncoder(ContextEncoder):
         return self.proj(o[:, 0] - o0[:, 0]), (h, h0)
 
 
+class LSTMEncoder(GRUEncoder):
+    """GRUEncoder with an LSTM cell (the recurrent encoder of the ICLR workshop paper):
+    c = P (h(u) - h(0)), exactly zero at zero input. The state is ((h, c), (h0, c0))."""
+
+    def __init__(self, nu, dim, hidden, u_ref=1.0):
+        super().__init__(nu, dim, hidden, u_ref)
+        self.rnn = nn.LSTM(nu, hidden, batch_first=True)
+
+    def init_state(self, B, device):
+        z = torch.zeros(1, B, self.hidden, device=device, dtype=self.proj.weight.dtype)
+        return ((z, z.clone()), (z.clone(), z.clone()))
+
+
 class SFMEncoder(ContextEncoder):
     r"""Spectral fading-memory context.
 
@@ -309,6 +322,8 @@ def build_context(kind: str, ccfg: dict, nu: int, dt: float, poles, u_ref: float
         return WindowEncoder(nu, dim, hid, int(ccfg["window"]), u_ref)
     if kind == "gru":
         return GRUEncoder(nu, dim, hid, u_ref)
+    if kind == "lstm":
+        return LSTMEncoder(nu, dim, hid, u_ref)
     if kind == "sfm":
         return SFMEncoder(nu, dim, hid, dt, poles, int(ccfg.get("sfm_blocks", 8)), u_ref,
                           floor=float(ccfg.get("sfm_floor", 0.0)), history=ccfg.get("history"))

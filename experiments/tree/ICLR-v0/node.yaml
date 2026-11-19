@@ -1,0 +1,78 @@
+id: ICLR-v0
+parent: null
+title: 'SUPERSEDED (tmlr latent/hyper on the [coll, traj] base), ICLR workshop revision: Static (latent) vs Dynamic (hyper) HyperKKL on the paper''s four
+  systems, 5 seeds'
+contribution: iclr
+question: Do the claims of Tables 1-2 hold on the Appendix A systems with 5 seeds, an EKF reference,
+  the paper's per-input columns (fam_*), zero-input consistency, noisy inputs and noisy y (id-tier
+  conditions) and out-of-range input amplitude (amp2, amp4)? Covers reviewer rows 4, 5, 7, 8,
+  10.
+hypothesis: Input conditioning lowers the error under forcing on duffing, vdp and rossler; on
+  lorenz it does not; every conditioned variant equals the autonomous observer at zero input (exact
+  by construction here).
+decision_rule: Per system and tier, paired relative NRMSE change vs autonomous with 95% bootstrap
+  CI over seeds x episodes; a claim of Tables 1-2 is kept only where the CI excludes 0 in its
+  direction.
+set:
+  phase2.context.kind: lstm
+  phase2.context.window: 100
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  - fam_sinusoid
+  - fam_square
+  - amp2
+  - amp4
+  eval.conditions:
+  - clean
+  - noise10
+  - input_noise05
+  - input_noise
+  - input_noise20
+  conditions.noise10:
+    sensor:
+      noise: 0.1
+    tiers:
+    - id
+  conditions.input_noise05:
+    input:
+      noise: 0.05
+    tiers:
+    - id
+  conditions.input_noise:
+    input:
+      noise: 0.1
+    tiers:
+    - id
+  conditions.input_noise20:
+    input:
+      noise: 0.2
+    tiers:
+    - id
+methods:
+- autonomous
+- latent
+- hyper
+baselines:
+- ekf
+systems:
+- iclr_duffing
+- iclr_vdp
+- iclr_rossler
+- iclr_lorenz
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+compare:
+  tier: id
+  condition: clean
+  reference: autonomous
+priority: 10
+status: queued
+created: '2026-11-18'

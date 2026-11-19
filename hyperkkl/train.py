@@ -33,6 +33,7 @@ import torch
 import torch.nn as nn
 from torch.func import jvp
 
+from . import design as D
 from .conditioning import ConditionedDecoder, ContextScale, arch_options, build_conditioner, match_width
 from .monitor import TrainMonitor
 from .nets import MLP, BaseMap, build_context, n_params
@@ -112,14 +113,20 @@ def phase1(cfg, data, scales, des, device, seed, log=print) -> dict:
     # let the ~20x more numerous trajectory samples dominate, and the decoder then failed
     # off the attractor: eps_dec 4.0 sigma on quad_tank (archive: "uniform collocation
     # beats trajectory data 3-10x" for the decoder).
-    sources = []
+    # "label": the labelled zero-input pairs (Z, X) themselves, i.e. the latent the deployed
+    # filter carries at zero input instead of T0's fit of it (they differ by eps_enc: 18% of
+    # the latent scale on the ICLR Lorenz, where the decoder of T0(x) then fails at zero input)
+    sources, labels = [], []
     if "coll" in p["decoder_data"]:
-        sources.append(xc)
+        sources.append(xc); labels.append(None)
     if "traj" in p["decoder_data"]:
         sources.append(torch.cat([X, _flat_valid(data["train"], "x", p["stride"] * 4).to(device)]))
+        labels.append(None)
+    if "label" in p["decoder_data"]:
+        sources.append(X); labels.append(Z)
     enc = lambda A_: torch.cat([T0(A_[i:i + 65536]) for i in range(0, len(A_), 65536)])
     with torch.no_grad():
-        zsrc = [enc(A_) for A_ in sources]
+        zsrc = [enc(A_) if Z_ is None else Z_ for A_, Z_ in zip(sources, labels)]
     Xd, Zd = torch.cat(sources), torch.cat(zsrc)
     sig = torch.as_tensor(scales["x_std"], dtype=torch.float32, device=device)
     Ti = BaseMap(nz, nx, p["dec_width"], p["dec_depth"], "tanh", _stats(Zd), _stats(Xd)).to(device)
@@ -259,6 +266,9 @@ def _rollout_loss(inj, ctx, lat, T0, Ti, es, e, k0, K, sig):
 
 def phase2(kind, cfg, data, scales, des, base, device, seed, log=print) -> dict:
     """Train one conditioning variant. Returns {"cond", "ctx", "n_params", ...}."""
+    if kind in ("static", "dynamic", "curriculum"):            # the ICLR workshop paper's methods
+        from . import iclr
+        return iclr.phase2(kind, cfg, data, scales, des, base, device, seed, log)
     torch.manual_seed(seed)
     t0 = time.time()
     p = cfg["phase2"]
@@ -281,7 +291,25 @@ def phase2(kind, cfg, data, scales, des, base, device, seed, log=print) -> dict:
     budget = int(p["budget"]) - (n_params(ctx) if p.get("budget_includes_context") else 0)
     arch = arch_options(p)                     # tuning knobs; {} = the original architecture
     width, npar = match_width(kind, Ti, dc, budget, int(p["rank"]), z_std, **arch)
-    cond = build_conditioner(kind, Ti, dc, width, int(p["rank"]), z_std, **arch).to(device)
+    kappa, alpha = D.spectral_bounds(des.A)
+    lip = None
+    if p.get("latent_gain") is not None:       # ICLR revision: small gain by construction
+        if kind != "latent":
+            raise ValueError("latent_gain applies to the latent variant only")
+        lip = float(p["latent_gain"]) * alpha / kappa
+    unfreeze = bool(p.get("unfreeze_base", False))
+    if unfreeze and kind == "latent":          # the latent observer decodes with the shared T0+
+        raise ValueError("unfreeze_base applies to the decoder-side variants only")
+    # unfreeze_base (ICLR revision, R2): the base decoder trains jointly with the conditioner,
+    # on a private copy, so the other methods of the job keep the frozen T0+
+    cond = build_conditioner(kind, copy.deepcopy(Ti) if unfreeze else Ti, dc, width, int(p["rank"]), z_std,
+                             latent_lip=lip, **arch).to(device)
+    if unfreeze:
+        for q in cond.base.parameters():
+            q.requires_grad_(True)
+    inj = cond if getattr(cond, "capped", False) else None
+    if inj is not None:
+        inj.project_()
     ctx_scale = None
     if p.get("ctx_rms") is not None:           # shared context-scale knob (absent = unscaled, as before)
         with torch.no_grad():
@@ -335,6 +363,8 @@ def phase2(kind, cfg, data, scales, des, base, device, seed, log=print) -> dict:
             loss.backward()
         mon.clip()
         opt.step(); sch.step()
+        if inj is not None:
+            inj.project_()
         if (s + 1) % every == 0 or s == steps - 1:
             v = val_loss()
             hist.append([s + 1, loss.detach().item(), v])
@@ -346,10 +376,43 @@ def phase2(kind, cfg, data, scales, des, base, device, seed, log=print) -> dict:
     cond.load_state_dict(best_state[0]); ctx.load_state_dict(best_state[1])
     for q in params:
         q.requires_grad_(False)
+    extra = {}
+    if kind == "latent":
+        extra["small_gain"] = _small_gain(cond, ctx, tr, kappa, alpha, lip)
+        log(f"    [latent] small gain: {extra['small_gain']}")
+    if unfreeze:
+        extra["unfreeze_base"] = True
+        extra["n_params_trained"] = sum(q.numel() for q in params)
     return {"cond": cond, "ctx": ctx, "n_params": npar, "width": width,
             "ctx_params": n_params(ctx, trainable_only=False), "wall_s": time.time() - t0,
             "hist": hist, "val": best, "opt": mon.windows, "lr": float(p["lr"]), "rank": int(p["rank"]),
-            "arch": arch, **({"ctx_rms": float(p["ctx_rms"]), "ctx_scale": ctx_scale} if ctx_scale is not None else {})}
+            "arch": arch, **({"ctx_rms": float(p["ctx_rms"]), "ctx_scale": ctx_scale} if ctx_scale is not None else {}),
+            **extra}
+
+
+def _small_gain(cond, ctx, tr, kappa, alpha, lip, n_ep=64, n_t=32) -> dict:
+    """The small-gain condition kappa L_phi < alpha of Proposition 2 (ICLR revision) for a
+    trained latent injection: the certified bound on L_phi = Lip_z(Phi) from the weights, and
+    the local ||dPhi/dz||_2 on post-washout training states (a lower bound on L_phi)."""
+    inj = cond.inner if isinstance(cond, ContextScale) else cond
+    g = torch.Generator().manual_seed(0)
+    e = torch.randperm(len(tr), generator=g)[:n_ep].to(tr.u.device)
+    k = torch.randint(tr.burn, tr.x.shape[1], (len(e), n_t), generator=g).to(tr.u.device)
+    with torch.no_grad():
+        c = ctx.seq(tr.u[e])
+    rows = torch.arange(len(e), device=tr.u.device)[:, None]
+    z, c = tr.z_obs[e][rows, k].reshape(-1, tr.z_obs.shape[-1]), c[rows, k].reshape(-1, c.shape[-1])
+    nz = z.shape[-1]
+    cols = [jvp(lambda zz: cond(zz, c), (z,), (torch.eye(nz, device=z.device)[i].expand_as(z),))[1]
+            for i in range(nz)]
+    J = torch.stack(cols, -1)
+    loc = torch.linalg.matrix_norm(J, 2)
+    out = {"kappa": kappa, "alpha": alpha, "lip_bound": inj.lip_bound(),
+           "lip_local_max": float(loc.max()), "lip_local_q99": float(loc.quantile(0.99)),
+           "lip_target": lip}
+    out["small_gain_certified"] = kappa * out["lip_bound"] < alpha
+    out["kappa_lip_local_over_alpha"] = kappa * out["lip_local_max"] / alpha
+    return out
 
 
 # ---------------------------------------------------------------------------

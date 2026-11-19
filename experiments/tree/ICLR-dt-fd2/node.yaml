@@ -1,0 +1,21 @@
+id: ICLR-dt-fd2
+parent: null
+title: 'Pilot 2 (fd2): Dynamic with the filter-latent target on the label-decoder base'
+contribution: iclr
+question: Which dT/dt (fd = Eq. 14, jvp, fd2, none) and does the PDE term help (lam0), once the
+  decoder inverts the filter latent? Also static rollout and curriculum on the new base (fd node).
+decision_rule: lowest mean val_nrmse over the four systems, seed 0; ties (< 2%) go to Eq. 14 (fd).
+set:
+  phase1.decoder_data: [label]
+  phase2.context.kind: lstm
+  phase2.context.window: 100
+  eval.val_nrmse: true
+  eval.tiers: [id, sequence_ood, fam_zero]
+  eval.conditions: [clean]
+methods: [autonomous, 'dynamic[dtdt=fd2]']
+baselines: []
+systems: [iclr_duffing, iclr_vdp, iclr_rossler, iclr_lorenz]
+seeds: [0]
+priority: 20
+status: planned
+created: '2026-11-18'

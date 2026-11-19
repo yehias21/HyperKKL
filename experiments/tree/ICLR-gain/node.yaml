@@ -1,0 +1,35 @@
+id: ICLR-gain
+parent: ICLR
+title: 'Row 9: Static HyperKKL with the small-gain condition of Prop. 2 enforced by construction
+  (Lip_z(Phi) <= rho alpha / kappa)'
+contribution: iclr
+question: 'What does the certified small-gain Static cost in accuracy, and does it fix out-of-range
+  inputs? (reviewer 6wmw: stability)'
+decision_rule: Paired relative NRMSE vs static on id and amp2.
+set:
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  - amp2
+  eval.conditions:
+  - clean
+methods:
+- autonomous
+- static
+- static[latent_gain=0.5]
+- static[latent_gain=0.9]
+baselines: []
+seeds:
+- 0
+- 1
+- 2
+compare:
+  tier: id
+  condition: clean
+  reference: static
+priority: 7
+status: done
+created: '2026-11-18'

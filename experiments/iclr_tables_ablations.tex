@@ -1,0 +1,144 @@
+% ---- ICLR-dtdt
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.208\,$\pm$\,0.003 & 0.0637\,$\pm$\,0.002 & 0.183\,$\pm$\,0.003 & 0.0171\,$\pm$\,0.001 \\
+dynamic[dtdt=fd] & 0.134\,$\pm$\,0.001 & 0.0198\,$\pm$\,0.001 & 0.104\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic[dtdt=jvp] & 0.141\,$\pm$\,0.01 & 0.0192\,$\pm$\,0.0005 & 0.104\,$\pm$\,0.001 & 0.0168\,$\pm$\,0.001 \\
+dynamic[dtdt=fd2] & 0.135\,$\pm$\,0.002 & 0.0199\,$\pm$\,0.001 & 0.104\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic[dtdt=none] & 0.134\,$\pm$\,0.003 & 0.0192\,$\pm$\,0.0007 & 0.104\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic[lambda\_pde=0] & 0.147\,$\pm$\,0.02 & 0.0173\,$\pm$\,0.0002 & 0.104\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic[dyn\_target=enc] & 0.278\,$\pm$\,0.01 & 0.118\,$\pm$\,0.04 & 1.85\,$\pm$\,0.3 & 0.421\,$\pm$\,0.04 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-dtdt
+
+% ---- ICLR-static-loss
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.208\,$\pm$\,0.003 & 0.0637\,$\pm$\,0.002 & 0.183\,$\pm$\,0.003 & 0.0171\,$\pm$\,0.001 \\
+static & 0.100\,$\pm$\,0.04 & 0.0175\,$\pm$\,0.0001 & 0.108\,$\pm$\,0.004 & 0.0138\,$\pm$\,0.001 \\
+static[static\_loss=pde] & 0.183\,$\pm$\,0.006 & 0.938\,$\pm$\,1 & 1.91\,$\pm$\,1 & 0.579\,$\pm$\,0.4 \\
+static[static\_loss=pde\_input] & 0.189\,$\pm$\,0.002 & 0.129\,$\pm$\,0.05 & 0.110\,$\pm$\,0.003 & 0.0948\,$\pm$\,0.01 \\
+static[static\_loss=fd] & 0.172\,$\pm$\,0.02 & 0.0532\,$\pm$\,0.001 & 0.139\,$\pm$\,0.01 & 0.0950\,$\pm$\,0.001 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-static-loss
+
+% ---- ICLR-encoder
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.208\,$\pm$\,0.003 & 0.0637\,$\pm$\,0.002 & 0.183\,$\pm$\,0.003 & 0.0171\,$\pm$\,0.001 \\
+dynamic@current & 0.165\,$\pm$\,0.03 & 0.0236\,$\pm$\,0.0004 & 0.102\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic@window & 0.132\,$\pm$\,0.004 & 0.0176\,$\pm$\,0.0003 & 0.0949\,$\pm$\,0.003 & 0.0156\,$\pm$\,0.001 \\
+dynamic@gru & 0.148\,$\pm$\,0.01 & 0.0175\,$\pm$\,0.0002 & 0.101\,$\pm$\,0.002 & 0.0165\,$\pm$\,0.001 \\
+dynamic@lstm & 0.134\,$\pm$\,0.001 & 0.0198\,$\pm$\,0.001 & 0.104\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic@sfm & 0.157\,$\pm$\,0.02 & 0.0176\,$\pm$\,0.0003 & 0.0961\,$\pm$\,0.003 & 0.0169\,$\pm$\,0.001 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-encoder
+
+% ---- ICLR-window
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.208\,$\pm$\,0.003 & 0.0637\,$\pm$\,0.002 & 0.183\,$\pm$\,0.003 & 0.0171\,$\pm$\,0.001 \\
+dynamic & 0.134\,$\pm$\,0.001 & 0.0198\,$\pm$\,0.001 & 0.104\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic@window:window=10 & 0.144\,$\pm$\,0.009 & 0.0201\,$\pm$\,0.001 & 0.0984\,$\pm$\,0.004 & 0.0169\,$\pm$\,0.0009 \\
+dynamic@window:window=25 & 0.152\,$\pm$\,0.03 & 0.0191\,$\pm$\,6e-05 & 0.0978\,$\pm$\,0.003 & 0.0162\,$\pm$\,0.002 \\
+dynamic@window:window=50 & 0.135\,$\pm$\,0.002 & 0.0177\,$\pm$\,0.0003 & 0.0982\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic@window:window=100 & 0.132\,$\pm$\,0.004 & 0.0176\,$\pm$\,0.0003 & 0.0949\,$\pm$\,0.003 & 0.0156\,$\pm$\,0.001 \\
+dynamic@window:window=200 & 0.131\,$\pm$\,0.004 & 0.0178\,$\pm$\,0.0003 & 0.0920\,$\pm$\,0.001 & 0.0169\,$\pm$\,0.001 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-window
+
+% ---- ICLR-finetune
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.208\,$\pm$\,0.003 & 0.0637\,$\pm$\,0.002 & 0.183\,$\pm$\,0.003 & 0.0171\,$\pm$\,0.001 \\
+dynamic & 0.134\,$\pm$\,0.001 & 0.0198\,$\pm$\,0.001 & 0.104\,$\pm$\,0.002 & 0.0169\,$\pm$\,0.001 \\
+dynamic[unfreeze\_base=true] & 0.123\,$\pm$\,0.003 & 0.0149\,$\pm$\,0.0001 & 0.0888\,$\pm$\,0.001 & 0.0153\,$\pm$\,0.001 \\
+dynamic[unfreeze\_base=true,lr=0.0005] & 0.134\,$\pm$\,0.004 & 0.0173\,$\pm$\,0.0005 & 0.0909\,$\pm$\,0.0007 & 0.0161\,$\pm$\,0.001 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-finetune
+
+% ---- ICLR-gain
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.208\,$\pm$\,0.003 & 0.0637\,$\pm$\,0.002 & 0.183\,$\pm$\,0.003 & 0.0171\,$\pm$\,0.001 \\
+static & 0.100\,$\pm$\,0.04 & 0.0175\,$\pm$\,0.0001 & 0.108\,$\pm$\,0.004 & 0.0138\,$\pm$\,0.001 \\
+static[latent\_gain=0.5] & 0.197\,$\pm$\,0.003 & 0.0286\,$\pm$\,0.0009 & 0.108\,$\pm$\,0.004 & 0.0170\,$\pm$\,0.001 \\
+static[latent\_gain=0.9] & 0.197\,$\pm$\,0.003 & 0.0284\,$\pm$\,0.0008 & 0.108\,$\pm$\,0.004 & 0.0171\,$\pm$\,0.001 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-gain
+
+% ---- ICLR-lorenz-u10
+\begin{tabular}{lc}
+\toprule
+Method & Lorenz \\
+\midrule
+autonomous & 0.0308\,$\pm$\,0.001 \\
+static & 0.0171\,$\pm$\,0.002 \\
+dynamic & 0.0183\,$\pm$\,0.002 \\
+curriculum & 0.0241\,$\pm$\,0.002 \\
+curriculum[cur\_levels=1] & 0.0234\,$\pm$\,0.002 \\
+ekf & 0.00644 \\
+kkl\_mb & 0.299\,$\pm$\,0.01 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-lorenz-u10
+
+% ---- ICLR-large
+\begin{tabular}{lc}
+\toprule
+Method & Highway \\
+\midrule
+autonomous & 0.308\,$\pm$\,0.03 \\
+static & 0.270\,$\pm$\,0.03 \\
+dynamic & 0.0846\,$\pm$\,0.02 \\
+curriculum & 0.0604\,$\pm$\,0.0007 \\
+curriculum[cur\_levels=1] & 0.0621\,$\pm$\,0.002 \\
+ekf & 0.0122 \\
+kkl\_mb & 0.275\,$\pm$\,0.03 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier id, node ICLR-large
+
+% ---- ICLR-finetune, zero input
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.223\,$\pm$\,0.004 & 0.0170\,$\pm$\,0.0003 & 0.106\,$\pm$\,0.005 & 0.0170\,$\pm$\,0.001 \\
+dynamic & 0.223\,$\pm$\,0.004 & 0.0170\,$\pm$\,0.0003 & 0.106\,$\pm$\,0.005 & 0.0170\,$\pm$\,0.001 \\
+dynamic[unfreeze\_base=true] & 0.143\,$\pm$\,0.005 & 0.0142\,$\pm$\,9e-05 & 0.0892\,$\pm$\,0.0006 & 0.0154\,$\pm$\,0.001 \\
+dynamic[unfreeze\_base=true,lr=0.0005] & 0.156\,$\pm$\,0.004 & 0.0163\,$\pm$\,0.0003 & 0.0916\,$\pm$\,0.0002 & 0.0161\,$\pm$\,0.001 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier fam_zero, node ICLR-finetune
+
+% ---- ICLR-gain, 2x amplitude
+\begin{tabular}{lcccc}
+\toprule
+Method & Duffing & Van der Pol & R\"ossler & Lorenz \\
+\midrule
+autonomous & 0.228\,$\pm$\,0.002 & 0.110\,$\pm$\,0.003 & 0.298\,$\pm$\,0.01 & 0.0183\,$\pm$\,0.001 \\
+static & 0.140\,$\pm$\,0.04 & 0.0245\,$\pm$\,0.001 & 0.151\,$\pm$\,0.005 & 0.0144\,$\pm$\,0.001 \\
+static[latent\_gain=0.5] & 0.203\,$\pm$\,0.004 & 0.0564\,$\pm$\,0.003 & 0.167\,$\pm$\,0.005 & 0.0178\,$\pm$\,0.0009 \\
+static[latent\_gain=0.9] & 0.204\,$\pm$\,0.003 & 0.0566\,$\pm$\,0.002 & 0.160\,$\pm$\,0.004 & 0.0178\,$\pm$\,0.001 \\
+\bottomrule
+\end{tabular}
+% NRMSE, tier amp2, node ICLR-gain

@@ -1,0 +1,31 @@
+id: ICLR-lorenz-u10
+parent: ICLR
+title: 'Row 9: Lorenz with inputs of amplitude ~10 (u_scale 10)'
+contribution: iclr
+question: Does conditioning help on Lorenz once the input is large enough to move the state?
+decision_rule: Paired relative NRMSE vs autonomous on id, 95% bootstrap CI.
+set:
+  system.u_scale: 10.0
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  - fam_sinusoid
+  - fam_square
+  eval.conditions:
+  - clean
+systems:
+- iclr_lorenz
+seeds:
+- 0
+- 1
+- 2
+compare:
+  tier: id
+  condition: clean
+  reference: autonomous
+priority: 7
+status: done
+created: '2026-11-18'

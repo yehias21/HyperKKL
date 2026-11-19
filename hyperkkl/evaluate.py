@@ -43,7 +43,7 @@ from . import data as Dm
 from .conditioning import ConditionedDecoder, method_kind
 from .config import deep_merge
 from .metrics import block_scorecard, episode_metrics, fit_decay, forget_time
-from .nets import ContextEncoder, GRUEncoder, SFMEncoder, WindowEncoder
+from .nets import ContextEncoder, GRUEncoder, LSTMEncoder, SFMEncoder, WindowEncoder
 from .observers import (EKF, UKF, HuberEKF, HuberUKF, KKLObserver, LatentStep, ModelBasedKKL,
                         Observer, ParticleFilter, model_error_rate, oracle_noise, run,
                         time_per_step)
@@ -147,7 +147,7 @@ def build_observers(cfg, des, scales, base, trained: dict, nlox_res, device, dat
     T0, Ti = (base["T0"], base["T0inv"]) if base else (None, None)   # None: filters only
     obs = {}
     for name, r in trained.items():
-        if method_kind(name) == "latent":
+        if method_kind(name) in ("latent", "static"):
             obs[name] = KKLObserver(name, lat, ConditionedDecoder(Ti, "none", 0, 0),
                                     ctx=r["ctx"], injection=r["cond"], z0_map=T0)
         else:
@@ -315,7 +315,7 @@ def evaluate(cfg, des, scales, observers: dict, device, log=print, timing: dict 
 # C2 memory probe
 # ---------------------------------------------------------------------------
 
-PROBE_CONTEXTS = {SFMEncoder: "sfm", GRUEncoder: "gru", WindowEncoder: "window"}
+PROBE_CONTEXTS = {SFMEncoder: "sfm", GRUEncoder: "gru", LSTMEncoder: "lstm", WindowEncoder: "window"}
 
 
 @torch.no_grad()

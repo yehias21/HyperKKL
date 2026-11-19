@@ -38,7 +38,7 @@ MODEL_CACHE = Dm.CACHE / "models"
 PKG = Path(__file__).resolve().parent
 
 
-RESULT_MODULES = ("baselines_data", "cache", "conditioning", "config", "data", "design", "evaluate", "job", "monitor",
+RESULT_MODULES = ("baselines_data", "cache", "conditioning", "config", "data", "design", "evaluate", "iclr", "job", "monitor",
                   "metrics", "nets", "observers", "signals", "systems", "systems_extra", "train")
 
 
@@ -78,7 +78,11 @@ def _to(obj, device):
 # phase-2 keys a method string may set in brackets: kind[key=value,...]
 METHOD_KEYS = ("lr", "rank", "steps", "warmup", "budget", "budget_includes_context", "rollout_K",
                "episodes_per_batch", "times_per_episode", "gen_layers", "film_depth", "concat_depth",
-               "latent_depth", "ctx_rms")
+               "latent_depth", "ctx_rms", "latent_gain", "unfreeze_base",
+               # the ICLR paper's methods (iclr.py)
+               "static_loss", "dtdt", "dyn_rank", "dyn_width", "dyn_target", "dyn_label", "lambda_pde", "n_coll_batch",
+               "iclr_times_per_episode", "cur_levels", "cur_eps", "cur_patience", "cur_every",
+               "cur_min", "cur_max", "cur_lr")
 
 
 def _kv(s: str, what: str) -> dict:
@@ -163,7 +167,9 @@ def run_job(node_id: str, system: str, seed: int, device: str) -> dict:
                               lambda: phase2(kind, mc, data, scales, des, base, device, seed, log)), device)
         trained[m] = r
         train_info[m] = {k: r.get(k) for k in ("n_params", "width", "ctx_params", "wall_s", "val", "hist", "opt")}
-        for k in ("lr", "rank", "arch", "ctx_rms", "ctx_scale"):           # recorded by phase 2 since the tuning study
+        for k in ("lr", "rank", "arch", "ctx_rms", "ctx_scale",            # recorded by phase 2 since the tuning study
+                  "small_gain", "unfreeze_base", "n_params_trained",      # ICLR revision
+                  "static_loss", "dtdt", "dyn_rank", "dyn_target", "dyn_label", "curriculum"):
             if r.get(k) is not None:
                 train_info[m][k] = r[k]
     if cfg["eval"].get("val_nrmse"):           # deployed-observer NRMSE on data.val (selection)

@@ -114,6 +114,17 @@ class VanDerPol(Plant):
         return torch.stack([x[:, 1], -x[:, 0] + u[:, 0]], 1)
 
 
+@register("duffing_rev")
+class ReverseDuffing(Plant):
+    """x1' = x2^3,  x2' = -x1 + u,  y = x1 (reverse Duffing of the ICLR workshop paper,
+    Appendix A.1; Niazi et al. 2025 use its autonomous form)."""
+    nx = 2
+
+    def f(self, x, u):
+        x1, x2 = x[:, 0], x[:, 1]
+        return torch.stack([x2 ** 3, -x1 + u[:, 0]], 1)
+
+
 @register("duffing")
 class Duffing(Plant):
     """Reversed Duffing with state-dependent input gain.

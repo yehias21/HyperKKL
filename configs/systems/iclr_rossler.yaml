@@ -1,0 +1,20 @@
+# iclr_rossler: the Rossler system of the ICLR workshop paper (Appendix A.3), a = b = 0.1, c = 14,
+#   input additive in x2' (no saturating actuator / back-EMF), y = x2.
+# Design (nz, alpha, IC box, horizon, t_ref) as configs/systems/rossler.yaml.
+name: iclr_rossler
+plant: rossler
+role: dev
+params: {}
+sensors: [1]
+ic_box:
+- [-10, 10]
+- [-10, 10]
+- [-10, 10]
+T: 160
+nz: 7
+alpha: 1.0
+u_scale: 1.0
+t_ref: 8
+u_bounds: []
+mismatch: 0.0
+dyn_rank: 128          # Dynamic HyperKKL rank r of Eq. 13 (32 oscillators, 128 chaotic)

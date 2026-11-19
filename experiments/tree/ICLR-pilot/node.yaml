@@ -1,0 +1,49 @@
+id: ICLR-pilot
+parent: null
+title: 'Pilot: which Static loss and which dT/dt for the paper''s methods (decided on validation
+  episodes)'
+contribution: iclr
+question: 'Static: Eq. 10 full residual (pde) vs input-induced target (pde_input) vs model-free
+  finite total derivative (fd) vs the deployment rollout (latent). Dynamic: dT/dt by fixed-x finite
+  difference (fd, Eq. 14) vs JVP chain rule (jvp) vs two-step BDF2 (fd2) vs none.'
+decision_rule: Per family, the option with the lowest mean deployed NRMSE on the phase-2 VALIDATION
+  episodes (train.<method>.val_nrmse) across the four systems, seed 0; ties (< 2%) go to the simpler
+  option.
+set:
+  phase2.context.kind: lstm
+  phase2.context.window: 100
+  eval.val_nrmse: true
+  eval.tiers:
+  - id
+  - shape_ood
+  - sequence_ood
+  - fam_zero
+  - fam_constant
+  - fam_sinusoid
+  - fam_square
+  eval.conditions:
+  - clean
+methods:
+- autonomous
+- static
+- static[static_loss=pde_input]
+- static[static_loss=fd]
+- latent
+- dynamic
+- dynamic[dtdt=jvp]
+- dynamic[dtdt=fd2]
+- dynamic[dtdt=none]
+- curriculum
+baselines:
+- ekf
+- kkl_mb
+systems:
+- iclr_duffing
+- iclr_vdp
+- iclr_rossler
+- iclr_lorenz
+seeds:
+- 0
+priority: 20
+status: planned
+created: '2026-11-18'

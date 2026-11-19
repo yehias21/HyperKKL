@@ -42,7 +42,7 @@ def cached(path: Path, build, timeout_s: float = 4 * 3600, poll_s: float = 1.0):
 
 
 DATA_MODULES = ("systems", "systems_extra", "signals", "design", "data")   # systems_extra: battery, network
-MODEL_MODULES = DATA_MODULES + ("nets", "train", "conditioning", "observers", "monitor")
+MODEL_MODULES = DATA_MODULES + ("nets", "train", "conditioning", "observers", "monitor", "iclr")
 
 
 def module_hash(names=MODEL_MODULES) -> str:
